@@ -209,15 +209,17 @@ The report is `out/fab/speaker_main_drc.rpt`. It was run with kicad-cli (`--seve
 
 ## 7. Experiment: autorouter-only vs hybrid
 
-| | Autoroute-only (`hw/experiments/autoroute_only`) | Hybrid final (`hw/mainboard`, copy in `hw/experiments/hybrid_final`) |
-|---|---|---|
-| Routing | Freerouting on all nets and all 4 layers (GND routed as traces, no pours) | Hand-designed power stages and pours, then Freerouting, then A* residual |
-| Connections routed | 603 / 637 (94.7 %); 34 unrouted | ≥ 94 % of pin pairs; 40 unconnected items (§6), most of them plane fragments |
-| Vias | 294 | 708, including 231 GND stitching, 33 plane fan-outs and about 150 power/thermal |
-| Track length | 6.90 m | 5.63 m (of which 2.55 m on L3) |
-| DRC errors | 3 (clearance at I2S_BCLK vias) | 1 (hole clearance) |
-| Copper L1/L2/L3/L4 | 18.5 / 13.5 / 11.3 / 9.6 % | 76.1 / 89.2 / 67.7 / 81.7 % |
-| Gerbers | `autoroute_only/gerbers/` | `out/fab/gerbers/`, `hybrid_final/gerbers/` |
+| | Autoroute-only (`hw/experiments/autoroute_only`) | Hybrid final (`hw/mainboard`, copy in `hw/experiments/hybrid_final`) | Rev B 4-layer attempt (`hw/experiments/revB_4layer_attempt`, offline, not applied) |
+|---|---|---|---|
+| Routing | Freerouting on all nets and all 4 layers (GND routed as traces, no pours) | Hand-designed power stages and pours, then Freerouting, then A* residual | Rev A critical locked. A*: local fan-out, then the L3 rear-corridor bus. Freerouting on L1/L4 (L2/L3 planes). A* residual |
+| Connections routed | 603 / 637 (94.7 %); 34 unrouted | ≥ 94 % of pin pairs; 40 unconnected items (§6), most of them plane fragments | 49 unconnected (14 GND fill islands); 0 DRC errors |
+| Vias | 294 | 708, including 231 GND stitching, 33 plane fan-outs and about 150 power/thermal | 728 |
+| Track length | 6.90 m | 5.63 m (of which 2.55 m on L3) | 4.98 m; 1.69 m of L3 signal, all inside the corridor |
+| DRC errors | 3 (clearance at I2S_BCLK vias) | 1 (hole clearance) | 0 |
+| Copper L1/L2/L3/L4 | 18.5 / 13.5 / 11.3 / 9.6 % | 76.1 / 89.2 / 67.7 / 81.7 % | 77.1 / 89.3 / 76.0 / 79.2 % (L2↔L3 13.3 points: fails) |
+| Hand-finished (A*) | | 35 + 23 pairs | 158 connections (128 local, 19 bus, 11 residual) |
+| Reference-plane check (`layout_src/revb/refcheck.py`) | | | 143 segments not over one solid plane (L4 113, L1 22, L3 8); 9 fast-net vias without a GND via within 2 mm |
+| Gerbers | `autoroute_only/gerbers/` | `out/fab/gerbers/`, `hybrid_final/gerbers/` | none (not released) |
 
 For the analysis agent:
 - The autoroute-only board has no planes. GND, PVDD and VSYS are all traces, and L2 is not solid. Expect large hot-loop and return-path inductance there.
@@ -241,3 +243,48 @@ For the analysis agent:
 - **R4, charger SW area:** SW1/SW2 run on L3/L4, about 10 mm each. Check EMI at 750 kHz harmonics during charge.
 - **R5, thermal:** U901/L901 and U701 sit about 25 mm apart under the left motor and centre, and Q801 has its 2.3 cm². No thermal sim has been run on the final copper.
 - **R6, Konnect re-netting:** if anyone re-adds vias through Konnect, check their nets afterwards (finding 6).
+
+## 10. Lead ruling on the DSN/SES round trip: compliance check (2026-11-24, late)
+
+The lead approved the KiCad-native DSN/SES round trip, on four conditions. Status of each:
+
+1. **Snapshot taken: met.** The snapshot is at `hw/releases/pcb_critical_routed`, a copy of `pcb_02_critical_routing` taken before the SES import.
+2. **Critical routing locked before export: NOT met.**
+   - Freerouting re-routed part of my geometry, because those items were not locked.
+   - A diff of the final board against `spec_critical.json` and `spec_fanout.json` shows **63 critical track segments and 14 vias changed or missing**. Affected: CC1/CC2, LCD_SCLK, BUCK_FB/EN/SS, CHG_SDRV/PROG/CE_N, BST_FB, IO5_R, and the right-amp BST/OUT fan-outs.
+   - Several of the 40 unconnected items come from this.
+3. **Proof that critical geometry is untouched: FAILS on the live board.** This is the diff above.
+4. **0 unrouted: NOT reached.** The live board has 40 unconnected items.
+
+**Repair, done offline only and not yet applied to the live board** (`hw/experiments/hybrid_restore_wip/`):
+- `restore.py` puts back the 63 segments and 14 vias exactly as specified, marked locked and free.
+- `clean_conflicts.py` deletes the 24 autorouted items that then conflict (16 tracks, 8 vias).
+- A residual A* pass then closes more pairs. **Hand-finished count (residual router) so far: 35 + 23 pairs.**
+- Result on the offline board: **35 unconnected, 11 clearance errors**, parity 0.
+
+Applying this to the live board needs via deletions, and Konnect has no tool for that. Remaining to do:
+- Apply the restore through Konnect (`route_trace`/`add_via` from `restore_add.json`).
+- Delete the conflicting items in pcbnew, or through a KiCad-native step if one is approved.
+- Close the remaining connections by hand.
+
+**Experiment baseline (autoroute-only), as reported:** 34 of 637 connections unrouted, 294 vias, 6.9 m of track, 19 min of Freerouting.
+
+## 11. Rev B (pcb-layout-b, 2026-11-25): stopped at the 4-layer stop condition
+
+- **The live board is the restored `hw/releases/pcb_critical_routed` snapshot, unchanged.** Parity is 0 and the Konnect sync is noop. No rev B edit was applied, so there was no native step beyond the approved restore.
+- **J501 stays at the rear-right.** The battery tray fills the rear section out to the shell for |X| < 61.5, so the FFC can only rise at |X| > 61.5, and the −X side is the antenna keep-out.
+- **What was tried** (offline; scripts in `layout_src/revb/`, best board in `hw/experiments/revB_4layer_attempt/`):
+  - The L3 rear corridor: Y 75.5–85.3, plus a dip at X 137–176 down to Y 95.2 past USB-C/H4, plus the MCU end. The old +3V3 L3 pour is overridden by GND.
+  - An L4 PVDD spine at each amp. A boost-to-U401 spine on L4 is impossible, because the USB VBUS L4 band (X 157–160) crosses it.
+  - All critical routing locked before DSN export.
+  - Two full iterations: iteration 1 put the bus first; iteration 2 did local fan-out first. Result: 49 unconnected and 143 reference-plane violations; L2↔L3 copper is 13.3 points apart.
+  - **Why it fails:** L3 has to carry six power regions (PVDD, VSYS, VBAT_PACK, BATT_N, PACK_P, CHG_SW). That leaves L4 signals only in islands. L1 is component-dense. About 25 long nets cross the board, and the corridor at USB-C is 10 mm wide.
+- **Rev A defects in the frozen stages** (repairs written in `revb/design.py`, not applied):
+  - The U951 SW pin and the U701 SW2 pin don't touch their pours.
+  - The BTST1/2 L3 links are missing.
+  - The R904 Kelvin/FB tracks end under the pads with no via.
+  - BUCK_VIN is not tied to VSYS.
+  - 64–72 vias were re-netted by zones, 18 of them amp PVDD.
+- **6-layer proposal** (owner's decision): JLC06161H-1080B, SIG / GND / SIG / PWR / GND / SIG.
+  - USB 90 Ω on L1 becomes about 0.10/0.15 mm. 0.12/0.15 gives 86.8 Ω (`zsolve.py`, h 0.0764, Er 3.91).
+  - JLC live quote, 2026-11-25, ENIG: +$24.30 for 5 boards, +$62.40 for 100.
