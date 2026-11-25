@@ -1,0 +1,298 @@
+== A1 bass system (lumped, + electroacPy cross-check)
+=== Validation ===
+sealed 2xND65-8 in 0.82 L: closed form fc 140.03 Hz, model |Z| peak 140.04 Hz (Le=0), 139.99 Hz (with Le)
+lossless PR notch at fp=32.2 Hz: -137 dB below peak
+electroacPy cross-check (same physics): {'spl_db': 0.0127, 'zin_pct': 0.2217, 'xd_db': 0.0249, 'xp_db': 0.0152, 'air_load_effect_spl_db_max': 0.1409}
+
+=== PR added-mass sweep ===
+Vb 0.85 L: best m_add 2.50 g/PR -> pink 90.67 dB (amp V)
+Vb 0.82 L: best m_add 2.50 g/PR -> pink 90.59 dB (amp V)
+chosen 3.5 g/PR at 0.82 L: fb 53.2 Hz, fp 32.2 Hz, pink 90.55 dB (amp V), margins amp V +0.0, amp I +8.9, woofer thermal +8.5, woofer Xmax +1.1, PR Xmax +1.5
+  natural F3/F6 120/96 Hz; with EQ 63.7/55.6 Hz; max boost 8.8 dB; DSP sine ceiling 86.5 dB (set by 47 Hz)
+
+=== Biquad realisation of the bass EQ (fs = 48 kHz) ===
+  highpass (BW4 stage 1)   fc   49.8 Hz  Q 0.541  gain +0.00 dB
+  highpass (BW4 stage 2)   fc   49.8 Hz  Q 1.307  gain +0.00 dB
+  low shelf                fc  113.0 Hz  Q 1.028  gain +5.80 dB
+  peaking                  fc   65.9 Hz  Q 1.401  gain +2.93 dB
+  max |biquad - ideal| 40 Hz-1 kHz: 0.55 dB
+  realised with biquads: F3 63.7 Hz, F6 55.3 Hz, max boost 8.8 dB, pink 90.55 dB (amp V), woofer avg 2.39 W
+
+=== What-ifs (PR mass re-optimised for each) ===
+  baseline (0.82 L, QL 10, empty)        best m  2.50 g pink 90.59 (amp V); @3.5 g pink 90.55 fb 53.2 max63 86.7
+  0.85 L (CAD nominal)                   best m  2.50 g pink 90.67 (amp V); @3.5 g pink 90.61 fb 52.6 max63 86.8
+  leaky box QL 5                         best m  2.75 g pink 90.33 (amp V); @3.5 g pink 90.31 fb 53.2 max63 86.3
+  tight box QL 20                        best m  2.50 g pink 90.74 (amp V); @3.5 g pink 90.68 fb 53.2 max63 86.9
+  polyfill light: Vb x1.10, QA 30        best m  2.25 g pink 90.65 (amp V); @3.5 g pink 90.57 fb 51.7 max63 86.8
+  polyfill heavy: Vb x1.20, QA 10        best m  2.00 g pink 90.44 (amp V); @3.5 g pink 90.35 fb 50.3 max63 86.7
+  zeolite x1.3 (QA 30)                   best m  2.00 g pink 90.90 (amp V); @3.5 g pink 90.77 fb 49.2 max63 86.7
+  zeolite x1.5 (QA 30)                   best m  1.75 g pink 91.05 (amp V); @3.5 g pink 90.82 fb 47.3 max63 85.9
+  zeolite x2.0 (QA 30)                   best m  1.25 g pink 90.67 (woofer Xmax); @3.5 g pink 90.14 fb 44.0 max63 84.7
+  limiter 17.1 V (BTL clip, 18 V PVDD)   best m  3.00 g pink 91.44 (amp V); @3.5 g pink 91.41 fb 53.2 max63 87.5
+figure: a1_spl_halfspace_1m
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_spl_halfspace_1m.csv
+figure: a1_excursion_vs_xmax
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_excursion_vs_xmax.csv
+figure: a1_impedance
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_impedance.csv
+figure: a1_max_spl_vs_frequency
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_max_spl_vs_frequency.csv
+figure: a1_dsp_bass_eq
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_dsp_bass_eq.csv
+figure: a1_pr_mass_sweep
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_pr_mass_family.csv
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_pr_mass_sweep.csv
+figure: a1_whatif_volume_fill_zeolite
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_whatif_responses.csv
+figure: a1_electroacpy_crosscheck
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_electroacpy_crosscheck.csv
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_bass_transfer.csv
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_bass_summary.json
+
+battery estimate at pink limit: 9.0 W; runtime 3 s
+== BEM validation (piston on a sphere, exact series)
+{'f_hz': 1000.0, 'ka': 0.9159162255363829, 'method': 'direct', 'max_abs_err_db': 0.009608607780407397, 'rms_err_db': 0.006177414291013926, 'max_rel_err': 0.002527737823218116, 'median_rel_err': 0.0013605154913878148, 'time_s': 13.010456085205078}
+{'f_hz': 1000.0, 'ka': 0.9159162255363829, 'method': 'chief', 'max_abs_err_db': 0.009615827273336208, 'rms_err_db': 0.00617835215790846, 'max_rel_err': 0.0025275528051944807, 'median_rel_err': 0.0013604823006175435, 'time_s': 0.8446519374847412}
+{'f_hz': 1000.0, 'ka': 0.9159162255363829, 'method': 'bm', 'max_abs_err_db': 0.009503144001385522, 'rms_err_db': 0.0061191138364237035, 'max_rel_err': 0.0025083190959627804, 'median_rel_err': 0.0013621825921739884, 'time_s': 13.52799105644226}
+{'f_hz': 3430.0, 'ka': 3.141592653589793, 'method': 'direct', 'max_abs_err_db': 0.0801499751025716, 'rms_err_db': 0.04393628582144119, 'max_rel_err': 0.009309563101726795, 'median_rel_err': 0.006651239586548723, 'time_s': 0.5051519870758057}
+{'f_hz': 3430.0, 'ka': 3.141592653589793, 'method': 'chief', 'max_abs_err_db': 0.07949571086352591, 'rms_err_db': 0.045320373970428846, 'max_rel_err': 0.010609901727051079, 'median_rel_err': 0.005550871970744729, 'time_s': 0.5011289119720459}
+{'f_hz': 3430.0, 'ka': 3.141592653589793, 'method': 'bm', 'max_abs_err_db': 0.08273165491324619, 'rms_err_db': 0.04679640390823058, 'max_rel_err': 0.01112980045276824, 'median_rel_err': 0.005540198158270148, 'time_s': 5.158576011657715}
+{'f_hz': 8000.0, 'ka': 7.327329804291063, 'method': 'direct', 'max_abs_err_db': 0.3412609587516471, 'rms_err_db': 0.1807498032144764, 'max_rel_err': 0.06256303994788356, 'median_rel_err': 0.03284905823162426, 'time_s': 0.6479201316833496}
+{'f_hz': 8000.0, 'ka': 7.327329804291063, 'method': 'chief', 'max_abs_err_db': 0.3436526196194336, 'rms_err_db': 0.18106964380539475, 'max_rel_err': 0.06220926714987267, 'median_rel_err': 0.032858469402783905, 'time_s': 0.8019599914550781}
+{'f_hz': 8000.0, 'ka': 7.327329804291063, 'method': 'bm', 'max_abs_err_db': 0.35459673758280985, 'rms_err_db': 0.19213880678331183, 'max_rel_err': 0.06372242920584696, 'median_rel_err': 0.035373550163303694, 'time_s': 5.293722152709961}
+figure: a2_a3_bem_validation_sphere_piston
+{'f_worst_direct': 3438.0, 'err_direct_db': 0.883423318499311, 'err_chief_db_at_same_f': 0.07985395978924714, 'err_chief_max_db': 0.08696129739043101}
+figure: a2_a3_bem_validation_irregular_frequency
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/bem_validation.json
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/bem_validation_exact.csv
+== BEM hull mesh vs CAD figure
+figure: a2_a3_bem_hull_mesh_and_cad_check
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/bem_geometry_check.json
+{'woofer plane x = +33 mm': {'max_mm': 9.236506709200302, 'p95_mm': 5.413796707244121, 'median_mm': 0.8654965077001955}, 'tweeter plane x = +83 mm': {'max_mm': 9.86458129282316, 'p95_mm': 3.294030262126268, 'median_mm': 0.7292004057903916}}
+== BEM sweep: bezel (cached results/bem_bezel.npz)
+== BEM sweep: waveguide (cached results/bem_waveguide.npz)
+== BEM sweep: flush (cached results/bem_flush.npz)
+== BEM sweep: bmcheck (cached results/bem_bmcheck.npz)
+== A2 tweeter directivity
+figure: a2_tweeter_polar_maps_bezel_waveguide_baffle
+figure: a2_tweeter_onaxis_and_listening_axis
+figure: a2_tweeter_beamwidth_and_DI
+{
+ "summary": {
+  "bezel": {
+   "bw_h_2k5": 307.5,
+   "bw_h_5k": 190.0,
+   "bw_h_10k": 110.0,
+   "bw_v_10k": 110.0,
+   "DI_2k5": 2.976930700842286,
+   "DI_10k": 7.929467381582709,
+   "listener_dir_re_axis_db_5k": 0.7819919103522519,
+   "listener_dir_re_axis_db_10k": -1.7755150057759563,
+   "onaxis_ripple_2k_12k_db": 2.0731544423655777,
+   "listen_free_ripple_2k_12k_db": 4.083765216657852,
+   "listen_free_spl_5k_2v83": 88.79497254082197,
+   "onaxis_spl_5k_2v83": 87.61882944584326,
+   "desk_dip_centre_seat_db": -14.793750541178238,
+   "desk_dip_centre_seat_hz": 2828.42712474619,
+   "desk_dip_15seat_avg_db": -5.583618422381914,
+   "desk_dip_15seat_avg_hz": 2828.42712474619
+  },
+  "waveguide": {
+   "bw_h_2k5": 235.0,
+   "bw_h_5k": 127.5,
+   "bw_h_10k": 70.0,
+   "bw_v_10k": 75.0,
+   "DI_2k5": 3.812490382213734,
+   "DI_10k": 11.089780241283364,
+   "listener_dir_re_axis_db_5k": -0.20640680646026185,
+   "listener_dir_re_axis_db_10k": -2.6134275114031302,
+   "onaxis_ripple_2k_12k_db": 4.7414914515178594,
+   "listen_free_ripple_2k_12k_db": 6.396210308626564,
+   "listen_free_spl_5k_2v83": 91.67260614474338,
+   "onaxis_spl_5k_2v83": 92.05800310252677,
+   "desk_dip_centre_seat_db": -11.832639684781284,
+   "desk_dip_centre_seat_hz": 2996.614153753363,
+   "desk_dip_15seat_avg_db": -5.291039358421954,
+   "desk_dip_15seat_avg_hz": 2996.614153753363
+  },
+  "baffle": {
+   "bw_h_2k5": 185.0,
+   "bw_h_5k": 185.0,
+   "bw_h_10k": 185.0,
+   "bw_v_10k": 185.0,
+   "DI_2k5": 3.231200236193055,
+   "DI_10k": 6.495417328397797,
+   "listener_dir_re_axis_db_5k": -0.19482796896462445,
+   "listener_dir_re_axis_db_10k": -0.7883493586754711,
+   "onaxis_ripple_2k_12k_db": 0.5580495977729498
+  }
+ },
+ "checks": {
+  "mirror_LR_max_db_front": 2.91816806856421,
+  "mirror_LR_p95_db_front": 0.9615844626241906,
+  "chief_vs_burton_miller_max_db_front": 0.1509660274284439,
+  "chief_vs_burton_miller_freqs": [
+   2900.0,
+   5000.0,
+   9000.0
+  ]
+ },
+ "listener": {
+  "distance_m": 1.0203150167255004,
+  "off_axis_deg": 21.84420082141874,
+  "vertical_deg": -21.363901115370727,
+  "horizontal_deg": 5.008608647809779
+ }
+}
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a2_tweeter_directivity.json
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a2_tweeter_responses.csv
+== A3 woofer diffraction + tunnel
+figure: a3_woofer_baffle_step_and_diffraction
+figure: a3_woofer_tunnel_effect
+figure: a3_woofer_polar_maps
+figure: a3_woofers_and_prs_at_listener
+{
+ "tunnel_geometry": {
+  "a_bore_mm": 26.5,
+  "depth_centre_mm": 13.602631692858672,
+  "depth_mean_mm": 11.67530304217293,
+  "depth_edge_mm": 5.523438381712722
+ },
+ "summary": {
+  "baffle_step_low_db": -5.591292210331161,
+  "diffraction_at_500_1k_2k_4k_db": [
+   -4.2000885947315485,
+   -0.4517429853698436,
+   1.8964154345238629,
+   3.834093590650875
+  ],
+  "ripple_pp_150_2500_db": 0.3556459408368231,
+  "flush_step_minus3db_hz": 676.207328083126,
+  "flush_ripple_pp_1k_6k_db": 1.0677430821160792,
+  "tunnel_step_minus3db_hz": 643.3250357398286
+ }
+}
+{'peak_onaxis_db': 4.738854372020733, 'peak_onaxis_f': 3775.497250726774, 'peak_power_db': 4.025195412848662, 'peak_power_f': 2996.614153753363, 'lumped_peak_f': 2669.679708340069, 'lumped_peak_db': 4.737081323483973, 'at_2k5_onaxis_db': 3.097508258073872, 'at_2k5_power_db': 3.4260410222321056}
+{'distance_m': 1.061310628421293, 'bem_desk_minus_a1_100_200hz_db': 0.43398081121659854, 'bem_desk_minus_a1_max_abs_100_200hz_db': 0.48707295213121427}
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a3_woofer_diffraction.json
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a3_woofer_responses.csv
+== A5 crossover + system response + EQ
+{'fx': 2000.0, 'gt': 0.3132567651450599, 'gt_db': -10.081990822737342, 'tau_us': 120.00000000000082, 'polarity': 1, 'phase_error_rms_db': 0.11908740115562082, 'seat_spread_db': 0.5539190017037364, 'deepest_vertical_dip_db': -3.3023817368178925, 'tweeter_excursion_mm_at_fx_over_2_for_10Vpk_input': 0.014580280067127969}
+{'fx': 2500.0, 'gt': 0.32674862000619503, 'gt_db': -9.715724758955105, 'tau_us': 110.00000000000081, 'polarity': 1, 'phase_error_rms_db': 0.04614036233503438, 'seat_spread_db': 0.6581792490953332, 'deepest_vertical_dip_db': -3.3378740797878947, 'tweeter_excursion_mm_at_fx_over_2_for_10Vpk_input': 0.011188957846739182}
+{'fx': 3000.0, 'gt': 0.34300533448961923, 'gt_db': -9.293982513349249, 'tau_us': 100.00000000000078, 'polarity': 1, 'phase_error_rms_db': 0.036218200853118686, 'seat_spread_db': 0.6721594595616939, 'deepest_vertical_dip_db': -3.09071920181475, 'tweeter_excursion_mm_at_fx_over_2_for_10Vpk_input': 0.007726994961368677}
+figure: a5_crossover_branches_lr4_2k5
+figure: a5_system_response_per_side_with_eq
+figure: a5_stereo_pair_mono_at_seats
+figure: a5_vertical_lobing_vs_crossover_frequency
+{
+ "alignment": {
+  "fx": 2500.0,
+  "gt": 0.32674862000619503,
+  "gt_db": -9.715724758955105,
+  "tau_us": 110.00000000000081,
+  "polarity": 1,
+  "phase_error_rms_db": 0.04614036233503438,
+  "seat_spread_db": 0.6581792490953332,
+  "deepest_vertical_dip_db": -3.3378740797878947,
+  "tweeter_excursion_mm_at_fx_over_2_for_10Vpk_input": 0.011188957846739182
+ },
+ "seat_avg_pp_before_eq_150_14k_db": 9.981253102851326,
+ "seat_avg_pp_after_eq_db": 4.369151759022777,
+ "resid_rms_db": 0.9219934103118756,
+ "max_eq_boost_db": 3.268180790525502,
+ "max_eq_cut_db": -2.8236789017900934,
+ "level_2v83_seat_avg_db": 78.31470926194945
+}
+[
+ {
+  "type": "peaking",
+  "fc_hz": 2493.5386730835094,
+  "q": 4.439775054045669,
+  "gain_db": 1.9419900571660815
+ },
+ {
+  "type": "peaking",
+  "fc_hz": 3822.1511701412564,
+  "q": 4.235311020552126,
+  "gain_db": 2.2862883116164845
+ },
+ {
+  "type": "peaking",
+  "fc_hz": 6028.51512692141,
+  "q": 1.880972681265368,
+  "gain_db": -3.2710645589473275
+ },
+ {
+  "type": "peaking",
+  "fc_hz": 12039.699698335318,
+  "q": 5.999999999988761,
+  "gain_db": 0.917184844767318
+ },
+ {
+  "type": "peaking",
+  "fc_hz": 1176.1394081247704,
+  "q": 1.4556323566109806,
+  "gain_db": -2.5703203311956364
+ },
+ {
+  "type": "peaking",
+  "fc_hz": 3083.0377308395605,
+  "q": 2.300697219573849,
+  "gain_db": 2.999999999999916
+ },
+ {
+  "type": "high shelf",
+  "fc_hz": 11221.01213619376,
+  "q": 0.7935587288654024,
+  "gain_db": 3.9999999968985627
+ }
+]
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a5_crossover_system.json
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a5_system_responses.csv
+== TAS5805M biquad export (96 kHz + 48 kHz)
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/biquads_tas5805m.json
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/biquads_tas5805m.csv
+{
+ "A1 bass EQ (woofer channel)": {
+  "max_diff_20_2000hz": 8.144199620829795e-05,
+  "max_diff_20_16000hz": 8.144199620829795e-05
+ },
+ "A5 woofer low-pass": {
+  "max_diff_20_2000hz": 0.024768119810095968,
+  "max_diff_20_16000hz": 13.850107079029598
+ },
+ "A5 tweeter high-pass": {
+  "max_diff_20_2000hz": 0.23436296250116584,
+  "max_diff_20_16000hz": 0.23436296250116584
+ },
+ "A5 system EQ (both channels of a side)": {
+  "max_diff_20_2000hz": 0.005475067834438629,
+  "max_diff_20_16000hz": 0.4044151071639952
+ }
+} {'tweeter_trim_db': -9.715724758955105, 'tweeter_polarity': 1, 'tweeter_delay_us': 110.00000000000081, 'tweeter_delay_samples_96k': 10.56, 'tweeter_delay_samples_48k': 5.28}
+== A4 panel modes: figures from cached results
+figure: a4_validation_clamped_plate
+figure: a4_modal_frequency_map
+figure: a4_shell_vs_woofer_output
+figure: a4_mode_shapes_main_assembly
+figure: a4_mode_shapes_all_braces
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a4_modes.json
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a4_shell_vs_woofer_output.csv
+asm_solid_free                           f1..f4 = [446, 529, 824, 965]  <1kHz: [(445.9, -38.8), (529.3, -5.3), (823.9, -23.2), (964.8, -68.1), (981.4, -123.9), (993.6, -96.5)]  FRFpk -5.0698576082275535
+asm_solid_free_fine                      f1..f4 = [445, 528, 821, 962]  <1kHz: [(445.2, -43.1), (527.7, -5.2), (820.5, -26.0), (962.0, -66.9), (979.7, -108.1), (991.8, -98.8)]  FRFpk -5.143867224708457
+asm_infill40_free                        f1..f4 = [446, 529, 839, 891]  <1kHz: [(446.3, -39.2), (529.5, -2.1), (838.9, -21.1), (891.0, -91.3), (962.3, -67.0), (974.7, -109.0)]  FRFpk -1.868227618305311
+asm_infill40_drivers                     f1..f4 = [269, 334, 434, 465]  <1kHz: [(269.0, -45.7), (333.6, -32.9), (434.5, -113.0), (464.8, -110.3), (525.5, -45.0), (549.8, -105.1), (560.8, -34.8), (602.0, -25.6), (607.3, -61.2), (626.5, -34.3), (646.2, -99.6), (700.0, -33.4), (721.8, -53.6), (724.6, -59.2), (728.3, -59.6), (732.3, -46.6), (835.5, -44.7), (859.4, -24.9), (866.5, -48.6), (930.6, -107.6), (963.1, -100.2), (980.4, -66.7), (985.6, -76.5), (988.5, -62.6)]  FRFpk -25.342899007740378
+asm_infill40_drivers_batt                f1..f4 = [211, 240, 324, 344]  <1kHz: [(211.4, -46.4), (239.9, -23.8), (324.5, -122.2), (344.2, -29.6), (410.8, -35.1), (427.4, -111.6), (448.1, -47.3), (461.7, -111.8), (532.3, -52.8), (536.9, -87.1), (555.6, -49.6), (565.3, -30.7), (572.8, -93.7), (597.6, -28.8), (610.2, -81.8), (636.6, -101.3), (699.1, -29.1), (716.4, -79.6), (722.6, -46.5), (726.7, -45.4), (729.5, -43.3), (751.8, -86.9), (767.1, -76.3), (772.2, -67.5), (838.9, -39.8), (854.0, -33.6), (855.3, -45.6), (863.4, -50.8), (905.4, -69.9), (942.9, -103.5)]  FRFpk -23.02792908815654
+rear_edges_clamped                       f1..f4 = [1153, 1359, 1766, 2317]  <1kHz: []  FRFpk None
+rear_screws_only                         f1..f4 = [686, 840, 1157, 1175]  <1kHz: [(685.6, None), (840.3, None)]  FRFpk None
+front_edges_clamped                      f1..f4 = [306, 373, 470, 561]  <1kHz: [(306.3, -67.4), (373.4, -17.5), (469.9, -108.8), (560.9, -129.5), (599.4, -81.7), (615.6, -28.0), (635.5, -34.1), (730.0, -40.1), (815.1, -28.6), (849.7, -123.3), (888.3, -107.3)]  FRFpk -17.488002146285485
+endcap_rim_clamped_PR                    f1..f4 = [1072, 1167, 1196, 1481]  <1kHz: []  FRFpk None
+asm_infill40_drivers_rib_top             f1..f4 = [274, 350, 433, 472]  <1kHz: [(273.8, -43.5), (349.5, -43.3), (432.6, -142.7), (472.2, -126.0), (531.5, -40.5), (553.6, -90.5), (566.5, -30.5), (608.1, -49.4), (610.1, -25.3), (646.1, -108.1), (652.1, -33.6), (704.1, -29.9), (722.0, -55.9), (725.5, -64.6), (728.7, -59.4), (732.7, -50.1), (830.5, -32.1), (869.7, -52.9), (881.4, -23.8), (937.7, -84.6), (966.3, -107.3), (980.8, -67.7), (986.6, -68.7), (989.6, -60.0)]  FRFpk -24.35515063626566
+asm_infill40_drivers_rib_top_tray        f1..f4 = [275, 365, 434, 475]  <1kHz: [(274.8, -43.1), (364.8, -43.5), (434.0, -103.8), (474.8, -116.5), (533.0, -41.5), (556.8, -92.3), (568.6, -28.6), (610.3, -55.2), (617.7, -23.6), (645.5, -119.2), (702.0, -58.9), (707.0, -22.8), (721.6, -53.9), (725.0, -64.6), (727.9, -64.7), (733.2, -63.1), (834.4, -30.7), (870.5, -104.2), (911.6, -24.9), (937.8, -87.7), (965.6, -102.2), (982.1, -77.3), (986.7, -117.5), (992.2, -57.2)]  FRFpk -24.348414624460656
+asm_infill40_drivers_batt_rib_top_tray   f1..f4 = [220, 263, 336, 361]  <1kHz: [(220.3, -43.0), (263.2, -23.8), (336.1, -118.0), (360.5, -68.6), (426.4, -112.1), (452.6, -35.6), (457.7, -41.7), (471.9, -102.7), (541.0, -51.6), (543.1, -103.3), (566.4, -29.0), (575.2, -77.2), (579.3, -39.1), (608.9, -23.9), (615.8, -63.7), (637.0, -106.5), (703.2, -27.5), (718.7, -71.2), (722.7, -52.6), (726.4, -53.5), (730.6, -47.3), (764.1, -72.9), (777.0, -44.0), (779.7, -58.5), (838.8, -30.8), (861.5, -36.4), (867.1, -94.3), (901.4, -28.7), (913.6, -69.0), (950.3, -88.5)]  FRFpk -22.913020194362822
+asm_infill40_drivers_spine               f1..f4 = [447, 459, 460, 495]  <1kHz: [(447.5, -92.7), (459.2, -28.5), (460.1, -99.6), (494.6, -26.7), (531.1, -50.4), (566.5, -81.5), (581.0, -20.0), (613.7, -34.2), (631.9, -88.8), (652.9, -84.5), (717.9, -34.2), (725.4, -47.0), (728.4, -32.5), (730.6, -48.7), (744.9, -31.8), (821.8, -23.6), (909.8, -26.8), (932.3, -45.2), (935.8, -65.6), (954.6, -98.7), (966.3, -99.6), (968.1, -62.2), (984.8, -81.9), (989.3, -69.6)]  FRFpk -19.122389402468926
+asm_infill40_drivers_spine_top_tray      f1..f4 = [449, 466, 476, 506]  <1kHz: [(448.8, -123.6), (466.0, -115.5), (476.1, -25.9), (505.6, -25.7), (535.9, -38.1), (573.5, -90.8), (585.5, -18.8), (633.5, -30.6), (635.0, -47.7), (652.4, -82.4), (718.5, -37.5), (725.7, -46.6), (729.3, -34.8), (730.5, -39.8), (743.3, -31.9), (860.6, -22.4), (925.9, -44.9), (931.6, -79.6), (961.0, -31.4), (962.5, -35.2), (969.8, -67.8), (974.4, -60.1), (985.7, -76.9), (991.2, -72.6)]  FRFpk -17.790463840917823
+asm_infill40_drivers_batt_spine_top_tray f1..f4 = [339, 372, 415, 442]  <1kHz: [(339.4, -127.9), (371.7, -23.7), (414.5, -36.4), (442.2, -119.8), (460.6, -120.7), (474.5, -25.1), (488.1, -27.2), (554.0, -98.2), (576.1, -25.3), (585.3, -70.3), (613.8, -28.1), (628.1, -47.6), (635.4, -94.0), (643.5, -97.5), (666.6, -23.0), (687.4, -44.9), (718.2, -31.8), (723.0, -44.9), (727.6, -32.0), (729.0, -37.9), (746.8, -24.8), (769.5, -91.7), (781.0, -109.0), (868.6, -112.5), (906.1, -38.7), (914.3, -62.3), (921.3, -111.4), (949.8, -38.5), (976.2, -80.1), (985.6, -85.5)]  FRFpk -21.995901968414834
+asm_infill40_drivers_all_braces          f1..f4 = [450, 466, 476, 507]  <1kHz: [(450.5, -93.4), (465.7, -102.1), (476.0, -26.6), (506.8, -21.9), (536.7, -48.7), (576.1, -105.5), (610.0, -22.3), (635.4, -66.2), (641.6, -33.7), (682.9, -95.8), (733.1, -24.1), (771.8, -71.8), (781.3, -46.3), (787.9, -53.6), (792.6, -53.8), (861.1, -22.6), (929.7, -42.7), (938.3, -96.7), (964.4, -26.4), (970.1, -69.0), (977.5, -55.2), (979.8, -63.7), (992.3, -90.8)]  FRFpk -21.623419438177407
+done: figures in docs/figures/acoustics, data in sim/acoustics/results
+EXIT 0

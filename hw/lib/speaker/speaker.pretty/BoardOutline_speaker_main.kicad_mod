@@ -1,0 +1,11 @@
+(footprint "BoardOutline_speaker_main"
+  (version 20240108)
+  (generator "konnect")
+  (layer "F.Cu")
+  (descr "Board outline of speaker_main (mech_envelope 6): 180 x 46 mm, R1 corners, USB-C tab X 143..157 to Y 73.5. Place at (0,0), rotation 0; graphics are in board coordinates. The single pad is a mask-only marker (no copper, no paste) needed only because Konnect requires a pad to emit the Reference field.")
+  (attr board_only exclude_from_pos_files exclude_from_bom allow_missing_courtyard)
+  (fp_poly (pts (xy 60 120) (xy 60.0192 120.1951) (xy 60.0761 120.3827) (xy 60.1685 120.5556) (xy 60.2929 120.7071) (xy 60.4444 120.8315) (xy 60.6173 120.9239) (xy 60.8049 120.9808) (xy 61 121) (xy 239 121) (xy 239.1951 120.9808) (xy 239.3827 120.9239) (xy 239.5556 120.8315) (xy 239.7071 120.7071) (xy 239.8315 120.5556) (xy 239.9239 120.3827) (xy 239.9808 120.1951) (xy 240 120) (xy 240 76) (xy 239.9808 75.8049) (xy 239.9239 75.6173) (xy 239.8315 75.4444) (xy 239.7071 75.2929) (xy 239.5556 75.1685) (xy 239.3827 75.0761) (xy 239.1951 75.0192) (xy 239 75) (xy 157.5 75) (xy 157.3087 74.9619) (xy 157.1464 74.8536) (xy 157.0381 74.6913) (xy 157 74.5) (xy 157 74) (xy 156.9619 73.8087) (xy 156.8536 73.6464) (xy 156.6913 73.5381) (xy 156.5 73.5) (xy 143.5 73.5) (xy 143.3087 73.5381) (xy 143.1464 73.6464) (xy 143.0381 73.8087) (xy 143 74) (xy 143 74.5) (xy 142.9619 74.6913) (xy 142.8536 74.8536) (xy 142.6913 74.9619) (xy 142.5 75) (xy 61 75) (xy 60.8049 75.0192) (xy 60.6173 75.0761) (xy 60.4444 75.1685) (xy 60.2929 75.2929) (xy 60.1685 75.4444) (xy 60.0761 75.6173) (xy 60.0192 75.8049) (xy 60 76)) (stroke (width 0.05) (type solid)) (fill none) (layer "Edge.Cuts"))
+  (pad "" smd circle (at 61.5 119.5) (size 0.2 0.2) (layers "B.Mask")  )
+  (fp_text reference "REF**" (at 61.5000 118.3500 0) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))
+  (fp_text value "BoardOutline_speaker_main" (at 61.5000 120.6500 0) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))
+)

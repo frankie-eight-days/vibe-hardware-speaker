@@ -1,0 +1,111 @@
+2026-11-24 20:22:57.788 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
+2026-11-24 20:22:59.176 INFO   [DF64CD\0FF9BA] Loading board file 'autoroute_only.dsn'...
+2026-11-24 20:22:59.251 INFO   [DF64CD\0FF9BA] Job 'DF64CD\0FF9BA' started at 2026-11-25T04:22:59.251587Z.
+2026-11-24 20:22:59.254 INFO   New version available: v2.5.0
+2026-11-24 20:22:59.340 INFO   [DF64CD\0FF9BA] Fanout stage started on board '8ed7c4cd42608d8fd0946cd3ef82951d' with 724 of 760 SMD pins needing fanout (24 already connected, 12 netless).
+2026-11-24 20:23:02.837 INFO   [DF64CD\0FF9BA] Fanout pass #1 on board '71a416f327ecedc820fa602417f56d7f' completed in 3.40 seconds with 645 SMD pins fanouted, 43 not routed, 0 insert errors, +217 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-24 20:23:04.637 INFO   [DF64CD\0FF9BA] Fanout pass #2 on board 'acde856ec6b5f29dfe896fea4bffa991' completed in 1.76 seconds with 139 SMD pins fanouted, 50 not routed, 0 insert errors, +50 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-24 20:23:06.060 INFO   [DF64CD\0FF9BA] Fanout pass #3 on board '19fe37886fb833687e504b6a78cd4322' completed in 1.39 seconds with 84 SMD pins fanouted, 49 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-24 20:23:07.627 INFO   [DF64CD\0FF9BA] Fanout pass #4 on board '51027f1c2250703e0b64b3f5fc03309e' completed in 1.53 seconds with 71 SMD pins fanouted, 49 not routed, 0 insert errors, +9 extra vias (0 SMD pins still to check in pass, ripup costs=400).
+2026-11-24 20:23:08.569 INFO   [DF64CD\0FF9BA] Fanout pass #5 on board '4557bd44457da8046c96641aee3b5024' completed in 0.91 seconds with 57 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=500).
+2026-11-24 20:23:09.414 INFO   [DF64CD\0FF9BA] Fanout pass #6 on board 'df749f14ba04fb471c75922619b24243' completed in 0.82 seconds with 50 SMD pins fanouted, 49 not routed, 0 insert errors, +6 extra vias (0 SMD pins still to check in pass, ripup costs=600).
+2026-11-24 20:23:10.310 INFO   [DF64CD\0FF9BA] Fanout pass #7 on board 'fa1098583959cc558d64af14de369b46' completed in 0.87 seconds with 54 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=700).
+2026-11-24 20:23:11.106 INFO   [DF64CD\0FF9BA] Fanout pass #8 on board '559ab2efd449c401fad997abd3a25dd9' completed in 0.76 seconds with 43 SMD pins fanouted, 49 not routed, 0 insert errors, +6 extra vias (0 SMD pins still to check in pass, ripup costs=800).
+2026-11-24 20:23:11.871 INFO   [DF64CD\0FF9BA] Fanout pass #9 on board 'f509d9277f2d366339333863bef7683f' completed in 0.73 seconds with 38 SMD pins fanouted, 49 not routed, 0 insert errors, +1 extra via (0 SMD pins still to check in pass, ripup costs=900).
+2026-11-24 20:23:12.622 INFO   [DF64CD\0FF9BA] Fanout pass #10 on board '67d8510aab4581831fd7f2fc8d814045' completed in 0.72 seconds with 35 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1000).
+2026-11-24 20:23:13.383 INFO   [DF64CD\0FF9BA] Fanout pass #11 on board '66c3749b8f28bdb12fea32b842caa589' completed in 0.73 seconds with 36 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1100).
+2026-11-24 20:23:14.137 INFO   [DF64CD\0FF9BA] Fanout pass #12 on board '564c93d587a721f8aa11374c7f021f5b' completed in 0.72 seconds with 35 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1200).
+2026-11-24 20:23:14.892 INFO   [DF64CD\0FF9BA] Fanout pass #13 on board 'b351e663f161cafe0af3358abbd5e118' completed in 0.72 seconds with 36 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1300).
+2026-11-24 20:23:15.644 INFO   [DF64CD\0FF9BA] Fanout pass #14 on board 'e9538512522700fb8f0483ff059f1a8f' completed in 0.72 seconds with 35 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1400).
+2026-11-24 20:23:16.395 INFO   [DF64CD\0FF9BA] Fanout pass #15 on board 'b3d60125ddd7c9b0c9124baaf58077ec' completed in 0.72 seconds with 36 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1500).
+2026-11-24 20:23:17.147 INFO   [DF64CD\0FF9BA] Fanout pass #16 on board 'ac6f5070910620bec5d477d12779dd85' completed in 0.72 seconds with 35 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1600).
+2026-11-24 20:23:17.900 INFO   [DF64CD\0FF9BA] Fanout pass #17 on board '55b833471830279ab92586b76783144d' completed in 0.72 seconds with 36 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1700).
+2026-11-24 20:23:18.652 INFO   [DF64CD\0FF9BA] Fanout pass #18 on board '1416626119ed4b0e23fdbecf3c65bcd7' completed in 0.72 seconds with 35 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1800).
+2026-11-24 20:23:19.398 INFO   [DF64CD\0FF9BA] Fanout pass #19 on board '805ac096d90b35e0726d05b687283d61' completed in 0.72 seconds with 36 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=1900).
+2026-11-24 20:23:20.151 INFO   [DF64CD\0FF9BA] Fanout pass #20 on board 'd9a63d0f24db74f697a5828ef75ff224' completed in 0.72 seconds with 35 SMD pins fanouted, 49 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=2000).
+2026-11-24 20:23:20.198 INFO   [DF64CD\0FF9BA] Fanout stage completed: started with 748 total SMD pins, completed in 20.80 seconds, escaped pins: 683/748 (91.3%), using 20.13 total CPU seconds, 280.97 GB total allocated, and 613.3 MB peak heap usage.
+2026-11-24 20:23:20.210 INFO   [DF64CD\0FF9BA] Auto-routing stage started on board 'd9a63d0f24db74f697a5828ef75ff224' for 292 unrouted items.
+2026-11-24 20:24:28.267 INFO   [DF64CD\0FF9BA] Auto-routing pass #1 on board 'd9a63d0f24db74f697a5828ef75ff224' was completed in 67.92 seconds with score 845.54 (78 unrouted and 105 violations), using 86.03 CPU seconds and the job allocated 1148.88 GB of memory so far.
+2026-11-24 20:25:26.710 INFO   [DF64CD\0FF9BA] Auto-routing pass #2 on board '224b0d05252e6b72de346776268f1ab6' was completed in 58.12 seconds with score 893.91 (47 unrouted and 105 violations), using 143.02 CPU seconds and the job allocated 1841.91 GB of memory so far.
+2026-11-24 20:26:21.731 INFO   [DF64CD\0FF9BA] Auto-routing pass #3 on board 'e82b729d99fe36c3070fc72dc0d9f70f' was completed in 54.57 seconds with score 907.95 (38 unrouted and 105 violations), using 196.20 CPU seconds and the job allocated 2461.56 GB of memory so far.
+2026-11-24 20:27:12.604 INFO   [DF64CD\0FF9BA] Auto-routing pass #4 on board 'c693526d3fe0e3d61579224171256001' was completed in 50.24 seconds with score 909.51 (37 unrouted and 105 violations), using 246.38 CPU seconds and the job allocated 2995.76 GB of memory so far.
+2026-11-24 20:28:03.340 INFO   [DF64CD\0FF9BA] Auto-routing pass #5 on board 'e5e596ff206bf6e90f103bea63c46df9' was completed in 50.11 seconds with score 911.07 (36 unrouted and 105 violations), using 295.54 CPU seconds and the job allocated 3505.99 GB of memory so far.
+2026-11-24 20:28:53.892 INFO   [DF64CD\0FF9BA] Auto-routing pass #6 on board '571603be10ea840426e4536467bfd5ad' was completed in 49.92 seconds with score 911.07 (36 unrouted and 105 violations), using 344.69 CPU seconds and the job allocated 4015.41 GB of memory so far.
+2026-11-24 20:29:44.109 INFO   [DF64CD\0FF9BA] Auto-routing pass #7 on board 'da239cdc839b53e4426dbf2006dcefce' was completed in 49.58 seconds with score 911.07 (36 unrouted and 105 violations), using 393.75 CPU seconds and the job allocated 4527.36 GB of memory so far.
+2026-11-24 20:30:35.078 INFO   [DF64CD\0FF9BA] Auto-routing pass #8 on board '42122e87631d10ea32ebdf24a3e1251f' was completed in 50.34 seconds with score 912.63 (35 unrouted and 105 violations), using 443.91 CPU seconds and the job allocated 5069.57 GB of memory so far.
+2026-11-24 20:31:24.970 INFO   [DF64CD\0FF9BA] Auto-routing pass #9 on board '79fcb56c7613b4f84cf1b977f570b762' was completed in 49.26 seconds with score 912.63 (35 unrouted and 105 violations), using 492.10 CPU seconds and the job allocated 5562.69 GB of memory so far.
+2026-11-24 20:32:13.658 INFO   [DF64CD\0FF9BA] Auto-routing pass #10 on board '8e435cedfa6ad79bfb851fe3eb963a94' was completed in 48.05 seconds with score 912.63 (35 unrouted and 105 violations), using 539.21 CPU seconds and the job allocated 6070.00 GB of memory so far.
+2026-11-24 20:33:03.823 INFO   [DF64CD\0FF9BA] Auto-routing pass #11 on board '4bc166afd79867b8b67ee3b826ba69db' was completed in 49.53 seconds with score 912.63 (35 unrouted and 105 violations), using 588.24 CPU seconds and the job allocated 6576.96 GB of memory so far.
+2026-11-24 20:33:55.511 INFO   [DF64CD\0FF9BA] Auto-routing pass #12 on board '0c452865ba196d64ca762f09ffe63b5a' was completed in 50.72 seconds with score 914.19 (34 unrouted and 105 violations), using 638.32 CPU seconds and the job allocated 7117.37 GB of memory so far.
+2026-11-24 20:34:43.257 INFO   [DF64CD\0FF9BA] Auto-routing pass #13 on board 'f7c81679a5918551a2f6f73c6487bf1a' was completed in 47.11 seconds with score 914.19 (34 unrouted and 105 violations), using 685.50 CPU seconds and the job allocated 7608.59 GB of memory so far.
+2026-11-24 20:35:31.282 INFO   [DF64CD\0FF9BA] Auto-routing pass #14 on board '0938c7420a8fd7e887ccf705392bea1d' was completed in 47.39 seconds with score 914.19 (34 unrouted and 105 violations), using 731.66 CPU seconds and the job allocated 8080.75 GB of memory so far.
+2026-11-24 20:36:18.439 INFO   [DF64CD\0FF9BA] Auto-routing pass #15 on board 'b470e62fc2a2edc0cfbbba0af0cdac88' was completed in 46.53 seconds with score 914.19 (34 unrouted and 105 violations), using 777.81 CPU seconds and the job allocated 8561.26 GB of memory so far.
+2026-11-24 20:37:06.332 INFO   [DF64CD\0FF9BA] Auto-routing pass #16 on board '0938c7420a8fd7e887ccf705392bea1d' was completed in 0.00 seconds with score 914.19 (34 unrouted and 105 violations), using 824.91 CPU seconds and the job allocated 9062.12 GB of memory so far.
+2026-11-24 20:37:51.922 INFO   [DF64CD\0FF9BA] Auto-routing pass #17 on board '0938c7420a8fd7e887ccf705392bea1d' was completed in 45.28 seconds with score 914.19 (34 unrouted and 105 violations), using 869.06 CPU seconds and the job allocated 9536.07 GB of memory so far.
+2026-11-24 20:38:37.271 INFO   [DF64CD\0FF9BA] Auto-routing pass #18 on board '6a7c4636704b58df22435ea1a72a6a99' was completed in 44.76 seconds with score 914.19 (34 unrouted and 105 violations), using 913.28 CPU seconds and the job allocated 10014.46 GB of memory so far.
+2026-11-24 20:39:22.935 INFO   [DF64CD\0FF9BA] Auto-routing pass #19 on board '33b30b2b8fa3b2f43ce921799c9ecd61' was completed in 45.08 seconds with score 914.19 (34 unrouted and 105 violations), using 957.46 CPU seconds and the job allocated 10491.57 GB of memory so far.
+2026-11-24 20:40:08.344 INFO   [DF64CD\0FF9BA] Auto-routing pass #20 on board 'aefdeeb2be7e1a6cc6ad09591c1015a4' was completed in 44.82 seconds with score 914.19 (34 unrouted and 105 violations), using 1001.62 CPU seconds and the job allocated 10967.68 GB of memory so far.
+2026-11-24 20:40:53.838 INFO   [DF64CD\0FF9BA] Auto-routing pass #21 on board '6f316fbcddc39916f04588d605da4333' was completed in 44.91 seconds with score 914.19 (34 unrouted and 105 violations), using 1045.71 CPU seconds and the job allocated 11444.71 GB of memory so far.
+2026-11-24 20:41:39.241 INFO   [DF64CD\0FF9BA] Auto-routing pass #22 on board '306022067932ae5e57fe45977791ba78' was completed in 44.82 seconds with score 914.19 (34 unrouted and 105 violations), using 1089.91 CPU seconds and the job allocated 11924.74 GB of memory so far.
+2026-11-24 20:41:39.272 INFO   [DF64CD\0FF9BA] The router's best score (914.19) has not improved by more than 0.5 points since pass #12. Stopping the auto-router after 22 passes (34 items still unconnected).
+The following connections could not be routed -- please review your design (e.g. check pad clearances, trace width rules, and available routing space):
+  Net '/battery/BATT_N' (6 unrouted connections):
+    - C803-2  ->  C802-2
+    - U802-3  ->  C804-2
+    - U801-6  ->  C801-2
+    - U801-6  ->  C802-2
+    - Q803-2  ->  U802-3
+    - Q803-2  ->  C801-2
+  Net '/battery/VBAT_PACK' (2 unrouted connections):
+    - R810-1  ->  R801-1
+    - R706-1  ->  Q701-5
+  Net '/charger/VSYS' (5 unrouted connections):
+    - C903-1  ->  U901-12
+    - C953-1  ->  U951-3
+    - U701-25  ->  C716-1
+    - C903-1  ->  L901-1
+    - U951-3  ->  C902-1
+  Net '/I2S_BCLK' (1 unrouted connection):
+    - via  ->  U401-7
+  Net '/amp_right/AR_OUTB_P' (1 unrouted connection):
+    - U401-17  ->  C414-2
+  Net '/charger/VBUS' (5 unrouted connections):
+    - U701-8  ->  U701-3
+    - U603-8  ->  C604-1
+    - U603-8  ->  U603-1
+    - U701-3  ->  C703-1
+    - J601-B9  ->  J601-A9
+  Net '/charger/CHG_BAT' (4 unrouted connections):
+    - U701-23  ->  C717-1
+    - C718-1  ->  via
+    - C718-1  ->  C717-1
+    - Q701-3  ->  R710-2
+  Net '/amp_right/AR_OUTB_N' (1 unrouted connection):
+    - C415-2  ->  L404-1
+  Net '/battery/PACK_P' (1 unrouted connection):
+    - via  ->  JP802-2
+  Net '/amp_left/AL_OUTB_N' (1 unrouted connection):
+    - C315-2  ->  L304-1
+  Net '/charger/CHG_PMID' (1 unrouted connection):
+    - U701-29  ->  C707-1
+  Net '/amp_right/AR_OUTA_N' (1 unrouted connection):
+    - L402-1  ->  C413-2
+  Net '/amp_left/AL_OUTA_N' (1 unrouted connection):
+    - L302-1  ->  C313-2
+  Net '/charger/CHG_SW2' (1 unrouted connection):
+    - U701-26  ->  C709-2
+  Net '/charger/CHG_SW1' (2 unrouted connections):
+    - C708-2  ->  U701-28
+    - L701-1  ->  U701-28
+  Net '/I2S_LRCK' (1 unrouted connection):
+    - TP302-1  ->  U301-6
+2026-11-24 20:41:39.839 INFO   [DF64CD\0FF9BA] Auto-routing stage completed: started with 637 unrouted nets, completed in 1120.27 seconds, final score: 914.19 (34 unrouted and 105 violations), using 1090.89 total CPU seconds, 11946.81 GB total allocated, and 1503.6 MB peak heap usage.
+2026-11-24 20:41:40.147 INFO   [DF64CD\0FF9BA] Optimization stage started on board '7cb1b2a4be3e7d8cec6029bca13ca294' with score 914.19 (34 unrouted and 105 violations).
+2026-11-24 20:42:11.313 INFO   [DF64CD\0FF9BA] Stopping optimization pass #1 early after 50 consecutive items could not be improved.
+2026-11-24 20:42:11.643 INFO   [DF64CD\0FF9BA] Optimizer pass #1 on board '1d8c749524ea8f987c6fc8bbad606078' was completed in 30.53 seconds with the score of 914.19 (34 unrouted and 105 violations).
+2026-11-24 20:42:11.946 INFO   [DF64CD\0FF9BA] Stopping optimizer because the improvement in this pass (0.0000%) is below the threshold (1.00%).
+2026-11-24 20:42:12.252 INFO   [DF64CD\0FF9BA] Optimization stage completed: started with score 914.19 (34 unrouted and 105 violations), completed in 31.80 seconds, final score: 914.19 (34 unrouted and 105 violations), using 31.29 total CPU seconds, 817.05 GB total allocated, and 1005.4 MB peak heap usage.
+2026-11-24 20:42:12.278 INFO   [DF64CD\0FF9BA] Job 'DF64CD\0FF9BA' finished with state: COMPLETED (elapsed: 19 minutes 13.03 seconds, finished at UTC: 2026-11-25T04:42:12.277678Z).
+2026-11-24 20:42:12.452 INFO   Saving output file '/Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/hw/experiments/autoroute_only/autoroute_only.ses' (SES)...
+2026-11-24 20:42:12.455 INFO   Successfully saved output file '/Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/hw/experiments/autoroute_only/autoroute_only.ses' (209011 bytes).
+EXIT 0

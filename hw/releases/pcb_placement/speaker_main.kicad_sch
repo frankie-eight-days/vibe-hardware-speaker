@@ -1,0 +1,2254 @@
+(kicad_sch
+	(version 20250610)
+	(generator "konnect")
+	(generator_version "10.0")
+	(uuid "6ca7e041-e8d2-4406-aff1-c65abf06fe53")
+	(paper "A3")
+	(lib_symbols)
+	(junction
+		(at 317.5 127)
+		(diameter 0)
+		(uuid "60d91647-77ba-495d-be45-e5a6adf67983")
+	)
+	(junction
+		(at 401.32 101.6)
+		(diameter 0)
+		(uuid "822f069b-94f7-4ae8-b61c-b003222642d0")
+	)
+	(wire
+		(pts
+			(xy 76.2 53.34)
+			(xy 106.68 53.34)
+		)
+		(uuid "b76a1d43-5a8e-46d6-a39e-d7ff3b33e055")
+	)
+	(wire
+		(pts
+			(xy 157.48 53.34)
+			(xy 190.5 53.34)
+		)
+		(uuid "bcc1d17e-e790-4a95-981f-8ab1181120c0")
+	)
+	(wire
+		(pts
+			(xy 157.48 55.88)
+			(xy 190.5 55.88)
+		)
+		(uuid "6a45c492-2a6e-4c15-ae48-8aab168a513a")
+	)
+	(wire
+		(pts
+			(xy 170.18 180.34)
+			(xy 215.9 180.34)
+		)
+		(uuid "3c1bbde2-e5a0-406e-b4c6-36d1d6f6bcdb")
+	)
+	(wire
+		(pts
+			(xy 170.18 182.88)
+			(xy 215.9 182.88)
+		)
+		(uuid "025a1655-fdc8-48b3-aae7-0ccdab5a972b")
+	)
+	(wire
+		(pts
+			(xy 170.18 185.42)
+			(xy 215.9 185.42)
+		)
+		(uuid "8ea8f220-bac2-4c54-8ae9-05ff420a907b")
+	)
+	(wire
+		(pts
+			(xy 170.18 190.5)
+			(xy 215.9 190.5)
+		)
+		(uuid "d7dcc6fa-cf9d-4162-8ded-d276811310e1")
+	)
+	(wire
+		(pts
+			(xy 170.18 193.04)
+			(xy 215.9 193.04)
+		)
+		(uuid "f16ca763-447d-4b57-85b9-bae65cf0945a")
+	)
+	(wire
+		(pts
+			(xy 170.18 195.58)
+			(xy 215.9 195.58)
+		)
+		(uuid "1fd8c650-43df-4ee9-913d-9c5cb36de66f")
+	)
+	(wire
+		(pts
+			(xy 170.18 198.12)
+			(xy 215.9 198.12)
+		)
+		(uuid "99fe7d60-2a38-48f9-b4a8-3b1b6c431d9e")
+	)
+	(wire
+		(pts
+			(xy 170.18 200.66)
+			(xy 215.9 200.66)
+		)
+		(uuid "e2cdbe56-7a92-43e7-b840-fba399dc6366")
+	)
+	(wire
+		(pts
+			(xy 170.18 205.74)
+			(xy 215.9 205.74)
+		)
+		(uuid "eaba0e85-4e32-4846-90d4-671b9ec12379")
+	)
+	(wire
+		(pts
+			(xy 170.18 208.28)
+			(xy 215.9 208.28)
+		)
+		(uuid "29849824-68d8-403a-9edb-ab08875297e7")
+	)
+	(wire
+		(pts
+			(xy 170.18 213.36)
+			(xy 215.9 213.36)
+		)
+		(uuid "d83bb283-81b5-4a54-bc40-59db6c0e129a")
+	)
+	(wire
+		(pts
+			(xy 170.18 215.9)
+			(xy 215.9 215.9)
+		)
+		(uuid "02cf97f5-7a44-41fc-a959-36f8e12f5ef2")
+	)
+	(wire
+		(pts
+			(xy 170.18 218.44)
+			(xy 215.9 218.44)
+		)
+		(uuid "f888db5f-fc27-4294-9388-d7b16d7942e1")
+	)
+	(wire
+		(pts
+			(xy 170.18 220.98)
+			(xy 215.9 220.98)
+		)
+		(uuid "3d0e38da-ec93-4709-a371-47c0bb667001")
+	)
+	(wire
+		(pts
+			(xy 170.18 162.56)
+			(xy 185.42 162.56)
+		)
+		(uuid "76ef43ef-7ae8-45f7-9e4b-37330b02f9b5")
+	)
+	(wire
+		(pts
+			(xy 185.42 162.56)
+			(xy 185.42 129.54)
+		)
+		(uuid "7fe2bc83-33ae-4a18-a0b3-8b3025fa8102")
+	)
+	(wire
+		(pts
+			(xy 170.18 165.1)
+			(xy 190.5 165.1)
+		)
+		(uuid "0aea08fc-4366-4a9e-a2fa-0058732cdc48")
+	)
+	(wire
+		(pts
+			(xy 190.5 165.1)
+			(xy 190.5 129.54)
+		)
+		(uuid "5a231888-5518-4512-a139-875418e2d2a6")
+	)
+	(wire
+		(pts
+			(xy 170.18 167.64)
+			(xy 195.58 167.64)
+		)
+		(uuid "7de767dc-d43f-430b-82e0-41b1efee55b4")
+	)
+	(wire
+		(pts
+			(xy 195.58 167.64)
+			(xy 195.58 129.54)
+		)
+		(uuid "7e47008e-42cf-4ef8-a047-1ae4f328e7ce")
+	)
+	(wire
+		(pts
+			(xy 170.18 170.18)
+			(xy 200.66 170.18)
+		)
+		(uuid "402abaec-8452-4e86-8cd4-51beb3a53a6c")
+	)
+	(wire
+		(pts
+			(xy 200.66 170.18)
+			(xy 200.66 129.54)
+		)
+		(uuid "fd01c860-b116-439b-9857-f92c34e20dc3")
+	)
+	(wire
+		(pts
+			(xy 170.18 172.72)
+			(xy 205.74 172.72)
+		)
+		(uuid "f913047c-318b-4f76-8a54-1666adb10936")
+	)
+	(wire
+		(pts
+			(xy 205.74 172.72)
+			(xy 205.74 129.54)
+		)
+		(uuid "efba302e-f5ff-49a3-a3c2-5e56fe6a81da")
+	)
+	(wire
+		(pts
+			(xy 76.2 71.12)
+			(xy 86.36 71.12)
+		)
+		(uuid "e383bfcb-9c6f-4588-888e-94b4395f60ba")
+	)
+	(wire
+		(pts
+			(xy 86.36 71.12)
+			(xy 86.36 124.46)
+		)
+		(uuid "709c07b2-cbf0-4c21-892a-f461e03cb243")
+	)
+	(wire
+		(pts
+			(xy 76.2 73.66)
+			(xy 81.28 73.66)
+		)
+		(uuid "f891e6b2-d815-48f4-8473-fd60c556d1c2")
+	)
+	(wire
+		(pts
+			(xy 81.28 73.66)
+			(xy 81.28 124.46)
+		)
+		(uuid "1f6fb30a-778e-44fb-b6ea-31e0c5af619d")
+	)
+	(wire
+		(pts
+			(xy 106.68 81.28)
+			(xy 96.52 81.28)
+		)
+		(uuid "3223fe8e-c4e5-4e0e-9f3f-a8a135389feb")
+	)
+	(wire
+		(pts
+			(xy 96.52 81.28)
+			(xy 96.52 124.46)
+		)
+		(uuid "617db204-66f7-4e52-9e05-648a01838e38")
+	)
+	(wire
+		(pts
+			(xy 106.68 83.82)
+			(xy 101.6 83.82)
+		)
+		(uuid "db08711b-ba68-4ce2-a5dd-9b1bbc19a799")
+	)
+	(wire
+		(pts
+			(xy 101.6 83.82)
+			(xy 101.6 124.46)
+		)
+		(uuid "391248e1-4dd5-478c-98c7-1681fdf17705")
+	)
+	(wire
+		(pts
+			(xy 266.7 185.42)
+			(xy 314.96 185.42)
+		)
+		(uuid "706d0b3a-d730-4e8f-b466-581f21a3e60a")
+	)
+	(wire
+		(pts
+			(xy 266.7 187.96)
+			(xy 314.96 187.96)
+		)
+		(uuid "2240f285-ba2c-44b1-9bdd-c5ea6fc9e52f")
+	)
+	(wire
+		(pts
+			(xy 266.7 190.5)
+			(xy 314.96 190.5)
+		)
+		(uuid "943f721b-c1b9-4e6e-b393-3e0d8bced46a")
+	)
+	(wire
+		(pts
+			(xy 157.48 88.9)
+			(xy 190.5 88.9)
+		)
+		(uuid "9b90b0f6-d1f5-4d16-8472-8d36ab6bcae0")
+	)
+	(wire
+		(pts
+			(xy 241.3 88.9)
+			(xy 401.32 88.9)
+		)
+		(uuid "18b83b75-c956-4645-a697-779ded90cbbb")
+	)
+	(wire
+		(pts
+			(xy 401.32 88.9)
+			(xy 401.32 101.6)
+		)
+		(uuid "24a09504-803d-48aa-aa0e-ee59d6a3fa69")
+	)
+	(wire
+		(pts
+			(xy 401.32 101.6)
+			(xy 401.32 149.86)
+		)
+		(uuid "60cbe2b0-79fd-4181-ac0d-cac06e333a18")
+	)
+	(wire
+		(pts
+			(xy 401.32 101.6)
+			(xy 393.7 101.6)
+		)
+		(uuid "72f8b01e-e4b0-4aec-875e-00dff4908ab5")
+	)
+	(wire
+		(pts
+			(xy 401.32 149.86)
+			(xy 393.7 149.86)
+		)
+		(uuid "068efabc-c9b5-4015-86b7-bd45d8c2ed54")
+	)
+	(wire
+		(pts
+			(xy 25.4 76.2)
+			(xy 17.78 76.2)
+		)
+		(uuid "f847aa64-bb34-4816-a6e4-9fc1576fd724")
+	)
+	(wire
+		(pts
+			(xy 17.78 76.2)
+			(xy 17.78 162.56)
+		)
+		(uuid "3372a330-f162-485d-a648-830029ede241")
+	)
+	(wire
+		(pts
+			(xy 17.78 162.56)
+			(xy 25.4 162.56)
+		)
+		(uuid "c34aa565-81b7-4080-8b0c-26c7451b3c9a")
+	)
+	(wire
+		(pts
+			(xy 25.4 78.74)
+			(xy 20.32 78.74)
+		)
+		(uuid "c7f57772-a741-4fd2-b817-d7e1a6ec4b8b")
+	)
+	(wire
+		(pts
+			(xy 20.32 78.74)
+			(xy 20.32 160.02)
+		)
+		(uuid "ba111c2a-1905-453c-80e8-8e49dc8a1af5")
+	)
+	(wire
+		(pts
+			(xy 20.32 160.02)
+			(xy 25.4 160.02)
+		)
+		(uuid "6baa7d3f-030b-4d03-b003-4ad56729955c")
+	)
+	(wire
+		(pts
+			(xy 76.2 157.48)
+			(xy 106.68 157.48)
+		)
+		(uuid "c6366502-ff9b-42b6-b399-c47910d4fb0e")
+	)
+	(wire
+		(pts
+			(xy 76.2 160.02)
+			(xy 106.68 160.02)
+		)
+		(uuid "b341467b-cdb7-4aa8-a0c2-4d4ffba7896d")
+	)
+	(wire
+		(pts
+			(xy 76.2 162.56)
+			(xy 106.68 162.56)
+		)
+		(uuid "4d82449b-7a30-4984-80c0-211d5e926fa0")
+	)
+	(wire
+		(pts
+			(xy 76.2 165.1)
+			(xy 106.68 165.1)
+		)
+		(uuid "44d62e9b-7584-4a0b-81ac-7bd796516230")
+	)
+	(wire
+		(pts
+			(xy 175.26 152.4)
+			(xy 170.18 152.4)
+		)
+		(uuid "6db3c8ae-5252-4e61-96e8-18b7088b5f72")
+	)
+	(wire
+		(pts
+			(xy 170.18 154.94)
+			(xy 177.8 154.94)
+		)
+		(uuid "396f6a91-601d-4c42-b7a5-b99b61a6ecbe")
+	)
+	(wire
+		(pts
+			(xy 177.8 154.94)
+			(xy 177.8 114.3)
+		)
+		(uuid "7a08c6d9-753d-4771-aae4-e3487865deff")
+	)
+	(wire
+		(pts
+			(xy 177.8 114.3)
+			(xy 190.5 114.3)
+		)
+		(uuid "02be4f39-434c-45ff-b4de-6b9a8c1ce492")
+	)
+	(wire
+		(pts
+			(xy 170.18 157.48)
+			(xy 180.34 157.48)
+		)
+		(uuid "38017f46-94c1-4fd4-a5ab-aae10952ec50")
+	)
+	(wire
+		(pts
+			(xy 180.34 157.48)
+			(xy 180.34 116.84)
+		)
+		(uuid "d759fdc9-6761-4494-a8a8-729126978407")
+	)
+	(wire
+		(pts
+			(xy 180.34 116.84)
+			(xy 190.5 116.84)
+		)
+		(uuid "47923fec-c1a0-49a4-a105-f0f080b39084")
+	)
+	(wire
+		(pts
+			(xy 337.82 101.6)
+			(xy 320.04 101.6)
+		)
+		(uuid "78e601a2-f9d8-4226-a652-ad73c30bd88f")
+	)
+	(wire
+		(pts
+			(xy 337.82 104.14)
+			(xy 320.04 104.14)
+		)
+		(uuid "42ab4ab2-93cb-4d92-949d-bd7da2fc923d")
+	)
+	(wire
+		(pts
+			(xy 337.82 106.68)
+			(xy 320.04 106.68)
+		)
+		(uuid "a3e25116-a460-4c0a-b572-c76658f2dcde")
+	)
+	(wire
+		(pts
+			(xy 337.82 109.22)
+			(xy 320.04 109.22)
+		)
+		(uuid "477a96a0-e3a5-4ebe-b527-79b0d83ef015")
+	)
+	(wire
+		(pts
+			(xy 337.82 111.76)
+			(xy 320.04 111.76)
+		)
+		(uuid "2bab3d6f-0d6e-40c8-94e3-77b5261af179")
+	)
+	(wire
+		(pts
+			(xy 337.82 114.3)
+			(xy 320.04 114.3)
+		)
+		(uuid "18e38f0c-adbd-40c9-ac4f-972eaed33145")
+	)
+	(wire
+		(pts
+			(xy 337.82 116.84)
+			(xy 320.04 116.84)
+		)
+		(uuid "e42ff3d4-f5bc-4f64-b939-3442923f333a")
+	)
+	(wire
+		(pts
+			(xy 337.82 149.86)
+			(xy 320.04 149.86)
+		)
+		(uuid "0b2d044f-433b-4621-a306-79ea105823b9")
+	)
+	(wire
+		(pts
+			(xy 337.82 152.4)
+			(xy 320.04 152.4)
+		)
+		(uuid "6693cb89-20ed-4776-a8ba-ede46b48ed36")
+	)
+	(wire
+		(pts
+			(xy 337.82 154.94)
+			(xy 320.04 154.94)
+		)
+		(uuid "e939ac80-e334-4471-9ddb-ff77e806ee4a")
+	)
+	(wire
+		(pts
+			(xy 337.82 157.48)
+			(xy 320.04 157.48)
+		)
+		(uuid "13d3f744-6e8c-4980-a4ec-3dc6688fe0c3")
+	)
+	(wire
+		(pts
+			(xy 337.82 160.02)
+			(xy 320.04 160.02)
+		)
+		(uuid "6eb51f7c-c32b-42b9-870c-cec3432eff1f")
+	)
+	(wire
+		(pts
+			(xy 337.82 162.56)
+			(xy 320.04 162.56)
+		)
+		(uuid "1c425cb1-b373-47bb-bc67-5be17f0af896")
+	)
+	(wire
+		(pts
+			(xy 337.82 165.1)
+			(xy 320.04 165.1)
+		)
+		(uuid "624b7b05-411d-4df0-9521-2c495411265e")
+	)
+	(wire
+		(pts
+			(xy 157.48 91.44)
+			(xy 175.26 91.44)
+		)
+		(uuid "fb7714ab-7232-4013-b116-2d1ede7ad7c7")
+	)
+	(wire
+		(pts
+			(xy 175.26 91.44)
+			(xy 175.26 152.4)
+		)
+		(uuid "6c08dbcf-58e5-47a0-9b23-a0f9916a4fa0")
+	)
+	(wire
+		(pts
+			(xy 157.48 93.98)
+			(xy 172.72 93.98)
+		)
+		(uuid "d8bc9171-f96f-4a9d-bbb3-e095dad6dcd7")
+	)
+	(wire
+		(pts
+			(xy 172.72 93.98)
+			(xy 172.72 124.46)
+		)
+		(uuid "b9f90d9d-4776-4687-9db1-969e47f9c6c2")
+	)
+	(wire
+		(pts
+			(xy 266.7 152.4)
+			(xy 314.96 152.4)
+		)
+		(uuid "cdd63524-11b1-4814-a0c5-a2c46c46d291")
+	)
+	(text "Portable stereo BT speaker — main board"
+		(at 25.4 27.94 0)
+		(effects
+			(font
+				(size 3 3)
+				(thickness 0.6)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "0a82fe97-dfcd-40a4-85a7-27e9730f9465")
+	)
+	(text "PVDD = 18.0 V (TPS61178 boost from VSYS, 2S Li-ion)  |  Woofers 8 Ω (BTL ch A) / Tweeters 4 Ω (BTL ch B), 2x TAS5805M"
+		(at 25.4 35.56 0)
+		(effects
+			(font
+				(size 1.524 1.524)
+			)
+			(justify left bottom)
+		)
+		(uuid "938fc25c-0b0c-49e6-b779-a2a74f71f941")
+	)
+	(text "usb_power"
+		(at 50.8 59.69 0)
+		(effects
+			(font
+				(size 3.5 3.5)
+				(thickness 0.7)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+		(uuid "8ddd091d-6523-4594-9395-186575318262")
+	)
+	(text "USB-C, CH224Q PD sink (15 V), ESD"
+		(at 50.8 65.405 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "18094bef-4844-41c5-8b09-f63681defe57")
+	)
+	(text "charger"
+		(at 132.08 62.23 0)
+		(effects
+			(font
+				(size 3.5 3.5)
+				(thickness 0.7)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+		(uuid "cdf8885f-36e7-44b6-abd0-3798cff6c7b3")
+	)
+	(text "BQ25792 NVDC buck-boost charger"
+		(at 132.08 67.31 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "7f5ec178-d367-4d41-a8f3-3dd9eb112840")
+	)
+	(text "battery"
+		(at 218.44 62.23 0)
+		(effects
+			(font
+				(size 3.5 3.5)
+				(thickness 0.7)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+		(uuid "e6060031-8476-49a4-b2a0-34b8e8f49287")
+	)
+	(text "2S pack: fuse, protection, balancing, NTC"
+		(at 218.44 67.31 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "f1f4ad9c-a6c2-4c3d-82d1-20991b20a2f5")
+	)
+	(text "rails"
+		(at 215.9 96.52 0)
+		(effects
+			(font
+				(size 3.5 3.5)
+				(thickness 0.7)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+		(uuid "469dd090-416e-45c1-9286-f92fc02a06e3")
+	)
+	(text "TPS61178 boost → PVDD 18 V"
+		(at 215.9 100.965 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "2de845ea-0161-4b2f-82c7-df62c2f1f9ed")
+	)
+	(text "TPS62933 buck → +3V3"
+		(at 215.9 104.775 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "5f9dd803-4e8b-4979-ae6c-4becb906a2fe")
+	)
+	(text "usb_uart"
+		(at 50.8 172.72 0)
+		(effects
+			(font
+				(size 3.5 3.5)
+				(thickness 0.7)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+		(uuid "210a7885-9851-4c76-a8d7-a751a08bf78b")
+	)
+	(text "CH340C USB-UART, auto-reset"
+		(at 50.8 176.53 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "2de5d6ac-79fa-4328-a2ec-220c9a83085e")
+	)
+	(text "mcu"
+		(at 133.35 196.85 0)
+		(effects
+			(font
+				(size 3.5 3.5)
+				(thickness 0.7)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+		(uuid "fc385fbd-8b0f-46ee-90e8-41257e435c70")
+	)
+	(text "ESP32-WROVER-E"
+		(at 133.35 201.93 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "7547941e-bbb4-4032-8957-07df7fbd823d")
+	)
+	(text "I2C pull-ups, fault merge"
+		(at 133.35 205.74 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "0ea415ba-d102-463b-b291-e36339daaeaa")
+	)
+	(text "ui_io"
+		(at 241.3 160.02 0)
+		(effects
+			(font
+				(size 3.5 3.5)
+				(thickness 0.7)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+		(uuid "2d58b15b-754c-4485-84e2-6857ad188b33")
+	)
+	(text "UI board link,"
+		(at 241.3 165.1 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "c461979e-1652-432a-a4d6-b26e22f292fb")
+	)
+	(text "I2S mux / expansion"
+		(at 241.3 168.91 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "4db4795a-4c5e-43bc-b141-2636683f0f61")
+	)
+	(text "amp_left"
+		(at 368.3 111.76 0)
+		(effects
+			(font
+				(size 3.5 3.5)
+				(thickness 0.7)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+		(uuid "d6294a9f-8e64-4332-850e-d491d8b9fc1d")
+	)
+	(text "TAS5805M: woofer L + tweeter L"
+		(at 365.76 129.54 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "f674c79d-c78d-4910-9c6f-e49f90c662e7")
+	)
+	(text "amp_right"
+		(at 368.3 160.02 0)
+		(effects
+			(font
+				(size 3.5 3.5)
+				(thickness 0.7)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+		(uuid "0f0ad95b-a0b4-438b-b822-54e6192e5f77")
+	)
+	(text "TAS5805M: woofer R + tweeter R"
+		(at 365.76 177.8 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify bottom)
+		)
+		(uuid "93e1fc58-68c5-40f5-bc71-cde0381e7e2e")
+	)
+	(text "5 V / 15 V (PD)"
+		(at 91.44 52.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(italic yes)
+			)
+			(justify bottom)
+		)
+		(uuid "cd23940f-c192-4b79-91aa-fe3897a2b089")
+	)
+	(text "2S Li-ion"
+		(at 173.99 52.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(italic yes)
+			)
+			(justify bottom)
+		)
+		(uuid "defbdbc3-ea18-4f67-9ac1-32ac84945c0a")
+	)
+	(text "6.0–8.6 V"
+		(at 173.99 87.63 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(italic yes)
+			)
+			(justify bottom)
+		)
+		(uuid "8c14ed08-41f6-440f-89b0-242b4655e47e")
+	)
+	(text "18.0 V"
+		(at 290.83 87.63 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(italic yes)
+			)
+			(justify bottom)
+		)
+		(uuid "85b03ed7-ea1e-4bf7-8e4b-04d216cd1043")
+	)
+	(text "Notes"
+		(at 25.4 245.11 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.4)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "b815eefb-2d05-4644-918d-3cacdf9e5b14")
+	)
+	(text "+3V3 and GND are global power symbols on every sheet (+3V3 is generated on rails); they are not drawn here."
+		(at 25.4 250.19 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify left bottom)
+		)
+		(uuid "ec785b32-1914-4895-94f9-91e8cbfbd5ab")
+	)
+	(text "Bus members join by the net label at each bus entry. Wires that cross without a dot are not connected."
+		(at 25.4 259.08 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify left bottom)
+		)
+		(uuid "bafff36d-07f6-4c1c-a87a-6f05f986748f")
+	)
+	(text "RefDes map: 1xx mcu, 2xx usb_uart, 3xx amp_left, 4xx amp_right, 5xx ui_io, 6xx usb_power, 7xx charger, 8xx battery, 9xx rails"
+		(at 25.4 263.525 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify left bottom)
+		)
+		(uuid "946bb551-0b88-491a-a196-7f227ef0bcca")
+	)
+	(label "I2C_SDA"
+		(at 81.28 121.92 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ef045aa1-ba56-4b3d-9eca-72065312a289")
+	)
+	(label "I2C_SCL"
+		(at 86.36 121.92 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6729e344-d526-4751-9677-8f640c79ffe3")
+	)
+	(label "I2C_SCL"
+		(at 96.52 121.92 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9e68e6b4-e954-44ee-9325-45cf475f4766")
+	)
+	(label "I2C_SDA"
+		(at 101.6 121.92 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ddd077f8-d679-47c8-9dd2-e611cc2bc218")
+	)
+	(label "I2C_SCL"
+		(at 185.42 147.32 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5bce6afd-7418-48a9-98f4-0752515788d1")
+	)
+	(label "I2C_SDA"
+		(at 190.5 147.32 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1d28f226-0bb2-4d21-b727-3a6bef4788a5")
+	)
+	(label "AMP_PDN"
+		(at 195.58 147.32 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6f9b26d7-42fb-4a83-ae8d-87c3ccff9bb0")
+	)
+	(label "AMPL_FAULT_N"
+		(at 200.66 147.32 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "85a51b8d-0818-429d-b0d0-00ac1f4b53d9")
+	)
+	(label "AMPR_FAULT_N"
+		(at 205.74 147.32 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c6af9037-25d1-48b0-8011-433b29d77e07")
+	)
+	(label "I2S_BCLK"
+		(at 299.72 185.42 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d0572295-3f29-458e-950c-8e0744845abc")
+	)
+	(label "I2S_LRCK"
+		(at 299.72 187.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "fec9c175-a9f4-4ded-9933-e6f7f7742759")
+	)
+	(label "I2S_SDIN"
+		(at 299.72 190.5 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1913b834-77fc-4b94-be21-01d1982d8356")
+	)
+	(label "AMP_PDN"
+		(at 321.31 101.6 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "97e2ffa1-e012-4393-94f2-2e567d4cacb4")
+	)
+	(label "AMPL_FAULT_N"
+		(at 321.31 104.14 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "689a6355-b946-4369-bfb5-9a57fb081f32")
+	)
+	(label "I2C_SCL"
+		(at 321.31 106.68 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "895831e7-5d68-4155-a830-b6d549a6a08b")
+	)
+	(label "I2C_SDA"
+		(at 321.31 109.22 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1b1dd1b0-4992-4730-846c-d39824ef1b41")
+	)
+	(label "I2S_BCLK"
+		(at 321.31 111.76 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ad90d65f-fa1f-4658-a436-ee48d6533dfc")
+	)
+	(label "I2S_LRCK"
+		(at 321.31 114.3 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "32a6ff6f-b077-4c95-8be5-12a088823b53")
+	)
+	(label "I2S_SDIN"
+		(at 321.31 116.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a2fbdaf5-67fe-4ec1-a415-a22b7d0a224c")
+	)
+	(label "AMP_PDN"
+		(at 321.31 149.86 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "da2613d5-2eac-4ac1-9f99-aaf9a95bf1d8")
+	)
+	(label "AMPR_FAULT_N"
+		(at 321.31 152.4 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e4070318-ee81-4f10-b54c-077a163d327f")
+	)
+	(label "I2C_SCL"
+		(at 321.31 154.94 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d6d69f01-47f6-4166-ad41-30987e75ed5a")
+	)
+	(label "I2C_SDA"
+		(at 321.31 157.48 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2a5f5e44-daf6-44d7-a7f8-3166732ae8ec")
+	)
+	(label "I2S_BCLK"
+		(at 321.31 160.02 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7f5b1408-0405-4247-8c3e-a3ccb1d93f18")
+	)
+	(label "I2S_LRCK"
+		(at 321.31 162.56 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3af00408-442b-4e24-93b4-af0142790ea9")
+	)
+	(label "I2S_SDIN"
+		(at 321.31 165.1 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8462736a-e93c-46d4-ac57-3f0fcb54e493")
+	)
+	(label "CHG_QON"
+		(at 172.72 121.92 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "735a2937-44fd-4de1-a1a6-005338ebe0b3")
+	)
+	(label "CHG_QON"
+		(at 299.72 152.4 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d56785cd-c817-48c5-9414-f04dbadb666c")
+	)
+	(label "{I2C_SCL I2C_SDA AMP_PDN AMPL_FAULT_N AMPR_FAULT_N I2S_BCLK I2S_LRCK I2S_SDIN CHG_QON}"
+		(at 215.9 127 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d34c2187-5596-4f4d-8ae1-bf5c0610925c")
+	)
+	(sheet
+		(at 25.4 45.72)
+		(size 50.8 35.56)
+		(fields_autoplaced)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "4b3dcb14-9b65-443e-80f4-202b0c3d1695")
+		(property "Sheetname" "usb_power"
+			(at 25.4 45.085 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "usb_power.kicad_sch"
+			(at 25.4 71.755 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "VBUS" output
+			(at 76.2 53.34 0)
+			(uuid "7d06cc78-e139-48b7-8368-be15a6e51bb3")
+		)
+		(pin "I2C_SCL" bidirectional
+			(at 76.2 71.12 0)
+			(uuid "2b88366d-8ff0-4b4c-a284-b07455486feb")
+		)
+		(pin "I2C_SDA" bidirectional
+			(at 76.2 73.66 0)
+			(uuid "8ae4d6e0-7375-49fa-8e91-1bb529de2bdc")
+		)
+		(pin "USB_DN" bidirectional
+			(at 25.4 78.74 180)
+			(uuid "463b3089-a8f9-4b4c-8f5f-f48961aea5be")
+		)
+		(pin "USB_DP" bidirectional
+			(at 25.4 76.2 180)
+			(uuid "d6589405-eca3-4eee-aae8-9ab9a6122e25")
+		)
+		(instances
+			(project "speaker_main"
+				(path "/6ca7e041-e8d2-4406-aff1-c65abf06fe53"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 106.68 45.72)
+		(size 50.8 50.8)
+		(fields_autoplaced)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "c624a435-fe28-44bc-9911-6815715325e5")
+		(property "Sheetname" "charger"
+			(at 106.68 45.085 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "charger.kicad_sch"
+			(at 106.68 71.755 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "CHG_INT" output
+			(at 157.48 91.44 0)
+			(uuid "01bd3e9e-61cd-47d3-97b6-f4a5d0d44995")
+		)
+		(pin "BAT_TS" input
+			(at 157.48 55.88 0)
+			(uuid "a71a37ba-96e8-47c1-9f4f-942e9cbe4e1f")
+		)
+		(pin "VSYS" output
+			(at 157.48 88.9 0)
+			(uuid "f37074da-9f7e-4047-a77a-e5e03241a51a")
+		)
+		(pin "VBAT_PACK" bidirectional
+			(at 157.48 53.34 0)
+			(uuid "24e0c711-7bac-4823-86c8-03135e4b5a4d")
+		)
+		(pin "VBUS" input
+			(at 106.68 53.34 180)
+			(uuid "f8b299fe-b617-44b5-a275-1fc2fcdd62f3")
+		)
+		(pin "I2C_SCL" bidirectional
+			(at 106.68 81.28 180)
+			(uuid "894c6b49-6bb1-4889-b186-b57da868cc58")
+		)
+		(pin "I2C_SDA" bidirectional
+			(at 106.68 83.82 180)
+			(uuid "652aa9de-2f2d-4912-9945-c4d4fb0f7f82")
+		)
+		(pin "CHG_QON" input
+			(at 157.48 93.98 0)
+			(uuid "2b4f9913-da47-4b86-a77b-a6e5f69a2d3a")
+		)
+		(instances
+			(project "speaker_main"
+				(path "/6ca7e041-e8d2-4406-aff1-c65abf06fe53"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 190.5 45.72)
+		(size 55.88 30.48)
+		(fields_autoplaced)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "53378448-b4ca-4b5f-9a05-d778ceaf4c07")
+		(property "Sheetname" "battery"
+			(at 190.5 45.085 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "battery.kicad_sch"
+			(at 190.5 71.755 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "VBAT_PACK" bidirectional
+			(at 190.5 53.34 180)
+			(uuid "eb52f3bf-f264-4454-b690-352910fa609b")
+		)
+		(pin "BAT_TS" passive
+			(at 190.5 55.88 180)
+			(uuid "574a5e81-b885-4500-8f26-c3ece2fde9a0")
+		)
+		(instances
+			(project "speaker_main"
+				(path "/6ca7e041-e8d2-4406-aff1-c65abf06fe53"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 190.5 83.82)
+		(size 50.8 35.56)
+		(fields_autoplaced)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "812cdc2e-c529-426c-837e-272ac8e26561")
+		(property "Sheetname" "rails"
+			(at 190.5 83.185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "rails.kicad_sch"
+			(at 190.5 109.855 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "VSYS" input
+			(at 190.5 88.9 180)
+			(uuid "bcdd19bc-9b99-47af-818b-b7a1e46fa5c2")
+		)
+		(pin "BOOST_EN" input
+			(at 190.5 114.3 180)
+			(uuid "c45662be-9143-460a-82b1-bfa4414f1c15")
+		)
+		(pin "PVDD_TRIM" input
+			(at 190.5 116.84 180)
+			(uuid "d1124181-9039-4538-8ed5-d5da5fc01abf")
+		)
+		(pin "PVDD" output
+			(at 241.3 88.9 0)
+			(uuid "b199e3b2-c8a1-49b5-a6ea-03cecc930b62")
+		)
+		(instances
+			(project "speaker_main"
+				(path "/6ca7e041-e8d2-4406-aff1-c65abf06fe53"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 106.68 147.32)
+		(size 63.5 81.28)
+		(fields_autoplaced)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "4080efb2-55ef-469d-9dab-7718675f7e8a")
+		(property "Sheetname" "mcu"
+			(at 106.68 146.685 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "mcu.kicad_sch"
+			(at 106.68 173.355 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "PDM_CLK" output
+			(at 170.18 205.74 0)
+			(uuid "3bc05b3d-eeb5-4d9d-9cda-6804797ce9bc")
+		)
+		(pin "PDM_DATA" input
+			(at 170.18 208.28 0)
+			(uuid "2af70d73-4afc-422f-bf4a-c058833e5497")
+		)
+		(pin "AMP_PDN" output
+			(at 170.18 167.64 0)
+			(uuid "ef3a7a7a-1de9-4836-a7eb-ae59c450b763")
+		)
+		(pin "I2S_DOUT_MCU" output
+			(at 170.18 185.42 0)
+			(uuid "5fe2b7c1-5965-41d8-8bdd-4840fbdaeb65")
+		)
+		(pin "LCD_BL" output
+			(at 170.18 200.66 0)
+			(uuid "3d152089-69ed-4d62-afef-4f9d61d38376")
+		)
+		(pin "LCD_DC" output
+			(at 170.18 198.12 0)
+			(uuid "0b3c9138-10e5-4e1c-9c87-48326c76cba2")
+		)
+		(pin "ENC_A" input
+			(at 170.18 213.36 0)
+			(uuid "8503ea66-975e-4841-9544-d83b037b6df9")
+		)
+		(pin "ENC_B" input
+			(at 170.18 215.9 0)
+			(uuid "98be82ea-7666-4fa0-8ca1-ff7856b853fb")
+		)
+		(pin "BTN_ADC" input
+			(at 170.18 220.98 0)
+			(uuid "ce916129-7af2-4ff8-9af9-ad2a92eef269")
+		)
+		(pin "BOOST_EN" output
+			(at 170.18 154.94 0)
+			(uuid "65855465-7b0c-4735-bd40-5bddb22f1dc6")
+		)
+		(pin "ENC_SW" input
+			(at 170.18 218.44 0)
+			(uuid "7169a91a-7090-4670-9851-8a03fb7ff545")
+		)
+		(pin "LCD_CS" output
+			(at 170.18 195.58 0)
+			(uuid "84b6c2d3-65ff-4afe-acb9-5a0fbe7225c6")
+		)
+		(pin "LCD_SCLK" output
+			(at 170.18 190.5 0)
+			(uuid "cffdbf09-a36f-4874-b88e-4902bf3a9672")
+		)
+		(pin "CHG_INT" input
+			(at 170.18 152.4 0)
+			(uuid "9c528550-bf12-436b-a8ed-b896bf932ac1")
+		)
+		(pin "I2C_SDA" bidirectional
+			(at 170.18 165.1 0)
+			(uuid "20288f73-d4cb-4792-9ff6-9afc56930563")
+		)
+		(pin "I2C_SCL" bidirectional
+			(at 170.18 162.56 0)
+			(uuid "64f52a10-cc93-4cf5-ab21-9ad50e66f910")
+		)
+		(pin "LCD_MOSI" output
+			(at 170.18 193.04 0)
+			(uuid "a94ff687-659a-434c-b99c-7b628596559a")
+		)
+		(pin "PVDD_TRIM" output
+			(at 170.18 157.48 0)
+			(uuid "8e725ece-59e9-403e-b97f-417f1789e66d")
+		)
+		(pin "I2S_BCLK_MCU" output
+			(at 170.18 180.34 0)
+			(uuid "bc05277c-5232-4247-8060-739567b3c38a")
+		)
+		(pin "I2S_LRCK_MCU" output
+			(at 170.18 182.88 0)
+			(uuid "9370086c-882e-4a95-ad8c-de775e819ef3")
+		)
+		(pin "AMPR_FAULT_N" input
+			(at 170.18 172.72 0)
+			(uuid "cf807d0a-94e5-4f85-abe5-6c6f67cf8518")
+		)
+		(pin "AMPL_FAULT_N" input
+			(at 170.18 170.18 0)
+			(uuid "ac601439-49f8-4f71-8565-aa9a68eec0cf")
+		)
+		(pin "ESP_EN" bidirectional
+			(at 106.68 162.56 180)
+			(uuid "fa002237-9527-420d-9fa9-d715c1bfa725")
+		)
+		(pin "ESP_TXD0" output
+			(at 106.68 157.48 180)
+			(uuid "ab43bd80-374d-4060-a267-a285aa953f2f")
+		)
+		(pin "ESP_RXD0" input
+			(at 106.68 160.02 180)
+			(uuid "21b482e1-a2d6-4feb-bb23-2e102520e609")
+		)
+		(pin "ESP_IO0" bidirectional
+			(at 106.68 165.1 180)
+			(uuid "eb2922d5-4223-47fe-8a69-6e094febdb01")
+		)
+		(instances
+			(project "speaker_main"
+				(path "/6ca7e041-e8d2-4406-aff1-c65abf06fe53"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 25.4 152.4)
+		(size 50.8 30.48)
+		(fields_autoplaced)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "767319d7-9dfb-4d46-9cec-cb00216fa8fd")
+		(property "Sheetname" "usb_uart"
+			(at 25.4 151.765 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "usb_uart.kicad_sch"
+			(at 25.4 178.435 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "ESP_RXD0" output
+			(at 76.2 160.02 0)
+			(uuid "317035ea-4611-48d7-8c67-8b95feab7357")
+		)
+		(pin "ESP_TXD0" input
+			(at 76.2 157.48 0)
+			(uuid "80944ddf-2e1b-481b-857b-509fa3bba68c")
+		)
+		(pin "ESP_EN" bidirectional
+			(at 76.2 162.56 0)
+			(uuid "da20d34e-50c5-49d5-8241-02485e2dfc97")
+		)
+		(pin "ESP_IO0" bidirectional
+			(at 76.2 165.1 0)
+			(uuid "51af56e0-8361-4918-b951-6e79b083754e")
+		)
+		(pin "USB_DP" bidirectional
+			(at 25.4 162.56 180)
+			(uuid "376505f8-2375-4470-b166-49eb6f10d9e4")
+		)
+		(pin "USB_DN" bidirectional
+			(at 25.4 160.02 180)
+			(uuid "8dc3804d-1b16-4fac-b839-d75d2733bee9")
+		)
+		(instances
+			(project "speaker_main"
+				(path "/6ca7e041-e8d2-4406-aff1-c65abf06fe53"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 215.9 149.86)
+		(size 50.8 78.74)
+		(fields_autoplaced)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "80eb3107-3743-44bf-9f93-f60d27e33f25")
+		(property "Sheetname" "ui_io"
+			(at 215.9 149.225 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ui_io.kicad_sch"
+			(at 215.9 175.895 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "I2S_BCLK_MCU" input
+			(at 215.9 180.34 180)
+			(uuid "697b64d3-d165-4040-aaed-299f98076e4f")
+		)
+		(pin "I2S_LRCK_MCU" input
+			(at 215.9 182.88 180)
+			(uuid "0c09d8d1-87f0-43ac-bc7d-462dac182ee0")
+		)
+		(pin "I2S_DOUT_MCU" input
+			(at 215.9 185.42 180)
+			(uuid "fdb5c818-fffc-4356-bd85-198695bdafb7")
+		)
+		(pin "LCD_SCLK" input
+			(at 215.9 190.5 180)
+			(uuid "e6b5e17f-5899-4860-b6b6-0af6255b88b2")
+		)
+		(pin "LCD_MOSI" input
+			(at 215.9 193.04 180)
+			(uuid "3272f9ea-6209-4d2b-ada2-6fe0724e513c")
+		)
+		(pin "LCD_CS" input
+			(at 215.9 195.58 180)
+			(uuid "9367eeb4-1f73-4678-b608-12e1f5729e2a")
+		)
+		(pin "LCD_DC" input
+			(at 215.9 198.12 180)
+			(uuid "ea109f20-6684-42a4-a168-9eb044ebbe4e")
+		)
+		(pin "LCD_BL" input
+			(at 215.9 200.66 180)
+			(uuid "09285226-883a-452b-b36a-f8e4ed660a43")
+		)
+		(pin "PDM_CLK" input
+			(at 215.9 205.74 180)
+			(uuid "669b60a7-f186-4f50-83d1-6f3a5ca001d7")
+		)
+		(pin "PDM_DATA" output
+			(at 215.9 208.28 180)
+			(uuid "14a97483-e00d-4ce0-bb0e-e6f6209d01bb")
+		)
+		(pin "ENC_A" output
+			(at 215.9 213.36 180)
+			(uuid "8ff15cd6-28f9-45a2-a686-efe7e187cf03")
+		)
+		(pin "ENC_B" output
+			(at 215.9 215.9 180)
+			(uuid "1ecd1545-8961-4ab0-a9b8-1774ffc753a6")
+		)
+		(pin "ENC_SW" output
+			(at 215.9 218.44 180)
+			(uuid "d6cff8a7-189c-467a-a483-ff7b0d0386f8")
+		)
+		(pin "BTN_ADC" output
+			(at 215.9 220.98 180)
+			(uuid "b77a5620-d469-44ec-81d2-23a2263a3956")
+		)
+		(pin "I2S_BCLK" output
+			(at 266.7 185.42 0)
+			(uuid "e6f3b9d8-6b3f-4a9f-9c3a-47e19a946ec4")
+		)
+		(pin "I2S_LRCK" output
+			(at 266.7 187.96 0)
+			(uuid "c1c72574-e783-4165-835a-0e57355c8218")
+		)
+		(pin "I2S_SDIN" output
+			(at 266.7 190.5 0)
+			(uuid "4fbb5a62-f03c-491c-824d-26e28b92036c")
+		)
+		(pin "CHG_QON" output
+			(at 266.7 152.4 0)
+			(uuid "119db543-952f-4f19-86cd-0c6872f68bd9")
+		)
+		(instances
+			(project "speaker_main"
+				(path "/6ca7e041-e8d2-4406-aff1-c65abf06fe53"
+					(page "8")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 337.82 96.52)
+		(size 55.88 35.56)
+		(fields_autoplaced)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "1044f596-a475-4cc7-9f26-9b0017beb0f4")
+		(property "Sheetname" "amp_left"
+			(at 337.82 95.885 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "amp_left.kicad_sch"
+			(at 337.82 122.555 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "AMP_PDN" input
+			(at 337.82 101.6 180)
+			(uuid "e25d4678-7d9f-4c23-9b19-dce0a9862014")
+		)
+		(pin "AMPL_FAULT_N" output
+			(at 337.82 104.14 180)
+			(uuid "0b1d9ba6-5584-4e3c-9e29-9fb4aa574360")
+		)
+		(pin "I2C_SCL" input
+			(at 337.82 106.68 180)
+			(uuid "3e1499dc-7e94-498a-aa41-fc054ca4619c")
+		)
+		(pin "I2C_SDA" bidirectional
+			(at 337.82 109.22 180)
+			(uuid "9a74558d-dfdb-436a-9565-9edf87db1afa")
+		)
+		(pin "I2S_LRCK" input
+			(at 337.82 114.3 180)
+			(uuid "d8139c4b-7cd6-431e-b1b6-03adff226079")
+		)
+		(pin "I2S_BCLK" input
+			(at 337.82 111.76 180)
+			(uuid "fe4ec891-0f22-4efb-a151-21cc23e9ed36")
+		)
+		(pin "I2S_SDIN" input
+			(at 337.82 116.84 180)
+			(uuid "c011d29b-9e33-4d20-bb48-70bfb51aea86")
+		)
+		(pin "PVDD" input
+			(at 393.7 101.6 0)
+			(uuid "c77aaada-0b3d-4c4d-a5a1-21b966c93ea7")
+		)
+		(instances
+			(project "speaker_main"
+				(path "/6ca7e041-e8d2-4406-aff1-c65abf06fe53"
+					(page "9")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 337.82 144.78)
+		(size 55.88 35.56)
+		(fields_autoplaced)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0)
+		)
+		(uuid "01f7f24b-f2e1-472d-bc42-6a0daa6ac505")
+		(property "Sheetname" "amp_right"
+			(at 337.82 144.145 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "amp_right.kicad_sch"
+			(at 337.82 170.815 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "AMP_PDN" input
+			(at 337.82 149.86 180)
+			(uuid "eda45eac-eb50-4c8a-9e50-6d4968930463")
+		)
+		(pin "AMPR_FAULT_N" output
+			(at 337.82 152.4 180)
+			(uuid "46d5f6ee-58eb-4314-9d0c-abd877cf0179")
+		)
+		(pin "I2C_SCL" input
+			(at 337.82 154.94 180)
+			(uuid "63de2869-31d9-4d91-85bf-f77f84a01f37")
+		)
+		(pin "I2C_SDA" bidirectional
+			(at 337.82 157.48 180)
+			(uuid "e25d0262-b7b8-4fbe-b1c7-1e1c868341a8")
+		)
+		(pin "I2S_LRCK" input
+			(at 337.82 162.56 180)
+			(uuid "efa99f6e-2d34-4e15-801b-6d6a39cb0bf9")
+		)
+		(pin "I2S_BCLK" input
+			(at 337.82 160.02 180)
+			(uuid "8ce51177-6921-4ff5-a6dc-fe43459b499e")
+		)
+		(pin "I2S_SDIN" input
+			(at 337.82 165.1 180)
+			(uuid "244004d5-8eb0-4404-baf1-1632544f1d79")
+		)
+		(pin "PVDD" input
+			(at 393.7 149.86 0)
+			(uuid "fec5add9-3353-4244-8fb8-777f33d08263")
+		)
+		(instances
+			(project "speaker_main"
+				(path "/6ca7e041-e8d2-4406-aff1-c65abf06fe53"
+					(page "10")
+				)
+			)
+		)
+	)
+	(embedded_fonts no)
+	(bus
+		(pts
+			(xy 78.74 127)
+			(xy 317.5 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4fb81984-bcce-4823-b5fe-f456d609c7d8")
+	)
+	(bus
+		(pts
+			(xy 317.5 127)
+			(xy 317.5 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61d2c5aa-4c0c-4e94-ac34-f67821f8859e")
+	)
+	(bus_entry
+		(at 81.28 124.46)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f3c30ca-eb4e-416d-a2ce-53f2aeefae4f")
+	)
+	(bus_entry
+		(at 86.36 124.46)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e191159-1102-46d9-a2d9-f6fbf00c2aa7")
+	)
+	(bus_entry
+		(at 96.52 124.46)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1b3297c-f8e7-4d97-8c6b-9eb74d7964cb")
+	)
+	(bus_entry
+		(at 101.6 124.46)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e91b8748-edb8-4187-9849-5e40ed882817")
+	)
+	(bus_entry
+		(at 185.42 129.54)
+		(size -2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d047ca26-54c7-4cd0-8b98-919e848d0a77")
+	)
+	(bus_entry
+		(at 190.5 129.54)
+		(size -2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "46b91d65-e83e-4230-85c6-10df4d80595d")
+	)
+	(bus_entry
+		(at 195.58 129.54)
+		(size -2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1e71e9c-0e2e-446a-adcd-99555051f552")
+	)
+	(bus_entry
+		(at 200.66 129.54)
+		(size -2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be4999a3-f83a-4540-aa94-623a9348001c")
+	)
+	(bus_entry
+		(at 205.74 129.54)
+		(size -2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e807545-455f-4c87-9a1b-4b5b9f49d7f7")
+	)
+	(bus_entry
+		(at 314.96 185.42)
+		(size 2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b75ce63-b38f-44f2-8ad0-c2c9894d0990")
+	)
+	(bus_entry
+		(at 314.96 187.96)
+		(size 2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "408d4b68-7a87-4573-aa0a-5046387e80e9")
+	)
+	(bus_entry
+		(at 314.96 190.5)
+		(size 2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "315a3cb1-59a3-4f1b-a42e-fcf5f58235df")
+	)
+	(bus
+		(pts
+			(xy 317.5 104.14)
+			(xy 317.5 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93da0c3d-8bf7-4ffc-aa77-6902fbb30782")
+	)
+	(bus_entry
+		(at 320.04 101.6)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9996a4e7-5df8-441c-9d47-3e5a2bf23211")
+	)
+	(bus_entry
+		(at 320.04 104.14)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea03aaa0-dede-44fb-b277-0cd74c60a01b")
+	)
+	(bus_entry
+		(at 320.04 106.68)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "79e2d58e-2ba6-464b-8df5-90ea73919456")
+	)
+	(bus_entry
+		(at 320.04 109.22)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ec7fe34-dcc5-48ad-bf2f-240ef9538699")
+	)
+	(bus_entry
+		(at 320.04 111.76)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf6eca5f-a728-4fea-9e01-5f25ea11b310")
+	)
+	(bus_entry
+		(at 320.04 114.3)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0500a46a-ac66-401b-89c6-3ad8e4aaab2c")
+	)
+	(bus_entry
+		(at 320.04 116.84)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e10c9761-626b-4c23-b3b9-d176c5536754")
+	)
+	(bus_entry
+		(at 320.04 149.86)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4e2e290-6d8d-4134-bf3a-c0eb395f311c")
+	)
+	(bus_entry
+		(at 320.04 152.4)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3d5beb4e-c6de-4629-8290-713fc3b3502c")
+	)
+	(bus_entry
+		(at 320.04 154.94)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a60ac997-dd98-4138-b056-57b77f5e75dc")
+	)
+	(bus_entry
+		(at 320.04 157.48)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d735edd-bb3a-4d77-adfe-644815d44a64")
+	)
+	(bus_entry
+		(at 320.04 160.02)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e451a16-5523-473c-a303-07052282c0f6")
+	)
+	(bus_entry
+		(at 320.04 162.56)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "467598b4-81d9-4639-916a-af76b2e1dcaf")
+	)
+	(bus_entry
+		(at 320.04 165.1)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "81c9f777-c3d7-4848-a490-115378690754")
+	)
+	(bus_entry
+		(at 172.72 124.46)
+		(size -2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6c9b7a93-39ac-4b1d-a89b-62e9b04acff9")
+	)
+	(bus_entry
+		(at 314.96 152.4)
+		(size 2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "452c8e14-2d37-4bbc-a5b5-fa2caec70fb3")
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+  (text "Single-sheet global labels (no sheet pins): AMP_FAULT (mcu), I2S_EXT_BCLK / I2S_EXT_LRCK / I2S_EXT_DATA, I2S_SEL (ui_io). CHG_QON (charger /QON ↔ J501 pin 20, UI power button) is a sheet-pin bus member."
+    (at 25.4 254.635 0)
+    (effects (font (size 1.5 1.5)) (justify left bottom))
+    (uuid "3c2f6660-e7b3-448d-8127-4f50ed715d90")
+  )
+)
