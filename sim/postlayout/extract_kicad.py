@@ -2,8 +2,8 @@
 
 Usage: <kicad-python> extract_kicad.py BOARD.kicad_pcb OUT.json
 
-Read-only: the board is loaded from a scratch copy, zones are refilled in memory if they
-are unfilled, nothing is saved. Output (mm): outline, per-layer per-net merged copper
+Read-only: the board is loaded from a scratch copy, unfilled zones are filled in memory,
+nothing is saved. Output (mm): outline, per-layer per-net merged copper
 polygons (outline + holes), tracks, vias, pads, footprints.
 """
 import json
@@ -34,8 +34,13 @@ def main(path, out):
     names = ["F.Cu"] + [f"In{k}.Cu" for k in range(1, n_cu - 1)] + ["B.Cu"]
     LAYERS.update({ln: getattr(pcbnew, ln.replace(".", "_")) for ln in names})
     zones = list(b.Zones())
-    if zones and not any(z.IsFilled() for z in zones):
-        pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+    unfilled = [z for z in zones if not z.GetIsRuleArea() and not z.IsFilled()]
+    if unfilled:   # fill only the unfilled zones (e.g. planes just moved to another layer)
+        zv = pcbnew.ZONES()
+        for z in unfilled:
+            zv.append(z)
+        pcbnew.ZONE_FILLER(b).Fill(zv)
+        print(f"{path}: filled {len(unfilled)} unfilled zones in memory")
 
     edge = pcbnew.SHAPE_POLY_SET()
     b.GetBoardPolygonOutlines(edge, True)

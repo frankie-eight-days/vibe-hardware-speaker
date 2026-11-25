@@ -52,7 +52,7 @@ Out of scope: waterproofing, multi-speaker linking, phone app (web UI instead), 
 
 ## 4. Manufacturing / mechanical
 
-- PCB: 4-layer, JLCPCB PCBA, LCSC parts, prefer JLC **basic** parts; minimize extended-part count. Main board + possibly small top UI board.
+- PCB: **6-layer max** (JLC06161H-1080B, SIG/GND/SIG/PWR/GND/SIG; owner decision 2026-11-25 after the 4-layer rev B failed its gates). **Apple-MLB-style compact placement** (owner 2026-11-25): courtyard to courtyard, a smaller outline, top-side courtyard density ≥ 70 % (board area excluding the antenna keep-out). **Double-sided is allowed.** Hard-to-solder parts (QFN/PowerPAD/module/fine pitch/connectors) go on top; bottom only easy hand-solderable passives, ≤ 2 mm tall. Physics comes first: EMC, thermals and hot loops override density. JLCPCB PCBA, LCSC parts, prefer JLC **basic** parts; minimize extended-part count. Main board + possibly small top UI board.
 - Enclosure: FDM PETG/ASA, ≥4 perimeters, dense infill, internal bracing, printed tweeter pods with a 3 mm bezel, foam gaskets, brass heat-set inserts, perforated-aluminum grille, polyfill stuffing.
 - Hardware from McMaster-Carr / Home Depot.
 
