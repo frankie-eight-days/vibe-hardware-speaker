@@ -1,0 +1,37 @@
+# Python / env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# KiCad transient files
+*.lck
+*-backups/
+fp-info-cache
+*.kicad_prl
+_autosave-*
+*.bak
+
+# Regenerable large simulation outputs (rebuild with sim/*/run_all.sh)
+*.npz
+sim/acoustics/results/a4_work/
+sim/acoustics/results/bem_ckpt_*/
+sim/spice/results/*_wf_*.csv
+sim/spice/results/s6_*_eye_*.csv
+sim/smoke/out/*.msh
+
+# Review snapshots duplicate hw/ (exports are kept)
+docs/review/snapshot*/
+
+# Vendor datasheet PDFs (not ours to redistribute); markdown extracts are kept
+kb/datasheets/src/
+
+# LaTeX build by-products (the PDF in docs/build is kept)
+docs/writeup/**/*.aux
+docs/writeup/**/*.log
+docs/writeup/**/*.out
+docs/writeup/**/*.toc
+docs/writeup/**/*.fls
+docs/writeup/**/*.fdb_latexmk
+docs/writeup/**/*.synctex.gz
+docs/build/aux/

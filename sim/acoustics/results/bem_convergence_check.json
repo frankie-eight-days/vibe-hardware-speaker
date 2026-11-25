@@ -1,0 +1,89 @@
+{
+ "f_hz": 5000.0,
+ "cases": {
+  "h9 CHIEF (no local refinement)": {
+   "ndof": 3081,
+   "solve_s": 13.381898880004883,
+   "tweeter_L": {
+    "max_db": 1.3250755850032103,
+    "median_db": 0.5651865367400479
+   },
+   "woofer_L": {
+    "max_db": 0.7294058565532486,
+    "median_db": 0.07955008170934569
+   }
+  },
+  "h9 CHIEF, 80 points": {
+   "ndof": 3081,
+   "solve_s": 6.5669920444488525,
+   "tweeter_L": {
+    "max_db": 1.3218568223349603,
+    "median_db": 0.5774964872844364
+   },
+   "woofer_L": {
+    "max_db": 0.7188403078996903,
+    "median_db": 0.07677801410704647
+   }
+  },
+  "h9 Burton-Miller (no local refinement)": {
+   "ndof": 3081,
+   "solve_s": 67.02950501441956,
+   "tweeter_L": {
+    "max_db": 1.667708526924769,
+    "median_db": 0.24401200081196997
+   },
+   "woofer_L": {
+    "max_db": 0.5746892710338501,
+    "median_db": 0.09444033244009606
+   }
+  },
+  "h9 + 2.8 mm at tweeters, CHIEF (production)": {
+   "ndof": 4210,
+   "solve_s": 10.100090742111206,
+   "tweeter_L": {
+    "max_db": 0.29488182930701523,
+    "median_db": 0.14671759776754073
+   },
+   "woofer_L": {
+    "max_db": 0.3635217564632114,
+    "median_db": 0.048318580872080415
+   }
+  },
+  "h5.6 + 2.8 mm at tweeters, CHIEF (production)": {
+   "ndof": 6047,
+   "solve_s": 21.31860899925232,
+   "tweeter_L": {
+    "max_db": 0.28364485622569946,
+    "median_db": 0.1377910829795512
+   },
+   "woofer_L": {
+    "max_db": 0.10515183916515103,
+    "median_db": 0.01725099965969159
+   }
+  },
+  "h5.6 + 2.0 mm at tweeters, CHIEF": {
+   "ndof": 7359,
+   "solve_s": 33.322224140167236,
+   "tweeter_L": {
+    "max_db": 0.09044101249735287,
+    "median_db": 0.04958621737031445
+   },
+   "woofer_L": {
+    "max_db": 0.0616428766399087,
+    "median_db": 0.015284282083088883
+   }
+  },
+  "reference: h5.6 + 2.0 mm, Burton-Miller": {
+   "ndof": 7359,
+   "solve_s": 191.30509185791016,
+   "tweeter_L": {
+    "max_db": 0.0,
+    "median_db": 0.0
+   },
+   "woofer_L": {
+    "max_db": 0.0,
+    "median_db": 0.0
+   }
+  }
+ }
+}

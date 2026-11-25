@@ -1,0 +1,612 @@
+{
+ "assumptions": {
+  "pitch_mm": 1.0,
+  "conductor_width_mm": 0.6,
+  "insulation_total_mm": 0.12,
+  "eps_r_insulation": 3.2,
+  "length_mm": 200,
+  "esp32_rout_ohm": [
+   20,
+   30,
+   45
+  ],
+  "esp32_edge_10_90_ns": [
+   0.6,
+   1.0,
+   2.0
+  ],
+  "mainboard_trace": "40 mm, 50 Ohm, 6.0 ps/mm",
+  "ui_trace": "25 mm, 55 Ohm, 6.0 ps/mm",
+  "display_wiring": "30 mm, 70 Ohm, 5.0 ps/mm (module header + module traces)",
+  "receiver_c_pF": 6.0,
+  "connector_L_nH": 2.0,
+  "connector_C_pF": 0.3,
+  "gc9a01_vil_vih": [
+   0.9899999999999999,
+   2.3099999999999996
+  ],
+  "sclk_min_high_low_ns": 7.0,
+  "ffc_loss_ohm": 0.4
+ },
+ "validation": {
+  "grid": [
+   {
+    "h_mm": 0.05,
+    "z0_solver": 135.07573516136657
+   },
+   {
+    "h_mm": 0.025,
+    "z0_solver": 137.67754073255236
+   },
+   {
+    "h_mm": 0.0125,
+    "z0_solver": 138.99102602735206
+   }
+  ],
+  "z0_extrapolated": 140.30451132215177,
+  "z0_analytic": 140.45364301000768
+ },
+ "ffc_lines_free_air": {
+  "LCD_SCLK": {
+   "pin": 5,
+   "z0_ohm": 107.14300829638167,
+   "eps_eff": 1.5413689316020267,
+   "delay_ps_per_mm": 4.141260953074921,
+   "td_200mm_ns": 0.8282521906149843,
+   "L_nH_per_mm": 0.4437071566527878,
+   "C_pF_per_mm": 0.038651714366832624
+  },
+  "LCD_MOSI": {
+   "pin": 7,
+   "z0_ohm": 118.516815568319,
+   "eps_eff": 1.8882187326989444,
+   "delay_ps_per_mm": 4.5835866728785355,
+   "td_200mm_ns": 0.9167173345757073,
+   "L_nH_per_mm": 0.5432320963509503,
+   "C_pF_per_mm": 0.03867456825345031
+  },
+  "LCD_CS": {
+   "pin": 8,
+   "z0_ohm": 129.15305213685212,
+   "eps_eff": 2.2429027103544197,
+   "delay_ps_per_mm": 4.995563858463485,
+   "td_200mm_ns": 0.999112771692697,
+   "L_nH_per_mm": 0.6451923194651086,
+   "C_pF_per_mm": 0.038679410016343445
+  },
+  "LCD_DC": {
+   "pin": 9,
+   "z0_ohm": 129.20392071331648,
+   "eps_eff": 2.244988296653192,
+   "delay_ps_per_mm": 4.9978859071720425,
+   "td_200mm_ns": 0.9995771814344085,
+   "L_nH_per_mm": 0.6457464544844583,
+   "C_pF_per_mm": 0.03868215360322989
+  },
+  "LCD_BL": {
+   "pin": 10,
+   "z0_ohm": 118.62802522572754,
+   "eps_eff": 1.892628424282335,
+   "delay_ps_per_mm": 4.588935739761902,
+   "td_200mm_ns": 0.9177871479523804,
+   "L_nH_per_mm": 0.5443763846957176,
+   "C_pF_per_mm": 0.03868340327700805
+  },
+  "PDM_CLK": {
+   "pin": 12,
+   "z0_ohm": 107.72213674899555,
+   "eps_eff": 1.5605317708867328,
+   "delay_ps_per_mm": 4.16692424019273,
+   "td_200mm_ns": 0.8333848480385458,
+   "L_nH_per_mm": 0.44886998282474555,
+   "C_pF_per_mm": 0.03868215360322941
+  },
+  "PDM_DATA": {
+   "pin": 14,
+   "z0_ohm": 119.75734247949903,
+   "eps_eff": 1.9279539404228758,
+   "delay_ps_per_mm": 4.631563515574743,
+   "td_200mm_ns": 0.9263127031149487,
+   "L_nH_per_mm": 0.5546637381502371,
+   "C_pF_per_mm": 0.03867456825344642
+  },
+  "UI_ENC_A": {
+   "pin": 15,
+   "z0_ohm": 132.10216044057552,
+   "eps_eff": 2.3449145957387922,
+   "delay_ps_per_mm": 5.107905007329047,
+   "td_200mm_ns": 1.0215810014658095,
+   "L_nH_per_mm": 0.6747652867934009,
+   "C_pF_per_mm": 0.038666324534690516
+  },
+  "UI_ENC_B": {
+   "pin": 16,
+   "z0_ohm": 135.12496504798497,
+   "eps_eff": 2.4516028528732687,
+   "delay_ps_per_mm": 5.222811552861786,
+   "td_200mm_ns": 1.0445623105723572,
+   "L_nH_per_mm": 0.7057322285326609,
+   "C_pF_per_mm": 0.03865171436682396
+  },
+  "UI_ENC_SW": {
+   "pin": 17,
+   "z0_ohm": 132.36859992484779,
+   "eps_eff": 2.349101191614471,
+   "delay_ps_per_mm": 5.112462784730528,
+   "td_200mm_ns": 1.0224925569461059,
+   "L_nH_per_mm": 0.6767295409826685,
+   "C_pF_per_mm": 0.0386229270962534
+  },
+  "UI_BTN_ADC": {
+   "pin": 18,
+   "z0_ohm": 120.09003273679303,
+   "eps_eff": 1.9265285191924626,
+   "delay_ps_per_mm": 4.629851039578258,
+   "td_200mm_ns": 0.9259702079156518,
+   "L_nH_per_mm": 0.5559989629094284,
+   "C_pF_per_mm": 0.03855316660397388
+  }
+ },
+ "ffc_lines_1mm_above_metal": {
+  "LCD_SCLK": {
+   "pin": 5,
+   "z0_ohm": 99.73299455005974,
+   "eps_eff": 1.4971724023164608,
+   "delay_ps_per_mm": 4.081456795507384,
+   "td_200mm_ns": 0.8162913591014769,
+   "L_nH_per_mm": 0.40705590834264227,
+   "C_pF_per_mm": 0.04092383682973389
+  },
+  "LCD_MOSI": {
+   "pin": 7,
+   "z0_ohm": 104.51527175785846,
+   "eps_eff": 1.6443023189886206,
+   "delay_ps_per_mm": 4.2773041362425746,
+   "td_200mm_ns": 0.8554608272485149,
+   "L_nH_per_mm": 0.44704360419040473,
+   "C_pF_per_mm": 0.04092515920689807
+  },
+  "LCD_CS": {
+   "pin": 8,
+   "z0_ohm": 109.24755586501946,
+   "eps_eff": 1.7965969357769287,
+   "delay_ps_per_mm": 4.470999531757925,
+   "td_200mm_ns": 0.8941999063515851,
+   "L_nH_per_mm": 0.4884457711181998,
+   "C_pF_per_mm": 0.040925396420603284
+  },
+  "LCD_DC": {
+   "pin": 9,
+   "z0_ohm": 109.25144901292349,
+   "eps_eff": 1.7967360968949917,
+   "delay_ps_per_mm": 4.471172686134782,
+   "td_200mm_ns": 0.8942345372269563,
+   "L_nH_per_mm": 0.48848209474723026,
+   "C_pF_per_mm": 0.040925522970463125
+  },
+  "LCD_BL": {
+   "pin": 10,
+   "z0_ohm": 104.52433318889562,
+   "eps_eff": 1.6446211607313783,
+   "delay_ps_per_mm": 4.2777188157647,
+   "td_200mm_ns": 0.8555437631529401,
+   "L_nH_per_mm": 0.4471257067873975,
+   "C_pF_per_mm": 0.0409255786213344
+  },
+  "PDM_CLK": {
+   "pin": 12,
+   "z0_ohm": 99.81970702459476,
+   "eps_eff": 1.4999005457709174,
+   "delay_ps_per_mm": 4.085173712740823,
+   "td_200mm_ns": 0.8170347425481647,
+   "L_nH_per_mm": 0.407780843150365,
+   "C_pF_per_mm": 0.04092552297047185
+  },
+  "PDM_DATA": {
+   "pin": 14,
+   "z0_ohm": 104.57966736611075,
+   "eps_eff": 1.6463291704980008,
+   "delay_ps_per_mm": 4.279939536766037,
+   "td_200mm_ns": 0.8559879073532074,
+   "L_nH_per_mm": 0.44759465310205826,
+   "C_pF_per_mm": 0.04092515920693164
+  },
+  "UI_ENC_A": {
+   "pin": 15,
+   "z0_ohm": 109.47619908579702,
+   "eps_eff": 1.804065165905836,
+   "delay_ps_per_mm": 4.480282589267678,
+   "td_200mm_ns": 0.8960565178535357,
+   "L_nH_per_mm": 0.4904843087032985,
+   "C_pF_per_mm": 0.04092471812760379
+  },
+  "UI_ENC_B": {
+   "pin": 16,
+   "z0_ohm": 110.15836369931884,
+   "eps_eff": 1.8265394100887271,
+   "delay_ps_per_mm": 4.5081029014646115,
+   "td_200mm_ns": 0.9016205802929224,
+   "L_nH_per_mm": 0.49660523901349324,
+   "C_pF_per_mm": 0.040923836829763
+  },
+  "UI_ENC_SW": {
+   "pin": 17,
+   "z0_ohm": 109.46256422281519,
+   "eps_eff": 1.8033586714841414,
+   "delay_ps_per_mm": 4.479405236090623,
+   "td_200mm_ns": 0.8958810472181247,
+   "L_nH_per_mm": 0.4903271833355844,
+   "C_pF_per_mm": 0.040921800689527284
+  },
+  "UI_BTN_ADC": {
+   "pin": 18,
+   "z0_ohm": 104.53718365935194,
+   "eps_eff": 1.6442247846414402,
+   "delay_ps_per_mm": 4.277203290464515,
+   "td_200mm_ns": 0.8554406580929029,
+   "L_nH_per_mm": 0.4471267859236734,
+   "C_pF_per_mm": 0.04091561625002582
+  }
+ },
+ "sclk40_series_R": {
+  "33": {
+   "overshoot_V": 0.6873737274538181,
+   "undershoot_V": 0.6873736944322606,
+   "min_high_ns": 11.884999999999302,
+   "min_low_ns": 11.884999999999275,
+   "extra_threshold_crossings": 0
+  },
+  "47": {
+   "overshoot_V": 0.3332082911641048,
+   "undershoot_V": 0.33320834436388735,
+   "min_high_ns": 11.809999999999217,
+   "min_low_ns": 11.80999999999919,
+   "extra_threshold_crossings": 0
+  },
+  "68": {
+   "overshoot_V": 0.016704749338697145,
+   "undershoot_V": 0.016704737441812896,
+   "min_high_ns": 11.654999999999042,
+   "min_low_ns": 11.654999999999015,
+   "extra_threshold_crossings": 0
+  },
+  "82": {
+   "overshoot_V": -0.0009499574879967554,
+   "undershoot_V": -0.0009499317104179637,
+   "min_high_ns": 11.524999999998894,
+   "min_low_ns": 11.524999999998867,
+   "extra_threshold_crossings": 0
+  }
+ },
+ "fmax": {
+  "33": {
+   "fast_20.0MHz": {
+    "overshoot_V": 1.1112957640436498,
+    "undershoot_V": 1.1112957766927034,
+    "min_high_ns": 24.57999999999738,
+    "min_low_ns": 24.579999999993063,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "fast_26.7MHz": {
+    "overshoot_V": 1.1125097739019623,
+    "undershoot_V": 1.1125097807860431,
+    "min_high_ns": 18.32999999999307,
+    "min_low_ns": 18.329999999999504,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "fast_40.0MHz": {
+    "overshoot_V": 1.121122894530715,
+    "undershoot_V": 1.1211227600667566,
+    "min_high_ns": 12.079999999993078,
+    "min_low_ns": 12.07999999999951,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "fast_53.3MHz": {
+    "overshoot_V": 1.0984790650081253,
+    "undershoot_V": 1.0985526935166001,
+    "min_high_ns": 8.940999999999457,
+    "min_low_ns": 8.938999999999496,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "fast_80.0MHz": {
+    "overshoot_V": 1.097331930240359,
+    "undershoot_V": 1.0973316444391847,
+    "min_high_ns": 5.84999999999954,
+    "min_low_ns": 5.84999999999954,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "fast_fmax_MHz": 0,
+   "nom_20.0MHz": {
+    "overshoot_V": 0.6880626926075029,
+    "undershoot_V": 0.6880627395532454,
+    "min_high_ns": 24.38499999999602,
+    "min_low_ns": 24.38499999999414,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "nom_26.7MHz": {
+    "overshoot_V": 0.6883288077042247,
+    "undershoot_V": 0.6883287145510831,
+    "min_high_ns": 18.13499999999417,
+    "min_low_ns": 18.13499999999928,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "nom_40.0MHz": {
+    "overshoot_V": 0.6873737274538181,
+    "undershoot_V": 0.6873736854741576,
+    "min_high_ns": 11.884999999994154,
+    "min_low_ns": 11.884999999999275,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "nom_53.3MHz": {
+    "overshoot_V": 0.6885302637538593,
+    "undershoot_V": 0.6885657806181225,
+    "min_high_ns": 8.770999999999278,
+    "min_low_ns": 8.768999999999275,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "nom_80.0MHz": {
+    "overshoot_V": 0.6729695883424021,
+    "undershoot_V": 0.672969525123535,
+    "min_high_ns": 5.634999999999282,
+    "min_low_ns": 5.63499999999927,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "nom_fmax_MHz": 53.3,
+   "slow_20.0MHz": {
+    "overshoot_V": 0.18909424318246204,
+    "undershoot_V": 0.1890942170653136,
+    "min_high_ns": 23.98499999999345,
+    "min_low_ns": 23.984999999993555,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "slow_26.7MHz": {
+    "overshoot_V": 0.18943166788392052,
+    "undershoot_V": 0.18943167194486416,
+    "min_high_ns": 17.73499999999724,
+    "min_low_ns": 17.734999999998827,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "slow_40.0MHz": {
+    "overshoot_V": 0.18855056995133745,
+    "undershoot_V": 0.1885505526109537,
+    "min_high_ns": 11.484999999997273,
+    "min_low_ns": 11.484999999998836,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "slow_53.3MHz": {
+    "overshoot_V": 0.18796892648945018,
+    "undershoot_V": 0.18796305595386273,
+    "min_high_ns": 8.370999999998839,
+    "min_low_ns": 8.368999999998849,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "slow_80.0MHz": {
+    "overshoot_V": 0.18226324426435303,
+    "undershoot_V": 0.18226321606955834,
+    "min_high_ns": 5.174999999998774,
+    "min_low_ns": 5.174999999998774,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "slow_fmax_MHz": 53.3
+  },
+  "68": {
+   "fast_20.0MHz": {
+    "overshoot_V": 0.19387769942380517,
+    "undershoot_V": 0.1938777410742713,
+    "min_high_ns": 24.259999999995323,
+    "min_low_ns": 24.2599999999922,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "fast_26.7MHz": {
+    "overshoot_V": 0.1930711483479195,
+    "undershoot_V": 0.19307118196135598,
+    "min_high_ns": 18.014999999992185,
+    "min_low_ns": 18.014999999999144,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "fast_40.0MHz": {
+    "overshoot_V": 0.19920146555763996,
+    "undershoot_V": 0.19920149956340838,
+    "min_high_ns": 11.759999999992159,
+    "min_low_ns": 11.759999999999147,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "fast_53.3MHz": {
+    "overshoot_V": 0.2080053780448785,
+    "undershoot_V": 0.20798710232353576,
+    "min_high_ns": 8.65099999999913,
+    "min_low_ns": 8.648999999999166,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "fast_80.0MHz": {
+    "overshoot_V": 0.20464586389404982,
+    "undershoot_V": 0.20464614485692997,
+    "min_high_ns": 5.474999999999114,
+    "min_low_ns": 5.474999999999114,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "fast_fmax_MHz": 53.3,
+   "nom_20.0MHz": {
+    "overshoot_V": 0.016110633998374535,
+    "undershoot_V": 0.01611064143852989,
+    "min_high_ns": 24.14999999999451,
+    "min_low_ns": 24.149999999993106,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "nom_26.7MHz": {
+    "overshoot_V": 0.01616457501250279,
+    "undershoot_V": 0.016164560101048345,
+    "min_high_ns": 17.89999999999314,
+    "min_low_ns": 17.899999999999014,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "nom_40.0MHz": {
+    "overshoot_V": 0.016704749338697145,
+    "undershoot_V": 0.016704732722105837,
+    "min_high_ns": 11.654999999993125,
+    "min_low_ns": 11.654999999999015,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "nom_53.3MHz": {
+    "overshoot_V": 0.01717058621467693,
+    "undershoot_V": 0.01716809123975154,
+    "min_high_ns": 8.540999999999018,
+    "min_low_ns": 8.538999999999016,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "nom_80.0MHz": {
+    "overshoot_V": -0.06761125238318577,
+    "undershoot_V": -0.06760866200327519,
+    "min_high_ns": 5.364999999998976,
+    "min_low_ns": 5.364999999998963,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "nom_fmax_MHz": 53.3,
+   "slow_20.0MHz": {
+    "overshoot_V": 0.0010849047995629135,
+    "undershoot_V": 0.001084973102960395,
+    "min_high_ns": 23.819999999992387,
+    "min_low_ns": 23.819999999992493,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "slow_26.7MHz": {
+    "overshoot_V": 0.001130132722695798,
+    "undershoot_V": 0.0011301993536288744,
+    "min_high_ns": 17.569999999995993,
+    "min_low_ns": 17.56999999999864,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "slow_40.0MHz": {
+    "overshoot_V": -0.013690830781679875,
+    "undershoot_V": -0.013690765275574062,
+    "min_high_ns": 11.31999999999608,
+    "min_low_ns": 11.319999999998648,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "slow_53.3MHz": {
+    "overshoot_V": -0.04498843685214693,
+    "undershoot_V": -0.045025917041884474,
+    "min_high_ns": 8.175999999998616,
+    "min_low_ns": 8.173999999998628,
+    "extra_threshold_crossings": 0,
+    "ok": true
+   },
+   "slow_80.0MHz": {
+    "overshoot_V": -0.2803284662681902,
+    "undershoot_V": -0.2803289520027856,
+    "min_high_ns": 5.029999999998609,
+    "min_low_ns": 5.029999999998609,
+    "extra_threshold_crossings": 0,
+    "ok": false
+   },
+   "slow_fmax_MHz": 53.3
+  }
+ },
+ "mosi_eye": {
+  "33": {
+   "eye_height_V": 3.29999937539107,
+   "at_ns": 4.999999999999999,
+   "overshoot_V": 0.8443258390988095,
+   "undershoot_V": 0.8443259340735195
+  },
+  "68": {
+   "eye_height_V": 3.299999598563457,
+   "at_ns": 19.249999999999996,
+   "overshoot_V": 0.0674456897562048,
+   "undershoot_V": 0.06744582716702138
+  }
+ },
+ "pdm_clk": {
+  "overshoot_V": 0.8084286740223456,
+  "undershoot_V": 0.8084287254740116,
+  "min_high_ns": 162.18999999999943,
+  "min_low_ns": 162.18999999999932,
+  "extra_threshold_crossings": 0,
+  "pad_to_mic_delay_ns": 1.5124499986762816
+ },
+ "pdm_data": {
+  "overshoot_V": 0.2743456353874554,
+  "undershoot_V": 0.2743457525229387,
+  "min_high_ns": 161.79999999999893,
+  "min_low_ns": 161.6999999999988,
+  "extra_threshold_crossings": 0,
+  "mic_to_esp_delay_ns": 1.599701696353946
+ },
+ "pdm_round_trip_ns": 3.112151695030228,
+ "crosstalk_40MHz_fast_corner": {
+  "sclk_aggressor_Rs33": {
+   "mosi_far_peak_mV": 136.25376646776365,
+   "cs_far_peak_mV": 156.83829830649057,
+   "dc_far_peak_mV": 128.78354352190112,
+   "mosi_near_peak_mV": 66.50835811572041,
+   "cs_near_peak_mV": 65.51200593518593,
+   "dc_near_peak_mV": 59.79288314188949
+  },
+  "mosi_aggressor_Rs33": {
+   "sclk_far_peak_mV": 131.86533386683584,
+   "cs_far_peak_mV": 694.3426216803555,
+   "dc_far_peak_mV": 533.5534808695096,
+   "sclk_near_peak_mV": 66.50835741768108,
+   "cs_near_peak_mV": 249.67278152803567,
+   "dc_near_peak_mV": 206.4894061912108
+  },
+  "sclk_aggressor_Rs68": {
+   "mosi_far_peak_mV": 82.64186846215304,
+   "cs_far_peak_mV": 82.39654768758716,
+   "dc_far_peak_mV": 67.12535564129251,
+   "mosi_near_peak_mV": 82.22384636990806,
+   "cs_near_peak_mV": 56.5129740494001,
+   "dc_near_peak_mV": 52.26009838461928
+  },
+  "mosi_aggressor_Rs68": {
+   "sclk_far_peak_mV": 82.24652626259797,
+   "cs_far_peak_mV": 488.9955914929261,
+   "dc_far_peak_mV": 299.89223872604,
+   "sclk_near_peak_mV": 82.2237564170848,
+   "cs_near_peak_mV": 325.9742551537887,
+   "dc_near_peak_mV": 202.2498426189307
+  }
+ },
+ "coupling_coeffs": {
+  "k_L_sclk_mosi": 0.09199235112848378,
+  "k_L_sclk_cs": 0.07649021894565418,
+  "k_L_sclk_dc": 0.059655216312811406,
+  "k_L_mosi_cs": 0.4282514479564851,
+  "k_L_mosi_dc": 0.2633985276224195,
+  "k_L_cs_dc": 0.465067132334675,
+  "k_C_sclk_mosi": 0.043514868791802774,
+  "k_C_sclk_cs": 0.018340864355468063,
+  "k_C_sclk_dc": 0.01046292061212456,
+  "k_C_mosi_cs": 0.39983983483485314,
+  "k_C_mosi_dc": 0.04314317810910098,
+  "k_C_cs_dc": 0.39970448811871473
+ }
+}

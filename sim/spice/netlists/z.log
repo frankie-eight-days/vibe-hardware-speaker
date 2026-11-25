@@ -1,0 +1,27 @@
+Warning: Value of resistor rlcp is too small, set to 1.000000e-12
+Warning: Value of resistor rlcn is too small, set to 1.000000e-12
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s2 pwm: idle_bd_tw  modulation=bd m=0.0 f=1000.0 load=ot19nc00-04 tweeter model
+
+binary raw file "z.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 6  
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+
+No. of Data Rows : 43604
+
+Total analysis time (seconds) = 0.169155
+
+Total elapsed time (seconds) = 0.175 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 4555.125 MB.
+Maximum ngspice program size =   10.031 MB.
+Current ngspice program size =   10.031 MB.
+

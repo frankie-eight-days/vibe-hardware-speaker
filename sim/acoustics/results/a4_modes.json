@@ -1,0 +1,2082 @@
+{
+ "description": "A4 structural modes of the PETG enclosure (CalculiX C3D10). Indices: dB re the two woofers' cone volume velocity at the modal resonance, loss factor eta=0.03.",
+ "material": {
+  "E_solid_MPa": 2100.0,
+  "nu": 0.38,
+  "rho_solid": 1270,
+  "infill": 0.4,
+  "E_core_MPa": 336.00000000000006,
+  "rho_core": 508.0,
+  "skin_mm": 1.8,
+  "loss_factor": 0.03
+ },
+ "lumped_masses_kg": {
+  "woofer": 0.181,
+  "pr_with_add_mass": 0.07150000000000001,
+  "battery": 0.189
+ },
+ "cases": {
+  "asm_solid_free": {
+   "label": "Shell only, 100 % solid, free-free",
+   "n_nodes": 167072,
+   "dof": 501216,
+   "h_mm": 3.5,
+   "ccx_s": 107.2,
+   "freqs_hz": [
+    445.8888,
+    529.3377,
+    823.9408,
+    964.8261,
+    981.3945,
+    993.6262,
+    1089.686,
+    1121.008,
+    1181.339,
+    1244.906,
+    1306.223,
+    1320.48,
+    1410.552,
+    1443.246,
+    1490.257,
+    1497.041,
+    1607.34,
+    1639.68,
+    1652.834,
+    1659.874
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 445.9,
+     "excitation_index_db": -38.8,
+     "where": "battery tray (x=0, phi=122 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 529.3,
+     "excitation_index_db": -5.3,
+     "where": "front shell (x=-16, phi=94 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 823.9,
+     "excitation_index_db": -23.2,
+     "where": "front shell (x=2, phi=-100 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 964.8,
+     "excitation_index_db": -68.1,
+     "where": "battery tray (x=1, phi=-179 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 981.4,
+     "excitation_index_db": -123.9,
+     "where": "front shell (x=-59, phi=75 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 993.6,
+     "excitation_index_db": -96.5,
+     "where": "front shell (x=-52, phi=-81 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.0017498088755746994,
+   "frf_peak_db_below_1khz": -5.0698576082275535
+  },
+  "asm_solid_free_fine": {
+   "label": "  same, finer mesh (2.8 mm)",
+   "n_nodes": 232405,
+   "dof": 697215,
+   "h_mm": 2.8,
+   "ccx_s": 91.1,
+   "freqs_hz": [
+    445.1828,
+    527.7126,
+    820.5379,
+    962.007,
+    979.6811,
+    991.8145,
+    1087.227,
+    1118.705,
+    1179.202,
+    1241.023,
+    1303.011,
+    1317.898
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 445.2,
+     "excitation_index_db": -43.1,
+     "where": "battery tray (x=0, phi=122 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 527.7,
+     "excitation_index_db": -5.2,
+     "where": "front shell (x=-17, phi=93 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 820.5,
+     "excitation_index_db": -26.0,
+     "where": "front shell (x=1, phi=-100 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 962.0,
+     "excitation_index_db": -66.9,
+     "where": "battery tray (x=0, phi=179 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 979.7,
+     "excitation_index_db": -108.1,
+     "where": "front shell (x=-59, phi=75 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 991.8,
+     "excitation_index_db": -98.8,
+     "where": "front shell (x=-51, phi=-82 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.0010733818317917128,
+   "frf_peak_db_below_1khz": -5.143867224708457
+  },
+  "asm_infill40_free": {
+   "label": "Shell only, 40 % infill core",
+   "n_nodes": 167072,
+   "dof": 501216,
+   "h_mm": 3.5,
+   "ccx_s": 91.1,
+   "freqs_hz": [
+    446.3482,
+    529.4533,
+    838.8605,
+    891.0344,
+    962.2745,
+    974.657,
+    1073.152,
+    1093.273,
+    1170.695,
+    1239.204,
+    1270.183,
+    1314.95,
+    1398.883,
+    1404.463,
+    1471.424,
+    1507.375,
+    1549.301,
+    1639.731,
+    1658.623,
+    1674.242
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 446.3,
+     "excitation_index_db": -39.2,
+     "where": "battery tray (x=0, phi=122 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 529.5,
+     "excitation_index_db": -2.1,
+     "where": "front shell (x=-17, phi=92 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 838.9,
+     "excitation_index_db": -21.1,
+     "where": "front shell (x=2, phi=-100 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 891.0,
+     "excitation_index_db": -91.3,
+     "where": "front shell (x=50, phi=25 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 962.3,
+     "excitation_index_db": -67.0,
+     "where": "battery tray (x=1, phi=-179 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 974.7,
+     "excitation_index_db": -109.0,
+     "where": "front shell (x=-52, phi=-89 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.002114177369095894,
+   "frf_peak_db_below_1khz": -1.868227618305311
+  },
+  "asm_infill40_drivers": {
+   "label": "MAIN: 40 % infill + woofer/PR masses",
+   "n_nodes": 167072,
+   "dof": 501216,
+   "h_mm": 3.5,
+   "ccx_s": 114.2,
+   "freqs_hz": [
+    269.0311,
+    333.559,
+    434.4921,
+    464.7667,
+    525.54,
+    549.8344,
+    560.7755,
+    601.9523,
+    607.295,
+    626.5068,
+    646.1863,
+    700.0345,
+    721.755,
+    724.6305,
+    728.2643,
+    732.298,
+    835.4707,
+    859.4014,
+    866.5392,
+    930.6466
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 269.0,
+     "excitation_index_db": -45.7,
+     "where": "battery tray (x=0, phi=-122 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 333.6,
+     "excitation_index_db": -32.9,
+     "where": "front shell (x=-17, phi=88 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 434.5,
+     "excitation_index_db": -113.0,
+     "where": "front shell (x=43, phi=31 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 464.8,
+     "excitation_index_db": -110.3,
+     "where": "front shell (x=35, phi=-34 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 525.5,
+     "excitation_index_db": -45.0,
+     "where": "battery tray (x=0, phi=-122 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 549.8,
+     "excitation_index_db": -105.1,
+     "where": "front shell (x=-59, phi=8 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 560.8,
+     "excitation_index_db": -34.8,
+     "where": "front shell (x=-101, phi=23 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 602.0,
+     "excitation_index_db": -25.6,
+     "where": "front shell (x=101, phi=55 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 607.3,
+     "excitation_index_db": -61.2,
+     "where": "front shell (x=-35, phi=-34 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 626.5,
+     "excitation_index_db": -34.3,
+     "where": "battery tray (x=0, phi=-122 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 646.2,
+     "excitation_index_db": -99.6,
+     "where": "front shell (x=101, phi=39 deg)"
+    },
+    {
+     "mode": 12,
+     "f_hz": 700.0,
+     "excitation_index_db": -33.4,
+     "where": "front shell (x=68, phi=-2 deg)"
+    },
+    {
+     "mode": 13,
+     "f_hz": 721.8,
+     "excitation_index_db": -53.6,
+     "where": "end cap (x=-105, phi=-59 deg)"
+    },
+    {
+     "mode": 14,
+     "f_hz": 724.6,
+     "excitation_index_db": -59.2,
+     "where": "end cap (x=-105, phi=-149 deg)"
+    },
+    {
+     "mode": 15,
+     "f_hz": 728.3,
+     "excitation_index_db": -59.6,
+     "where": "end cap (x=105, phi=-117 deg)"
+    },
+    {
+     "mode": 16,
+     "f_hz": 732.3,
+     "excitation_index_db": -46.6,
+     "where": "end cap (x=-105, phi=-180 deg)"
+    },
+    {
+     "mode": 17,
+     "f_hz": 835.5,
+     "excitation_index_db": -44.7,
+     "where": "battery tray (x=1, phi=-179 deg)"
+    },
+    {
+     "mode": 18,
+     "f_hz": 859.4,
+     "excitation_index_db": -24.9,
+     "where": "front shell (x=-13, phi=103 deg)"
+    },
+    {
+     "mode": 19,
+     "f_hz": 866.5,
+     "excitation_index_db": -48.6,
+     "where": "front shell (x=0, phi=-87 deg)"
+    },
+    {
+     "mode": 20,
+     "f_hz": 930.6,
+     "excitation_index_db": -107.6,
+     "where": "front shell (x=19, phi=-28 deg)"
+    },
+    {
+     "mode": 21,
+     "f_hz": 963.1,
+     "excitation_index_db": -100.2,
+     "where": "end cap (x=105, phi=-137 deg)"
+    },
+    {
+     "mode": 22,
+     "f_hz": 980.4,
+     "excitation_index_db": -66.7,
+     "where": "battery tray (x=8, phi=-180 deg)"
+    },
+    {
+     "mode": 23,
+     "f_hz": 985.6,
+     "excitation_index_db": -76.5,
+     "where": "battery tray (x=-4, phi=-179 deg)"
+    },
+    {
+     "mode": 24,
+     "f_hz": 988.5,
+     "excitation_index_db": -62.6,
+     "where": "battery tray (x=-3, phi=-179 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.0016531368420449517,
+   "frf_peak_db_below_1khz": -25.342899007740378
+  },
+  "asm_infill40_drivers_batt": {
+   "label": "  main + battery rigidly coupled",
+   "n_nodes": 167072,
+   "dof": 501216,
+   "h_mm": 3.5,
+   "ccx_s": 103.7,
+   "freqs_hz": [
+    211.4448,
+    239.8627,
+    324.4643,
+    344.1807,
+    410.7703,
+    427.3697,
+    448.0523,
+    461.676,
+    532.3198,
+    536.9118,
+    555.5959,
+    565.3176,
+    572.8156,
+    597.6127,
+    610.2283,
+    636.6104,
+    699.1164,
+    716.4402,
+    722.6189,
+    726.696
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 211.4,
+     "excitation_index_db": -46.4,
+     "where": "battery tray (x=0, phi=-122 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 239.9,
+     "excitation_index_db": -23.8,
+     "where": "battery tray (x=-0, phi=175 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 324.5,
+     "excitation_index_db": -122.2,
+     "where": "battery tray (x=28, phi=180 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 344.2,
+     "excitation_index_db": -29.6,
+     "where": "battery tray (x=1, phi=-179 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 410.8,
+     "excitation_index_db": -35.1,
+     "where": "front shell (x=0, phi=-99 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 427.4,
+     "excitation_index_db": -111.6,
+     "where": "front shell (x=43, phi=31 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 448.1,
+     "excitation_index_db": -47.3,
+     "where": "battery tray (x=37, phi=180 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 461.7,
+     "excitation_index_db": -111.8,
+     "where": "front shell (x=-28, phi=33 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 532.3,
+     "excitation_index_db": -52.8,
+     "where": "battery tray (x=5, phi=141 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 536.9,
+     "excitation_index_db": -87.1,
+     "where": "battery tray (x=16, phi=-170 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 555.6,
+     "excitation_index_db": -49.6,
+     "where": "battery tray (x=-0, phi=-141 deg)"
+    },
+    {
+     "mode": 12,
+     "f_hz": 565.3,
+     "excitation_index_db": -30.7,
+     "where": "front shell (x=-101, phi=23 deg)"
+    },
+    {
+     "mode": 13,
+     "f_hz": 572.8,
+     "excitation_index_db": -93.7,
+     "where": "battery tray (x=15, phi=-175 deg)"
+    },
+    {
+     "mode": 14,
+     "f_hz": 597.6,
+     "excitation_index_db": -28.8,
+     "where": "front shell (x=-101, phi=47 deg)"
+    },
+    {
+     "mode": 15,
+     "f_hz": 610.2,
+     "excitation_index_db": -81.8,
+     "where": "front shell (x=-35, phi=-34 deg)"
+    },
+    {
+     "mode": 16,
+     "f_hz": 636.6,
+     "excitation_index_db": -101.3,
+     "where": "end cap (x=105, phi=39 deg)"
+    },
+    {
+     "mode": 17,
+     "f_hz": 699.1,
+     "excitation_index_db": -29.1,
+     "where": "front shell (x=68, phi=-2 deg)"
+    },
+    {
+     "mode": 18,
+     "f_hz": 716.4,
+     "excitation_index_db": -79.6,
+     "where": "end cap (x=105, phi=172 deg)"
+    },
+    {
+     "mode": 19,
+     "f_hz": 722.6,
+     "excitation_index_db": -46.5,
+     "where": "end cap (x=-105, phi=-86 deg)"
+    },
+    {
+     "mode": 20,
+     "f_hz": 726.7,
+     "excitation_index_db": -45.4,
+     "where": "end cap (x=105, phi=-125 deg)"
+    },
+    {
+     "mode": 21,
+     "f_hz": 729.5,
+     "excitation_index_db": -43.3,
+     "where": "end cap (x=-105, phi=-172 deg)"
+    },
+    {
+     "mode": 22,
+     "f_hz": 751.8,
+     "excitation_index_db": -86.9,
+     "where": "battery tray (x=-31, phi=-147 deg)"
+    },
+    {
+     "mode": 23,
+     "f_hz": 767.1,
+     "excitation_index_db": -76.3,
+     "where": "rear shell (x=-101, phi=-180 deg)"
+    },
+    {
+     "mode": 24,
+     "f_hz": 772.2,
+     "excitation_index_db": -67.5,
+     "where": "battery tray (x=-24, phi=166 deg)"
+    },
+    {
+     "mode": 25,
+     "f_hz": 838.9,
+     "excitation_index_db": -39.8,
+     "where": "battery tray (x=1, phi=170 deg)"
+    },
+    {
+     "mode": 26,
+     "f_hz": 854.0,
+     "excitation_index_db": -33.6,
+     "where": "front shell (x=1, phi=-93 deg)"
+    },
+    {
+     "mode": 27,
+     "f_hz": 855.3,
+     "excitation_index_db": -45.6,
+     "where": "battery tray (x=-62, phi=-122 deg)"
+    },
+    {
+     "mode": 28,
+     "f_hz": 863.4,
+     "excitation_index_db": -50.8,
+     "where": "front shell (x=-15, phi=98 deg)"
+    },
+    {
+     "mode": 29,
+     "f_hz": 905.4,
+     "excitation_index_db": -69.9,
+     "where": "battery tray (x=-40, phi=-147 deg)"
+    },
+    {
+     "mode": 30,
+     "f_hz": 942.9,
+     "excitation_index_db": -103.5,
+     "where": "battery tray (x=-31, phi=176 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.001959961384566921,
+   "frf_peak_db_below_1khz": -23.02792908815654
+  },
+  "rear_edges_clamped": {
+   "label": "Rear shell alone, seam + ends clamped",
+   "n_nodes": 48699,
+   "dof": 146097,
+   "h_mm": 3.5,
+   "ccx_s": 9.7,
+   "freqs_hz": [
+    1153.127,
+    1359.202,
+    1765.547,
+    2317.109,
+    2325.403,
+    2591.427,
+    3009.77,
+    3066.325,
+    3135.472,
+    3168.716,
+    3378.549,
+    3537.724
+   ],
+   "modes_below_1khz": [],
+   "wall_compliance_fraction": null,
+   "frf_peak_db_below_1khz": null
+  },
+  "rear_screws_only": {
+   "label": "Rear shell alone, held at screws only",
+   "n_nodes": 48699,
+   "dof": 146097,
+   "h_mm": 3.5,
+   "ccx_s": 12.5,
+   "freqs_hz": [
+    685.6135,
+    840.2788,
+    1157.225,
+    1174.693,
+    1217.51,
+    1441.863,
+    1445.529,
+    1456.668,
+    1460.149,
+    1469.266,
+    1552.558,
+    1647.8
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 685.6
+    },
+    {
+     "mode": 2,
+     "f_hz": 840.3
+    }
+   ],
+   "wall_compliance_fraction": null,
+   "frf_peak_db_below_1khz": null
+  },
+  "front_edges_clamped": {
+   "label": "Front shell alone, seam + ends clamped",
+   "n_nodes": 85391,
+   "dof": 256173,
+   "h_mm": 3.5,
+   "ccx_s": 18.5,
+   "freqs_hz": [
+    306.251,
+    373.4194,
+    469.937,
+    560.8716,
+    599.4064,
+    615.5553,
+    635.5377,
+    730.0149,
+    815.1497,
+    849.6667,
+    888.3329,
+    1044.785
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 306.3,
+     "excitation_index_db": -67.4,
+     "where": "front shell (x=1, phi=43 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 373.4,
+     "excitation_index_db": -17.5,
+     "where": "front shell (x=-7, phi=1 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 469.9,
+     "excitation_index_db": -108.8,
+     "where": "front shell (x=31, phi=34 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 560.9,
+     "excitation_index_db": -129.5,
+     "where": "front shell (x=40, phi=-33 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 599.4,
+     "excitation_index_db": -81.7,
+     "where": "front shell (x=-59, phi=13 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 615.6,
+     "excitation_index_db": -28.0,
+     "where": "front shell (x=43, phi=31 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 635.5,
+     "excitation_index_db": -34.1,
+     "where": "front shell (x=-43, phi=-31 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 730.0,
+     "excitation_index_db": -40.1,
+     "where": "front shell (x=-0, phi=-69 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 815.1,
+     "excitation_index_db": -28.6,
+     "where": "front shell (x=-68, phi=-2 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 849.7,
+     "excitation_index_db": -123.3,
+     "where": "front shell (x=-68, phi=-8 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 888.3,
+     "excitation_index_db": -107.3,
+     "where": "front shell (x=-25, phi=-32 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.000416936099147401,
+   "frf_peak_db_below_1khz": -17.488002146285485
+  },
+  "endcap_rim_clamped_PR": {
+   "label": "End cap + PR, rim clamped",
+   "n_nodes": 22115,
+   "dof": 66345,
+   "h_mm": 2.8,
+   "ccx_s": 2.8,
+   "freqs_hz": [
+    1072.115,
+    1166.891,
+    1196.122,
+    1480.592,
+    1491.101,
+    1947.371,
+    1963.727,
+    2556.435
+   ],
+   "modes_below_1khz": [],
+   "wall_compliance_fraction": null,
+   "frf_peak_db_below_1khz": null
+  },
+  "asm_infill40_drivers_rib_top": {
+   "label": "What-if: main + top-arc ribs",
+   "n_nodes": 169496,
+   "dof": 508488,
+   "h_mm": 3.5,
+   "ccx_s": 156.6,
+   "freqs_hz": [
+    273.8293,
+    349.5017,
+    432.5652,
+    472.2025,
+    531.5492,
+    553.551,
+    566.4597,
+    608.052,
+    610.0762,
+    646.0899,
+    652.0727,
+    704.1189,
+    721.958,
+    725.4579,
+    728.7492,
+    732.7345,
+    830.4923,
+    869.6759,
+    881.3957,
+    937.6954
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 273.8,
+     "excitation_index_db": -43.5,
+     "where": "battery tray (x=0, phi=-122 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 349.5,
+     "excitation_index_db": -43.3,
+     "where": "front shell (x=17, phi=88 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 432.6,
+     "excitation_index_db": -142.7,
+     "where": "front shell (x=-41, phi=32 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 472.2,
+     "excitation_index_db": -126.0,
+     "where": "front shell (x=35, phi=-34 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 531.5,
+     "excitation_index_db": -40.5,
+     "where": "battery tray (x=0, phi=-122 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 553.6,
+     "excitation_index_db": -90.5,
+     "where": "front shell (x=-58, phi=12 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 566.5,
+     "excitation_index_db": -30.5,
+     "where": "front shell (x=-101, phi=31 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 608.1,
+     "excitation_index_db": -49.4,
+     "where": "front shell (x=36, phi=-34 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 610.1,
+     "excitation_index_db": -25.3,
+     "where": "front shell (x=-101, phi=55 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 646.1,
+     "excitation_index_db": -108.1,
+     "where": "front shell (x=101, phi=39 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 652.1,
+     "excitation_index_db": -33.6,
+     "where": "battery tray (x=0, phi=122 deg)"
+    },
+    {
+     "mode": 12,
+     "f_hz": 704.1,
+     "excitation_index_db": -29.9,
+     "where": "front shell (x=-68, phi=1 deg)"
+    },
+    {
+     "mode": 13,
+     "f_hz": 722.0,
+     "excitation_index_db": -55.9,
+     "where": "end cap (x=-105, phi=-63 deg)"
+    },
+    {
+     "mode": 14,
+     "f_hz": 725.5,
+     "excitation_index_db": -64.6,
+     "where": "end cap (x=-105, phi=-164 deg)"
+    },
+    {
+     "mode": 15,
+     "f_hz": 728.7,
+     "excitation_index_db": -59.4,
+     "where": "end cap (x=105, phi=-117 deg)"
+    },
+    {
+     "mode": 16,
+     "f_hz": 732.7,
+     "excitation_index_db": -50.1,
+     "where": "end cap (x=-105, phi=-180 deg)"
+    },
+    {
+     "mode": 17,
+     "f_hz": 830.5,
+     "excitation_index_db": -32.1,
+     "where": "battery tray (x=1, phi=-179 deg)"
+    },
+    {
+     "mode": 18,
+     "f_hz": 869.7,
+     "excitation_index_db": -52.9,
+     "where": "battery tray (x=-0, phi=-174 deg)"
+    },
+    {
+     "mode": 19,
+     "f_hz": 881.4,
+     "excitation_index_db": -23.8,
+     "where": "front shell (x=1, phi=-109 deg)"
+    },
+    {
+     "mode": 20,
+     "f_hz": 937.7,
+     "excitation_index_db": -84.6,
+     "where": "front shell (x=-20, phi=-29 deg)"
+    },
+    {
+     "mode": 21,
+     "f_hz": 966.3,
+     "excitation_index_db": -107.3,
+     "where": "end cap (x=105, phi=129 deg)"
+    },
+    {
+     "mode": 22,
+     "f_hz": 980.8,
+     "excitation_index_db": -67.7,
+     "where": "battery tray (x=8, phi=-180 deg)"
+    },
+    {
+     "mode": 23,
+     "f_hz": 986.6,
+     "excitation_index_db": -68.7,
+     "where": "end cap (x=-105, phi=-125 deg)"
+    },
+    {
+     "mode": 24,
+     "f_hz": 989.6,
+     "excitation_index_db": -60.0,
+     "where": "battery tray (x=-3, phi=-179 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.00161538296088613,
+   "frf_peak_db_below_1khz": -24.35515063626566
+  },
+  "asm_infill40_drivers_rib_top_tray": {
+   "label": "What-if: + tray gussets",
+   "n_nodes": 171320,
+   "dof": 513960,
+   "h_mm": 3.5,
+   "ccx_s": 178.0,
+   "freqs_hz": [
+    274.7987,
+    364.8127,
+    433.979,
+    474.804,
+    532.9831,
+    556.8291,
+    568.5754,
+    610.2661,
+    617.6892,
+    645.5224,
+    701.9893,
+    707.0127,
+    721.6331,
+    725.024,
+    727.8708,
+    733.2108,
+    834.4106,
+    870.4725,
+    911.5751,
+    937.7845
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 274.8,
+     "excitation_index_db": -43.1,
+     "where": "battery tray (x=-2, phi=-122 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 364.8,
+     "excitation_index_db": -43.5,
+     "where": "front shell (x=1, phi=-88 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 434.0,
+     "excitation_index_db": -103.8,
+     "where": "front shell (x=-41, phi=32 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 474.8,
+     "excitation_index_db": -116.5,
+     "where": "front shell (x=-33, phi=-34 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 533.0,
+     "excitation_index_db": -41.5,
+     "where": "front shell (x=47, phi=28 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 556.8,
+     "excitation_index_db": -92.3,
+     "where": "front shell (x=58, phi=10 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 568.6,
+     "excitation_index_db": -28.6,
+     "where": "front shell (x=-101, phi=31 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 610.3,
+     "excitation_index_db": -55.2,
+     "where": "front shell (x=35, phi=-34 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 617.7,
+     "excitation_index_db": -23.6,
+     "where": "front shell (x=-41, phi=-32 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 645.5,
+     "excitation_index_db": -119.2,
+     "where": "front shell (x=101, phi=39 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 702.0,
+     "excitation_index_db": -58.9,
+     "where": "battery tray (x=0, phi=122 deg)"
+    },
+    {
+     "mode": 12,
+     "f_hz": 707.0,
+     "excitation_index_db": -22.8,
+     "where": "battery tray (x=0, phi=-122 deg)"
+    },
+    {
+     "mode": 13,
+     "f_hz": 721.6,
+     "excitation_index_db": -53.9,
+     "where": "end cap (x=-105, phi=-63 deg)"
+    },
+    {
+     "mode": 14,
+     "f_hz": 725.0,
+     "excitation_index_db": -64.6,
+     "where": "end cap (x=-105, phi=-164 deg)"
+    },
+    {
+     "mode": 15,
+     "f_hz": 727.9,
+     "excitation_index_db": -64.7,
+     "where": "end cap (x=105, phi=-117 deg)"
+    },
+    {
+     "mode": 16,
+     "f_hz": 733.2,
+     "excitation_index_db": -63.1,
+     "where": "end cap (x=-105, phi=-180 deg)"
+    },
+    {
+     "mode": 17,
+     "f_hz": 834.4,
+     "excitation_index_db": -30.7,
+     "where": "battery tray (x=-0, phi=-180 deg)"
+    },
+    {
+     "mode": 18,
+     "f_hz": 870.5,
+     "excitation_index_db": -104.2,
+     "where": "battery tray (x=-0, phi=-180 deg)"
+    },
+    {
+     "mode": 19,
+     "f_hz": 911.6,
+     "excitation_index_db": -24.9,
+     "where": "front shell (x=1, phi=-106 deg)"
+    },
+    {
+     "mode": 20,
+     "f_hz": 937.8,
+     "excitation_index_db": -87.7,
+     "where": "front shell (x=-20, phi=-29 deg)"
+    },
+    {
+     "mode": 21,
+     "f_hz": 965.6,
+     "excitation_index_db": -102.2,
+     "where": "end cap (x=105, phi=129 deg)"
+    },
+    {
+     "mode": 22,
+     "f_hz": 982.1,
+     "excitation_index_db": -77.3,
+     "where": "end cap (x=-105, phi=-176 deg)"
+    },
+    {
+     "mode": 23,
+     "f_hz": 986.7,
+     "excitation_index_db": -117.5,
+     "where": "end cap (x=-105, phi=-125 deg)"
+    },
+    {
+     "mode": 24,
+     "f_hz": 992.2,
+     "excitation_index_db": -57.2,
+     "where": "battery tray (x=-2, phi=-180 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.001613040381255919,
+   "frf_peak_db_below_1khz": -24.348414624460656
+  },
+  "asm_infill40_drivers_batt_rib_top_tray": {
+   "label": "What-if: battery + top ribs + gussets",
+   "n_nodes": 171320,
+   "dof": 513960,
+   "h_mm": 3.5,
+   "ccx_s": 110.0,
+   "freqs_hz": [
+    220.3359,
+    263.2456,
+    336.0868,
+    360.5401,
+    426.4009,
+    452.6247,
+    457.7009,
+    471.9275,
+    540.9779,
+    543.1074,
+    566.35,
+    575.1698,
+    579.3221,
+    608.9467,
+    615.7931,
+    637.018,
+    703.1831,
+    718.6637,
+    722.6964,
+    726.3838
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 220.3,
+     "excitation_index_db": -43.0,
+     "where": "battery tray (x=0, phi=-122 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 263.2,
+     "excitation_index_db": -23.8,
+     "where": "battery tray (x=-0, phi=-180 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 336.1,
+     "excitation_index_db": -118.0,
+     "where": "battery tray (x=28, phi=-180 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 360.5,
+     "excitation_index_db": -68.6,
+     "where": "battery tray (x=-0, phi=-180 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 426.4,
+     "excitation_index_db": -112.1,
+     "where": "front shell (x=-43, phi=31 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 452.6,
+     "excitation_index_db": -35.6,
+     "where": "battery tray (x=-36, phi=-180 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 457.7,
+     "excitation_index_db": -41.7,
+     "where": "battery tray (x=37, phi=175 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 471.9,
+     "excitation_index_db": -102.7,
+     "where": "front shell (x=-33, phi=-34 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 541.0,
+     "excitation_index_db": -51.6,
+     "where": "battery tray (x=2, phi=141 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 543.1,
+     "excitation_index_db": -103.3,
+     "where": "battery tray (x=-16, phi=170 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 566.4,
+     "excitation_index_db": -29.0,
+     "where": "front shell (x=-101, phi=31 deg)"
+    },
+    {
+     "mode": 12,
+     "f_hz": 575.2,
+     "excitation_index_db": -77.2,
+     "where": "battery tray (x=15, phi=-175 deg)"
+    },
+    {
+     "mode": 13,
+     "f_hz": 579.3,
+     "excitation_index_db": -39.1,
+     "where": "front shell (x=-44, phi=-96 deg)"
+    },
+    {
+     "mode": 14,
+     "f_hz": 608.9,
+     "excitation_index_db": -23.9,
+     "where": "front shell (x=101, phi=55 deg)"
+    },
+    {
+     "mode": 15,
+     "f_hz": 615.8,
+     "excitation_index_db": -63.7,
+     "where": "front shell (x=-36, phi=-34 deg)"
+    },
+    {
+     "mode": 16,
+     "f_hz": 637.0,
+     "excitation_index_db": -106.5,
+     "where": "end cap (x=105, phi=39 deg)"
+    },
+    {
+     "mode": 17,
+     "f_hz": 703.2,
+     "excitation_index_db": -27.5,
+     "where": "front shell (x=-68, phi=1 deg)"
+    },
+    {
+     "mode": 18,
+     "f_hz": 718.7,
+     "excitation_index_db": -71.2,
+     "where": "end cap (x=105, phi=172 deg)"
+    },
+    {
+     "mode": 19,
+     "f_hz": 722.7,
+     "excitation_index_db": -52.6,
+     "where": "end cap (x=-105, phi=-102 deg)"
+    },
+    {
+     "mode": 20,
+     "f_hz": 726.4,
+     "excitation_index_db": -53.5,
+     "where": "end cap (x=105, phi=-117 deg)"
+    },
+    {
+     "mode": 21,
+     "f_hz": 730.6,
+     "excitation_index_db": -47.3,
+     "where": "end cap (x=-105, phi=-172 deg)"
+    },
+    {
+     "mode": 22,
+     "f_hz": 764.1,
+     "excitation_index_db": -72.9,
+     "where": "battery tray (x=-33, phi=-152 deg)"
+    },
+    {
+     "mode": 23,
+     "f_hz": 777.0,
+     "excitation_index_db": -44.0,
+     "where": "battery tray (x=25, phi=165 deg)"
+    },
+    {
+     "mode": 24,
+     "f_hz": 779.7,
+     "excitation_index_db": -58.5,
+     "where": "battery tray (x=-28, phi=152 deg)"
+    },
+    {
+     "mode": 25,
+     "f_hz": 838.8,
+     "excitation_index_db": -30.8,
+     "where": "battery tray (x=-0, phi=170 deg)"
+    },
+    {
+     "mode": 26,
+     "f_hz": 861.5,
+     "excitation_index_db": -36.4,
+     "where": "front shell (x=0, phi=-87 deg)"
+    },
+    {
+     "mode": 27,
+     "f_hz": 867.1,
+     "excitation_index_db": -94.3,
+     "where": "battery tray (x=62, phi=122 deg)"
+    },
+    {
+     "mode": 28,
+     "f_hz": 901.4,
+     "excitation_index_db": -28.7,
+     "where": "front shell (x=-0, phi=-108 deg)"
+    },
+    {
+     "mode": 29,
+     "f_hz": 913.6,
+     "excitation_index_db": -69.0,
+     "where": "battery tray (x=-1, phi=148 deg)"
+    },
+    {
+     "mode": 30,
+     "f_hz": 950.3,
+     "excitation_index_db": -88.5,
+     "where": "battery tray (x=31, phi=-180 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.0018455183605758727,
+   "frf_peak_db_below_1khz": -22.913020194362822
+  },
+  "asm_infill40_drivers_spine": {
+   "label": "What-if: main + centre spine plate",
+   "n_nodes": 171552,
+   "dof": 514656,
+   "h_mm": 3.5,
+   "ccx_s": 134.5,
+   "freqs_hz": [
+    447.454,
+    459.191,
+    460.0595,
+    494.599,
+    531.1098,
+    566.5269,
+    581.0087,
+    613.7471,
+    631.9419,
+    652.8719,
+    717.9456,
+    725.4434,
+    728.4312,
+    730.6178,
+    744.905,
+    821.7595,
+    909.8289,
+    932.3454,
+    935.8142,
+    954.645
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 447.5,
+     "excitation_index_db": -92.7,
+     "where": "front shell (x=35, phi=34 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 459.2,
+     "excitation_index_db": -28.5,
+     "where": "front shell (x=-15, phi=100 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 460.1,
+     "excitation_index_db": -99.6,
+     "where": "front shell (x=40, phi=-33 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 494.6,
+     "excitation_index_db": -26.7,
+     "where": "front shell (x=2, phi=-91 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 531.1,
+     "excitation_index_db": -50.4,
+     "where": "front shell (x=52, phi=41 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 566.5,
+     "excitation_index_db": -81.5,
+     "where": "front shell (x=50, phi=33 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 581.0,
+     "excitation_index_db": -20.0,
+     "where": "end cap (x=-105, phi=31 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 613.7,
+     "excitation_index_db": -34.2,
+     "where": "front shell (x=-101, phi=55 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 631.9,
+     "excitation_index_db": -88.8,
+     "where": "front shell (x=-35, phi=-34 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 652.9,
+     "excitation_index_db": -84.5,
+     "where": "front shell (x=101, phi=31 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 717.9,
+     "excitation_index_db": -34.2,
+     "where": "end cap (x=-105, phi=94 deg)"
+    },
+    {
+     "mode": 12,
+     "f_hz": 725.4,
+     "excitation_index_db": -47.0,
+     "where": "end cap (x=105, phi=164 deg)"
+    },
+    {
+     "mode": 13,
+     "f_hz": 728.4,
+     "excitation_index_db": -32.5,
+     "where": "end cap (x=-105, phi=-180 deg)"
+    },
+    {
+     "mode": 14,
+     "f_hz": 730.6,
+     "excitation_index_db": -48.7,
+     "where": "end cap (x=-105, phi=-110 deg)"
+    },
+    {
+     "mode": 15,
+     "f_hz": 744.9,
+     "excitation_index_db": -31.8,
+     "where": "end cap (x=105, phi=-47 deg)"
+    },
+    {
+     "mode": 16,
+     "f_hz": 821.8,
+     "excitation_index_db": -23.6,
+     "where": "front shell (x=0, phi=-86 deg)"
+    },
+    {
+     "mode": 17,
+     "f_hz": 909.8,
+     "excitation_index_db": -26.8,
+     "where": "front shell (x=-15, phi=100 deg)"
+    },
+    {
+     "mode": 18,
+     "f_hz": 932.3,
+     "excitation_index_db": -45.2,
+     "where": "front shell (x=0, phi=-70 deg)"
+    },
+    {
+     "mode": 19,
+     "f_hz": 935.8,
+     "excitation_index_db": -65.6,
+     "where": "front shell (x=0, phi=-70 deg)"
+    },
+    {
+     "mode": 20,
+     "f_hz": 954.6,
+     "excitation_index_db": -98.7,
+     "where": "front shell (x=0, phi=75 deg)"
+    },
+    {
+     "mode": 21,
+     "f_hz": 966.3,
+     "excitation_index_db": -99.6,
+     "where": "end cap (x=105, phi=129 deg)"
+    },
+    {
+     "mode": 22,
+     "f_hz": 968.1,
+     "excitation_index_db": -62.2,
+     "where": "end cap (x=-105, phi=-4 deg)"
+    },
+    {
+     "mode": 23,
+     "f_hz": 984.8,
+     "excitation_index_db": -81.9,
+     "where": "front shell (x=0, phi=-70 deg)"
+    },
+    {
+     "mode": 24,
+     "f_hz": 989.3,
+     "excitation_index_db": -69.6,
+     "where": "end cap (x=-105, phi=-133 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.001517024269790295,
+   "frf_peak_db_below_1khz": -19.122389402468926
+  },
+  "asm_infill40_drivers_spine_top_tray": {
+   "label": "What-if: spine + top ribs + tray gussets",
+   "n_nodes": 175716,
+   "dof": 527148,
+   "h_mm": 3.5,
+   "ccx_s": 133.1,
+   "freqs_hz": [
+    448.8124,
+    466.0256,
+    476.117,
+    505.6449,
+    535.8661,
+    573.5258,
+    585.4854,
+    633.5079,
+    635.0114,
+    652.4202,
+    718.503,
+    725.6816,
+    729.2963,
+    730.4605,
+    743.3474,
+    860.6304,
+    925.9439,
+    931.5743,
+    961.0098,
+    962.4954
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 448.8,
+     "excitation_index_db": -123.6,
+     "where": "front shell (x=36, phi=34 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 466.0,
+     "excitation_index_db": -115.5,
+     "where": "front shell (x=-36, phi=-34 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 476.1,
+     "excitation_index_db": -25.9,
+     "where": "front shell (x=-15, phi=100 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 505.6,
+     "excitation_index_db": -25.7,
+     "where": "front shell (x=1, phi=-92 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 535.9,
+     "excitation_index_db": -38.1,
+     "where": "front shell (x=47, phi=28 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 573.5,
+     "excitation_index_db": -90.8,
+     "where": "front shell (x=-50, phi=33 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 585.5,
+     "excitation_index_db": -18.8,
+     "where": "end cap (x=-105, phi=31 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 633.5,
+     "excitation_index_db": -30.6,
+     "where": "front shell (x=45, phi=-30 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 635.0,
+     "excitation_index_db": -47.7,
+     "where": "front shell (x=-38, phi=-33 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 652.4,
+     "excitation_index_db": -82.4,
+     "where": "front shell (x=101, phi=39 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 718.5,
+     "excitation_index_db": -37.5,
+     "where": "end cap (x=-105, phi=-63 deg)"
+    },
+    {
+     "mode": 12,
+     "f_hz": 725.7,
+     "excitation_index_db": -46.6,
+     "where": "end cap (x=105, phi=164 deg)"
+    },
+    {
+     "mode": 13,
+     "f_hz": 729.3,
+     "excitation_index_db": -34.8,
+     "where": "end cap (x=105, phi=-125 deg)"
+    },
+    {
+     "mode": 14,
+     "f_hz": 730.5,
+     "excitation_index_db": -39.8,
+     "where": "end cap (x=-105, phi=-117 deg)"
+    },
+    {
+     "mode": 15,
+     "f_hz": 743.3,
+     "excitation_index_db": -31.9,
+     "where": "end cap (x=105, phi=-47 deg)"
+    },
+    {
+     "mode": 16,
+     "f_hz": 860.6,
+     "excitation_index_db": -22.4,
+     "where": "front shell (x=0, phi=-85 deg)"
+    },
+    {
+     "mode": 17,
+     "f_hz": 925.9,
+     "excitation_index_db": -44.9,
+     "where": "end cap (x=105, phi=31 deg)"
+    },
+    {
+     "mode": 18,
+     "f_hz": 931.6,
+     "excitation_index_db": -79.6,
+     "where": "front shell (x=0, phi=-70 deg)"
+    },
+    {
+     "mode": 19,
+     "f_hz": 961.0,
+     "excitation_index_db": -31.4,
+     "where": "front shell (x=-0, phi=75 deg)"
+    },
+    {
+     "mode": 20,
+     "f_hz": 962.5,
+     "excitation_index_db": -35.2,
+     "where": "front shell (x=0, phi=75 deg)"
+    },
+    {
+     "mode": 21,
+     "f_hz": 969.8,
+     "excitation_index_db": -67.8,
+     "where": "end cap (x=105, phi=133 deg)"
+    },
+    {
+     "mode": 22,
+     "f_hz": 974.4,
+     "excitation_index_db": -60.1,
+     "where": "end cap (x=-105, phi=-8 deg)"
+    },
+    {
+     "mode": 23,
+     "f_hz": 985.7,
+     "excitation_index_db": -76.9,
+     "where": "front shell (x=0, phi=-70 deg)"
+    },
+    {
+     "mode": 24,
+     "f_hz": 991.2,
+     "excitation_index_db": -72.6,
+     "where": "end cap (x=-105, phi=-133 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.0015348079578977206,
+   "frf_peak_db_below_1khz": -17.790463840917823
+  },
+  "asm_infill40_drivers_batt_spine_top_tray": {
+   "label": "What-if: battery + spine + top + gussets",
+   "n_nodes": 175716,
+   "dof": 527148,
+   "h_mm": 3.5,
+   "ccx_s": 132.8,
+   "freqs_hz": [
+    339.3743,
+    371.6812,
+    414.5205,
+    442.1909,
+    460.6119,
+    474.4807,
+    488.0738,
+    553.968,
+    576.0974,
+    585.3419,
+    613.7597,
+    628.0706,
+    635.4448,
+    643.495,
+    666.5813,
+    687.3689,
+    718.2155,
+    722.9776,
+    727.595,
+    728.9686
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 339.4,
+     "excitation_index_db": -127.9,
+     "where": "battery tray (x=-29, phi=179 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 371.7,
+     "excitation_index_db": -23.7,
+     "where": "battery tray (x=32, phi=180 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 414.5,
+     "excitation_index_db": -36.4,
+     "where": "battery tray (x=-31, phi=-122 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 442.2,
+     "excitation_index_db": -119.8,
+     "where": "front shell (x=38, phi=33 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 460.6,
+     "excitation_index_db": -120.7,
+     "where": "front shell (x=36, phi=-34 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 474.5,
+     "excitation_index_db": -25.1,
+     "where": "battery tray (x=15, phi=169 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 488.1,
+     "excitation_index_db": -27.2,
+     "where": "front shell (x=17, phi=-101 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 554.0,
+     "excitation_index_db": -98.2,
+     "where": "battery tray (x=16, phi=179 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 576.1,
+     "excitation_index_db": -25.3,
+     "where": "end cap (x=-105, phi=31 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 585.3,
+     "excitation_index_db": -70.3,
+     "where": "battery tray (x=15, phi=-175 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 613.8,
+     "excitation_index_db": -28.1,
+     "where": "front shell (x=60, phi=0 deg)"
+    },
+    {
+     "mode": 12,
+     "f_hz": 628.1,
+     "excitation_index_db": -47.6,
+     "where": "front shell (x=45, phi=-94 deg)"
+    },
+    {
+     "mode": 13,
+     "f_hz": 635.4,
+     "excitation_index_db": -94.0,
+     "where": "front shell (x=-45, phi=-38 deg)"
+    },
+    {
+     "mode": 14,
+     "f_hz": 643.5,
+     "excitation_index_db": -97.5,
+     "where": "front shell (x=101, phi=39 deg)"
+    },
+    {
+     "mode": 15,
+     "f_hz": 666.6,
+     "excitation_index_db": -23.0,
+     "where": "battery tray (x=-19, phi=-158 deg)"
+    },
+    {
+     "mode": 16,
+     "f_hz": 687.4,
+     "excitation_index_db": -44.9,
+     "where": "battery tray (x=-23, phi=146 deg)"
+    },
+    {
+     "mode": 17,
+     "f_hz": 718.2,
+     "excitation_index_db": -31.8,
+     "where": "end cap (x=-105, phi=102 deg)"
+    },
+    {
+     "mode": 18,
+     "f_hz": 723.0,
+     "excitation_index_db": -44.9,
+     "where": "end cap (x=105, phi=157 deg)"
+    },
+    {
+     "mode": 19,
+     "f_hz": 727.6,
+     "excitation_index_db": -32.0,
+     "where": "end cap (x=105, phi=-133 deg)"
+    },
+    {
+     "mode": 20,
+     "f_hz": 729.0,
+     "excitation_index_db": -37.9,
+     "where": "end cap (x=-105, phi=-117 deg)"
+    },
+    {
+     "mode": 21,
+     "f_hz": 746.8,
+     "excitation_index_db": -24.8,
+     "where": "front shell (x=101, phi=-39 deg)"
+    },
+    {
+     "mode": 22,
+     "f_hz": 769.5,
+     "excitation_index_db": -91.7,
+     "where": "front shell (x=-0, phi=82 deg)"
+    },
+    {
+     "mode": 23,
+     "f_hz": 781.0,
+     "excitation_index_db": -109.0,
+     "where": "battery tray (x=33, phi=148 deg)"
+    },
+    {
+     "mode": 24,
+     "f_hz": 868.6,
+     "excitation_index_db": -112.5,
+     "where": "battery tray (x=62, phi=-122 deg)"
+    },
+    {
+     "mode": 25,
+     "f_hz": 906.1,
+     "excitation_index_db": -38.7,
+     "where": "rear shell (x=-1, phi=-174 deg)"
+    },
+    {
+     "mode": 26,
+     "f_hz": 914.3,
+     "excitation_index_db": -62.3,
+     "where": "front shell (x=0, phi=-91 deg)"
+    },
+    {
+     "mode": 27,
+     "f_hz": 921.3,
+     "excitation_index_db": -111.4,
+     "where": "front shell (x=0, phi=-70 deg)"
+    },
+    {
+     "mode": 28,
+     "f_hz": 949.8,
+     "excitation_index_db": -38.5,
+     "where": "front shell (x=59, phi=-6 deg)"
+    },
+    {
+     "mode": 29,
+     "f_hz": 976.2,
+     "excitation_index_db": -80.1,
+     "where": "front shell (x=0, phi=73 deg)"
+    },
+    {
+     "mode": 30,
+     "f_hz": 985.6,
+     "excitation_index_db": -85.5,
+     "where": "front shell (x=0, phi=-70 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.0016698517413285578,
+   "frf_peak_db_below_1khz": -21.995901968414834
+  },
+  "asm_infill40_drivers_all_braces": {
+   "label": "What-if: all braces (+ cap gussets)",
+   "n_nodes": 180622,
+   "dof": 541866,
+   "h_mm": 3.5,
+   "ccx_s": 127.9,
+   "freqs_hz": [
+    450.481,
+    465.7237,
+    476.0276,
+    506.8495,
+    536.7259,
+    576.1298,
+    609.9561,
+    635.4182,
+    641.5579,
+    682.8936,
+    733.126,
+    771.807,
+    781.3129,
+    787.9208,
+    792.6445,
+    861.1089,
+    929.6848,
+    938.2856,
+    964.3549,
+    970.1249
+   ],
+   "modes_below_1khz": [
+    {
+     "mode": 1,
+     "f_hz": 450.5,
+     "excitation_index_db": -93.4,
+     "where": "front shell (x=-38, phi=33 deg)"
+    },
+    {
+     "mode": 2,
+     "f_hz": 465.7,
+     "excitation_index_db": -102.1,
+     "where": "front shell (x=36, phi=-34 deg)"
+    },
+    {
+     "mode": 3,
+     "f_hz": 476.0,
+     "excitation_index_db": -26.6,
+     "where": "front shell (x=15, phi=100 deg)"
+    },
+    {
+     "mode": 4,
+     "f_hz": 506.8,
+     "excitation_index_db": -21.9,
+     "where": "front shell (x=4, phi=-92 deg)"
+    },
+    {
+     "mode": 5,
+     "f_hz": 536.7,
+     "excitation_index_db": -48.7,
+     "where": "front shell (x=47, phi=28 deg)"
+    },
+    {
+     "mode": 6,
+     "f_hz": 576.1,
+     "excitation_index_db": -105.5,
+     "where": "front shell (x=-53, phi=30 deg)"
+    },
+    {
+     "mode": 7,
+     "f_hz": 610.0,
+     "excitation_index_db": -22.3,
+     "where": "end cap (x=-105, phi=31 deg)"
+    },
+    {
+     "mode": 8,
+     "f_hz": 635.4,
+     "excitation_index_db": -66.2,
+     "where": "front shell (x=35, phi=-34 deg)"
+    },
+    {
+     "mode": 9,
+     "f_hz": 641.6,
+     "excitation_index_db": -33.7,
+     "where": "front shell (x=-101, phi=55 deg)"
+    },
+    {
+     "mode": 10,
+     "f_hz": 682.9,
+     "excitation_index_db": -95.8,
+     "where": "front shell (x=101, phi=39 deg)"
+    },
+    {
+     "mode": 11,
+     "f_hz": 733.1,
+     "excitation_index_db": -24.1,
+     "where": "front shell (x=-68, phi=1 deg)"
+    },
+    {
+     "mode": 12,
+     "f_hz": 771.8,
+     "excitation_index_db": -71.8,
+     "where": "end cap (x=105, phi=164 deg)"
+    },
+    {
+     "mode": 13,
+     "f_hz": 781.3,
+     "excitation_index_db": -46.3,
+     "where": "end cap (x=-105, phi=-86 deg)"
+    },
+    {
+     "mode": 14,
+     "f_hz": 787.9,
+     "excitation_index_db": -53.6,
+     "where": "end cap (x=105, phi=-94 deg)"
+    },
+    {
+     "mode": 15,
+     "f_hz": 792.6,
+     "excitation_index_db": -53.8,
+     "where": "end cap (x=-105, phi=-180 deg)"
+    },
+    {
+     "mode": 16,
+     "f_hz": 861.1,
+     "excitation_index_db": -22.6,
+     "where": "front shell (x=0, phi=-85 deg)"
+    },
+    {
+     "mode": 17,
+     "f_hz": 929.7,
+     "excitation_index_db": -42.7,
+     "where": "end cap (x=-105, phi=23 deg)"
+    },
+    {
+     "mode": 18,
+     "f_hz": 938.3,
+     "excitation_index_db": -96.7,
+     "where": "front shell (x=0, phi=-70 deg)"
+    },
+    {
+     "mode": 19,
+     "f_hz": 964.4,
+     "excitation_index_db": -26.4,
+     "where": "front shell (x=15, phi=100 deg)"
+    },
+    {
+     "mode": 20,
+     "f_hz": 970.1,
+     "excitation_index_db": -69.0,
+     "where": "front shell (x=0, phi=75 deg)"
+    },
+    {
+     "mode": 21,
+     "f_hz": 977.5,
+     "excitation_index_db": -55.2,
+     "where": "end cap (x=-105, phi=94 deg)"
+    },
+    {
+     "mode": 22,
+     "f_hz": 979.8,
+     "excitation_index_db": -63.7,
+     "where": "front shell (x=1, phi=-74 deg)"
+    },
+    {
+     "mode": 23,
+     "f_hz": 992.3,
+     "excitation_index_db": -90.8,
+     "where": "front shell (x=-0, phi=-72 deg)"
+    }
+   ],
+   "wall_compliance_fraction": 0.0013476415535284504,
+   "frf_peak_db_below_1khz": -21.623419438177407
+  }
+ }
+}

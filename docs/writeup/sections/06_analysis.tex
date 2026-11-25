@@ -1,0 +1,611 @@
+\section{Engineering analysis}\label{sec:analysis}
+
+Every simulation below follows the same pattern: \emph{question, method, validation, result, design change}. Each model was checked against an analytic or published case before its results were used. All of them can be rerun from scripts in the repository: \texttt{sim/acoustics/run\_all.sh} for the acoustics, \texttt{sim/spice/run\_all.sh} for SPICE and PDN. The figures are vector PDFs taken directly from \texttt{docs/figures/}.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Summary of the simulations. ``Changed'' means the result led to a design or firmware change.}
+\label{tab:sim-summary}
+\begin{tabularx}{\linewidth}{@{}l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}p{3.6cm}@{}}
+\toprule
+ID & Question & Validated against & Changed \\
+\midrule
+A1 & PR tuning, bass limits, DSP bass EQ & Closed-form sealed box; electroacPy & PR mass \qty{3.5}{\gram}; 4-biquad EQ; no zeolite \\
+A2 & Tweeter bezel vs waveguide vs baffle & Piston on a sphere (exact series) & \todo{A2 conclusion pending final sweep} \\
+A3 & Woofer baffle step, diffraction, tunnel & Same, plus A1 at low frequency & \todo{A3 EQ pending} \\
+A4 & Panel modes of the printed shell & Leissa clamped plate & Spine plate, damping (proposed) \\
+A5 & Crossover sum and system EQ & A1--A3 transfer functions & \todo{A5 pending} \\
+S1 & Boost loop, load step, start-up & Hand crossover; TI model & ECO-001 \#1, \#2 \\
+S2 & Class-D LC filter into real drivers & Hand $f_0$, $Q$, ripple & ECO-001 \#5; limiter confirmed \\
+S3 & Battery NTC charge window & TI reference network & ECO-001 \#6 \\
+S4 & PVDD trim network & Spec hand table & Firmware: calibrate, wait \qty{150}{\milli\second} \\
+S5 & ESP32 reset and strapping & Analytic RC timing & ECO-001 \#4 \\
+S6 & FFC signal integrity & Conformal mapping & ECO-001 \#3 \\
+S7 & Power-distribution impedance & Hand $1/(2\pi f_c C)$ & Confirms ECO-001 \#1 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =====================================================================
+\subsection{Acoustics}
+
+\paragraph{Conventions.} The coordinates follow \texttt{mech\_envelope.md}: $x$ runs along the capsule, $-y$ is the front and $+z$ is up. SPL is referenced to \qty{20}{\micro\pascal} rms. ``Half space'' means the speaker standing on a large table ($2\pi$ radiation), as in the requirement. The \emph{seated listener} has their ears \qty{1.0}{\metre} in front of the capsule and \qty{0.40}{\metre} above the desk, which puts them \qty{1.02}{\metre} from the left tweeter and \ang{21} below its axis \src{sim/acoustics/README_head.md}.
+
+\subsubsection{A1: Bass system (lumped model)}\label{sec:a1}
+
+\paragraph{Question.} How much mass should go on each passive radiator (PR) in the real \qty{0.82}{\litre} box? How loud can the bass play before the amplifier, the woofers or the PRs run out? What DSP EQ gives $F_3\approx\qty{64}{\hertz}$? \src{sim/acoustics/readme_parts/A1.md}
+
+\paragraph{Method.} A small-signal Thiele/Small circuit:
+\begin{itemize}
+  \item two ND65-8 woofers and two DMA58-PRs in one shared box, with absorption $Q_A = 100$ and leakage $Q_L = 10$;
+  \item output taken as the monopole sum of the woofer and PR volume velocities, in half space at \qty{1}{\metre}.
+\end{itemize}
+The amplifier enters as limits, not as a fixed power. The woofer limiter is \qty{15.5}{\volt} peak (about \qty{15}{\watt} into \qty{8}{\ohm}) and the current limit \qty{4.5}{\ampere} peak. The maximum SPL at each frequency is the lowest of four limits: amplifier voltage, amplifier current, woofer $X_\text{max}$ (\qty{3.5}{\milli\metre}), and PR excursion (\qty{5}{\milli\metre} usable). The pink-noise estimate uses third-octave bands, a crest factor of 3 (\qty{9.5}{\decibel}) after the limiter, and an LR4 low-pass at \qty{2.5}{\kilo\hertz}.
+
+\paragraph{Validation.}
+\begin{itemize}
+  \item Sealed-box resonance: closed form \qty{140.03}{\hertz}, model \qty{140.04}{\hertz}.
+  \item A lossless PR gives the theoretical zero at $f_p$, a notch of \qty{-137}{\decibel}.
+  \item Against electroacPy 2025.7.1 with identical inputs: SPL within \qty{0.013}{\decibel}, $|Z|$ within \qty{0.22}{\percent}, and excursions within \qty{0.025}{\decibel} from \qty{15}{\hertz} to \qty{2}{\kilo\hertz} (\cref{fig:a1-xcheck}).
+  \item The cross-check also found a quirk in electroacPy: its radiator element omits the $1/S$ factor in the radiation impedance, so its air load is negligible.
+\end{itemize}
+
+\paragraph{Result.}
+\begin{itemize}
+  \item With \qty{3.5}{\gram} per PR, the box tunes to $f_b = \qty{53.2}{\hertz}$, with the PR notch at \qty{32.2}{\hertz}.
+  \item With the DSP EQ, $F_3/F_6 = \qtylist{63.7;55.3}{\hertz}$, against the \qtylist{65;55}{\hertz} requirement. $F_6$ misses by \qty{0.3}{\hertz}, which is within model accuracy.
+  \item The EQ peaks at \qty{+8.8}{\decibel} near \qty{68}{\hertz} and fits in four biquads at \qty{48}{\kilo\hertz}, which stay within \qty{0.55}{\decibel} of the ideal from \qty{40}{\hertz} to \qty{1}{\kilo\hertz}.
+  \item The pink-noise maximum is \textbf{\qty{90.55}{\decibel}}, limited by amplifier voltage. The other limits sit higher: woofer $X_\text{max}$ at \qty{91.6}{\decibel}, PR excursion at \qty{92.0}{\decibel}, thermal at \qty{99.0}{\decibel} and current at \qty{99.5}{\decibel}.
+  \item At that level the average power is \qty{2.4}{\watt} per woofer, and the estimated battery draw is about \qty{9}{\watt}.
+\end{itemize}
+The 2.5-gram optimum was not used: at \qty{2.5}{\gram} the PRs sit only \qty{0.3}{\decibel} from their excursion limit. At \qty{3.5}{\gram} both PR and woofer keep at least \qty{1.1}{\decibel} of excursion margin over the binding voltage limit, at a cost of \qty{0.04}{\decibel}.
+
+\paragraph{What changed.}
+\begin{itemize}
+  \item The PR mass is set at \qty{3.5}{\gram} of washers, to be fine-tuned by measuring the impedance dip.
+  \item The 4-biquad bass EQ goes into the amplifier DSP (\cref{tab:a1-eq}).
+  \item Zeolite was dropped. The system is limited by amplifier voltage, so neither stuffing nor zeolite moves the pink-noise figure by more than \qty{0.5}{\decibel} (\cref{fig:a1-whatif}). Light polyfill is kept only to damp standing waves inside the box.
+  \item The only lever worth \qty{1}{\decibel} is raising the limiter from \qty{15.5}{\volt} to \qty{17.1}{\volt} (\qty{+0.9}{\decibel}), which would run the woofer at about \qty{18}{\watt} against its \qty{15}{\watt} rating.
+\end{itemize}
+Two results are threats to the requirements. The \qty{0.5}{\decibel} SPL margin holds only in half space with \qty{9.5}{\decibel} crest, and both numbers rest on vendor T/S data that must be measured.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Bass EQ as four biquads at $f_s=\qty{48}{\kilo\hertz}$, from \protect\src{sim/acoustics/readme_parts/A1.md}. Note that the firmware research recommends TAS5805M process flow 1, whose biquads run at \qty{96}{\kilo\hertz} (\cref{sec:inconsistencies}).}
+\label{tab:a1-eq}
+\begin{tabular}{@{}c l S[table-format=3.1] S[table-format=1.3] S[table-format=+1.1]@{}}
+\toprule
+\# & Type & {$f_c$ (Hz)} & {$Q$} & {Gain (dB)} \\
+\midrule
+1 & High-pass (BW4 subsonic, stage 1) & 49.8 & 0.541 & {--} \\
+2 & High-pass (BW4 subsonic, stage 2) & 49.8 & 1.307 & {--} \\
+3 & Low shelf & 113.0 & 1.03 & +5.8 \\
+4 & Peaking & 65.9 & 1.40 & +2.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\linewidth]{a1_spl_halfspace_1m.pdf}
+\caption{A1: SPL at \qty{1}{\metre} in half space. The curves show \qty{2.83}{\volt} drive, with the woofer-only and PR-only contributions plotted separately, then full \qty{15.5}{\volt} drive and the EQ'd maximum clean sine level. The PRs take over below about \qty{60}{\hertz}. Their output and the woofers' cancel at the PR notch $f_p=\qty{32.2}{\hertz}$, and the box tuning $f_b=\qty{53.2}{\hertz}$ is marked.}
+\label{fig:a1-spl}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\linewidth]{a1_max_spl_vs_frequency.pdf}
+\caption{A1: Maximum sine SPL, coloured by whichever limit binds at each frequency. PR excursion binds below \qty{60}{\hertz}, amplifier voltage at \qty{63}{\hertz}, woofer $X_\text{max}$ from 75 to \qty{150}{\hertz}, and amplifier voltage again above that. The flat EQ'd ceiling (\qty{87.0}{\decibel}) and the pink-noise estimate are compared with the \qty{90}{\decibel} requirement.}
+\label{fig:a1-maxspl}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.82\linewidth]{a1_dsp_bass_eq.pdf}
+\caption{A1: Bass EQ design. The plot shows the natural response ($F_3=\qty{120}{\hertz}$), the 4th-order Butterworth target at \qty{63}{\hertz} with a subsonic filter, the ideal EQ, its 4-biquad fit and the realised response. The lower panel shows the fit error, at most \qty{0.55}{\decibel} from \qty{40}{\hertz} to \qty{1}{\kilo\hertz}.}
+\label{fig:a1-eq}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\linewidth]{a1_excursion_vs_xmax.pdf}
+\caption{A1: Woofer and PR excursion against their limits. (a) A \qty{15.5}{\volt} sine without EQ. (b) With the bass EQ at the maximum clean level: the PR reaches its \qty{5}{\milli\metre} limit at \qty{48}{\hertz}, which is why the EQ rolls off at 24~dB/octave below \qty{47}{\hertz}.}
+\label{fig:a1-exc}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a1_pr_mass_sweep.pdf}
+\caption{PR added-mass sweep, 0 to \qty{16}{\gram}. The pink-noise maximum is flat within \qty{0.05}{\decibel} from 2.5 to \qty{4}{\gram}.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a1_impedance.pdf}
+\caption{Impedance of one woofer in the PR box. The minimum near \qty{61}{\hertz} is where the PR mass is tuned on the bench.}
+\end{subfigure}
+\caption{A1: PR tuning.}
+\label{fig:a1-pr}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{a1_whatif_volume_fill_zeolite.pdf}
+\caption{A1 what-ifs: box leakage, polyfill, zeolite and limiter variants, with the PR mass re-optimised for each. None moves the pink-noise maximum by more than \qty{0.5}{\decibel} except the limiter at \qty{17.1}{\volt} (\qty{91.4}{\decibel}). This plot is why zeolite was dropped.}
+\label{fig:a1-whatif}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{a1_electroacpy_crosscheck.pdf}
+\caption{A1 validation: the in-house model against electroacPy with identical drivers, box, PR mass and losses. The curves overlay: SPL differs by at most \qty{0.013}{\decibel}, impedance by \qty{0.22}{\percent} and excursion by \qty{0.025}{\decibel}.}
+\label{fig:a1-xcheck}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\linewidth]{pr_alignment_firstpass.png}
+\caption{History: the driver agent's first-pass alignment (\qty{0.75}{\litre}, \qty{19}{\volt} rail, NumPy only, system Python 3.9), which was used to choose driver set B8. It predicted \qty{91.4}{\decibel} pink. The \qty{15.5}{\volt} woofer limiter of the final model costs about \qty{0.9}{\decibel}, and the extra \qty{0.07}{\litre} gives back less than \qty{0.1}{\decibel} \protect\src{sim/acoustics/readme_parts/A1.md}.}
+\label{fig:a1-firstpass}
+\end{figure}
+
+\FloatBarrier
+\subsubsection{The BEM model behind A2, A3 and A5}\label{sec:bem}
+
+\paragraph{Method.} The boundary-element model treats the capsule as a rigid closed body in free air \src{sim/acoustics/README_bem.md}:
+\begin{itemize}
+  \item Each of the six radiators is a rigid piston of the driver's published $S_d$, moving at \qty{1}{\metre\per\second}. The pistons are woofers \qty{16.5}{\centi\metre\squared}, PRs \qty{14.5}{\centi\metre\squared} and tweeters \qty{4.5}{\centi\metre\squared}.
+  \item For each frequency, bempp-cl solves the exterior Helmholtz problem. Any real drive is then a weighted sum of these six unit solutions.
+  \item The hull is rebuilt in gmsh from the FreeCAD model's parameter block, so a CAD change flows straight into the BEM. Its sections lie within \qtyrange{0.7}{0.9}{\milli\metre} (median) of the CAD outline (\cref{fig:bem-mesh}).
+\end{itemize}
+The plain direct boundary-integral equation fails at the body's interior resonances; the capsule's first is near \qty{2.9}{\kilo\hertz}. Production runs therefore use CHIEF: 40 interior points held at zero pressure, solved in the least-squares sense with one LU factorisation and a Woodbury correction. The meshes use $h\le\lambda/6$, with a ceiling of \qty{9}{\milli\metre}, on 1/12-octave steps from \qty{100}{\hertz} to \qty{16}{\kilo\hertz}. The desk is added as an image source. \todo{mesh table per band from the BEM README}
+
+\paragraph{Validation.}
+\begin{itemize}
+  \item Against the exact series solution for a piston on a rigid sphere (Morse and Ingard), the maximum error over all angles at \qty{1}{\metre} is \qty{0.010}{\decibel} at \qty{1}{\kilo\hertz}, \qty{0.08}{\decibel} at $ka=\pi$ and \qty{0.34}{\decibel} at \qty{8}{\kilo\hertz} ($ka=7.3$), with all three formulations agreeing (\cref{fig:bem-val}).
+  \item A \qty{3}{\hertz}-step sweep through the sphere's first interior resonance shows the plain equation off by \qty{0.88}{\decibel} at \qty{3438}{\hertz}, while CHIEF stays within \qty{0.087}{\decibel}.
+  \item CHIEF against Burton--Miller on the real capsule: \todo{BM check frequencies and difference in dB}.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\linewidth]{a2_a3_bem_hull_mesh_and_cad_check.pdf}
+\caption{BEM hull: the gmsh surface mesh with the six pistons tagged, and its sections overlaid on the CAD solids at the woofer ($x=\qty{+33}{\milli\metre}$) and tweeter ($x=\qty{+83}{\milli\metre}$) planes. The few larger gaps (95th percentile \qtyrange{3.3}{5.4}{\milli\metre}) are deliberate simplifications, mainly the surround/flange step at the bottom of the woofer tunnel.}
+\label{fig:bem-mesh}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a2_a3_bem_validation_sphere_piston.pdf}
+\caption{Piston on a rigid sphere: BEM against the exact solution at \qty{1}{\kilo\hertz}, \qty{3.43}{\kilo\hertz} and \qty{8}{\kilo\hertz}.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a2_a3_bem_validation_irregular_frequency.pdf}
+\caption{Sweep through the sphere's first interior resonance: the plain direct equation fails (\qty{0.88}{\decibel}); CHIEF does not.}
+\end{subfigure}
+\caption{BEM validation before use.}
+\label{fig:bem-val}
+\end{figure}
+
+\subsubsection{A2: Tweeter bezel, waveguide or flat baffle}\label{sec:a2}
+
+\paragraph{Question.} The mechanical concept had room only for a \qty{3}{\milli\metre} conical bezel on a raised boss, not a real waveguide. Is the bezel good enough, or is a waveguide worth \qty{10}{\milli\metre} more capsule? The BEM compares three cases: the bezel as designed, a waveguide, and an infinite flat baffle as reference.
+
+\paragraph{Status.} The final 1/12-octave sweep was still running when this report was built. The figures below come from a coarse preliminary run, \texttt{results/a2\_tweeter\_directivity.json}, at three frequencies (\qtylist{1.06;3.36;10.7}{\kilo\hertz}), and the waveguide case is missing from it. In that run:
+\begin{itemize}
+  \item the bezel's directivity index rose from \qty{2.9}{\decibel} at \qty{3.36}{\kilo\hertz} to \qty{8.3}{\decibel} at \qty{10.7}{\kilo\hertz};
+  \item its horizontal beamwidth at \qty{10.7}{\kilo\hertz} was \ang{112.5}, against \ang{145} for the flat baffle.
+\end{itemize}
+Final numbers: \todo{A2 bezel vs waveguide: on-axis ripple, DI and beamwidth at 2.5/5/10 kHz, level at the seated listener, decision}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{a2_tweeter_polar_maps_bezel_waveguide_baffle.pdf}
+\caption{A2: Tweeter polar maps (level relative to on-axis, horizontal and vertical planes) for the \qty{3}{\milli\metre} bezel and the infinite-baffle reference. The dashed line marks the seated listener, \ang{21} below the tweeter axis. The capsule body shadows the rear hemisphere progressively above about \qty{3}{\kilo\hertz}, while the baffle reference is cut off at $\pm\ang{90}$ by construction. \emph{Preliminary coarse run; the waveguide panel and the final frequency resolution are pending.}}
+\label{fig:a2-polar}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a2_tweeter_onaxis_and_listening_axis.pdf}
+\caption{On-axis and seated-listener response.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a2_tweeter_beamwidth_and_DI.pdf}
+\caption{Beamwidth ($-6$~dB) and directivity index.}
+\end{subfigure}
+\caption{A2: Tweeter response and directivity, bezel against baffle. \emph{Preliminary coarse run.}}
+\label{fig:a2-resp}
+\end{figure}
+
+\subsubsection{A3: Woofer baffle step, diffraction and tunnel}\label{sec:a3}
+
+\paragraph{Question.} The woofers fire through Ø\qty{53}{\milli\metre} tunnels, about \qty{14}{\milli\metre} deep at the centre and \qty{11.7}{\milli\metre} on average, in a narrow curved front. How large are the baffle step and the diffraction ripple, and does the tunnel matter?
+
+\paragraph{Preliminary result.} The coarse run, \texttt{results/a3\_woofer\_diffraction.json}, gives the low-frequency baffle step relative to an infinite baffle as \qty{-5.6}{\decibel} at \qty{105}{\hertz}, close to the textbook \qty{-6}{\decibel}. At \qty{105}{\hertz}, the BEM pressure of both woofers and both PRs at the seated listener, with the desk image included, is \qty{0.38}{\decibel} above A1's half-space monopole. That ties the BEM's absolute level to A1. The mechanical estimate put the tunnel's quarter-wave resonance at about \qty{3}{\kilo\hertz}, just above the crossover \src{docs/mech_envelope.md}. \todo{A3 final: diffraction ripple 150 Hz--2.5 kHz, tunnel resonance from BEM, EQ needed}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{a3_woofer_baffle_step_and_diffraction.pdf}
+\caption{A3: On-axis woofer level relative to an infinite baffle, for the left woofer in its tunnel and for both woofers driven together, with a textbook baffle step for a \qty{95}{\milli\metre} baffle for comparison. The step from \qty{-6}{\decibel} towards 0 is the cost of a narrow body; the rise above 0 near \qty{3}{\kilo\hertz} is above the crossover. \emph{Preliminary run on 5 frequencies; the straight segments are interpolation, not data.}}
+\label{fig:a3-step}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a3_woofer_polar_maps.pdf}
+\caption{Woofer polar maps.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a3_woofers_and_prs_at_listener.pdf}
+\caption{Woofers plus PRs at the seated listener, with and without the desk, against A1.}
+\end{subfigure}
+\caption{A3: Woofer directivity and level at the listener. \emph{Preliminary coarse run.}}
+\label{fig:a3-more}
+\end{figure}
+
+\FloatBarrier
+\subsubsection{A4: Panel modes of the printed shell (FEM)}\label{sec:a4}
+
+\paragraph{Question.} Which structural modes of the PETG enclosure fall inside the woofer band? How hard do the woofers drive them, and which braces would help? \src{sim/acoustics/readme_parts/A4.md}
+
+\paragraph{Method.} The model is built from the concept STEP file, unedited:
+\begin{itemize}
+  \item gmsh fragments the five printed solids into one conformal body, so every joint is tied. The mesh is \qty{3.5}{\milli\metre} C3D10 tetrahedra: 167\,k nodes and 0.5\,M degrees of freedom.
+  \item CalculiX 2.23, bundled with FreeCAD, solves 30 modes in about \qty{2}{\minute}.
+  \item The \qty{3}{\milli\metre} walls are fully solid (four \qty{0.45}{\milli\metre} perimeters per face). Thick features get a \qty{40}{\percent} gyroid core: $E = \qty{0.34}{\giga\pascal}$ from Gibson--Ashby.
+  \item The woofers (\qty{181}{\gram} each), the PRs with their added mass (\qty{71.5}{\gram} each) and the battery (\qty{189}{\gram}) are lumped masses.
+\end{itemize}
+Each mode is scored by its net outward volume displacement, driven both by the box pressure and by the woofers' cone reaction. A modal-superposition FRF then gives the shell's net volume velocity relative to the woofers'.
+
+\paragraph{Validation.}
+\begin{itemize}
+  \item A clamped \qtyproduct{100 x 100 x 3}{\milli\metre} PETG plate against Leissa: $f_1 = \qty{691.1}{\hertz}$ against \qty{689.5}{\hertz} (\qty{+0.2}{\percent}), and modes 1--6 within \qty{1.5}{\percent} (\cref{fig:a4-val}).
+  \item Refining the assembly mesh from \qty{3.5}{\milli\metre} to \qty{2.8}{\milli\metre} moves the first eight modes by at most \qty{0.4}{\percent}.
+\end{itemize}
+
+\paragraph{Result.} There are 24 modes below \qty{1}{\kilo\hertz}. The lowest are \qtylist{269;334;434;465;526;550}{\hertz}. Two stand out:
+\begin{itemize}
+  \item \qty{269}{\hertz}: ovalling of the tube, loaded by the woofers.
+  \item \qty{334}{\hertz}: a front--back squash. It is the most strongly driven low mode, and it is strongest at the top, near the display and buttons.
+\end{itemize}
+Even so, the net shell output stays \textbf{at or below \qty{-23}{\decibel} to \qty{-25}{\decibel} relative to the woofers}, which is under \qty{\pm0.5}{\decibel} of ripple. Wall flex adds only \qtyrange{0.13}{0.21}{\percent} to the box compliance, which is negligible for A1. The heavy woofer frames are what keep it quiet: without their mass on the baffle land, the bare shell has a \qty{529}{\hertz} mode that the cone reaction drives to \qty{-2}{\decibel}.
+
+\paragraph{What changed (proposed, not yet in the CAD).}
+\begin{enumerate}
+  \item A \qty{1.6}{\milli\metre} \textbf{centre spine plate} at $x=0$, fitted into the \qty{2}{\milli\metre} gap between the woofer flanges. It raises the first mode from \qty{269}{\hertz} to \qty{447}{\hertz}.
+  \item Firm battery retention and four tray gussets. With the spine, these lift the battery-coupled modes from \qty{211}{\hertz} to \qty{339}{\hertz}.
+  \item Damping pads under the top and bottom flats. Raising the loss factor from 0.03 to about 0.1 lowers every resonant term by about \qty{10}{\decibel}, more than any rib achieves.
+  \item The woofers must be bolted hard to the baffle land.
+  \item A tap test on the prototype. Expect frequencies 5--\qty{15}{\percent} lower than computed, because of layer anisotropy and compliant joints.
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\linewidth]{a4_mode_shapes_main_assembly.pdf}
+\caption{A4: The first six mode shapes of the assembled shell, exaggerated and coloured by displacement magnitude. They are ovalling at \qty{269}{\hertz}, the squash mode at \qty{334}{\hertz} (the most strongly driven), woofer rocking at \qtylist{434;465;550}{\hertz} (antisymmetric, so they radiate almost nothing), and a rear-shell mode at \qty{526}{\hertz}.}
+\label{fig:a4-shapes}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{a4_shell_vs_woofer_output.pdf}
+\caption{A4: The shell's net volume velocity relative to the woofers', for the bare shell, the main case, the spine plate and all braces. The main case also shows the pressure-only and force-only paths. As a rule of thumb, \qty{-20}{\decibel} corresponds to about \qty{\pm1}{\decibel} of ripple in the summed output. With the woofers' mass on the land, the main case stays below about \qty{-23}{\decibel} everywhere in the woofer band.}
+\label{fig:a4-frf}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a4_modal_frequency_map.pdf}
+\caption{Every natural frequency per case, coloured by excitation index. The woofer band runs to the \qty{2.5}{\kilo\hertz} crossover.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{a4_validation_clamped_plate.pdf}
+\caption{Validation: CalculiX C3D10 against Leissa's clamped-plate eigenvalues for three mesh sizes; error $\le\qty{1.5}{\percent}$ at the production mesh.}
+\end{subfigure}
+\caption{A4: Modal map and solver validation.}
+\label{fig:a4-val}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{a4_mode_shapes_all_braces.pdf}
+\caption{A4 what-if with all braces fitted (spine, top ribs, tray gussets, cap gussets). The lowest mode is now about \qty{450}{\hertz}, a woofer-rocking mode; the ovalling and squash modes have gone.}
+\label{fig:a4-braces}
+\end{figure}
+
+\FloatBarrier
+\subsubsection{A5: Crossover and system response}\label{sec:a5}
+
+\paragraph{Question.} What do the woofer and tweeter sum to through an LR4 crossover at \qty{2.5}{\kilo\hertz}, and what DSP EQ flattens the result at the seated listener? The method combines the A1 transfer functions and the A2/A3 BEM solutions with scipy biquads.
+
+\paragraph{Status.} \todo{A5 results: summed response, crossover phase match, listening-window EQ biquads}. The preliminary figure below shows only the woofer + PR branch from the coarse BEM run; the tweeter branch and the sum are not yet drawn.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\linewidth]{a5_crossover_branches_lr4_2k5.pdf}
+\caption{A5: Crossover branches through LR4 at \qty{2.5}{\kilo\hertz}, before EQ, on the front axis and at the seated listener. \emph{Preliminary: only the woofer + PR branch is populated, on five frequencies.}}
+\label{fig:a5}
+\end{figure}
+
+% =====================================================================
+\FloatBarrier
+\subsection{Circuit simulations (SPICE)}
+
+All circuit simulations used ngspice-47 and Python \src{sim/spice/README.md}. TI publishes an \emph{unencrypted} PSpice transient model of the TPS61178, and it runs unmodified in ngspice in PSpice-compatibility mode. No usable vendor models were found for the inductors or MLCCs. Inductors are therefore modelled as $L$ plus DCR, and MLCC DC-bias derating uses an empirical fit; for example, a \qty{10}{\micro\farad}/\qty{50}{\volt} 1206 becomes \qty{4.5}{\micro\farad} at \qty{18}{\volt}.
+
+\subsubsection{S1: TPS61178 boost loop, load step and start-up}\label{sec:s1}
+
+\paragraph{Question.} Is the loop stable with $R_c/C_c/C_p = \qty{33}{\kilo\ohm}/\qty{47}{\nano\farad}/\qty{10}{\pico\farad}$ across input voltage, load and bulk capacitance? How deep is the dip for a \qtyrange{0.2}{2}{\ampere} step? Does start-up into about \qty{1.5}{\milli\farad} really take ``about \qty{9}{\milli\second} with no hiccup''?
+
+\paragraph{Method.} Two models:
+\begin{itemize}
+  \item An \emph{averaged} peak-current-mode model built from the datasheet equations, swept over VSYS \qtylist{6.0;7.4;8.4}{\volt}, load \qtyrange{0.2}{2.5}{\ampere}, 0--3 electrolytics and ESR \qtyrange{0.05}{0.34}{\ohm}. It covers resistive, constant-current and constant-power loads; a class-D amplifier looks like a negative incremental resistance at low frequency. The slope compensation was taken from TI's model, because the datasheet's equation 21 is typeset wrongly.
+  \item TI's \emph{switching} transient model for start-up and load steps.
+\end{itemize}
+
+\paragraph{Validation.}
+\begin{itemize}
+  \item The hand crossover is \qty{228}{\hertz}; the averaged model gives \qty{247}{\hertz}.
+  \item The hand PVDD impedance peak $1/(2\pi f_c C)$ is \qty{0.44}{\ohm}; the model gives \qty{0.46}{\ohm}.
+  \item The averaged step response overlays the switching model in shape and time scale. The switching model dips about $1.6\times$ deeper, because the error amplifier's output is slew-limited (\qty{\pm20}{\micro\ampere}) and the step starts from PFM.
+  \item The Middlebrook injection runs and the \qty{7.4}{\volt} load step with the spec compensation stalled numerically and were dropped. The \qty{6}{\volt} step is the cross-check instead.
+\end{itemize}
+
+\paragraph{Result.} \textbf{The loop is stable but slow.}
+\begin{itemize}
+  \item The worst phase margin is \ang{64.8} (constant-power load, \qty{6}{\volt}, \qty{2.5}{\ampere}) and the worst gain margin \qty{22.3}{\decibel}.
+  \item With \qty{1.48}{\milli\farad} of bulk, the crossover is only about \qty{250}{\hertz}. The closed-loop PVDD impedance therefore peaks at \qty{0.46}{\ohm} near \qty{150}{\hertz} (\qty{0.57}{\ohm} at \qty{6}{\volt}), exactly where bass draws current.
+  \item A \qtyrange{0.2}{2}{\ampere} step dips PVDD by \qty{0.97}{\volt} at \qty{6}{\volt} input.
+\end{itemize}
+
+Start-up confirmed ``no hiccup'', but only just: there is \qty{0.39}{\volt} of margin to the short-circuit threshold at \qty{6}{\volt}. It also takes \qty{11.2}{\milli\second}, not \qty{9}{\milli\second}. The simulation also found something new: \textbf{error-amplifier windup}.
+\begin{itemize}
+  \item The internal soft-start finishes in \qty{3.2}{\milli\second}, while the bank needs 7--\qty{11}{\milli\second} at the current limit. COMP therefore winds up to about \qty{4.5}{\volt}.
+  \item PVDD overshoots to \qty{19.4}{\volt} (typical) or to the \qty{21}{\volt} OVP (worst case), and stays there until the amplifiers draw current.
+  \item Every part tolerates this, but PVDD is not \qty{18}{\volt} when PDN is released.
+  \item A faster compensation does not help, because the windup is set by the current limit and the soft-start time.
+\end{itemize}
+
+\paragraph{What changed (applied).} ECO-001 \#1 sets $R_c = \qty{100}{\kilo\ohm}$ and $C_c = \qty{15}{\nano\farad}$, which keeps the zero at about \qty{103}{\hertz}. It costs nothing: the dip falls to \qty{0.34}{\volt} and the phase margin stays $\ge\ang{79}$. ECO-001 \#2 fits the trim network, so firmware can soft-start PVDD by holding the trim high before BOOST\_EN and ramping it down over \qtyrange{30}{50}{\milli\second}.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s1_loop_bode.pdf}
+\caption{Loop gain for the \qty{1.48}{\milli\farad} bank at VSYS \qtylist{6.0;7.4;8.4}{\volt} and \qtylist{0.5;2.5}{\ampere}.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s1_loop_margins.pdf}
+\caption{Worst phase margin and highest crossover against PVDD capacitance for the three load models.}
+\end{subfigure}
+\caption{S1: The boost loop is stable in every production state (PM $\ge\ang{64.8}$), but its crossover is only a few hundred hertz once the electrolytics are fitted.}
+\label{fig:s1-loop}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\linewidth]{s1_compensation_options.pdf}
+\caption{S1: $R_c$ sweep with $C_c$ scaled to keep the zero near \qty{103}{\hertz}. Left: worst phase margin over the production states. Right: peak PVDD impedance against the S7 target of \qty{0.137}{\ohm}. \qty{100}{\kilo\ohm} reaches the target region with PM $\ge\ang{79}$; \qty{150}{\kilo\ohm} goes further but drops PM to \ang{56}.}
+\label{fig:s1-comp}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s1_loadstep.pdf}
+\caption{PVDD dip for \qtyrange{0.2}{2}{\ampere}: averaged model against the TI switching model. Spec compensation at \qty{6}{\volt} (\qty{0.97}{\volt}) and \qty{100}{\kilo\ohm}/\qty{15}{\nano\farad} at \qty{7.4}{\volt} (\qty{0.34}{\volt}).}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s1_loadstep_switching.pdf}
+\caption{PVDD and inductor current through the \qtyrange{0.2}{2}{\ampere} and back step (TI model). The release overshoot (\qty{+1.25}{\volt}) appears because PFM cannot sink current.}
+\end{subfigure}
+\caption{S1: Load steps.}
+\label{fig:s1-step}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{s1_startup.pdf}
+\caption{S1: Start-up into \qty{1.48}{\milli\farad} from a pre-bias of VSYS$-\qty{0.5}{\volt}$, typical and worst corners, showing PVDD and inductor current with a \qty{50}{\micro\second} average. The converter rides its current limit for about \qty{11}{\milli\second}, then overshoots to \qty{19.4}{\volt} (typ.) or \qty{21}{\volt} (OVP, worst case) because COMP wound up during the ramp.}
+\label{fig:s1-start}
+\end{figure}
+
+\FloatBarrier
+\subsubsection{S2: Class-D output filter into the real drivers}\label{sec:s2}
+
+\paragraph{Question.} How does the BTL filter (\qty{10}{\micro\henry} + \qty{1}{\micro\farad} per leg, \qty{768}{\kilo\hertz}) respond into the actual drivers rather than resistors? What do the switching ripple and the peak inductor current look like?
+
+\paragraph{Method.} ngspice AC sweeps with driver electrical models taken from the T/S data, plus a transient with a behavioural PWM for BD and 1SPW (Hybrid) modulation.
+
+\paragraph{Validation.}
+\begin{itemize}
+  \item The filter corner is \qty{50.3}{\kilo\hertz}, with $Q=0.63$ (\qty{4}{\ohm}) and 1.26 (\qty{8}{\ohm}), as calculated by hand.
+  \item The idle ripple is \qty{0.585}{\ampere} peak-to-peak against \qty{0.586}{\ampere} by hand (BD), and \qty{0.282}{\ampere} for both (1SPW).
+\end{itemize}
+
+\paragraph{Result.}
+\begin{itemize}
+  \item \textbf{Tweeter channel:} the response falls \qty{2.2}{\decibel} from \qty{2.5}{\kilo\hertz} to \qty{20}{\kilo\hertz} (\qty{-3.2}{\decibel} absolute at \qty{20}{\kilo\hertz}). The spec had estimated \qty{-0.44}{\decibel}, assuming a \qty{4}{\ohm} resistor and no series resistance.
+  \item \textbf{Woofer channel:} the woofer's \qty{0.61}{\milli\henry} voice-coil inductance leaves the filter almost unloaded, giving a $Q\approx14$, \qty{+23}{\decibel} peak at \qty{59}{\kilo\hertz}. This is harmless after the \qty{2.5}{\kilo\hertz} low-pass, but it amplifies any ultrasonic content on channel A.
+  \item \textbf{Idle ripple} circulates as common-mode current through the filter capacitors; the drivers see none of it.
+  \item \textbf{Peak inductor current} with the limiters is $\le\qty{2.69}{\ampere}$. With a hard-clipped tweeter it is \qty{5.41}{\ampere}, past the \qty{5}{\ampere} OCP. This confirms that the tweeter limiter is mandatory.
+\end{itemize}
+
+\paragraph{What changed.} ECO-001 \#5 adds a $\approx\qty{+2}{\decibel}$ tweeter high shelf, and the mandatory tweeter limiter stays in the firmware requirements.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\linewidth]{s2_filter_response.pdf}
+\caption{S2: Filter transfer function into the driver models, compared with \qty{8}{\ohm} and \qty{4}{\ohm} resistors and an open output, with the driver impedance curves below. The woofer's inductive impedance leaves a sharp \qty{59}{\kilo\hertz} resonance; the tweeter channel droops \qty{2.2}{\decibel} towards \qty{20}{\kilo\hertz}.}
+\label{fig:s2-resp}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s2_idle_ripple.pdf}
+\caption{Idle inductor ripple and tweeter current, BD and 1SPW.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s2_inductor_peaks.pdf}
+\caption{Inductor current at the limiter ceilings and with a hard-clipped tweeter, against the OCP and $I_\text{sat}$ lines.}
+\end{subfigure}
+\caption{S2: Ripple and peak currents.}
+\label{fig:s2-more}
+\end{figure}
+
+\subsubsection{S3: Battery NTC window}\label{sec:s3}
+
+\paragraph{Question.} What charge-temperature window do $R_{T1}=\qty{5.1}{\kilo\ohm}$, $R_{T2}=\qty{30}{\kilo\ohm}$ and a \qty{10}{\kilo\ohm} NTC give?
+
+\paragraph{Method and validation.} A DC temperature sweep with a $\beta$-model NTC. TI's own reference network, recomputed with the same model, reproduces the datasheet thresholds within 0.5 percentage points of REGN (for example 73.8 against \qty{73.3}{\percent} at \qty{0}{\degreeCelsius}).
+
+\paragraph{Result.} With $B=3435$, charging stops below \qty{2.0}{\degreeCelsius} and above \qty{60.8}{\degreeCelsius}. An open NTC reads as ``cold'' and suspends charging, which is fail-safe. With the power-on defaults, however, the charger keeps charging at full current between 45 and \qty{61}{\degreeCelsius}, while most pouch packs allow charging only up to \qty{45}{\degreeCelsius}. The on-board TH801 also measures board temperature, not cell temperature.
+
+\paragraph{What changed.} ECO-001 \#6 (firmware requirement 3 in \cref{tab:firmware-req}): firmware sets the JEITA warm threshold to suspend charging above \qty{45}{\degreeCelsius}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\linewidth]{s3_ntc_window.pdf}
+\caption{S3: TS/REGN ratio against temperature for $B=3435$ and $B=3380$, with the JEITA thresholds (bands show min/max) and the resulting charge window of \qtyrange{2.0}{60.8}{\degreeCelsius}.}
+\label{fig:s3}
+\end{figure}
+
+\subsubsection{S4: PVDD trim network}\label{sec:s4}
+
+\paragraph{Question.} What PVDD does a given trim voltage or PWM duty produce, how much PWM ripple reaches the feedback node, and is it true that the trim can only lower PVDD?
+
+\paragraph{Method.} The regulator is replaced by an ideal integrator that forces FB to \qty{1.198}{\volt} with a crossover near \qty{250}{\hertz}. The trim network is driven by a DC sweep and by \qty{20}{\kilo\hertz} PWM.
+
+\paragraph{Validation.} The SPICE curve sits about \qty{0.3}{\volt} below the spec's hand table, for example \qty{16.43}{\volt} against \qty{16.8}{\volt} at \qty{2.0}{\volt} of trim. That is physics, not error: at \qtyrange{5}{15}{\micro\ampere} the 1N4148W drops about \qty{0.35}{\volt}, not the \qty{0.45}{\volt} the hand table assumed.
+
+\paragraph{Result.}
+\begin{itemize}
+  \item Range: \qty{18.0}{\volt} to \qty{12.2}{\volt}.
+  \item Ripple at FB: $<\qty{0.5}{\micro\volt}$.
+  \item Settling: \qtyrange{70}{110}{\milli\second}, so firmware should wait $\ge\qty{150}{\milli\second}$.
+  \item Sensitivity: \qty{-3.4}{\volt\per\volt}, so an 8-bit DAC step is \qty{44}{\milli\volt} of PVDD.
+  \item ``Can only lower PVDD'' is true for the drive, but diode leakage can \emph{raise} PVDD by up to \qty{86}{\milli\volt} at \qty{85}{\degreeCelsius}. That is harmless against the \qty{20.5}{\volt} minimum OVP.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\linewidth]{s4_pvdd_trim.pdf}
+\caption{S4: PVDD against trim voltage at 0, 25 and \qty{60}{\degreeCelsius}, compared with the spec's hand table (left), and PVDD transients for \qty{20}{\kilo\hertz} PWM at three duty cycles (right).}
+\label{fig:s4}
+\end{figure}
+
+\subsubsection{S5: ESP32 auto-reset and strapping}\label{sec:s5}
+
+\paragraph{Question.} During esptool's reset sequence through the CH340C and the two-transistor network, is GPIO0 held low while EN rises? Are the strap levels right?
+
+\paragraph{Result.}
+\begin{itemize}
+  \item \textbf{Auto-reset gap.} Download mode works for esptool's tight sequence and for gaps of up to \qty{2}{\milli\second} between the DTR and RTS requests, but fails at \qty{3}{\milli\second} or more. The simulated limit is about \qty{2.5}{\milli\second}, against \qty{2.88}{\milli\second} analytically.
+  \item \textbf{Power-up.} EN can cross the low input threshold \qty{0.4}{\milli\second} \emph{before} VDD reaches \qty{3.0}{\volt}. The cause is the CH340C's DTR\# rising with +3V3, which opens a second charging path.
+  \item \textbf{Fix.} C103 = \qty{2.2}{\micro\farad} solves both: the esptool gap tolerance grows to \qty{5}{\milli\second}, and EN crosses \qty{1.1}{\milli\second} after VDD is valid.
+  \item \textbf{Straps.} All five strapping pins read correctly: GPIO0 $\ge\qty{3.29}{\volt}$, GPIO2 and GPIO12 $\le\qty{0.04}{\volt}$.
+\end{itemize}
+This became ECO-001 \#4, now applied (the EN time constant is \qty{22}{\milli\second}).
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s5_autoreset.pdf}
+\caption{DTR\#/RTS\#, EN and GPIO0 for the tight sequence and for \qtylist{2;5}{\milli\second} gaps, with the EN threshold band shaded.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s5_powerup.pdf}
+\caption{+3V3 soft start, EN with \qty{1}{\micro\farad} against \qty{2.2}{\micro\farad}, and GPIO0 at power-up.}
+\end{subfigure}
+\caption{S5: ESP32 reset timing.}
+\label{fig:s5}
+\end{figure}
+
+\subsubsection{S6: Signal integrity on the UI flat cable}\label{sec:s6}
+
+\paragraph{Question.} What are the impedance and delay of the 20-way FFC with the spec's ground interleaving? What do SPI SCLK at \qty{40}{\mega\hertz} and the PDM clock look like at the far end with \qty{33}{\ohm} source resistors, and how bad is the crosstalk? The simulation assumed the \qty{200}{\milli\metre} cable named in the v1.1 UI spec. The v1.2 spec uses \qty{100}{\milli\metre}, so these results are conservative.
+
+\paragraph{Method.}
+\begin{itemize}
+  \item A 2-D finite-difference field solver for the cable cross-section, with Richardson extrapolation, gives the $L$ and $C$ matrices.
+  \item ngspice then simulates the chain: driver, series resistor, board trace, connector, 40-section LC ladder for the cable, connector, UI trace, display wiring and a \qty{6}{\pico\farad} receiver.
+  \item Three driver corners are taken from the ESP32 datasheet.
+\end{itemize}
+
+\paragraph{Validation.} For an isolated G-S-G strip set, the extrapolated $Z_0$ is \qty{140.30}{\ohm} against \qty{140.45}{\ohm} from conformal mapping (Ghione and Naldi), an error of \qty{0.1}{\percent}.
+
+\paragraph{Result.}
+\begin{itemize}
+  \item With ground on both sides, SCLK sees a $Z_0$ of about \qty{107}{\ohm}. That is twice what the ``\qty{33}{\ohm} for \qty{50}{\ohm}'' rule of thumb assumes.
+  \item With \qty{33}{\ohm} the line is under-terminated and rings: \qty{0.69}{\volt} of overshoot nominally and \qty{1.1}{\volt} at the fast corner, enough to conduct the receiver's ESD diodes. Timing still passes.
+  \item With \qty{68}{\ohm} the overshoot drops to \qty{0.02}{\volt} nominal and \qty{0.2}{\volt} at the fast corner. The maximum safe clock becomes \qty{53}{\mega\hertz} in every corner.
+  \item MOSI-to-CS crosstalk is \qty{0.69}{\volt} with \qty{33}{\ohm} and \qty{0.49}{\volt} with \qty{68}{\ohm}, below the \qty{0.99}{\volt} $V_\text{IL}$.
+  \item The PDM round trip is \qty{3.1}{\nano\second}, far shorter than the \qty{163}{\nano\second} half period.
+\end{itemize}
+
+\paragraph{What changed (applied).} ECO-001 \#3 changes R113, R114 and R118 from \qty{33}{\ohm} to \qty{68}{\ohm}. For a respin: put a ground between MOSI and CS on the cable.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s6_sclk_40MHz.pdf}
+\caption{SCLK at the display for $R_s$ = 33, 47, 68 and \qty{82}{\ohm}.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s6_mosi_eye.pdf}
+\caption{MOSI eye at \qty{40}{\mega\bit\per\second} (PRBS7), \qty{33}{\ohm} against \qty{68}{\ohm}.}
+\end{subfigure}\\[4pt]
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s6_pdm.pdf}
+\caption{PDM clock at the pad and at the mic, and the returning data edge.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s6_crosstalk.pdf}
+\caption{Far-end voltages on SCLK, CS and DC with MOSI toggling.}
+\end{subfigure}
+\caption{S6: Flat-cable signal integrity. Matching the source resistor to the cable impedance removes about a volt of overshoot without costing speed.}
+\label{fig:s6}
+\end{figure}
+
+\FloatBarrier
+\subsection{Power distribution (PDN)}\label{sec:s7}
+
+\paragraph{Question.} What are the impedances of +3V3 and PVDD, compared with targets derived from the real load steps? \src{sim/spice/README.md} §S7
+
+\paragraph{Method.} A small nodal-analysis library models MLCCs (derated, with ESR and mounted ESL), electrolytics, regulator output models and series copper. For PVDD, the regulator branch is S1's closed-loop admittance, so the boost loop enters exactly. The copper between regulator and loads is a placeholder until layout.
+
+\paragraph{Targets.}
+\begin{itemize}
+  \item +3V3: $\Delta I = \qty{0.33}{\ampere}$ (the ESP32's Wi-Fi transmit peak) and $\Delta V = \qty{3}{\percent}$, so \qty{0.30}{\ohm}.
+  \item PVDD: $\Delta I = \qty{5}{\ampere}$ (two woofers at the \qty{15.5}{\volt} ceiling plus the tweeters' share) and $\Delta V = \qty{0.68}{\volt}$, half the headroom between \qty{17.97}{\volt} and the \qty{16.6}{\volt} the woofer ceiling needs, so \qty{0.137}{\ohm}.
+\end{itemize}
+
+\paragraph{Validation.} The PVDD peak matches the hand value of \qty{0.44}{\ohm}; the model gives \qty{0.46}{\ohm}.
+
+\paragraph{Result.}
+\begin{itemize}
+  \item \textbf{+3V3 meets its target with margin:} \qty{0.14}{\ohm} at the ESP32 and \qty{0.15}{\ohm} at the UI connector below \qty{1}{\mega\hertz}.
+  \item \textbf{PVDD misses by $3.4$ to $4.2\times$ in the bass band:} \qtyrange{0.46}{0.57}{\ohm} at about \qty{150}{\hertz}. A \qty{5}{\ampere} bass transient would sag PVDD by \qtyrange{2.3}{2.8}{\volt}, clipping the woofer ceiling and putting bass-rate ripple on the rail. Above \qty{1}{\kilo\hertz} the bank is fine, at \qtyrange{10}{50}{\milli\ohm}.
+  \item With $R_c = \qty{100}{\kilo\ohm}$ the peak falls to \qty{0.16}{\ohm}, which is at target.
+\end{itemize}
+The worst impedance on the board sits at \qty{150}{\hertz}, not at gigahertz. A \qty{1.5}{\milli\farad} bank is only as stiff as the regulator loop behind it.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s7_pdn_3v3.pdf}
+\caption{+3V3 at the ESP32, the UI connector and the amplifiers against the \qty{0.30}{\ohm} target, with buck crossover at \qtylist{20;60}{\kilo\hertz}.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\includegraphics[width=\linewidth]{s7_pdn_pvdd.pdf}
+\caption{PVDD at the right amplifier for three operating points and the $R_c=\qty{100}{\kilo\ohm}$ fix, against the \qty{0.137}{\ohm} target.}
+\end{subfigure}
+\caption{S7: Pre-layout PDN. +3V3 passes everywhere. PVDD has a broad peak near \qty{150}{\hertz} set by the boost loop, not by the capacitors, and the ECO-001 compensation brings it down to the target.}
+\label{fig:s7}
+\end{figure}
+\FloatBarrier

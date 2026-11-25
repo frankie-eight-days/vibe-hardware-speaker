@@ -1,0 +1,47 @@
+* step60: TPS61178 (TI SLVMC02A transient model) - spec_power.md section 4.1
+.include ../models/TPS61178_TRANS.LIB
+* --- input: VSYS from the BQ25792 (30 mOhm source) + C901/C902 (derated) + C903
+VSRC vsrc 0 6.0
+RSRC vsrc vsys 30m
+CIN vsys 0 2.4e-05 IC=6.0
+* --- power stage
+VIL vsys l_in 0
+L1 l_in l_x 2.2e-06 IC=0
+RL l_x sw 0.007
+XU 0 bst comp disdrv en fb freq ilim 0 sw vcc vsys pvdd TPS61178_TRANS PARAMS: SS=0
+VEN en 0 PWL(0 0 100u 0 101u 3.3)
+RFREQ freq 0 300000.0
+RILIM ilim 0 82000.0
+RC comp cz 33000.0
+CC cz 0 4.7e-08 IC=1.43
+CP comp 0 1e-11 IC=1.43
+CBST bst sw 100n
+CVCC vcc 0 4.7u
+* --- feedback divider R904 / (R905 || R906)
+RUP pvdd fb 300000.0
+RDN fb 0 21428.57
+* --- PVDD bank: COUT1 at the IC, 3x 470 uF electrolytics, amp-sheet ceramics
+COUT1 pvdd 0 3.6e-05 IC=18.000
+CHF pvdd 0 100n IC=18.000
+CEL1 pvdd e1 0.00047 IC=18.000
+REL1 e1 e1l 0.15
+LEL1 e1l 0 5e-09
+CEL2 pvdd e2 0.00047 IC=18.000
+REL2 e2 e2l 0.15
+LEL2 e2l 0 5e-09
+CEL3 pvdd e3 0.00047 IC=18.000
+REL3 e3 e3l 0.15
+LEL3 e3l 0 5e-09
+CAMP pvdd 0 3.6e-05 IC=18.000
+* --- load (amps in PDN for start-up: ~uA; current source for load steps)
+RBLEED pvdd 0 1Meg
+ILOAD pvdd 0 PWL(0 0.2 0.012 0.2 0.012001 2.0 0.0145 2.0 0.014501 0.2)
+.options method=trap reltol=1e-3 abstol=1e-9 vntol=1e-5 itl4=200
+.save v(pvdd) i(vil) v(comp) v(fb) v(vsys) 
+.tran 5e-08 0.017 0 50n uic
+.control
+run
+linearize v(pvdd) i(vil) v(comp) v(fb) v(vsys) 
+write step60.raw v(pvdd) i(vil) v(comp) v(fb) v(vsys) 
+.endc
+.end

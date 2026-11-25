@@ -1,0 +1,60 @@
+self-test OK: sealed fc LEM 160.4 Hz vs closed form 161.2 Hz
+Assumptions: 2 woofers + 2 PRs in one shared box, amp 18.1 V pk / 4.5 A pk per woofer (19 V rail BTL), QL=10, half-space 1 m, pink crest 3.0, DSP target F3=63 Hz (BW4 + BW2 subsonic @ 28 Hz), LR4 @ 2500 Hz
+DSP target: F3 = 63.7 Hz, F6 = 55.5 Hz
+
+=== Net box 0.75 L (2 woofers + 2 PRs shared), PR mass optimised for pink-noise SPL ===
+set | m_add g/PR | fb | fp | F3 nat | F6 nat | pass@max | max50 | max63 | max80 | max100 | DSPceil | @Hz | F3/F6 dsp | pink | pink lim | sealed pink | Vb req L
+A8 budget : PLS-65F25AL02-08 + DMA58-PR | 6.2 | 48 | 29 | 142 | 121 | 103.8 | 80.5 | 85.9 | 88.4 | 91.1 | 88.8 | 39 | 64/56 | 90.7 | woofer Xmax | 87.4 (woofer Xmax, F3 64) | 0.60 (m_add 6.0 g, fb 53 Hz)
+A8' Dayton: DMA70-8 + DMA70-PR | 9.5 | 54 | 26 | 170 | 132 | 103.1 | 81.7 | 86.7 | 88.0 | 90.0 | 88.7 | 79 | 64/56 | 89.9 | woofer Xmax | 85.4 (woofer Xmax, F3 64) | > 2.0
+B8 rec.   : ND65-8 + DMA58-PR | 3.5 | 54 | 32 | 120 | 97 | 99.7 | 77.4 | 87.4 | 89.5 | 91.7 | 85.7 | 47 | 64/56 | 91.4 | amp V | 87.5 (woofer Xmax, F3 64) | 0.50 (m_add 6.0 g, fb 56 Hz)
+B8' bigPR : ND65-8 + DMA70-PR | 6.0 | 59 | 28 | 117 | 94 | 99.7 | 79.6 | 88.6 | 91.3 | 92.6 | 88.0 | 47 | 64/56 | 91.8 | amp V | 87.5 (woofer Xmax, F3 64) | 0.45 (m_add 10.0 g, fb 66 Hz)
+C8 premium: ND91-8 + DMA70-PR | 8.5 | 56 | 26 | 128 | 107 | 102.1 | 81.1 | 86.7 | 90.8 | 94.8 | 89.8 | 47 | 64/56 | 91.1 | amp V | 90.4 (amp V, F3 64) | 0.65 (m_add 10.2 g, fb 57 Hz)
+ref       : ND91-8 + DMA80-PR | 14.0 | 63 | 25 | 126 | 106 | 102.2 | 81.2 | 87.1 | 91.1 | 95.0 | 89.9 | 47 | 64/56 | 91.4 | amp V | 90.4 (amp V, F3 64) | 0.60 (m_add 17.8 g, fb 65 Hz)
+ref       : DMA70-8 + DMA58-PR | 4.0 | 53 | 31 | 171 | 133 | 103.1 | 78.0 | 86.3 | 87.2 | 89.6 | 86.4 | 47 | 64/56 | 89.3 | woofer Xmax | 85.4 (woofer Xmax, F3 64) | > 2.0
+ref       : PC83-8 + DMA70-PR | 7.5 | 57 | 27 | 152 | 133 | 104.9 | 80.6 | 84.3 | 88.5 | 92.7 | 86.9 | 36 | 64/56 | 90.1 | amp V | 87.9 (woofer Xmax, F3 64) | 0.75 (m_add 7.5 g, fb 57 Hz)
+ref       : PLS-P830986 + DMA70-PR | 12.8 | 51 | 24 | 150 | 130 | 104.7 | 81.8 | 85.1 | 89.0 | 91.4 | 88.2 | 65 | 64/56 | 90.7 | woofer Xmax | 87.2 (woofer Xmax, F3 64) | 0.65 (m_add 10.5 g, fb 56 Hz)
+ref (OOS) : DMA80-8 + DMA80-PR | 12.0 | 65 | 26 | 179 | 149 | 106.1 | 80.2 | 85.5 | 89.2 | 92.9 | 86.8 | 42 | 64/56 | 91.1 | amp V | 89.7 (amp V, F3 67) | 0.70 (m_add 12.5 g, fb 66 Hz)
+ref (wide): M3N + DMA70-PR | 1.5 | 69 | 33 | 158 | 140 | 104.6 | 75.8 | 83.8 | 87.2 | 91.2 | 84.2 | 47 | 64/56 | 89.5 | amp V | 88.1 (amp V, F3 68) | 0.85 (m_add 1.0 g, fb 67 Hz)
+old B 4ohm: SLS-65S25PR03-04 + DMA58-PR | 8.8 | 44 | 26 | 129 | 104 | 103.8 | 82.7 | 89.8 | 92.3 | 95.3 | 91.3 | 47 | 64/56 | 94.4 | amp V | 91.8 (woofer Xmax, F3 64) | 0.35 (m_add 13.8 g, fb 51 Hz)
+old A 4ohm: DMA70-4 + DMA70-PR | 9.5 | 54 | 26 | 175 | 132 | 105.7 | 81.7 | 88.7 | 88.0 | 90.0 | 88.7 | 79 | 64/56 | 90.0 | woofer Xmax | 85.4 (woofer Xmax, F3 64) | 0.75 (m_add 9.5 g, fb 54 Hz)
+
+amp power into woofer at 400 Hz / |Z|min / avg W per woofer at pink limit / est. battery W:
+  A8 budget : PLS-65F25AL02-08 + DMA58-PR: 22.8 W / 6.1 ohm / 4.42 W / 15.0 W
+  A8' Dayton: DMA70-8 + DMA70-PR: 17.6 W / 7.6 ohm / 2.53 W / 9.4 W
+  B8 rec.   : ND65-8 + DMA58-PR: 20.8 W / 7.4 ohm / 3.32 W / 11.7 W
+  B8' bigPR : ND65-8 + DMA70-PR: 20.8 W / 7.4 ohm / 3.33 W / 11.8 W
+  C8 premium: ND91-8 + DMA70-PR: 20.5 W / 7.9 ohm / 3.26 W / 11.6 W
+  ref       : ND91-8 + DMA80-PR: 20.5 W / 7.9 ohm / 3.28 W / 11.6 W
+  ref       : DMA70-8 + DMA58-PR: 17.6 W / 7.6 ohm / 2.34 W / 8.9 W
+  ref       : PC83-8 + DMA70-PR: 22.4 W / 6.9 ohm / 4.88 W / 16.3 W
+  ref       : PLS-P830986 + DMA70-PR: 22.7 W / 6.2 ohm / 5.22 W / 17.3 W
+  ref (OOS) : DMA80-8 + DMA80-PR: 17.9 W / 7.6 ohm / 4.20 W / 14.3 W
+  ref (wide): M3N + DMA70-PR: 22.6 W / 6.5 ohm / 5.10 W / 17.0 W
+  old B 4ohm: SLS-65S25PR03-04 + DMA58-PR: 39.2 W / 3.8 ohm / 6.84 W / 22.1 W
+  old A 4ohm: DMA70-4 + DMA70-PR: 32.9 W / 4.0 ohm / 2.32 W / 8.8 W
+
+limiting mechanism at 50/63/80/100 Hz:
+  A8 budget : PLS-65F25AL02-08 + DMA58-PR: PR Xmax / amp V / woofer Xmax / woofer Xmax
+  A8' Dayton: DMA70-8 + DMA70-PR: PR Xmax / amp V / woofer Xmax / woofer Xmax
+  B8 rec.   : ND65-8 + DMA58-PR: PR Xmax / PR Xmax / woofer Xmax / woofer Xmax
+  B8' bigPR : ND65-8 + DMA70-PR: PR Xmax / amp V / woofer Xmax / woofer Xmax
+  C8 premium: ND91-8 + DMA70-PR: PR Xmax / amp V / amp V / amp V
+  ref       : ND91-8 + DMA80-PR: PR Xmax / amp V / amp V / amp V
+  ref       : DMA70-8 + DMA58-PR: PR Xmax / amp V / woofer Xmax / woofer Xmax
+  ref       : PC83-8 + DMA70-PR: PR Xmax / amp V / amp V / amp V
+  ref       : PLS-P830986 + DMA70-PR: amp V / amp V / woofer Xmax / woofer Xmax
+  ref (OOS) : DMA80-8 + DMA80-PR: woofer Xmax / amp V / amp V / amp V
+  ref (wide): M3N + DMA70-PR: PR Xmax / amp V / amp V / amp V
+  old B 4ohm: SLS-65S25PR03-04 + DMA58-PR: PR Xmax / amp V / woofer Xmax / woofer Xmax
+  old A 4ohm: DMA70-4 + DMA70-PR: PR Xmax / woofer Xmax / woofer Xmax / woofer Xmax
+
+=== Volume sweep (pink-noise estimate dB, half space; PR mass re-optimised each point) ===
+Vb [L]:  0.50   0.60   0.75   0.90   1.00   1.20
+A8 budget : PLS-65F25AL02-08 + DMA58-PR     89.1   90.2   90.7   90.7   90.7   90.7
+A8' Dayton: DMA70-8 + DMA70-PR              89.5   89.8   89.9   90.0   89.9   89.8
+B8 rec.   : ND65-8 + DMA58-PR               90.1   90.7   91.4   91.5   91.4   91.2
+B8' bigPR : ND65-8 + DMA70-PR               90.6   91.2   91.8   92.1   92.2   92.1
+C8 premium: ND91-8 + DMA70-PR               88.9   90.0   91.1   91.9   92.3   92.8
+old B 4ohm: SLS-65S25PR03-04 + DMA58-PR     92.7   93.5   94.4   94.9   94.9   94.9
+wrote /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/pr_alignment_firstpass_results.json
+wrote /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/pr_alignment_firstpass.png

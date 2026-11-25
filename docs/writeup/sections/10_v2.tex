@@ -1,0 +1,27 @@
+\section{What I'd change in v2}\label{sec:v2}
+
+These are recommendations drawn from the findings above, not decisions.
+
+\subsection{Hardware}
+\begin{itemize}
+  \item \textbf{Design the boost loop and the bulk capacitance together.} With \qty{1.5}{\milli\farad} on PVDD, the loop, not the capacitors, sets the bass-band impedance, and that impedance should be a requirement from the start. It took a simulation to see this (S1, S7).
+  \item \textbf{A soft start by design.} Fit the trim network by default, or choose a boost converter with an external soft-start pin, so PVDD never winds up past \qty{18}{\volt} (S1).
+  \item \textbf{Protection that does not depend on firmware.} The fast PVDD short protection is a charger register that a watchdog expiry clears (review S1). A v2 should restore a hardware path: a disconnect FET sized for the bulk, a smaller fuse, or a protector with a lower over-current threshold.
+  \item \textbf{Detect a missing balance lead and an over-temperature pack in hardware.} With the balance lead out, the mid-tap bias hides cell-level faults (S7), and nothing in hardware stops \emph{discharge} when the pack is hot (S6). Neither has a spare ADC or GPIO today.
+  \item \textbf{A low-capacitance I\textsuperscript{2}C isolator,} so the bus can run at \qty{400}{\kilo\hertz} without scoping first (S5).
+  \item \textbf{GPIO headroom.} The WROVER-E leaves no spare pin: no PVDD sense, no I2S\_SEL read-back, no JTAG. An I\textsuperscript{2}C GPIO expander for the slow signals would free several pins.
+  \item \textbf{Sample-locked microphone.} The firmware research recommends running the microphone on the same I\textsuperscript{2}S peripheral as the amplifiers, so capture is sample-locked to playback. The hardware put the PDM mic on I\textsuperscript{2}S0 and the amplifiers on I\textsuperscript{2}S1, because PDM RX exists only on I\textsuperscript{2}S0. Either move the amplifiers to I\textsuperscript{2}S0 as well, or confirm that the two peripherals can share a clock source.
+  \item \textbf{Cable.} Put a ground between MOSI and CS on the FFC (S6). The \qty{68}{\ohm} source resistors and the \qty{100}{\milli\metre} cable are already in v0.2.
+  \item \textbf{A battery that matches the requirement.} A custom device-grade 2S pouch with a pack NTC and a rated continuous current (the BatterySpace quote route) needs a \qty{50}{\milli\metre}-wide bay. The on-board TH801 measures board temperature, not cell temperature (S3).
+  \item \textbf{Enclosure.} Add the centre spine plate and damping pads (A4). Keep \qty{10}{\milli\metre} in the length budget for a real tweeter waveguide if A2 shows it is worth it.
+  \item \textbf{More bass headroom.} The system is limited by amplifier voltage. The only cheap lever is the woofer limiter (\qty{+0.9}{\decibel} at \qty{17.1}{\volt}); the next one is a \qty{6}{\ohm} woofer, worth about \qty{1}{\decibel} if a suitable one appears.
+\end{itemize}
+
+\subsection{Process}
+\begin{itemize}
+  \item \textbf{A decision log next to the requirements file.} One line per decision, with an owner, a version and a date. Agents cite the version they built against (playbook R3).
+  \item \textbf{A consistency check before each phase.} Ask one agent to diff all specs against the requirements and list the conflicts. The first edition of this report found thirteen; after ECO-002 ten remain (\cref{sec:inconsistencies}).
+  \item \textbf{Pilot-first by default} for any task that fans out to sub-agents (R4).
+  \item \textbf{A compute scheduler.} One heavy simulation at a time, with a disk-space guard (R11).
+  \item \textbf{Run the circuit simulations before the schematic is drawn.} ECO-001 changed values the schematic agent had just placed; running S1--S7 straight from the specs would have saved a round.
+\end{itemize}

@@ -1,0 +1,204 @@
+{
+ "validation": {
+  "f0_hand_kHz": 50.329212104487034,
+  "Q4_hand": 0.6324555320336759,
+  "Q8_hand": 1.2649110640673518,
+  "H20k_4ohm_ideal_dB": -0.42927200710628677,
+  "H20k_4ohm_spice_dB": -1.3614157493454104,
+  "H20k_8ohm_ideal_dB": 0.9269323160686795,
+  "H20k_8ohm_spice_dB": 0.28251428249384647,
+  "note": "SPICE includes DCR 68 mOhm + RDS(on) 180 mOhm per leg (a -0.5 dB broadband loss into 4 Ohm), which the ideal formula omits"
+ },
+ "ac": {
+  "ND65-8 woofer model | C=0.75 uF": {
+   "H_20k_dB": 0.7702990244632493,
+   "H_10k_dB": -0.03845392646548711,
+   "peak_dB": 23.18490912791118,
+   "f_peak_Hz": 58983.787638716225,
+   "H_2k5_dB": -0.38728260681685917
+  },
+  "ND65-8 woofer model | C=1.00 uF": {
+   "H_20k_dB": 1.1503173853433077,
+   "H_10k_dB": 0.04727752262640509,
+   "peak_dB": 21.849132518976937,
+   "f_peak_Hz": 50783.19552005995,
+   "H_2k5_dB": -0.38211932690840944
+  },
+  "OT19NC00-04 tweeter model | C=0.75 uF": {
+   "H_20k_dB": -3.1720967025677815,
+   "H_10k_dB": -1.8376567328045619,
+   "peak_dB": 1.028307903096425,
+   "f_peak_Hz": 94574.16090031632,
+   "H_2k5_dB": -1.0240434041428044
+  },
+  "OT19NC00-04 tweeter model | C=1.00 uF": {
+   "H_20k_dB": -2.983462009384187,
+   "H_10k_dB": -1.7799114816410768,
+   "peak_dB": 0.2566637279438782,
+   "f_peak_Hz": 80493.14438957575,
+   "H_2k5_dB": -1.0202395325857154
+  },
+  "8 \u03a9 resistor | C=0.75 uF": {
+   "H_20k_dB": -0.019480638734204327,
+   "H_10k_dB": -0.39110140388468706,
+   "peak_dB": 1.0171746291232069,
+   "f_peak_Hz": 44229.126760335705,
+   "H_2k5_dB": -0.5143101634766417
+  },
+  "8 \u03a9 resistor | C=1.00 uF": {
+   "H_20k_dB": 0.28251428249384647,
+   "H_10k_dB": -0.3150533518991841,
+   "peak_dB": 1.7994825465362752,
+   "f_peak_Hz": 41754.521054577905,
+   "H_2k5_dB": -0.5096385396982124
+  },
+  "4 \u03a9 resistor | C=0.75 uF": {
+   "H_20k_dB": -1.5704034860064933,
+   "H_10k_dB": -1.1527407507854446,
+   "peak_dB": -1.0153263608615433,
+   "f_peak_Hz": 10.0,
+   "H_2k5_dB": -1.0237457077596475
+  },
+  "4 \u03a9 resistor | C=1.00 uF": {
+   "H_20k_dB": -1.3614157493454104,
+   "H_10k_dB": -1.089022470472428,
+   "peak_dB": -1.0153262933883296,
+   "f_peak_Hz": 10.0,
+   "H_2k5_dB": -1.0195914808359905
+  },
+  "open (no load) | C=0.75 uF": {
+   "H_20k_dB": 1.089664173549788,
+   "H_10k_dB": 0.2611144549878581,
+   "peak_dB": 23.11622897031986,
+   "f_peak_Hz": 58308.475344835475,
+   "H_2k5_dB": 0.015863510543405106
+  },
+  "open (no load) | C=1.00 uF": {
+   "H_20k_dB": 1.4837956576180786,
+   "H_10k_dB": 0.3496211075564354,
+   "peak_dB": 21.941417984444797,
+   "f_peak_Hz": 50201.772765941394,
+   "H_2k5_dB": 0.02114217185680223
+  }
+ },
+ "ripple": {
+  "idle_BD_tw": {
+   "modulation": "BD",
+   "load": "OT19NC00-04 tweeter model",
+   "m": 0.0,
+   "f_sig": 1000.0,
+   "IL_pp_A": 0.584685121533977,
+   "IL_peak_A": 0.2924181420042996,
+   "spk_ultrasonic_rms_mA": 3.90082084562574e-10,
+   "spk_ultrasonic_vrms_mV": 5.718425688465459e-06,
+   "P_ultrasonic_in_Re_mW": 4.823599836484855e-22
+  },
+  "idle_1SPW_tw": {
+   "modulation": "1SPW",
+   "load": "OT19NC00-04 tweeter model",
+   "m": 0.0,
+   "f_sig": 1000.0,
+   "IL_pp_A": 0.2821488595124856,
+   "IL_peak_A": 0.14165449119714466,
+   "spk_ultrasonic_rms_mA": 7.655197051728625e-11,
+   "spk_ultrasonic_vrms_mV": 1.8776244369030105e-06,
+   "P_ultrasonic_in_Re_mW": 1.8576847282551893e-23
+  },
+  "idle_BD_wf": {
+   "modulation": "BD",
+   "load": "ND65-8 woofer model",
+   "m": 0.0,
+   "f_sig": 1000.0,
+   "IL_pp_A": 0.5847507597824394,
+   "IL_peak_A": 0.2924531391125778,
+   "spk_ultrasonic_rms_mA": 3.7046247420282284e-11,
+   "spk_ultrasonic_vrms_mV": 1.4252190385589592e-05,
+   "P_ultrasonic_in_Re_mW": 1.0155940914643314e-23
+  },
+  "idle_1SPW_wf": {
+   "modulation": "1SPW",
+   "load": "ND65-8 woofer model",
+   "m": 0.0,
+   "f_sig": 1000.0,
+   "IL_pp_A": 0.2821030173915924,
+   "IL_peak_A": 0.14163987350924495,
+   "spk_ultrasonic_rms_mA": 4.3679789120180545e-12,
+   "spk_ultrasonic_vrms_mV": 4.504765711079294e-06,
+   "P_ultrasonic_in_Re_mW": 1.4118637434117476e-25
+  },
+  "sig_BD_tw": {
+   "modulation": "BD",
+   "load": "OT19NC00-04 tweeter model",
+   "m": 0.2222222222222222,
+   "f_sig": 5000.0,
+   "IL_pp_A": null,
+   "IL_peak_A": 1.36659426920679,
+   "spk_ultrasonic_rms_mA": 0.049614291270061686,
+   "spk_ultrasonic_vrms_mV": 4.835221534250533,
+   "P_ultrasonic_in_Re_mW": 7.803201937390745e-06
+  },
+  "sig_1SPW_tw": {
+   "modulation": "1SPW",
+   "load": "OT19NC00-04 tweeter model",
+   "m": 0.2222222222222222,
+   "f_sig": 5000.0,
+   "IL_pp_A": null,
+   "IL_peak_A": 1.3655812732427486,
+   "spk_ultrasonic_rms_mA": 0.32180211329054415,
+   "spk_ultrasonic_vrms_mV": 15.628562421926457,
+   "P_ultrasonic_in_Re_mW": 0.00032827442237488483
+  }
+ },
+ "peaks": {
+  "wf_15V5_150Hz": {
+   "target_vpk": 15.5,
+   "f_Hz": 150,
+   "m": 0.8887175624767932,
+   "clipped": false,
+   "v_spk_pk": 15.71777327322257,
+   "i_spk_pk": 1.0320132605884982,
+   "iL_pk": 1.2676813662363262,
+   "Isat": 5.5,
+   "OCP": 5.0,
+   "margin_to_OCP_A": 3.732318633763674,
+   "L_at_peak_est_uH": 9.84062650780468,
+   "passes_80pct_rule": true
+  },
+  "wf_15V5_400Hz": {
+   "target_vpk": 15.5,
+   "f_Hz": 400,
+   "m": 0.91725742739883,
+   "clipped": false,
+   "v_spk_pk": 15.603602343569206,
+   "i_spk_pk": 2.1974638180320687,
+   "iL_pk": 2.253893543691938,
+   "Isat": 5.5,
+   "OCP": 5.0,
+   "margin_to_OCP_A": 2.746106456308062,
+   "L_at_peak_est_uH": 9.496194766317734,
+   "passes_80pct_rule": true
+  },
+  "wf_15V5_2k5Hz": {
+   "target_vpk": 15.5,
+   "f_Hz": 2500.0,
+   "m": 0.8973875393651971,
+   "clipped": false,
+   "v_spk_pk": 15.484380354974544,
+   "i_spk_pk": 1.3723819029950908,
+   "iL_pk": 1.5065484719405176,
+   "Isat": 5.5,
+   "OCP": 5.0,
+   "margin_to_OCP_A": 3.4934515280594827,
+   "L_at_peak_est_uH": 9.774906945622515,
+   "passes_80pct_rule": true
+  },
+  "tw_8V_3kHz": {
+   "target_vpk": 8.0,
+   "f_Hz": 3000.0,
+   "m": 0.5118813088981743,
+   "clipped": false,
+   "v_spk_pk": 8.169643743632285,
+   "i_spk_pk": 2.4616142119631106,
+   "iL_pk": 2.688380674939782,
+   "Isat": 5.5,
+ 

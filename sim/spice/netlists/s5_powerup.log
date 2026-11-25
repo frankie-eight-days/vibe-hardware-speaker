@@ -1,0 +1,43 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s5 powerup: esp32 en/io0 auto-reset
+
+binary raw file "s5_powerup.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 14  
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                          0
+dtr_src                                      0
+rts_src                                      0
+dtr_n                             -9.23377e-29
+rts_n                             -1.55531e-28
+en                                -3.12421e-27
+q201b                              4.10294e-28
+io0                                1.60763e-26
+led_k                              1.60763e-26
+q202b                             -1.31458e-26
+vrts#branch                       -1.03687e-30
+vdtr#branch                       -6.15585e-31
+vdd#branch                         1.65246e-30
+
+
+No. of Data Rows : 3024
+
+Total analysis time (seconds) = 0.010607
+
+Total elapsed time (seconds) = 0.014 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 4027.266 MB.
+Maximum ngspice program size =   10.047 MB.
+Current ngspice program size =   10.047 MB.
+

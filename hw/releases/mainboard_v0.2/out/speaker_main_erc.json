@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-11-24T17:30:45",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.4",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53",
+            "violations": []
+        },
+        {
+            "path": "/usb_power/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53/4b3dcb14-9b65-443e-80f4-202b0c3d1695",
+            "violations": []
+        },
+        {
+            "path": "/charger/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53/c624a435-fe28-44bc-9911-6815715325e5",
+            "violations": []
+        },
+        {
+            "path": "/battery/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53/53378448-b4ca-4b5f-9a05-d778ceaf4c07",
+            "violations": []
+        },
+        {
+            "path": "/rails/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53/812cdc2e-c529-426c-837e-272ac8e26561",
+            "violations": []
+        },
+        {
+            "path": "/mcu/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53/4080efb2-55ef-469d-9dab-7718675f7e8a",
+            "violations": []
+        },
+        {
+            "path": "/usb_uart/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53/767319d7-9dfb-4d46-9cec-cb00216fa8fd",
+            "violations": []
+        },
+        {
+            "path": "/ui_io/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53/80eb3107-3743-44bf-9f93-f60d27e33f25",
+            "violations": []
+        },
+        {
+            "path": "/amp_left/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53/1044f596-a475-4cc7-9f26-9b0017beb0f4",
+            "violations": []
+        },
+        {
+            "path": "/amp_right/",
+            "uuid_path": "/6ca7e041-e8d2-4406-aff1-c65abf06fe53/01f7f24b-f2e1-472d-bc42-6a0daa6ac505",
+            "violations": []
+        }
+    ],
+    "source": "speaker_main.kicad_sch"
+}

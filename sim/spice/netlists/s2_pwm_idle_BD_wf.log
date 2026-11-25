@@ -1,0 +1,25 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s2 pwm: idle_bd_wf  modulation=bd m=0.0 f=1000.0 load=nd65-8 woofer model
+
+binary raw file "s2_pwm_idle_BD_wf.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 6  
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+ Reference value :  1.89153e-04
+No. of Data Rows : 53135
+
+Total analysis time (seconds) = 0.272204
+
+Total elapsed time (seconds) = 0.276 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 4239.203 MB.
+Maximum ngspice program size =    9.984 MB.
+Current ngspice program size =    9.984 MB.
+

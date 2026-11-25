@@ -1,0 +1,8 @@
+* S3: BQ25792 TS network, NTC beta model B=3380.0
+VREGN regn 0 5.0
+RT1 regn ts 5100.0
+RT2 ts 0 30000.0
+* behavioural NTC: R = R25 exp(B (1/T - 1/298.15)), T from the simulator temperature
+RNTC ts 0 R = {10000.0*exp(3380.0*(1/(temper+273.15)-1/298.15))}
+.dc temp -30 90 0.5
+.end

@@ -1,0 +1,47 @@
+* S2 PWM: idle_BD_tw  modulation=BD m=0.0 f=1000.0 load=OT19NC00-04 tweeter model
+.subckt WOOFER a b
+* ND65-8: Re=7.4 Le=0.00061 fs=102.0 Qms=8.23 Qes=0.71
+RE a n1 7.4
+LE n1 n2 0.00061
+RES n2 b 85.78
+LCES n2 b 0.01626
+CMES n2 b 0.0001497
+.ends WOOFER
+.subckt TWEETER a b
+* OT19NC00-04: Re=3.17 Le=1e-05 fs=1029.0 Qms=7.03 Qes=1.56
+RE a n1 3.17
+LE n1 n2 1e-05
+RES n2 b 14.29
+LCES n2 b 0.0003143
+CMES n2 b 7.611e-05
+.ends TWEETER
+
+VTRI tri 0 PULSE(0 1 0 6.51042e-07 6.51042e-07 1e-12 1.30208e-06)
+BSWP sw_p 0 V = 18.0*(0.5+0.5*tanh(400*((0.5+0.5*0.0*sin(2*pi*1000.0*time))-v(tri))))
+BSWN sw_n 0 V = 18.0*(0.5+0.5*tanh(400*((0.5-0.5*0.0*sin(2*pi*1000.0*time))-v(tri))))
+RDSP sw_p o_p 0.18
+VILP o_p o_pi 0
+LP o_pi lp 1e-05
+RLP lp spk_p 0.068
+CPP o_pi spk_p 2e-12
+CFP spk_p cfp 7.5e-07
+RCP cfp cfp2 0.005
+LCP cfp2 0 6e-10
+RDSN sw_n o_n 0.18
+VILN o_n o_ni 0
+LN o_ni ln 1e-05
+RLN ln spk_n 0.068
+CPN o_ni spk_n 2e-12
+VSPK spk_p spk_pl 0
+CFN spk_n cfn 7.5e-07
+RCN cfn cfn2 0.005
+LCN cfn2 0 6e-10
+XLD spk_pl spk_n TWEETER
+.options method=gear reltol=1e-4 abstol=1e-10
+* start from the idle operating point: every node at the idle common-mode level, no current
+.ic v(spk_p)=9.0 v(spk_n)=9.0 v(spk_pl)=9.0 v(cfp)=0 v(cfn)=0
++ v(o_p)=9.0 v(o_pi)=9.0 v(lp)=9.0 v(o_n)=9.0 v(o_ni)=9.0 v(ln)=9.0
++ v(xld.n1)=9.0 v(xld.n2)=9.0
+.save v(spk_p) v(spk_n) i(vilp) i(viln) i(vspk)
+.tran 5n 0.0002 0 5n uic
+.end

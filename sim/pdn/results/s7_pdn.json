@@ -1,0 +1,326 @@
+{
+ "targets": {
+  "3V3": {
+   "dI_A": 0.33,
+   "dV_V": 0.09899999999999999,
+   "Z_ohm": 0.29999999999999993,
+   "band": "DC-20 MHz"
+  },
+  "PVDD": {
+   "dI_A": 5.0,
+   "dV_V": 0.6849999999999987,
+   "Z_ohm": 0.13699999999999973,
+   "band": "10 Hz-20 kHz audio-rate current; above that local decoupling"
+  }
+ },
+ "3V3_ESP": {
+  "z_max_ohm": 0.18152230917940124,
+  "f_at_max_Hz": 100000000.0,
+  "z_max_below_1MHz": 0.13795121469045948,
+  "f_exceeds_target": null
+ },
+ "3V3_UI": {
+  "z_max_ohm": 0.19403348582287108,
+  "f_at_max_Hz": 100000000.0,
+  "z_max_below_1MHz": 0.1459796635501904,
+  "f_exceeds_target": null
+ },
+ "3V3_AMPS": {
+  "z_max_ohm": 0.13992969106389028,
+  "f_at_max_Hz": 11673.224839531726,
+  "z_max_below_1MHz": 0.13992969106389028,
+  "f_exceeds_target": null
+ },
+ "3V3_ESP_fc20k_zmax": 0.23823790031921785,
+ "3V3_ESP_fc60k_zmax": 0.18084150763802234,
+ "3V3_bom": [
+  {
+   "node": "BUCK",
+   "name": "TPS62933 loop",
+   "kind": "regulator",
+   "fc": 35000.0,
+   "fz": 7000.0,
+   "R_reg": 0.13374364965705493,
+   "L_reg": 3.0408518500101377e-06,
+   "r_dc": 0.001
+  },
+  {
+   "node": "BUCK",
+   "name": "C957,C958 22u/25V 1206",
+   "kind": "MLCC",
+   "C0": 2.2e-05,
+   "Ceff": 1.601895175897087e-05,
+   "Vbias": 3.3,
+   "size": "1206",
+   "ESR": 0.003,
+   "ESL": 1.2e-09,
+   "qty": 2
+  },
+  {
+   "node": "BUCK",
+   "name": "C959 100n 0603",
+   "kind": "MLCC",
+   "C0": 1e-07,
+   "Ceff": 9.09167435118451e-08,
+   "Vbias": 3.3,
+   "size": "0603",
+   "ESR": 0.03,
+   "ESL": 8e-10,
+   "qty": 1
+  },
+  {
+   "node": "ESP",
+   "name": "C101 22u/25V 0805",
+   "kind": "MLCC",
+   "C0": 2.2e-05,
+   "Ceff": 1.4784774236859884e-05,
+   "Vbias": 3.3,
+   "size": "0805",
+   "ESR": 0.004,
+   "ESL": 1e-09,
+   "qty": 1
+  },
+  {
+   "node": "ESP",
+   "name": "C102 100n 0402",
+   "kind": "MLCC",
+   "C0": 1e-07,
+   "Ceff": 7.183294675650937e-08,
+   "Vbias": 3.3,
+   "size": "0402",
+   "ESR": 0.04,
+   "ESL": 6e-10,
+   "qty": 1
+  },
+  {
+   "node": "AMPS",
+   "name": "C308/C408 4.7u 0603",
+   "kind": "MLCC",
+   "C0": 4.7e-06,
+   "Ceff": 3.1585654051473387e-06,
+   "Vbias": 3.3,
+   "size": "0603",
+   "ESR": 0.008,
+   "ESL": 8e-10,
+   "qty": 2
+  },
+  {
+   "node": "AMPS",
+   "name": "C309/C409 100n 0402",
+   "kind": "MLCC",
+   "C0": 1e-07,
+   "Ceff": 7.183294675650937e-08,
+   "Vbias": 3.3,
+   "size": "0402",
+   "ESR": 0.04,
+   "ESL": 6e-10,
+   "qty": 2
+  },
+  {
+   "node": "MISC",
+   "name": "C201, C603 100n",
+   "kind": "MLCC",
+   "C0": 1e-07,
+   "Ceff": 7.183294675650937e-08,
+   "Vbias": 3.3,
+   "size": "0402",
+   "ESR": 0.04,
+   "ESL": 6e-10,
+   "qty": 2
+  },
+  {
+   "node": "UI",
+   "name": "C501 10u/10V 0603",
+   "kind": "MLCC",
+   "C0": 1e-05,
+   "Ceff": 5.574566387665286e-06,
+   "Vbias": 3.3,
+   "size": "0603",
+   "ESR": 0.006,
+   "ESL": 8e-10,
+   "qty": 1
+  },
+  {
+   "node": "UI",
+   "name": "C502 100n 0402",
+   "kind": "MLCC",
+   "C0": 1e-07,
+   "Ceff": 7.183294675650937e-08,
+   "Vbias": 3.3,
+   "size": "0402",
+   "ESR": 0.04,
+   "ESL": 6e-10,
+   "qty": 1
+  },
+  {
+   "between": "BUCK-ESP",
+   "name": "buck->ESP32 (30 mm pour + vias)",
+   "R": 0.004,
+   "L": 2e-09
+  },
+  {
+   "between": "BUCK-AMPS",
+   "name": "buck->amps (45 mm)",
+   "R": 0.006,
+   "L": 3e-09
+  },
+  {
+   "between": "BUCK-MISC",
+   "name": "buck->CH340C",
+   "R": 0.005,
+   "L": 2.5e-09
+  },
+  {
+   "between": "ESP-UI",
+   "name": "ESP area->J501 (40 mm)",
+   "R": 0.008,
+   "L": 4e-09
+  }
+ ],
+ "PVDD_7.4V_2.5A_power": {
+  "z_max_audio_ohm": 0.4617146217365299,
+  "f_at_max_Hz": 146.4983514769702,
+  "sag_at_5A_V": 2.3085731086826495,
+  "z_at_768k_ohm": 0.013872794208268516
+ },
+ "PVDD_6.0V_2.5A_power": {
+  "z_max_audio_ohm": 0.5678110246878172,
+  "f_at_max_Hz": 133.59928867326795,
+  "sag_at_5A_V": 2.8390551234390857,
+  "z_at_768k_ohm": 0.013872279954838978
+ },
+ "PVDD_8.4V_0.5A_resistive": {
+  "z_max_audio_ohm": 0.3986555612523503,
+  "f_at_max_Hz": 155.1853098100388,
+  "sag_at_5A_V": 1.9932778062617516,
+  "z_at_768k_ohm": 0.013873972920612493
+ },
+ "PVDD_7.4V_Rc100k": {
+  "z_max_audio_ohm": 0.15863379767292307,
+  "f_at_max_Hz": 243.2147966121413
+ },
+ "PVDD_bom": [
+  {
+   "node": "BOOST",
+   "name": "TPS61178 loop (S1)",
+   "kind": "regulator (from S1 loop model)"
+  },
+  {
+   "node": "BOOST",
+   "name": "C906-C913 10u/50V 1206",
+   "kind": "MLCC",
+   "C0": 1e-05,
+   "Ceff": 4.455206744406398e-06,
+   "Vbias": 18.0,
+   "size": "1206",
+   "ESR": 0.004,
+   "ESL": 1.2e-09,
+   "qty": 8
+  },
+  {
+   "node": "BOOST",
+   "name": "C914 100n 0603",
+   "kind": "MLCC",
+   "C0": 1e-07,
+   "Ceff": 5.665459169008369e-08,
+   "Vbias": 18.0,
+   "size": "0603",
+   "ESR": 0.03,
+   "ESL": 8e-10,
+   "qty": 1
+  },
+  {
+   "node": "BOOST",
+   "name": "C920 470u/35V",
+   "kind": "Al",
+   "C": 0.00047,
+   "ESR": 0.15,
+   "ESL": 5e-09,
+   "qty": 1
+  },
+  {
+   "node": "AMP_L",
+   "name": "C301 470u/35V (AMP_L)",
+   "kind": "Al",
+   "C": 0.00047,
+   "ESR": 0.15,
+   "ESL": 5e-09,
+   "qty": 1
+  },
+  {
+   "node": "AMP_L",
+   "name": "C302,C303,C305,C306 10u/50V (AMP_L)",
+   "kind": "MLCC",
+   "C0": 1e-05,
+   "Ceff": 4.455206744406398e-06,
+   "Vbias": 18.0,
+   "size": "1206",
+   "ESR": 0.004,
+   "ESL": 1.2e-09,
+   "qty": 4
+  },
+  {
+   "node": "AMP_L",
+   "name": "C304,C307 100n 0402 (AMP_L)",
+   "kind": "MLCC",
+   "C0": 1e-07,
+   "Ceff": 5.665459169008369e-08,
+   "Vbias": 18.0,
+   "size": "0402",
+   "ESR": 0.04,
+   "ESL": 6e-10,
+   "qty": 2
+  },
+  {
+   "node": "AMP_R",
+   "name": "C301 470u/35V (AMP_R)",
+   "kind": "Al",
+   "C": 0.00047,
+   "ESR": 0.15,
+   "ESL": 5e-09,
+   "qty": 1
+  },
+  {
+   "node": "AMP_R",
+   "name": "C302,C303,C305,C306 10u/50V (AMP_R)",
+   "kind": "MLCC",
+   "C0": 1e-05,
+   "Ceff": 4.455206744406398e-06,
+   "Vbias": 18.0,
+   "size": "1206",
+   "ESR": 0.004,
+   "ESL": 1.2e-09,
+   "qty": 4
+  },
+  {
+   "node": "AMP_R",
+   "name": "C304,C307 100n 0402 (AMP_R)",
+   "kind": "MLCC",
+   "C0": 1e-07,
+   "Ceff": 5.665459169008369e-08,
+   "Vbias": 18.0,
+   "size": "0402",
+   "ESR": 0.04,
+   "ESL": 6e-10,
+   "qty": 2
+  },
+  {
+   "between": "BOOST-AMP_L",
+   "name": "boost->amp L (50 mm, 2 mm pour)",
+   "R": 0.005,
+   "L": 6e-09
+  },
+  {
+   "between": "BOOST-AMP_R",
+   "name": "boost->amp R (70 mm, 2 mm pour)",
+   "R": 0.007,
+   "L": 8e-09
+  }
+ ],
+ "validation": {
+  "srf_100n_0402_hand_MHz": 20.54681480204999,
+  "z_reg_plateau_hand_ohm": 0.13374364965705493,
+  "z_3v3_lumped_at_35kHz": 0.0723998614983951,
+  "pvdd_peak_hand_ohm": 0.4353729704888263
+ }
+}

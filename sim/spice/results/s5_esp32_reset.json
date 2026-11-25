@@ -1,0 +1,105 @@
+{
+ "cases": {
+  "tight": {
+   "t_EN_cross_VIL_ms": 2.49742231924438,
+   "t_EN_cross_VIH_ms": 13.483623327606775,
+   "io0_max_in_window_V": 0.31192958166899665,
+   "download_mode_ok": true,
+   "io0_released_at_ms": 50.001761965184436,
+   "en_min_during_reset_V": 0.12266620875526005,
+   "hold_margin_ms": 35.518138637577664,
+   "gap_ms": 0.0
+  },
+  "gap1ms": {
+   "t_EN_cross_VIL_ms": 2.4992156380646975,
+   "t_EN_cross_VIH_ms": 13.485420111756921,
+   "io0_max_in_window_V": 0.31192295836609185,
+   "download_mode_ok": true,
+   "io0_released_at_ms": 51.0017618219519,
+   "en_min_during_reset_V": 0.12266620875526005,
+   "hold_margin_ms": 36.51634171019498,
+   "gap_ms": 1.0
+  },
+  "gap2ms": {
+   "t_EN_cross_VIL_ms": 2.4992168471826974,
+   "t_EN_cross_VIH_ms": 13.485418101317856,
+   "io0_max_in_window_V": 0.3119313198197848,
+   "download_mode_ok": true,
+   "io0_released_at_ms": 52.00176212350588,
+   "en_min_during_reset_V": 0.12266620875526005,
+   "hold_margin_ms": 37.51634402218802,
+   "gap_ms": 2.0
+  },
+  "gap3ms": {
+   "t_EN_cross_VIL_ms": 2.499218002628714,
+   "t_EN_cross_VIH_ms": 13.485419543965927,
+   "io0_max_in_window_V": 3.3245043987340805,
+   "download_mode_ok": false,
+   "io0_released_at_ms": 53.00176172863938,
+   "en_min_during_reset_V": 0.12266620875526005,
+   "hold_margin_ms": 38.516342184673455,
+   "gap_ms": 3.0
+  },
+  "gap5ms": {
+   "t_EN_cross_VIL_ms": 2.499218002628714,
+   "t_EN_cross_VIH_ms": 13.485418468800358,
+   "io0_max_in_window_V": 3.3245042056622167,
+   "download_mode_ok": false,
+   "io0_released_at_ms": 55.00176195650164,
+   "en_min_during_reset_V": 0.12266620875526005,
+   "hold_margin_ms": 40.51634348770128,
+   "gap_ms": 5.0
+  }
+ },
+ "max_gap_ms_analytic": 2.876820724517809,
+ "powerup": {
+  "t_vdd_3V0_ms": 4.363636363636364,
+  "t_en_cross_VIL_ms": 3.9617211206972045,
+  "t_en_cross_VIH_ms": 9.73449634494371,
+  "margin_after_vdd_ok_us": -401.9152429391593,
+  "required_us": 50,
+  "io0_at_en_rise_V": 2.7236269113087466
+ },
+ "powerup_C103_2u2": {
+  "t_en_cross_VIL_ms": 5.449860118074855,
+  "margin_after_vdd_ok_us": 1086.2237544384907
+ },
+ "C103_2u2_gap_ok": {
+  "2ms": true,
+  "4ms": true,
+  "5ms": true,
+  "6ms": false
+ },
+ "straps": {
+  "GPIO0 (boot)": {
+   "v_min": 3.291111111111111,
+   "v_max": 3.3088888888888888,
+   "required": 1,
+   "ok": true
+  },
+  "GPIO2 (BOOST_EN)": {
+   "v_min": -0.042105263157894736,
+   "v_max": 0.042105263157894736,
+   "required": 0,
+   "ok": true
+  },
+  "GPIO12 MTDI (AMP_PDN)": {
+   "v_min": -0.04444444444444444,
+   "v_max": 0.04444444444444444,
+   "required": 0,
+   "ok": true
+  },
+  "GPIO15 MTDO (LCD_DC)": {
+   "v_min": 3.2199999999999998,
+   "v_max": 3.38,
+   "required": 1,
+   "ok": true
+  },
+  "GPIO5 (LCD_CS)": {
+   "v_min": 3.2199999999999998,
+   "v_max": 3.38,
+   "required": 1,
+   "ok": true
+  }
+ }
+}

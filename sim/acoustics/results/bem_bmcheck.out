@@ -1,0 +1,6 @@
+[bmcheck] level h=9.0 mm: 8416 triangles, 4210 dofs, band [2900.0, 5000.0], 2 of 2 frequencies to do
+  f =   2900.0 Hz  solve   18.1 s  (elapsed     114 s)
+  f =   5000.0 Hz  solve    9.6 s  (elapsed     204 s)
+[bmcheck] level h=5.6 mm: 12090 triangles, 6047 dofs, band [9000.0, 9000.0], 1 of 1 frequencies to do
+  f =   9000.0 Hz  solve   23.9 s  (elapsed     397 s)
+done bmcheck 397 s

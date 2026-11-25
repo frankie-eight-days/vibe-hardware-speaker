@@ -1,0 +1,23 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s3: bq25792 ts network, ntc beta model b=3435.0
+
+binary raw file "s3_ntc_B3435.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 4  
+
+No. of Data Rows : 241
+
+Total analysis time (seconds) = 0.001471
+
+Total elapsed time (seconds) = 0.009 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 4156.844 MB.
+Maximum ngspice program size =    9.953 MB.
+Current ngspice program size =    9.953 MB.
+

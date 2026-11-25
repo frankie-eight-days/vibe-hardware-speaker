@@ -1,0 +1,22 @@
+* S4 DC: PVDD vs trim voltage at 25 C
+.temp 25
+VT pvdd_trim 0 0
+* ideal boost: gm-C integrator drives PVDD so that V(FB) = VREF; PVDD >= VSYS - 0.5 V
+GINT vint 0 fb vref 1
+CINT vint 0 1e-06
+RINT vint 0 1e6
+VREF vref 0 1.198
+BPV pvdd 0 V = max(v(vint), 6.9)
+RUP pvdd fb 300000.0
+RDN fb 0 21428.57
+R907 trim_k fb 68000.0
+D901 trim_rc trim_k D1N4148W
+R909 trim_a trim_rc 10000.0
+C918 trim_rc 0 1e-06
+R908 pvdd_trim trim_a 10000.0
+C917 trim_a 0 1e-06
+.model D1N4148W D(IS=2.52n RS=0.568 N=1.752 CJO=4p M=0.4 TT=20n BV=75 IBV=5u XTI=3 EG=1.11)
+
+.ic v(vint)=17.97
+.dc VT 0 3.3 0.01
+.end

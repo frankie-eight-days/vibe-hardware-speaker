@@ -1,0 +1,25 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s4 transient: ledc pwm 20 khz, duty 0.5
+
+binary raw file "s4_tran_d50.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 12  
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+ Reference value :  5.02812e-02 Reference value :  1.02175e-01 Reference value :  1.51091e-01 Reference value :  2.00437e-01 Reference value :  2.46915e-01 Reference value :  2.99378e-01
+No. of Data Rows : 733880
+
+Total analysis time (seconds) = 1.51236
+
+Total elapsed time (seconds) = 1.516 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 4018.938 MB.
+Maximum ngspice program size =   10.094 MB.
+Current ngspice program size =   10.094 MB.
+

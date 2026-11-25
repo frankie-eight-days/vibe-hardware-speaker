@@ -1,0 +1,23 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s2 ac: btl lc filter, load = ot19nc00-04 tweeter model, c = 1e-06
+
+binary raw file "s2_ac_OT19NC0004_1000n.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 29  
+
+No. of Data Rows : 1061
+
+Total analysis time (seconds) = 0.003791
+
+Total elapsed time (seconds) = 0.007 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 4295.688 MB.
+Maximum ngspice program size =    9.969 MB.
+Current ngspice program size =    9.969 MB.
+

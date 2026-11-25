@@ -1,0 +1,51 @@
+=== Validation ===
+sealed 2xND65-8 in 0.82 L: closed form fc 140.03 Hz, model |Z| peak 140.04 Hz (Le=0), 139.99 Hz (with Le)
+lossless PR notch at fp=32.2 Hz: -137 dB below peak
+electroacPy cross-check (same physics): {'spl_db': 0.0127, 'zin_pct': 0.2217, 'xd_db': 0.0249, 'xp_db': 0.0152, 'air_load_effect_spl_db_max': 0.1409}
+
+=== PR added-mass sweep ===
+Vb 0.85 L: best m_add 2.50 g/PR -> pink 90.67 dB (amp V)
+Vb 0.82 L: best m_add 2.50 g/PR -> pink 90.59 dB (amp V)
+chosen 3.5 g/PR at 0.82 L: fb 53.2 Hz, fp 32.2 Hz, pink 90.55 dB (amp V), margins amp V +0.0, amp I +8.9, woofer thermal +8.5, woofer Xmax +1.1, PR Xmax +1.5
+  natural F3/F6 120/96 Hz; with EQ 63.7/55.6 Hz; max boost 8.8 dB; DSP sine ceiling 86.5 dB (set by 47 Hz)
+
+=== Biquad realisation of the bass EQ (fs = 48 kHz) ===
+  highpass (BW4 stage 1)   fc   49.8 Hz  Q 0.541  gain +0.00 dB
+  highpass (BW4 stage 2)   fc   49.8 Hz  Q 1.307  gain +0.00 dB
+  low shelf                fc  113.0 Hz  Q 1.028  gain +5.80 dB
+  peaking                  fc   65.9 Hz  Q 1.401  gain +2.93 dB
+  max |biquad - ideal| 40 Hz-1 kHz: 0.55 dB
+  realised with biquads: F3 63.7 Hz, F6 55.3 Hz, max boost 8.8 dB, pink 90.55 dB (amp V), woofer avg 2.39 W
+
+=== What-ifs (PR mass re-optimised for each) ===
+  baseline (0.82 L, QL 10, empty)        best m  2.50 g pink 90.59 (amp V); @3.5 g pink 90.55 fb 53.2 max63 86.7
+  0.85 L (CAD nominal)                   best m  2.50 g pink 90.67 (amp V); @3.5 g pink 90.61 fb 52.6 max63 86.8
+  leaky box QL 5                         best m  2.75 g pink 90.33 (amp V); @3.5 g pink 90.31 fb 53.2 max63 86.3
+  tight box QL 20                        best m  2.50 g pink 90.74 (amp V); @3.5 g pink 90.68 fb 53.2 max63 86.9
+  polyfill light: Vb x1.10, QA 30        best m  2.25 g pink 90.65 (amp V); @3.5 g pink 90.57 fb 51.7 max63 86.8
+  polyfill heavy: Vb x1.20, QA 10        best m  2.00 g pink 90.44 (amp V); @3.5 g pink 90.35 fb 50.3 max63 86.7
+  zeolite x1.3 (QA 30)                   best m  2.00 g pink 90.90 (amp V); @3.5 g pink 90.77 fb 49.2 max63 86.7
+  zeolite x1.5 (QA 30)                   best m  1.75 g pink 91.05 (amp V); @3.5 g pink 90.82 fb 47.3 max63 85.9
+  zeolite x2.0 (QA 30)                   best m  1.25 g pink 90.67 (woofer Xmax); @3.5 g pink 90.14 fb 44.0 max63 84.7
+  limiter 17.1 V (BTL clip, 18 V PVDD)   best m  3.00 g pink 91.44 (amp V); @3.5 g pink 91.41 fb 53.2 max63 87.5
+figure: a1_spl_halfspace_1m
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_spl_halfspace_1m.csv
+figure: a1_excursion_vs_xmax
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_excursion_vs_xmax.csv
+figure: a1_impedance
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_impedance.csv
+figure: a1_max_spl_vs_frequency
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_max_spl_vs_frequency.csv
+figure: a1_dsp_bass_eq
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_dsp_bass_eq.csv
+figure: a1_pr_mass_sweep
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_pr_mass_family.csv
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_pr_mass_sweep.csv
+figure: a1_whatif_volume_fill_zeolite
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_whatif_responses.csv
+figure: a1_electroacpy_crosscheck
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_electroacpy_crosscheck.csv
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_bass_transfer.csv
+results: /Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/sim/acoustics/results/a1_bass_summary.json
+
+battery estimate at pink limit: 9.0 W; runtime 4 s

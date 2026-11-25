@@ -1,0 +1,23 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s4 dc: pvdd vs trim voltage at 60 c
+
+binary raw file "s4_dc_60C.raw"
+Doing analysis at TEMP = 60.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 12  
+
+No. of Data Rows : 331
+
+Total analysis time (seconds) = 0.000854
+
+Total elapsed time (seconds) = 0.004 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 4024.250 MB.
+Maximum ngspice program size =    9.984 MB.
+Current ngspice program size =    9.984 MB.
+

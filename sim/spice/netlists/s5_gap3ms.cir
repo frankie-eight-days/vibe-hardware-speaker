@@ -1,0 +1,25 @@
+* S5 gap3ms: ESP32 EN/IO0 auto-reset
+VDD vdd 0 DC 3.3
+VDTR dtr_src 0 PWL(0 3.3 0.001 3.3 0.101 3.3 0.101001 0 0.154001 0 0.154002 3.3)
+VRTS rts_src 0 PWL(0 3.3 0.001 3.3 0.001001 0 0.104 0 0.104001 3.3)
+RODTR dtr_src dtr_n 150
+RORTS rts_src rts_n 150
+* EN network
+R101 vdd en 10k
+C103 en 0 1u
+CEN en 0 5p
+R201 dtr_n q201b 10k
+Q201 en q201b rts_n Q2N3904
+* IO0 network
+R102 vdd io0 10k
+RPU_INT vdd io0 45k
+D101 vdd led_k LEDR
+R103 led_k io0 1k
+CIO0 io0 0 10p
+R202 rts_n q202b 10k
+Q202 io0 q202b dtr_n Q2N3904
+.model Q2N3904 NPN(IS=6.734f XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model LEDR D(IS=1e-20 N=1.9 RS=10 CJO=20p)
+.options reltol=1e-4
+.tran 10u 0.2 0 20u
+.end

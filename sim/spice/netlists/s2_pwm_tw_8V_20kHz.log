@@ -1,0 +1,25 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s2 pwm: tw_8v_20khz  modulation=bd m=0.5097904873499022 f=20000.0 load=ot19nc00-04 tweeter model
+
+binary raw file "s2_pwm_tw_8V_20kHz.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 6  
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+ Reference value :  1.36031e-04 Reference value :  2.93827e-04
+No. of Data Rows : 89472
+
+Total analysis time (seconds) = 0.524648
+
+Total elapsed time (seconds) = 0.528 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 5480.781 MB.
+Maximum ngspice program size =   10.078 MB.
+Current ngspice program size =   10.078 MB.
+

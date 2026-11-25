@@ -1,0 +1,56 @@
+\section{Feature tour}\label{sec:features}
+
+\subsection{Stereo two-way, bi-amplified}
+
+Each side has its own TAS5805M in bridge-tied-load (BTL) mode \src{docs/spec_signal.md} §3:
+\begin{itemize}
+  \item Channel A drives the \qty{8}{\ohm} woofer and channel B the \qty{4}{\ohm} tweeter. The amplifier's input mixer sends the left (or right) input to both of its channels, and each channel's 15 biquads implement the LR4 low-pass or high-pass plus that driver's EQ.
+  \item The firmware research pointed out that TI's tested topology is ``2.2 dual stereo'' (one chip for both woofers, one for both tweeters). The per-side split was kept. The research noted that TI's split would also put both woofers' current demand on a single chip \src{research/firmware_and_tools.md}.
+  \item The amplifiers switch at \qty{768}{\kilo\hertz}. Each output leg has a \qty{10}{\micro\henry} inductor ($I_\text{sat}=\qty{5.5}{\ampere}$) and a \qty{1}{\micro\farad} capacitor, which places the differential filter corner at \qty{50.3}{\kilo\hertz}.
+  \item The boost runs at \qty{599}{\kilo\hertz}. That keeps its low-order beats with the amplifier clock at least \qty{91}{\kilo\hertz} away from audio at nominal frequency.
+  \item The analog gain is set so that 0 dBFS is about PVDD (AGAIN = 8, \qty{18.6}{\volt} peak at full scale).
+\end{itemize}
+
+Acoustically, the woofers sit only \qty{66}{\milli\metre} apart, behind Ø\qty{53}{\milli\metre} tunnels in the front baffle. The tweeters are \qty{166}{\milli\metre} apart on the front shoulders, aimed \ang{40} upward, so they carry most of the stereo image \src{docs/mech_envelope.md}. The two passive radiators on the end caps share the woofers' box and are tuned to \qty{53.2}{\hertz} with \qty{3.5}{\gram} of washers each (\cref{sec:a1}).
+
+\subsection{Microphone auto-EQ}
+
+A TDK T3902 bottom-port PDM microphone sits on the underside of the UI board. A gasketed printed tube connects it to a Ø\qty{1}{\milli\metre} port in the top of the shell, so it hears the room and not the inside of the box. It runs at a PDM clock of $64\cdot f_s = \qty{3.072}{\mega\hertz}$ at \qty{48}{\kilo\hertz}, inside the mic's high-quality-mode range \src{docs/spec_signal.md} \src{docs/spec_ui_board.md}. The firmware research proposes two v1 algorithms \src{research/firmware_and_tools.md}:
+\begin{enumerate}
+  \item \textbf{Placement (boundary) bass compensation.}
+  \begin{itemize}
+    \item Fade the music and play a \qty{2}{\second} log sweep (\qty{30}{\hertz} to \qty{2}{\kilo\hertz}).
+    \item Deconvolve the recording, window the impulse response to about \qty{20}{\milli\second}, and compare it with a free-field reference stored in flash.
+    \item Fit a single low shelf, cut-biased so boost is at most \qty{+2}{\decibel} to protect excursion.
+  \end{itemize}
+  The fallback is a three-way classifier (free, near a wall, corner) mapped to presets of 0, \qty{-3}{\decibel} and \qty{-6}{\decibel} at \qty{150}{\hertz}.
+  \item \textbf{Ambient-adaptive loudness.} A minimum-statistics noise tracker subtracts the speaker's own predicted contribution. It raises the gain by half the noise excess above \qty{45}{\decibel}A, capped at \qty{+10}{\decibel} and slewed at no more than \qty{1}{\decibel} per \qty{3}{\second}.
+\end{enumerate}
+The biggest risk is structure-borne vibration reaching the microphone. The panel-mode study (\cref{sec:a4}) shows that the top of the shell, where the mic sits, has the strongest local motion below \qty{1}{\kilo\hertz}.
+
+\subsection{Live EQ over Wi-Fi}
+
+The ESP32 joins the home network as a station and serves a single-page web app from LittleFS. SoftAP is used only for provisioning, because ESP-IDF rates ``SoftAP + BT connected'' as unstable. User EQ runs on the ESP32 with per-block parameter interpolation, so slider moves do not click \src{research/firmware_and_tools.md}.
+
+The amplifier biquads can also be rewritten live:
+\begin{itemize}
+  \item The research agent decoded the coefficient format: signed 5.27 fixed point, stored as $b_0, b_1, b_2, -a_1, -a_2$. It checked the format against a PurePath Console dump with its own encoder, \texttt{tools/tas5805m\_bq.py}.
+  \item One biquad costs about \qty{0.6}{\milli\second} of I\textsuperscript{2}C at \qty{400}{\kilo\hertz}, so all 60 biquads take about \qty{40}{\milli\second}. Until the bus rise time has been measured the bus runs at \qty{100}{\kilo\hertz}--\qty{200}{\kilo\hertz} (review S5), where one biquad takes about \qty{2.4}{\milli\second} at \qty{100}{\kilo\hertz} \src{docs/spec_signal.md}.
+  \item TI documents no safe-load bank, so multi-biquad changes use a mute ramp, then the writes, then an unmute ramp.
+\end{itemize}
+
+\subsection{Round display and controls}
+
+The display is a Waveshare 1.28-inch GC9A01 module ($240\times240$) behind a lens on the top. It runs on SPI at up to \qty{40}{\mega\hertz} over the flat cable, which takes about \qty{23}{\milli\second} per full frame. LVGL redraws only small areas (level meter, rotary arc), using two \qty{11.5}{\kilo\byte} partial buffers in internal DMA-capable RAM \src{research/firmware_and_tools.md}.
+
+The other controls are an EC11 encoder with push switch, read by the pulse counter, and three buttons on an ADC1 resistor ladder. A fourth button, SW4, is the power button. ECO-002 routes the charger's /QON input to it over J501 pin 20, with no pull-up (the charger has one inside) and a small TVS. A \qty{1}{\second} press wakes the speaker from ship mode, and a \qty{10}{\second} press resets the whole system, which is also the only battery-side reset of a hung ESP32 \src{docs/spec_ui_board.md} \src{docs/eco_002.md}.
+
+\subsection{USB-C PD charging and flashing}
+
+\begin{itemize}
+  \item \textbf{PD request.} The CH224Q requests \qty{15}{\volt} at attach, set by a \qty{56}{\kilo\ohm} resistor on CFG1. Firmware can read the source's current capability (register 0x50) and program the charger's input current limit from it \src{docs/spec_power.md}.
+  \item \textbf{Charger.} The BQ25792 is a four-switch buck--boost NVDC charger at \qty{750}{\kilo\hertz} with a \qty{2.2}{\micro\henry} inductor. It plays while charging and has a 16-bit ADC that serves as the fuel gauge.
+  \item \textbf{Limits.} A hardware input-current clamp sits at \qtyrange{2.72}{2.89}{\ampere}. Firmware writes the charge current at boot, $\le\qty{2.5}{\ampere}$ (0.5C) for the \qty{5}{\ampere\hour} pack; the power-on default is \qty{2}{\ampere}. The NTC window is \qtyrange{2.0}{60.8}{\degreeCelsius} (\cref{sec:s3}), measured on the pack's own NTC by default (ECO-002 \#3).
+  \item \textbf{Ship mode.} Ship mode draws about \qty{15}{\micro\ampere} from the pack, so a \qty{5}{\ampere\hour} pack lasts years on the shelf.
+  \item \textbf{Flashing.} The same USB-C connector carries USB 2.0 to a CH340C with the two-transistor DTR/RTS auto-reset, so \texttt{esptool} can flash without buttons (\cref{sec:s5}).
+\end{itemize}

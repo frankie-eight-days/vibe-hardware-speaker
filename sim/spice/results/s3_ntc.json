@@ -1,0 +1,88 @@
+{
+ "thresholds_pct": {
+  "VT1_rise (cold stop, 0 C)": [
+   72.4,
+   73.3,
+   74.2
+  ],
+  "VT1_fall (cold resume, 3 C)": [
+   71.5,
+   72.0,
+   72.5
+  ],
+  "VT2_rise TS_COOL=1h (10 C)": [
+   67.9,
+   68.4,
+   68.9
+  ],
+  "VT3_fall TS_WARM=1h (45 C)": [
+   44.3,
+   44.8,
+   45.3
+  ],
+  "VT5_rise (hot resume, 58 C)": [
+   35.0,
+   35.5,
+   36.0
+  ],
+  "VT5_fall (hot stop, 60 C)": [
+   33.7,
+   34.2,
+   34.7
+  ]
+ },
+ "windows": {
+  "B3435": {
+   "typ": {
+    "VT1_rise (cold stop, 0 C)": 1.951999512026025,
+    "VT1_fall (cold resume, 3 C)": 4.607721011488286,
+    "VT2_rise TS_COOL=1h (10 C)": 11.233886182254336,
+    "VT3_fall TS_WARM=1h (45 C)": 45.27665625327139,
+    "VT5_rise (hot resume, 58 C)": 58.77233940519536,
+    "VT5_fall (hot stop, 60 C)": 60.80501992822485
+   },
+   "cold_stop_range_C": [
+    -1.0896302406585954,
+    4.798781338462503
+   ],
+   "hot_stop_range_C": [
+    58.9294301758739,
+    62.73984914364094
+   ],
+   "open_ntc_pct": 85.47008547008546,
+   "shorted_ntc_pct": 0.0
+  },
+  "B3380": {
+   "typ": {
+    "VT1_rise (cold stop, 0 C)": 1.606384716903406,
+    "VT1_fall (cold resume, 3 C)": 4.298933405782503,
+    "VT2_rise TS_COOL=1h (10 C)": 11.02038466710084,
+    "VT3_fall TS_WARM=1h (45 C)": 45.62943121734867,
+    "VT5_rise (hot resume, 58 C)": 59.3852682486878,
+    "VT5_fall (hot stop, 60 C)": 61.45889158003873
+   },
+   "cold_stop_range_C": [
+    -1.4764660898944053,
+    4.492673039967286
+   ],
+   "hot_stop_range_C": [
+    59.545506836636484,
+    63.43312127942726
+   ],
+   "open_ntc_pct": 85.47008547008546,
+   "shorted_ntc_pct": 0.0
+  }
+ },
+ "validation": {
+  "TI_network_0C_pct_model": 73.77725206606902,
+  "TI_network_0C_pct_datasheet": 73.3,
+  "TI_network_60C_pct_model": 34.120768963080536,
+  "TI_network_60C_pct_datasheet": 34.2,
+  "TI_network_10C_pct_model": 68.61056916933366,
+  "TI_network_10C_pct_datasheet": 68.4,
+  "TI_network_45C_pct_model": 44.36575165592401,
+  "TI_network_45C_pct_datasheet": 44.8
+ },
+ "spice_vs_python_max_err_pct_B3435": 4.440892098500626e-14,
+ "spice_vs_python_max_err_pct_B3380": 4.440892098500626e-14
+}

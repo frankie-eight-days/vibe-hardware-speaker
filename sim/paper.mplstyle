@@ -1,0 +1,22 @@
+# Shared figure style for the design write-up. Use: plt.style.use("<root>/sim/paper.mplstyle")
+figure.figsize: 6.5, 4.0
+figure.dpi: 150
+savefig.dpi: 300
+savefig.bbox: tight
+font.family: serif
+font.serif: Computer Modern Roman, CMU Serif, DejaVu Serif
+mathtext.fontset: cm
+font.size: 10
+axes.titlesize: 11
+axes.labelsize: 10
+legend.fontsize: 9
+xtick.labelsize: 9
+ytick.labelsize: 9
+axes.grid: True
+grid.alpha: 0.3
+grid.linewidth: 0.6
+axes.spines.top: False
+axes.spines.right: False
+lines.linewidth: 1.6
+axes.prop_cycle: cycler('color', ['1f4e79', 'c55a11', '548235', '7030a0', 'bf9000', '2e75b6', 'a5a5a5'])
+legend.frameon: False

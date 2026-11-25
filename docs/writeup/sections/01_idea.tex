@@ -1,0 +1,51 @@
+\section{The idea}\label{sec:idea}
+
+The goal was a ``vibe hardware'' project. The test was whether LLM agents could carry a real mixed-signal product (digital, analog, power, acoustics and mechanics) from a one-line idea to files a factory could build. It also had to hold its own against a commercial speaker of the JBL Flip class. The manufacturing route was fixed from the start:
+\begin{itemize}
+  \item a 4-layer PCB assembled by JLCPCB, with parts from LCSC (JLC \emph{basic} parts preferred, because every \emph{extended} part type adds a loading fee);
+  \item a 3D-printed PETG enclosure, sized for a Flashforge Adventurer 5M Pro with a \qtyproduct{220 x 220 x 220}{\milli\metre} build volume;
+  \item off-the-shelf drivers and hardware;
+  \item a budget of about \$250 for v1: five assembled boards, drivers, filament, hardware and a UMIK-1 measurement microphone \src{docs/requirements.md}.
+\end{itemize}
+
+The lead proposed stereo two-way bi-amplified drivers with passive radiators, an ESP32 with TAS5805M amplifiers, and USB-C PD charging from a 2S battery. The user added a MEMS microphone for automatic EQ, a round display, and true stereo with Wi-Fi control \src{docs/process_log.md}. \Cref{tab:targets} lists the targets that came out of that exchange.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Product targets and the decisions made during the design day. The current prediction for each target is given where one exists. Source: \protect\src{docs/requirements.md}, predictions from \cref{sec:analysis}.}
+\label{tab:targets}
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.30\linewidth}@{}}
+\toprule
+Item & Target / decision & Current prediction \\
+\midrule
+Channels & Stereo, 2-way per side, bi-amped (active DSP crossover); 4 amplifier channels & LR4 crossover at \qty{2.5}{\kilo\hertz} \\
+Drivers (set B8) & 2$\times$ Dayton ND65-8 woofer (\qty{8}{\ohm}), 2$\times$ Peerless OT19NC00-04 tweeter (\qty{4}{\ohm}), 2$\times$ Dayton DMA58-PR passive radiator; \$93.54 & --- \\
+Bass extension & $F_3 \le \qty{65}{\hertz}$, $F_6 \le \qty{55}{\hertz}$ with DSP & $F_3 = \qty{63.7}{\hertz}$, $F_6 = \qty{55.3}{\hertz}$ (A1) \\
+Maximum SPL & $\ge \qty{90}{\decibel}$ at \qty{1}{\metre}, pink noise, battery, on a table (half space) & \qty{90.55}{\decibel} (A1) \\
+Amplifier rail & PVDD \qty{18}{\volt} from a TPS61178 boost & Compensation and soft start changed by ECO-001 (applied) \\
+Enclosure & \qtyproduct{95 x 210}{\milli\metre} body (\qty{216}{\milli\metre} over the PR flanges), 5 printed parts & \qty{0.85}{\litre} net by CAD, \qty{0.82}{\litre} planned \\
+Battery & Gens ace 2S \qty{5000}{\milli\ampere\hour} RC LiPo, \qtyproduct{109 x 42 x 19.5}{\milli\metre}, bonded \qty{10}{\kilo\ohm} NTC & --- \\
+Runtime & $\ge \qty{8}{\hour}$ at moderate volume & $\approx\qty{11}{\hour}$ estimated (\cref{sec:battery}) \\
+Source & Bluetooth A2DP sink, SBC required, AAC nice to have & AAC is a stretch goal \\
+Control & Wi-Fi web UI for live EQ; rotary encoder; 2--3 buttons & 3 buttons on an ADC ladder \\
+Display & 1.28-inch round TFT (GC9A01 class) & Waveshare module \\
+Microphone & One digital MEMS mic for placement compensation and auto-loudness & TDK T3902 (PDM) \\
+USB & USB-C PD sink, play while charging, firmware flashing & CH224Q + BQ25792 + CH340C \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Out of scope: waterproofing, multi-speaker linking, a phone app (the web UI replaces it), and LDAC/aptX.
+
+\subsection{Why a speaker is a good mixed-signal test}
+
+A portable speaker is small enough to finish but touches every discipline, and every discipline produces a number that can be measured with cheap equipment:
+
+\begin{description}[style=nextline,leftmargin=1.2em]
+  \item[Digital and RF] Bluetooth Classic and Wi-Fi coexisting on one radio, I\textsuperscript{2}S to two amplifiers, PDM from the microphone, SPI to a display over a ribbon cable, I\textsuperscript{2}C to five devices, and DSP split between the MCU and the amplifiers.
+  \item[Power] A \qty{40}{\watt}-class boost converter, a buck--boost NVDC charger fed by USB-C PD, 2S protection and balancing, and battery current limits that the amplifier limiters must respect.
+  \item[Analog] Class-D output filters loaded by real loudspeaker impedances, NTC networks, reset timing and signal integrity on a \qty{1}{\milli\metre}-pitch flat cable.
+  \item[Acoustics and mechanics] A passive-radiator alignment in under a litre, diffraction around a curved body, panel resonances of a printed shell, and packaging that decides the battery and the diameter.
+\end{description}
+
+The checks are concrete. SPL, $F_3$ and runtime can be measured with REW and a UMIK-1, and each of them depends on decisions taken in several of these domains at once.

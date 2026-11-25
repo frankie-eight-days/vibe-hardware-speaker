@@ -1,0 +1,25 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s2 pwm: wf_15v5_150hz  modulation=bd m=0.8887175624767932 f=150 load=nd65-8 woofer model
+
+binary raw file "s2_pwm_wf_15V5_150Hz.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 6  
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+ Reference value :  1.56901e-04 Reference value :  3.17296e-04 Reference value :  4.90063e-04 Reference value :  6.46612e-04 Reference value :  8.21738e-04 Reference value :  9.68096e-04 Reference value :  1.12075e-03 Reference value :  1.27029e-03 Reference value :  1.42317e-03 Reference value :  1.57073e-03 Reference value :  1.73044e-03 Reference value :  1.87735e-03 Reference value :  2.01817e-03 Reference value :  2.18091e-03 Reference value :  2.33390e-03 Reference value :  2.50155e-03 Reference value :  2.65134e-03 Reference value :  2.80806e-03 Reference value :  2.96283e-03 Reference value :  3.10938e-03 Reference value :  3.27929e-03 Reference value :  3.43578e-03 Reference value :  3.58921e-03 Reference value :  3.76760e-03 Reference value :  3.92173e-03 Reference value :  4.08947e-03 Reference value :  4.23696e-03 Reference value :  4.38792e-03 Reference value :  4.55337e-03 Reference value :  4.71960e-03 Reference value :  4.87443e-03 Reference value :  5.01688e-03 Reference value :  5.17735e-03 Reference value :  5.32727e-03 Reference value :  5.47068e-03 Reference value :  5.62703e-03 Reference value :  5.77732e-03 Reference value :  5.93486e-03 Reference value :  6.08619e-03 Reference value :  6.23870e-03 Reference value :  6.39871e-03 Reference value :  6.55500e-03 Reference value :  6.71392e-03 Reference value :  6.86690e-03 Reference value :  7.02515e-03 Reference value :  7.19092e-03 Reference value :  7.34996e-03 Reference value :  7.51181e-03 Reference value :  7.67911e-03 Reference value :  7.83403e-03 Reference value :  7.98759e-03 Reference value :  8.15037e-03 Reference value :  8.30731e-03 Reference value :  8.44728e-03 Reference value :  8.60280e-03 Reference value :  8.77483e-03 Reference value :  8.94407e-03 Reference value :  9.09962e-03 Reference value :  9.24587e-03 Reference value :  9.39130e-03 Reference value :  9.55357e-03 Reference value :  9.71417e-03 Reference value :  9.87056e-03 Reference value :  1.00200e-02 Reference value :  1.01743e-02 Reference value :  1.03270e-02 Reference value :  1.04767e-02 Reference value :  1.06293e-02 Reference value :  1.07902e-02 Reference value :  1.09459e-02 Reference value :  1.10944e-02 Reference value :  1.12400e-02 Reference value :  1.13858e-02 Reference value :  1.15277e-02 Reference value :  1.16854e-02 Reference value :  1.18399e-02 Reference value :  1.20067e-02 Reference value :  1.21661e-02 Reference value :  1.23257e-02 Reference value :  1.25047e-02 Reference value :  1.26789e-02 Reference value :  1.28661e-02 Reference value :  1.30362e-02 Reference value :  1.31995e-02 Reference value :  1.33620e-02 Reference value :  1.35270e-02
+No. of Data Rows : 3980748
+
+Total analysis time (seconds) = 22.0959
+
+Total elapsed time (seconds) = 22.099 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 4078.078 MB.
+Maximum ngspice program size =   10.031 MB.
+Current ngspice program size =   10.031 MB.
+

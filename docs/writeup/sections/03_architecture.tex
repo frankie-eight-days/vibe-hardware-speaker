@@ -1,0 +1,186 @@
+\section{System architecture}\label{sec:architecture}
+
+\Cref{fig:power-path,fig:data-path} show the main board as built in schematic v0.2. Power and signals are drawn separately because they share almost no parts. The schematic's own root sheet is the same block diagram drawn in KiCad (\cref{fig:sch-root}). Values are from the circuit specs, v1.2 \src{docs/spec_power.md} \src{docs/spec_signal.md}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  font=\sffamily\scriptsize,
+  blk/.style={draw, fill=pwrred, rounded corners=2pt, align=center, minimum height=1.0cm, text width=2.2cm, inner sep=2pt},
+  ext/.style={draw, fill=white, align=center, minimum height=0.9cm, text width=2.0cm, inner sep=2pt},
+  rail/.style={-{Stealth[length=2mm]}, very thick},
+  lab/.style={font=\sffamily\tiny, fill=white, inner sep=1pt},
+]
+\node[ext] (usb) at (0,0) {USB-C J601\\(ESD, TVS)};
+\node[blk] (pd) at (2.9,0) {CH224Q PD sink\\requests \qty{15}{\volt}};
+\node[blk] (chg) at (6.0,0) {BQ25792\\buck--boost NVDC\\charger, \qty{750}{\kilo\hertz}};
+\node[draw, very thick, fill=yellow!30, minimum width=0.55cm, minimum height=5.1cm, align=center] (vsys) at (8.55,-1.7) {};
+\node[rotate=90, font=\sffamily\scriptsize\bfseries] at (vsys) {VSYS \qtyrange{6.0}{8.6}{\volt}};
+\node[blk] (boost) at (10.9,0) {TPS61178 boost\\\qty{599}{\kilo\hertz}, ILIM \qty{6.3}{\ampere} min};
+\node[blk, fill=pwrred!60] (pvdd) at (13.6,0) {PVDD \qty{18.0}{\volt}\\$\approx\qty{1.5}{\milli\farad}$ bulk};
+\node[blk] (buck) at (10.9,-3.4) {TPS62933 buck\\\qty{500}{\kilo\hertz}};
+\node[blk, fill=digblue] (v33) at (13.6,-3.4) {+3V3\\ESP32, amps DVDD,\\UI board};
+\node[ext] (pack) at (0,-3.4) {2S pack\\Gens ace \qty{5}{\ampere\hour}\\XT30 + JST-XH};
+\node[blk] (prot) at (2.9,-3.4) {F801 \qty{10}{\ampere} fuse\\R5460 protector\\Q801/Q802 (low side)\\HY2213 $\times$2 balancers};
+\node[blk] (ship) at (6.0,-3.4) {Q701 ship FET\\IBAT\_OCP \qty{9.3}{\ampere}};
+\node[ext, text width=2.4cm] (amps) at (13.6,-1.7) {to TAS5805M L/R\\(\cref{fig:data-path})};
+
+\draw[rail] (usb) -- node[lab, above]{VBUS} (pd);
+\draw[rail] (pd) -- node[lab, above]{5/\qty{15}{\volt}} (chg);
+\draw[rail] (chg.east) -- (chg.east -| vsys.west);
+\draw[rail] (pack) -- (prot);
+\draw[rail] (prot) -- node[lab, above]{VBAT\_PACK} (ship);
+\draw[rail] (ship.north) -- node[lab, right]{BAT} (chg.south);
+\draw[rail] (vsys.east |- boost.west) -- (boost);
+\draw[rail] (boost) -- (pvdd);
+\draw[rail] (vsys.east |- buck.west) -- (buck);
+\draw[rail] (buck) -- (v33);
+\draw[rail] (pvdd) -- (amps);
+\draw[-{Stealth}, dashed, thick, gray] (pd.south) to[bend right=15] node[lab, pos=0.5, below, sloped]{I\textsuperscript{2}C (isolated by Q601/Q602)} (6.0,-1.4);
+\end{tikzpicture}
+\caption{Power path. USB-C power delivery feeds a buck--boost charger with a power-path (NVDC) output, VSYS. Everything, including the boost converter, hangs off VSYS, so the charger's \qty{6}{\ampere}-RMS battery FET and its \qty{9.3}{\ampere} over-current trip limit what the amplifiers may draw. Pack protection and cell balancing sit on the main board because the pack has none. Cell negative is not board ground: the protection FETs sit between them. There is no load-disconnect FET after the boost (\cref{sec:disconnect}), so PVDD rests at VSYS$-\qty{0.5}{\volt}$ when the boost is off.}
+\label{fig:power-path}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  font=\sffamily\scriptsize,
+  blk/.style={draw, fill=digblue, rounded corners=2pt, align=center, minimum height=0.95cm, text width=2.3cm, inner sep=2pt},
+  amp/.style={draw, fill=pwrred, rounded corners=2pt, align=center, minimum height=1.0cm, text width=2.4cm, inner sep=2pt},
+  drv/.style={draw, fill=white, align=center, minimum height=0.6cm, text width=2.2cm, inner sep=2pt},
+  bus/.style={-{Stealth[length=2mm]}, thick},
+  bbus/.style={{Stealth[length=2mm]}-{Stealth[length=2mm]}, thick},
+  lab/.style={font=\sffamily\tiny, fill=white, inner sep=1pt},
+]
+\node[draw, fill=digblue!60, rounded corners=3pt, minimum height=5.6cm, text width=2.6cm, align=center] (esp) at (5.2,0) {\textbf{ESP32-WROVER-E}\\N8R8\\8 MB flash\\8 MB PSRAM\\[4pt]A2DP sink, Wi-Fi\\user EQ, auto-EQ,\\web UI, LVGL};
+\node[blk] (phone) at (0.9,2.4) {Phone\\(Bluetooth A2DP)};
+\node[blk] (wifi) at (0.9,1.1) {Browser\\(Wi-Fi web UI)};
+\node[blk] (uart) at (0.9,-0.4) {CH340C USB-UART\\+ auto-reset (Q201/Q202)};
+\node[draw, fill=white, rounded corners=2pt, text width=2.4cm, align=left, inner sep=3pt] (ui) at (0.9,-2.7) {\textbf{UI board}\\(20-pin FFC, J501)\\GC9A01 display (SPI)\\T3902 PDM mic\\EC11 encoder,\\3 buttons};
+\node[amp] (ampl) at (10.0,1.6) {TAS5805M L\\U301, I\textsuperscript{2}C 0x2C\\BTL, \qty{768}{\kilo\hertz}};
+\node[amp] (ampr) at (10.0,-1.0) {TAS5805M R\\U401, I\textsuperscript{2}C 0x2D\\BTL, \qty{768}{\kilo\hertz}};
+\node[drv] (wl) at (13.4,2.15) {woofer L, \qty{8}{\ohm}};
+\node[drv] (tl) at (13.4,1.05) {tweeter L, \qty{4}{\ohm}};
+\node[drv] (wr) at (13.4,-0.45) {woofer R, \qty{8}{\ohm}};
+\node[drv] (tr) at (13.4,-1.55) {tweeter R, \qty{4}{\ohm}};
+\node[blk, text width=3.0cm] (pwr) at (10.0,-3.3) {BQ25792 0x6B, CH224Q 0x22/0x23\\boost EN / trim};
+
+\draw[bus] (phone.east) -- (esp.west |- phone.east);
+\draw[bbus] (wifi.east) -- (esp.west |- wifi.east);
+\draw[bbus] (uart.east) -- node[lab,above]{UART0, EN, IO0} (esp.west |- uart.east);
+\draw[bbus] (ui.east) -- node[lab,above, text width=1.6cm, align=center]{SPI \qty{40}{\mega\hertz}, PDM, encoder, ADC} (esp.west |- ui.east);
+\draw[bus] (esp.east |- ampl.west) -- node[lab, above]{I\textsuperscript{2}S1 (BCLK, LRCK, DOUT)} (ampl.west);
+\draw[bus] (esp.east |- ampr.west) -- node[lab, above]{shared I\textsuperscript{2}S1} (ampr.west);
+\draw[bbus, densely dashed] (esp.east |- pwr.west) -- node[lab, above]{I\textsuperscript{2}C \qtyrange{100}{200}{\kilo\hertz}} (pwr.west);
+\draw[bbus, densely dashed] (8.2,-3.3) -- (8.2,1.2) -- (ampl.south west |- 0,1.2);
+\draw[bbus, densely dashed] (8.2,-1.4) -- (ampr.west |- 0,-1.4);
+\draw[bus] (ampl.east) -- ++(0.25,0) |- node[lab, pos=0.75, above]{ch A} (wl.west);
+\draw[bus] (ampl.east) -- ++(0.25,0) |- node[lab, pos=0.75, below]{ch B} (tl.west);
+\draw[bus] (ampr.east) -- ++(0.25,0) |- (wr.west);
+\draw[bus] (ampr.east) -- ++(0.25,0) |- (tr.west);
+\node[font=\sffamily\tiny, text width=4.4cm, align=left] at (10.6,3.15) {each leg: \qty{10}{\micro\henry} + \qty{1}{\micro\farad} LC filter};
+\end{tikzpicture}
+\caption{Signal and control path. The ESP32 decodes Bluetooth audio and sends one I\textsuperscript{2}S stream to both amplifiers. Each amplifier serves one side: channel A drives the woofer and channel B the tweeter, with the crossover in the amplifier's DSP. Five devices share one I\textsuperscript{2}C bus. The PD controller is isolated from the bus when USB is unplugged (\cref{sec:ch224q}). The UI board hangs off a \qty{1.0}{\milli\metre}-pitch, 20-way flat cable that carries SPI, PDM, encoder and button signals with ground between the fast lines.}
+\label{fig:data-path}
+\end{figure}
+
+\subsection{DSP split}
+
+The DSP is split so that anything that protects hardware runs in the amplifiers, where it survives an MCU crash, and anything the user touches runs on the ESP32, where it can change smoothly \src{docs/requirements.md} \src{research/firmware_and_tools.md}.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Where each DSP function runs. The amplifier layer is written at boot and rarely changed. The ESP32 layer interpolates its parameters per audio block.}
+\label{tab:dsp-split}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+TAS5805M (each amplifier, 15 biquads per channel) & ESP32 (core 1 audio task, 256-frame blocks) \\
+\midrule
+LR4 crossover at \qty{2.5}{\kilo\hertz} (ch A low-pass, ch B high-pass) & SBC decode (AAC as a stretch goal, ESP-IDF $\ge$ 6.1) \\
+Driver EQ, including the 4-biquad bass EQ from A1 and a $\approx\qty{+2}{\decibel}$ tweeter shelf (ECO-001 \#5) & User EQ and presets from the web UI and encoder \\
+DRC/limiters: woofer $\le \qty{15.5}{\volt}$ peak, tweeter $\le \qty{8}{\volt}$ peak (mandatory) & Loudness, bass enhancement, stereo widening \\
+Click-free volume ramps (used for mutes during coefficient changes) & Microphone auto-EQ (placement shelf) and ambient loudness \\
+Process flow 1 (internal SRC to \qty{96}{\kilo\hertz}), so 44.1 and \qty{48}{\kilo\hertz} streams share one coefficient set & Digital volume mapped to AVRCP absolute volume \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The firmware research estimates the whole ESP32 chain (10-band EQ, loudness, bass enhancer, widener, limiter) at about 40~Mcycle/s, roughly \qty{17}{\percent} of one \qty{240}{\mega\hertz} core, from the esp-dsp figure of 17 cycles per biquad sample \src{research/firmware_and_tools.md}. That is an estimate, not a measurement.
+
+\subsection{GPIO and I\texorpdfstring{\textsuperscript{2}}{2}C maps}
+
+The WROVER-E's PSRAM takes GPIO16 and GPIO17. That leaves 22 usable GPIO plus GPIO0, and \textbf{all of them are assigned} (\cref{tab:gpio}). JTAG is unavailable because GPIO12--15 are in use, so debugging goes over UART0.
+
+{\small
+\begin{longtable}{@{}r l l >{\raggedright\arraybackslash}p{0.42\linewidth}@{}}
+\caption{ESP32 GPIO map, condensed from \protect\src{docs/spec_signal.md} §1.3. ``Strap'' pins are sampled at reset; the simulated strap levels are in \cref{sec:s5}.}\label{tab:gpio}\\
+\toprule
+GPIO & Signal & Peripheral & Notes \\
+\midrule
+\endfirsthead
+\toprule GPIO & Signal & Peripheral & Notes \\ \midrule
+\endhead
+\bottomrule
+\endfoot
+0 & BOOT button / status LED & GPIO & Strap: 1 = SPI boot; firmware drives it open-drain only \\
+1, 3 & U0TXD, U0RXD & UART0 & To CH340C \\
+2 & BOOST\_EN & GPIO & Strap: must be 0 with IO0 = 0; \qty{100}{\kilo\ohm} pull-down \\
+4 & ENC\_SW & GPIO / RTC wake & Moved here from GPIO36 (erratum, \cref{sec:smaller-catches}) \\
+5 & LCD\_CS & VSPI CS0 & Strap, high at boot \\
+12 & AMP\_PDN & GPIO & Strap MTDI: must be 0 at reset \\
+13, 26, 27 & I2S\_DOUT, BCLK, LRCK & I\textsuperscript{2}S1 TX & To both amplifiers; BCLK = 64$\cdot f_s$ \\
+14 & LCD\_BL & LEDC PWM & Short PWM burst during ROM boot \\
+15 & LCD\_DC & GPIO & Strap MTDO \\
+18, 23 & LCD\_SCLK, LCD\_MOSI & VSPI & Up to \qty{40}{\mega\hertz} over the FFC \\
+19 & CHG\_INT & GPIO IRQ & BQ25792 /INT, \qty{10}{\kilo\ohm} pull-up \\
+21, 22 & I2C\_SDA, I2C\_SCL & I\textsuperscript{2}C0 & \qtyrange{100}{200}{\kilo\hertz} until $t_r$ is scoped; \qty{2.2}{\kilo\ohm} pull-ups \\
+25 & PVDD\_TRIM & DAC1 or LEDC & Hi-Z at reset gives PVDD = \qty{18.0}{\volt} \\
+32, 33 & PDM\_CLK, PDM\_DATA & I\textsuperscript{2}S0 PDM RX & PDM RX exists only on I\textsuperscript{2}S0 \\
+34, 35 & ENC\_A, ENC\_B & PCNT & Input-only \\
+36 & AMP\_FAULT (1 = fault) & GPIO IRQ & Input-only; merged fault (\cref{sec:adr-fault}) \\
+39 & BTN\_ADC & ADC1\_CH3 & ADC1 works with Wi-Fi on (ADC2 does not) \\
+16, 17 & --- & PSRAM & Never use \\
+\end{longtable}
+}
+
+\begin{table}[htbp]
+\centering\small
+\caption{I\textsuperscript{2}C bus map (\qty{2.2}{\kilo\ohm} pull-ups R104/R105 on the MCU sheet). The spec first assumed \qty{100}{\pico\farad} and a \qty{186}{\nano\second} rise time at \qty{400}{\kilo\hertz}. The release review added the CH224Q isolator FETs' output capacitance and got \qtyrange{240}{420}{\nano\second}, so the bus runs at \qtyrange{100}{200}{\kilo\hertz} until the rise time is scoped (review S5). Sources: \protect\src{docs/spec_power.md} §1.3, \protect\src{docs/spec_signal.md} §1.5.}
+\label{tab:i2c}
+\begin{tabularx}{\linewidth}{@{}l l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Device & Address & Notes \\
+\midrule
+TAS5805M left (U301) & 0x2C & ADR strap \qty{4.7}{\kilo\ohm}; DSP coefficients, volume, faults \\
+TAS5805M right (U401) & 0x2D & ADR strap \qty{15}{\kilo\ohm} \\
+BQ25792 charger (U701) & 0x6B & Charge settings, JEITA, 16-bit ADC used as the fuel gauge \\
+CH224Q PD sink (U603) & 0x22 or 0x23 & The manual does not say which; firmware probes both. Reachable only while VBUS is present \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Schematic sheets}
+
+\begin{table}[htbp]
+\centering\small
+\caption{The nine hierarchical sheets of the main board, with part counts at v0.2 (counted from the exported BOM; v0.1 had 257 parts, ECO-002 added C721 and 13 test points). RefDes ranges were agreed between the two spec agents before drawing started. Source: \protect\src{hw/mainboard/BUILD_NOTES.md}, \protect\src{hw/mainboard/out/speaker_main_bom.csv}.}
+\label{tab:sheets}
+\begin{tabular}{@{}r l r l@{}}
+\toprule
+Page & Sheet & Parts & Main ICs \\
+\midrule
+2 & usb\_power & 17 & J601 USB-C, U603 CH224Q, U601/U602 USBLC6, Q601/Q602 I\textsuperscript{2}C isolators \\
+3 & charger & 39 & U701 BQ25792, Q701 ship FET \\
+4 & battery & 34 & U801 R5460N212AF, U802/U803 HY2213, Q801/Q802, F801, J801--J803 \\
+5 & rails & 54 & U901 TPS61178 boost (PVDD \qty{18.0}{\volt}), U951 TPS62933 buck (+3V3) \\
+6 & mcu & 42 & U101 ESP32-WROVER-E, fault merge Q101/Q102 \\
+7 & usb\_uart & 8 & U201 CH340C, auto-reset Q201/Q202 \\
+8 & ui\_io & 17 & J501 20-pin FFC, U501 I\textsuperscript{2}S mux (DNP), J502 \\
+9 & amp\_left & 32 & U301 TAS5805M (0x2C) \\
+10 & amp\_right & 28 & U401 TAS5805M (0x2D) \\
+\midrule
+ & \textbf{Total} & \textbf{271} & \\
+\bottomrule
+\end{tabular}
+\end{table}

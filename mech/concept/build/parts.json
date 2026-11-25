@@ -1,0 +1,308 @@
+{
+ "woofer_L_flange": {
+  "color": [
+   0.15,
+   0.15,
+   0.15
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "woofer_L_basket": {
+  "color": [
+   0.35,
+   0.35,
+   0.38
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "woofer_L_motor": {
+  "color": [
+   0.55,
+   0.55,
+   0.6
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "woofer_R_flange": {
+  "color": [
+   0.15,
+   0.15,
+   0.15
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "woofer_R_basket": {
+  "color": [
+   0.35,
+   0.35,
+   0.38
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "woofer_R_motor": {
+  "color": [
+   0.55,
+   0.55,
+   0.6
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "pr_L_flange": {
+  "color": [
+   0.12,
+   0.12,
+   0.12
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "pr_L_basket": {
+  "color": [
+   0.3,
+   0.3,
+   0.32
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "pr_L_post_mass": {
+  "color": [
+   0.7,
+   0.6,
+   0.2
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "pr_L_excursion_keepout": {
+  "color": [
+   1.0,
+   0.2,
+   0.2
+  ],
+  "group": "keepout",
+  "kind": "keepout"
+ },
+ "pr_R_flange": {
+  "color": [
+   0.12,
+   0.12,
+   0.12
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "pr_R_basket": {
+  "color": [
+   0.3,
+   0.3,
+   0.32
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "pr_R_post_mass": {
+  "color": [
+   0.7,
+   0.6,
+   0.2
+  ],
+  "group": "drivers",
+  "kind": "disp"
+ },
+ "pr_R_excursion_keepout": {
+  "color": [
+   1.0,
+   0.2,
+   0.2
+  ],
+  "group": "keepout",
+  "kind": "keepout"
+ },
+ "tweeter_L": {
+  "color": [
+   0.1,
+   0.1,
+   0.1
+  ],
+  "group": "drivers",
+  "kind": "sealed"
+ },
+ "tweeter_pod_L_sealed": {
+  "color": [
+   0.85,
+   0.75,
+   0.3
+  ],
+  "group": "keepout",
+  "kind": "sealed"
+ },
+ "tweeter_R": {
+  "color": [
+   0.1,
+   0.1,
+   0.1
+  ],
+  "group": "drivers",
+  "kind": "sealed"
+ },
+ "tweeter_pod_R_sealed": {
+  "color": [
+   0.85,
+   0.75,
+   0.3
+  ],
+  "group": "keepout",
+  "kind": "sealed"
+ },
+ "battery": {
+  "color": [
+   0.2,
+   0.35,
+   0.8
+  ],
+  "group": "battery",
+  "kind": "disp"
+ },
+ "battery_tray": {
+  "color": [
+   0.95,
+   0.55,
+   0.15
+  ],
+  "group": "structure",
+  "kind": "shell"
+ },
+ "battery_swell_envelope": {
+  "color": [
+   0.4,
+   0.6,
+   1.0
+  ],
+  "group": "keepout",
+  "kind": "keepout"
+ },
+ "mainboard_pcb": {
+  "color": [
+   0.05,
+   0.45,
+   0.15
+  ],
+  "group": "pcb",
+  "kind": "disp"
+ },
+ "mainboard_components": {
+  "color": [
+   0.8,
+   0.8,
+   0.75
+  ],
+  "group": "pcb",
+  "kind": "disp"
+ },
+ "ui_board_pcb": {
+  "color": [
+   0.05,
+   0.45,
+   0.15
+  ],
+  "group": "pcb",
+  "kind": "disp"
+ },
+ "display_module": {
+  "color": [
+   0.1,
+   0.1,
+   0.25
+  ],
+  "group": "ui",
+  "kind": "disp"
+ },
+ "display_lens": {
+  "color": [
+   0.6,
+   0.8,
+   0.95
+  ],
+  "group": "ui",
+  "kind": "disp"
+ },
+ "encoder_EC11": {
+  "color": [
+   0.75,
+   0.75,
+   0.75
+  ],
+  "group": "ui",
+  "kind": "disp"
+ },
+ "knob": {
+  "color": [
+   0.85,
+   0.3,
+   0.1
+  ],
+  "group": "ui",
+  "kind": "disp"
+ },
+ "buttons": {
+  "color": [
+   0.85,
+   0.3,
+   0.1
+  ],
+  "group": "ui",
+  "kind": "disp"
+ },
+ "shell_front": {
+  "color": [
+   0.82,
+   0.82,
+   0.8
+  ],
+  "group": "shell",
+  "kind": "shell"
+ },
+ "shell_rear": {
+  "color": [
+   0.7,
+   0.72,
+   0.75
+  ],
+  "group": "shell",
+  "kind": "shell"
+ },
+ "end_cap_L": {
+  "color": [
+   0.55,
+   0.57,
+   0.6
+  ],
+  "group": "shell",
+  "kind": "shell"
+ },
+ "end_cap_R": {
+  "color": [
+   0.55,
+   0.57,
+   0.6
+  ],
+  "group": "shell",
+  "kind": "shell"
+ },
+ "grille_alu": {
+  "color": [
+   0.25,
+   0.25,
+   0.27
+  ],
+  "group": "grille",
+  "kind": "disp"
+ }
+}

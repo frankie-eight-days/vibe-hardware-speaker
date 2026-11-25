@@ -1,0 +1,41 @@
+\section{Still to come}\label{sec:pending}
+
+\begin{enumerate}
+  \item \textbf{Set the DNP attributes} in eeschema (review S10), then re-export the BOM, netlist and placement files and check for 259 fitted parts.
+  \item \textbf{PCB layout.} The main board is 4 layers in the \qtyproduct{180 x 46}{\milli\metre} envelope; the UI board is 2 layers. The layout checklists are already in the specs: hot loops, the BATT\_N island, the antenna keep-out, symmetric LC filters. The mechanical side needs measured driver and battery dimensions first.
+  \item \textbf{Thermal simulation.} A Python 2-D finite-difference solver on the real copper, with FreeCAD FEM/CalculiX as a cross-check. The inputs are already estimated:
+  \begin{itemize}
+    \item boost IC + inductor: \qty{0.5}{\watt} typical, \qty{2.5}{\watt} worst case;
+    \item amplifiers: \qty{0.4}{\watt} each idle, 1--\qty{3}{\watt} each when loud;
+    \item charger: \qty{1.5}{\watt} while charging and playing;
+    \item battery path: \qty{1}{\watt} at \qty{6}{\ampere}.
+  \end{itemize}
+  All of it sits in a sealed box with no airflow \src{research/electronics.md}.
+  \item \textbf{Post-layout PDN.} Replace the placeholder copper in \texttt{pdn\_rails.py} with extracted values and re-run S7.
+  \item \textbf{Final acoustics sweep.} Finish A2, A3 and A5 (\cref{sec:a2,sec:a3,sec:a5}). Rebuilding this document picks up the new figures automatically.
+  \item \textbf{Renders.} Blender renders of the assembled speaker for the write-up.
+  \item \textbf{Build and measure.} Print the front-shell test slice first, then the full enclosure. Measure the drivers' T/S parameters (DATS/REW) and re-run A1. Then measure SPL, $F_3$, distortion and polar response with REW and a UMIK-1, and compare them with the predictions of \cref{sec:analysis}. \Cref{sec:bench} lists every bench check collected from the specs.
+  \item \textbf{Firmware.} ESP-IDF with the Bluedroid A2DP sink, TAS5805M boot dumps and live biquads, LVGL UI, web UI and the auto-EQ, following the architecture in \texttt{research/firmware\_and\_tools.md}.
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\pendingbox[0.95\linewidth]{4.5cm}
+\caption{Blender render of the assembled speaker.}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\pendingbox[0.95\linewidth]{4.5cm}
+\caption{Main-board thermal map at \qty{40}{\watt} from a \qty{6}{\volt} battery.}
+\end{subfigure}\\[6pt]
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\pendingbox[0.95\linewidth]{4.5cm}
+\caption{Main-board layout (top copper and 3D view).}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering
+\pendingbox[0.95\linewidth]{4.5cm}
+\caption{Measured SPL (REW, UMIK-1) against the A1/A5 prediction.}
+\end{subfigure}
+\caption{Placeholders for results that do not exist yet.}
+\label{fig:pending}
+\end{figure}

@@ -1,0 +1,387 @@
+case,label,mode,f_hz,R_force_db,R_pressure_db,D_force_db,D_pressure_db,excitation_index_db,max_motion_at,below_1khz
+"asm_solid_free","Shell only, 100 % solid, free-free",1,445.9,-38.83,-43.74,-28.51,-33.42,-38.83,"battery tray (x=0, phi=122 deg)",True
+"asm_solid_free","Shell only, 100 % solid, free-free",2,529.3,-5.302,-36.81,3.7,-27.8,-5.302,"front shell (x=-16, phi=94 deg)",True
+"asm_solid_free","Shell only, 100 % solid, free-free",3,823.9,-23.19,-38.48,-17.56,-32.84,-23.19,"front shell (x=2, phi=-100 deg)",True
+"asm_solid_free","Shell only, 100 % solid, free-free",4,964.8,-68.1,-102.1,-35.48,-69.45,-68.1,"battery tray (x=1, phi=-179 deg)",True
+"asm_solid_free","Shell only, 100 % solid, free-free",5,981.4,-123.9,-131.2,-3.776,-83.93,-123.9,"front shell (x=-59, phi=75 deg)",True
+"asm_solid_free","Shell only, 100 % solid, free-free",6,993.6,-96.49,-133.5,-4.872,-83.89,-96.49,"front shell (x=-52, phi=-81 deg)",True
+"asm_solid_free","Shell only, 100 % solid, free-free",7,1090,-108.6,-138,-6.716,-85.42,-108.6,"front shell (x=-22, phi=113 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",8,1121,-17.44,-63.38,-2.132,-48.08,-17.44,"front shell (x=-0, phi=-69 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",9,1181,-33.38,-94.48,-2.433,-63.53,-33.38,"front shell (x=-15, phi=80 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",10,1245,-121.5,-149.9,-13.39,-96.75,-121.5,"battery tray (x=-29, phi=-179 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",11,1306,-37.54,-75.43,-17.41,-55.29,-37.54,"battery tray (x=1, phi=-160 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",12,1320,-29.33,-56.6,-18.5,-45.77,-29.33,"battery tray (x=0, phi=153 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",13,1411,-112.7,-152.2,-19.72,-92.78,-112.7,"front shell (x=-48, phi=-86 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",14,1443,-75.23,-110.8,-4.03,-74.86,-75.23,"front shell (x=-45, phi=73 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",15,1490,-44.01,-71.43,-26.31,-53.73,-44.01,"front shell (x=-1, phi=-88 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",16,1497,-29.53,-76.44,-11.51,-58.41,-29.53,"front shell (x=-101, phi=86 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",17,1607,-54.87,-90.25,-2.803,-62.95,-54.87,"front shell (x=-101, phi=47 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",18,1640,-26.94,-63.24,-16.32,-52.62,-26.94,"battery tray (x=-39, phi=-179 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",19,1653,-9.487,-44.66,-2.576,-37.75,-9.487,"end cap (x=-105, phi=-23 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",20,1660,-35.28,-42.85,-28.46,-39.59,-35.28,"battery tray (x=-38, phi=176 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",21,1699,-49.58,-87.82,3.026,-56.17,-49.58,"front shell (x=101, phi=23 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",22,1807,-72.73,-121.3,-13.02,-77.39,-72.73,"front shell (x=-101, phi=-63 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",23,1846,-10,-47.56,-3.758,-41.31,-10,"rear shell (x=0, phi=178 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",24,1859,-62.2,-73.2,-28.33,-54.71,-62.2,"end cap (x=-105, phi=86 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",25,1885,-74.5,-117.7,2.772,-77.32,-74.5,"front shell (x=30, phi=-89 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",26,1889,-51.93,-83.46,-14.15,-56.98,-51.93,"end cap (x=105, phi=117 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",27,1989,-13.22,-53.66,-4.733,-45.18,-13.22,"front shell (x=-101, phi=63 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",28,2049,-30.92,-59.83,-16.1,-45,-30.92,"end cap (x=105, phi=-133 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",29,2055,-32.23,-60.23,-17.51,-45.51,-32.23,"front shell (x=-101, phi=-110 deg)",False
+"asm_solid_free","Shell only, 100 % solid, free-free",30,2070,-26.86,-69.59,-8.637,-51.37,-26.86,"end cap (x=105, phi=-35 deg)",False
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",1,445.2,-43.09,-43.7,-32.78,-33.4,-43.09,"battery tray (x=0, phi=122 deg)",True
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",2,527.7,-5.233,-36.62,3.813,-27.57,-5.233,"front shell (x=-17, phi=93 deg)",True
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",3,820.5,-25.99,-38.35,-20.39,-32.74,-25.99,"front shell (x=1, phi=-100 deg)",True
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",4,962,-66.92,-102.7,-33.99,-69.75,-66.92,"battery tray (x=0, phi=179 deg)",True
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",5,979.7,-108.1,-132.1,-3.964,-84.39,-108.1,"front shell (x=-59, phi=75 deg)",True
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",6,991.8,-98.8,-134.3,-4.845,-84.24,-98.8,"front shell (x=-51, phi=-82 deg)",True
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",7,1087,-109.3,-139.2,-7.018,-85.97,-109.3,"front shell (x=-22, phi=113 deg)",False
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",8,1119,-17.24,-63.3,-1.889,-47.95,-17.24,"front shell (x=-0, phi=-69 deg)",False
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",9,1179,-33.07,-93.7,-2.339,-62.97,-33.07,"front shell (x=-15, phi=80 deg)",False
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",10,1241,-119.5,-154.6,-13.22,-98.98,-119.5,"battery tray (x=-28, phi=179 deg)",False
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",11,1303,-38.32,-73.74,-18.81,-54.23,-38.32,"battery tray (x=1, phi=-161 deg)",False
+"asm_solid_free_fine","  same, finer mesh (2.8 mm)",12,1318,-31.01,-56.56,-20.05,-45.6,-31.01,"battery tray (x=-1, phi=151 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",1,446.3,-39.16,-41.91,-29.66,-32.41,-39.16,"battery tray (x=0, phi=122 deg)",True
+"asm_infill40_free","Shell only, 40 % infill core",2,529.5,-2.11,-33.13,5.289,-25.74,-2.11,"front shell (x=-17, phi=92 deg)",True
+"asm_infill40_free","Shell only, 40 % infill core",3,838.9,-21.1,-39.09,-15.26,-33.25,-21.1,"front shell (x=2, phi=-100 deg)",True
+"asm_infill40_free","Shell only, 40 % infill core",4,891,-91.34,-113,-20.58,-74.96,-91.34,"front shell (x=50, phi=25 deg)",True
+"asm_infill40_free","Shell only, 40 % infill core",5,962.3,-67.05,-88.85,-37.08,-63,-67.05,"battery tray (x=1, phi=-179 deg)",True
+"asm_infill40_free","Shell only, 40 % infill core",6,974.7,-109,-148.9,2.244,-89.2,-109,"front shell (x=-52, phi=-89 deg)",True
+"asm_infill40_free","Shell only, 40 % infill core",7,1073,-75.99,-123.7,-5.421,-77.69,-75.99,"front shell (x=-24, phi=112 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",8,1093,-15.09,-60.59,-0.4231,-45.93,-15.09,"front shell (x=-0, phi=-69 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",9,1171,-21.63,-75.04,1.107,-52.31,-21.63,"front shell (x=-14, phi=78 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",10,1239,-121.9,-176.2,-12.98,-109.9,-121.9,"battery tray (x=-29, phi=-179 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",11,1270,-25.45,-58.33,-13.94,-46.82,-25.45,"battery tray (x=2, phi=-180 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",12,1315,-39.34,-64.23,-24.19,-49.08,-39.34,"battery tray (x=-1, phi=143 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",13,1399,-90.89,-120.1,-11.6,-77.63,-90.89,"battery tray (x=-24, phi=-174 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",14,1404,-79.66,-112.3,-7.958,-73.3,-79.66,"front shell (x=-42, phi=77 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",15,1471,-39.18,-72.1,-20.28,-53.2,-39.18,"front shell (x=0, phi=-86 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",16,1507,-23.76,-71.44,-7.654,-55.33,-23.76,"front shell (x=-0, phi=48 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",17,1549,-68.25,-99.63,-0.1609,-68.84,-68.25,"front shell (x=-101, phi=47 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",18,1640,-25.46,-56.53,-17.73,-48.8,-25.46,"battery tray (x=-39, phi=-179 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",19,1659,-20.54,-49.77,-14.7,-43.94,-20.54,"battery tray (x=-0, phi=-174 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",20,1674,-5.323,-41.56,3.444,-32.79,-5.323,"end cap (x=-105, phi=23 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",21,1682,-23.21,-60.95,6.283,-42.15,-23.21,"front shell (x=101, phi=23 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",22,1797,-14.19,-55.9,-2.772,-44.48,-14.19,"rear shell (x=-1, phi=-180 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",23,1814,-72.03,-107.9,-0.03533,-70.31,-72.03,"front shell (x=-101, phi=-55 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",24,1830,-17.55,-51.95,-8.598,-43,-17.55,"end cap (x=-105, phi=94 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",25,1834,-67.76,-105,4.597,-69.34,-67.76,"front shell (x=30, phi=-89 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",26,1888,-96.23,-89.87,-27.99,-59.07,-96.23,"front shell (x=101, phi=63 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",27,1943,-7.492,-51.22,-1.542,-45.27,-7.492,"front shell (x=-101, phi=55 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",28,2026,-28.26,-48.33,-21.12,-41.19,-28.26,"end cap (x=-105, phi=-149 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",29,2042,-56.57,-113.9,-17.69,-75.01,-56.57,"end cap (x=-105, phi=125 deg)",False
+"asm_infill40_free","Shell only, 40 % infill core",30,2055,-13.19,-59.62,2.871,-43.56,-13.19,"rear shell (x=101, phi=164 deg)",False
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",1,269,-45.72,-60.01,-26.74,-41.04,-45.72,"battery tray (x=0, phi=-122 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",2,333.6,-32.93,-70.32,-7.924,-45.32,-32.93,"front shell (x=-17, phi=88 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",3,434.5,-113,-137.2,-19.65,-83.18,-113,"front shell (x=43, phi=31 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",4,464.8,-110.3,-122.3,-10.36,-75.51,-110.3,"front shell (x=35, phi=-34 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",5,525.5,-44.98,-53.6,-36.4,-45.02,-44.98,"battery tray (x=0, phi=-122 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",6,549.8,-110.8,-105.1,-11.59,-70.29,-105.1,"front shell (x=-59, phi=8 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",7,560.8,-34.79,-55.36,-18.77,-39.35,-34.79,"front shell (x=-101, phi=23 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",8,602,-25.62,-39.52,-21.42,-35.31,-25.62,"front shell (x=101, phi=55 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",9,607.3,-61.17,-73.59,-17.81,-52.43,-61.17,"front shell (x=-35, phi=-34 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",10,626.5,-34.29,-34.66,-31,-31.37,-34.29,"battery tray (x=0, phi=-122 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",11,646.2,-118.8,-99.6,-19.67,-59.99,-99.6,"front shell (x=101, phi=39 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",12,700,-33.44,-38.14,-33.87,-38.57,-33.44,"front shell (x=68, phi=-2 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",13,721.8,-53.58,-60.58,-32.44,-41.4,-53.58,"end cap (x=-105, phi=-59 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",14,724.6,-59.18,-65.11,-34.61,-43.96,-59.18,"end cap (x=-105, phi=-149 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",15,728.3,-59.6,-62.66,-31.57,-41.56,-59.6,"end cap (x=105, phi=-117 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",16,732.3,-46.57,-60.55,-27.83,-41.82,-46.57,"end cap (x=-105, phi=-180 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",17,835.5,-44.68,-93.01,-19.95,-68.28,-44.68,"battery tray (x=1, phi=-179 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",18,859.4,-24.86,-47.07,-18.53,-40.74,-24.86,"front shell (x=-13, phi=103 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",19,866.5,-48.58,-67.37,-32.83,-51.61,-48.58,"front shell (x=0, phi=-87 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",20,930.6,-107.6,-120.9,-19.02,-81.42,-107.6,"front shell (x=19, phi=-28 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",21,963.1,-100.2,-123.4,-45.62,-79.46,-100.2,"end cap (x=105, phi=-137 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",22,980.4,-66.67,-101.8,-23.42,-66.94,-66.67,"battery tray (x=8, phi=-180 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",23,985.6,-76.51,-124.5,-27.18,-79.92,-76.51,"battery tray (x=-4, phi=-179 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",24,988.5,-62.56,-108.6,-25.55,-71.63,-62.56,"battery tray (x=-3, phi=-179 deg)",True
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",25,1007,-45.36,-79.53,-23.75,-57.92,-45.36,"battery tray (x=1, phi=-179 deg)",False
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",26,1020,-115.7,-164.1,-34.68,-101.7,-115.7,"end cap (x=-105, phi=133 deg)",False
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",27,1057,-92.83,-120.7,-20.88,-81.53,-92.83,"front shell (x=-36, phi=-89 deg)",False
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",28,1063,-121,-134.2,-24.8,-85.89,-121,"battery tray (x=-32, phi=-179 deg)",False
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",29,1093,-88.06,-106.4,-41.31,-73.55,-88.06,"front shell (x=101, phi=-117 deg)",False
+"asm_infill40_drivers","MAIN: 40 % infill + woofer/PR masses",30,1118,-55.91,-76.49,-37.94,-58.52,-55.91,"front shell (x=-101, phi=121 deg)",False
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",1,211.4,-46.38,-49.28,-32.69,-35.6,-46.38,"battery tray (x=0, phi=-122 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",2,239.9,-23.8,-44.58,-13.51,-34.28,-23.8,"battery tray (x=-0, phi=175 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",3,324.5,-122.2,-143.3,-42.85,-101.3,-122.2,"battery tray (x=28, phi=180 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",4,344.2,-29.61,-57.21,-13.68,-41.28,-29.61,"battery tray (x=1, phi=-179 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",5,410.8,-35.09,-36.79,-30.89,-32.59,-35.09,"front shell (x=0, phi=-99 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",6,427.4,-111.6,-125.1,-21.59,-77.37,-111.6,"front shell (x=43, phi=31 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",7,448.1,-47.27,-75.21,-31.66,-59.6,-47.27,"battery tray (x=37, phi=180 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",8,461.7,-111.8,-133.1,-9.561,-80.53,-111.8,"front shell (x=-28, phi=33 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",9,532.3,-52.77,-61.38,-29.79,-47.59,-52.77,"battery tray (x=5, phi=141 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",10,536.9,-87.15,-98.91,-14.29,-68.07,-87.15,"battery tray (x=16, phi=-170 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",11,555.6,-49.56,-73.93,-31,-55.36,-49.56,"battery tray (x=-0, phi=-141 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",12,565.3,-30.69,-44.29,-21.58,-35.18,-30.69,"front shell (x=-101, phi=23 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",13,572.8,-93.69,-126.2,-23.19,-83.37,-93.69,"battery tray (x=15, phi=-175 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",14,597.6,-28.76,-40.38,-23.09,-34.71,-28.76,"front shell (x=-101, phi=47 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",15,610.2,-81.8,-92.85,-15.96,-63.09,-81.8,"front shell (x=-35, phi=-34 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",16,636.6,-101.3,-107,-19.55,-63.84,-101.3,"end cap (x=105, phi=39 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",17,699.1,-29.14,-36.78,-30.2,-37.84,-29.14,"front shell (x=68, phi=-2 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",18,716.4,-79.64,-91.37,-25.62,-59.1,-79.64,"end cap (x=105, phi=172 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",19,722.6,-46.48,-57.53,-27.66,-38.7,-46.48,"end cap (x=-105, phi=-86 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",20,726.7,-45.39,-58.56,-26.06,-39.23,-45.39,"end cap (x=105, phi=-125 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",21,729.5,-43.27,-66.72,-22.17,-45.62,-43.27,"end cap (x=-105, phi=-172 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",22,751.8,-86.89,-127,-40.06,-82.78,-86.89,"battery tray (x=-31, phi=-147 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",23,767.1,-76.35,-116,-23.3,-74.49,-76.35,"rear shell (x=-101, phi=-180 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",24,772.2,-67.46,-131.9,-22.79,-87.21,-67.46,"battery tray (x=-24, phi=166 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",25,838.9,-39.8,-83.45,-17.63,-61.29,-39.8,"battery tray (x=1, phi=170 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",26,854,-33.56,-49.53,-26.11,-42.08,-33.56,"front shell (x=1, phi=-93 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",27,855.3,-45.62,-64.94,-37.32,-56.65,-45.62,"battery tray (x=-62, phi=-122 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",28,863.4,-50.8,-56.42,-42.85,-48.47,-50.8,"front shell (x=-15, phi=98 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",29,905.4,-69.86,-72.73,-59.21,-62.07,-69.86,"battery tray (x=-40, phi=-147 deg)",True
+"asm_infill40_drivers_batt","  main + battery rigidly coupled",30,942.9,-103.5,-110.1,-31.64,-77.48,-103.5,"battery tray (x=-31, phi=176 deg)",True
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",1,1153,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",2,1359,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",3,1766,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",4,2317,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",5,2325,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",6,2591,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",7,3010,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",8,3066,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",9,3135,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",10,3169,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",11,3379,,,,,,,False
+"rear_edges_clamped","Rear shell alone, seam + ends clamped",12,3538,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",1,685.6,,,,,,,True
+"rear_screws_only","Rear shell alone, held at screws only",2,840.3,,,,,,,True
+"rear_screws_only","Rear shell alone, held at screws only",3,1157,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",4,1175,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",5,1218,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",6,1442,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",7,1446,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",8,1457,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",9,1460,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",10,1469,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",11,1553,,,,,,,False
+"rear_screws_only","Rear shell alone, held at screws only",12,1648,,,,,,,False
+"front_edges_clamped","Front shell alone, seam + ends clamped",1,306.3,-67.44,-117,-19.85,-69.39,-67.44,"front shell (x=1, phi=43 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",2,373.4,-17.46,-49.33,-4.683,-36.56,-17.46,"front shell (x=-7, phi=1 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",3,469.9,-108.8,-142.7,-7.454,-84.34,-108.8,"front shell (x=31, phi=34 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",4,560.9,-129.5,-141.6,-17.4,-84.86,-129.5,"front shell (x=40, phi=-33 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",5,599.4,-81.71,-103.6,-9.205,-68.56,-81.71,"front shell (x=-59, phi=13 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",6,615.6,-28.02,-50.39,-17.15,-39.52,-28.02,"front shell (x=43, phi=31 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",7,635.5,-34.06,-70.9,-12.71,-49.56,-34.06,"front shell (x=-43, phi=-31 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",8,730,-40.11,-60.18,-27.29,-47.36,-40.11,"front shell (x=-0, phi=-69 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",9,815.1,-28.58,-46.37,-24.54,-42.33,-28.58,"front shell (x=-68, phi=-2 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",10,849.7,-123.3,-154.5,-20.58,-98.56,-123.3,"front shell (x=-68, phi=-8 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",11,888.3,-107.3,-135,-20.06,-86.63,-107.3,"front shell (x=-25, phi=-32 deg)",True
+"front_edges_clamped","Front shell alone, seam + ends clamped",12,1045,-28.97,-57.18,-22.05,-50.27,-28.97,"front shell (x=-60, phi=-0 deg)",False
+"endcap_rim_clamped_PR","End cap + PR, rim clamped",1,1072,,,,,,,False
+"endcap_rim_clamped_PR","End cap + PR, rim clamped",2,1167,,,,,,,False
+"endcap_rim_clamped_PR","End cap + PR, rim clamped",3,1196,,,,,,,False
+"endcap_rim_clamped_PR","End cap + PR, rim clamped",4,1481,,,,,,,False
+"endcap_rim_clamped_PR","End cap + PR, rim clamped",5,1491,,,,,,,False
+"endcap_rim_clamped_PR","End cap + PR, rim clamped",6,1947,,,,,,,False
+"endcap_rim_clamped_PR","End cap + PR, rim clamped",7,1964,,,,,,,False
+"endcap_rim_clamped_PR","End cap + PR, rim clamped",8,2556,,,,,,,False
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",1,273.8,-43.5,-57.24,-25.83,-39.58,-43.5,"battery tray (x=0, phi=-122 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",2,349.5,-43.3,-91.47,-8.953,-57.13,-43.3,"front shell (x=17, phi=88 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",3,432.6,-142.7,-186.6,-17.89,-107.6,-142.7,"front shell (x=-41, phi=32 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",4,472.2,-126,-129.3,-10.69,-79.4,-126,"front shell (x=35, phi=-34 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",5,531.5,-40.51,-55.84,-31.14,-46.47,-40.51,"battery tray (x=0, phi=-122 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",6,553.6,-90.49,-105.4,-12.42,-70.8,-90.49,"front shell (x=-58, phi=12 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",7,566.5,-30.48,-46.46,-18.25,-34.23,-30.48,"front shell (x=-101, phi=31 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",8,608.1,-49.44,-66.68,-14.55,-48.19,-49.44,"front shell (x=36, phi=-34 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",9,610.1,-25.34,-42.09,-20.9,-37.65,-25.34,"front shell (x=-101, phi=55 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",10,646.1,-111,-108.1,-19.88,-64.19,-108.1,"front shell (x=101, phi=39 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",11,652.1,-33.61,-36.01,-30.33,-32.73,-33.61,"battery tray (x=0, phi=122 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",12,704.1,-29.91,-37.74,-30.95,-38.78,-29.91,"front shell (x=-68, phi=1 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",13,722,-55.88,-57.44,-33.49,-39.26,-55.88,"end cap (x=-105, phi=-63 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",14,725.5,-64.57,-66.28,-40.55,-44.84,-64.57,"end cap (x=-105, phi=-164 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",15,728.7,-59.61,-59.4,-28.89,-39.64,-59.4,"end cap (x=105, phi=-117 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",16,732.7,-50.09,-60.98,-30.88,-41.78,-50.09,"end cap (x=-105, phi=-180 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",17,830.5,-32.13,-65.76,-21.3,-54.93,-32.13,"battery tray (x=1, phi=-179 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",18,869.7,-52.88,-74.64,-33.77,-55.53,-52.88,"battery tray (x=-0, phi=-174 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",19,881.4,-23.78,-47.68,-16.49,-40.4,-23.78,"front shell (x=1, phi=-109 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",20,937.7,-84.65,-107.4,-19.52,-74.06,-84.65,"front shell (x=-20, phi=-29 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",21,966.3,-107.3,-117.3,-28.95,-76.17,-107.3,"end cap (x=105, phi=129 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",22,980.8,-67.73,-104.1,-23.7,-68.09,-67.73,"battery tray (x=8, phi=-180 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",23,986.6,-68.74,-100.6,-29.21,-67.01,-68.74,"end cap (x=-105, phi=-125 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",24,989.6,-59.99,-104.2,-24.91,-69.15,-59.99,"battery tray (x=-3, phi=-179 deg)",True
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",25,1009,-44.01,-77.93,-23.06,-56.98,-44.01,"battery tray (x=1, phi=-179 deg)",False
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",26,1028,-113.9,-144.9,-33.58,-92.35,-113.9,"front shell (x=-101, phi=-133 deg)",False
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",27,1055,-89.1,-114.1,-20.54,-78.23,-89.1,"front shell (x=101, phi=78 deg)",False
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",28,1069,-101.7,-131.1,-34.64,-86.63,-101.7,"battery tray (x=-32, phi=-179 deg)",False
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",29,1097,-91.1,-110.5,-36.22,-76.23,-91.1,"front shell (x=-101, phi=-113 deg)",False
+"asm_infill40_drivers_rib_top","What-if: main + top-arc ribs",30,1118,-54.96,-76.73,-37.44,-59.21,-54.96,"front shell (x=-101, phi=129 deg)",False
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",1,274.8,-43.14,-56.01,-26.19,-39.05,-43.14,"battery tray (x=-2, phi=-122 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",2,364.8,-43.53,-92.65,-8.955,-58.07,-43.53,"front shell (x=1, phi=-88 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",3,434,-103.8,-129.3,-19.46,-79.24,-103.8,"front shell (x=-41, phi=32 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",4,474.8,-116.5,-138.3,-10.62,-83.81,-116.5,"front shell (x=-33, phi=-34 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",5,533,-41.5,-59.23,-30.28,-48.02,-41.5,"front shell (x=47, phi=28 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",6,556.8,-92.35,-106.7,-11.74,-71.38,-92.35,"front shell (x=58, phi=10 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",7,568.6,-28.6,-43.14,-17.72,-32.27,-28.6,"front shell (x=-101, phi=31 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",8,610.3,-55.19,-75.01,-15.86,-52.61,-55.19,"front shell (x=35, phi=-34 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",9,617.7,-23.62,-43.76,-18.3,-38.44,-23.62,"front shell (x=-41, phi=-32 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",10,645.5,-121.9,-119.2,-19.9,-69.79,-119.2,"front shell (x=101, phi=39 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",11,702,-58.91,-77.31,-38.13,-56.53,-58.91,"battery tray (x=0, phi=122 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",12,707,-22.77,-30.8,-24.29,-32.32,-22.77,"battery tray (x=0, phi=-122 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",13,721.6,-65.29,-53.94,-36.43,-37.99,-53.94,"end cap (x=-105, phi=-63 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",14,725,-71.38,-64.55,-40.08,-44.11,-64.55,"end cap (x=-105, phi=-164 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",15,727.9,-81.05,-64.74,-29.18,-42.75,-64.74,"end cap (x=105, phi=-117 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",16,733.2,-75.44,-63.08,-40.49,-42.51,-63.08,"end cap (x=-105, phi=-180 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",17,834.4,-30.7,-59.22,-22.45,-50.97,-30.7,"battery tray (x=-0, phi=-180 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",18,870.5,-104.2,-152.8,-47.1,-95.68,-104.2,"battery tray (x=-0, phi=-180 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",19,911.6,-24.93,-50.04,-16.4,-41.5,-24.93,"front shell (x=1, phi=-106 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",20,937.8,-87.72,-113.3,-19.65,-77.04,-87.72,"front shell (x=-20, phi=-29 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",21,965.6,-102.2,-125.6,-29.15,-80.1,-102.2,"end cap (x=105, phi=129 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",22,982.1,-77.29,-94.84,-22.62,-63.54,-77.29,"end cap (x=-105, phi=-176 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",23,986.7,-117.5,-125,-31.84,-78.61,-117.5,"end cap (x=-105, phi=-125 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",24,992.2,-57.23,-92.37,-27.8,-62.94,-57.23,"battery tray (x=-2, phi=-180 deg)",True
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",25,1015,-42.3,-76.74,-21.5,-55.93,-42.3,"battery tray (x=-0, phi=-180 deg)",False
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",26,1030,-138.1,-180.2,-34.95,-109.9,-138.1,"front shell (x=-101, phi=-133 deg)",False
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",27,1056,-85.01,-109.3,-19.97,-75.64,-85.01,"front shell (x=101, phi=82 deg)",False
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",28,1076,-90.07,-114.1,-31.54,-78.31,-90.07,"front shell (x=101, phi=-149 deg)",False
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",29,1103,-94.53,-115,-48.02,-78.96,-94.53,"front shell (x=101, phi=-110 deg)",False
+"asm_infill40_drivers_rib_top_tray","What-if: + tray gussets",30,1118,-55.63,-77.37,-37.44,-59.18,-55.63,"front shell (x=-101, phi=125 deg)",False
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",1,220.3,-42.99,-55.64,-26.22,-38.87,-42.99,"battery tray (x=0, phi=-122 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",2,263.2,-23.78,-43.45,-18.32,-37.99,-23.78,"battery tray (x=-0, phi=-180 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",3,336.1,-118,-128.5,-45.28,-93.92,-118,"battery tray (x=28, phi=-180 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",4,360.5,-68.56,-138.8,-13.28,-83.49,-68.56,"battery tray (x=-0, phi=-180 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",5,426.4,-112.1,-137.5,-20.51,-83.53,-112.1,"front shell (x=-43, phi=31 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",6,452.6,-35.65,-46.6,-31.58,-42.54,-35.65,"battery tray (x=-36, phi=-180 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",7,457.7,-41.69,-44.82,-36.24,-39.37,-41.69,"battery tray (x=37, phi=175 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",8,471.9,-102.7,-114.1,-9.803,-71.4,-102.7,"front shell (x=-33, phi=-34 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",9,541,-51.63,-61.72,-29.6,-46.3,-51.63,"battery tray (x=2, phi=141 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",10,543.1,-103.3,-109.1,-14.44,-73.57,-103.3,"battery tray (x=-16, phi=170 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",11,566.4,-29.03,-46.26,-17.22,-34.45,-29.03,"front shell (x=-101, phi=31 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",12,575.2,-77.18,-98.79,-24.08,-69.5,-77.18,"battery tray (x=15, phi=-175 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",13,579.3,-39.1,-45.85,-34.05,-40.81,-39.1,"front shell (x=-44, phi=-96 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",14,608.9,-23.89,-39.79,-20.54,-36.44,-23.89,"front shell (x=101, phi=55 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",15,615.8,-63.75,-79.63,-15.27,-56.33,-63.75,"front shell (x=-36, phi=-34 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",16,637,-108.6,-106.5,-18.84,-63.64,-106.5,"end cap (x=105, phi=39 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",17,703.2,-27.48,-37.72,-28.29,-38.52,-27.48,"front shell (x=-68, phi=1 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",18,718.7,-91.2,-71.17,-28.9,-48.15,-71.17,"end cap (x=105, phi=172 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",19,722.7,-52.64,-55.31,-35.25,-37.92,-52.64,"end cap (x=-105, phi=-102 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",20,726.4,-53.46,-61.46,-29.15,-40.73,-53.46,"end cap (x=105, phi=-117 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",21,730.6,-47.31,-66.53,-25.62,-44.84,-47.31,"end cap (x=-105, phi=-172 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",22,764.1,-72.89,-104.7,-32.34,-70.25,-72.89,"battery tray (x=-33, phi=-152 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",23,777,-44.04,-83.65,-21.81,-61.41,-44.04,"battery tray (x=25, phi=165 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",24,779.7,-58.55,-99.07,-28.85,-70.07,-58.55,"battery tray (x=-28, phi=152 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",25,838.8,-30.78,-58.75,-22.16,-50.13,-30.78,"battery tray (x=-0, phi=170 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",26,861.5,-36.43,-59.54,-23.96,-47.06,-36.43,"front shell (x=0, phi=-87 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",27,867.1,-94.27,-113.2,-61.8,-80.78,-94.27,"battery tray (x=62, phi=122 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",28,901.4,-28.75,-50.7,-20.85,-42.81,-28.75,"front shell (x=-0, phi=-108 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",29,913.6,-69.03,-88.12,-52.67,-71.77,-69.03,"battery tray (x=-1, phi=148 deg)",True
+"asm_infill40_drivers_batt_rib_top_tray","What-if: battery + top ribs + gussets",30,950.3,-88.47,-115.3,-34.23,-79.53,-88.47,"battery tray (x=31, phi=-180 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",1,447.5,-92.72,-117.7,-11.51,-71.94,-92.72,"front shell (x=35, phi=34 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",2,459.2,-28.46,-48.35,-19.69,-39.59,-28.46,"front shell (x=-15, phi=100 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",3,460.1,-99.64,-119.1,-22.09,-74.87,-99.64,"front shell (x=40, phi=-33 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",4,494.6,-26.69,-63.22,-9.32,-45.85,-26.69,"front shell (x=2, phi=-91 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",5,531.1,-50.4,-61.39,-36.85,-47.84,-50.4,"front shell (x=52, phi=41 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",6,566.5,-81.49,-103.2,-10.69,-69.2,-81.49,"front shell (x=50, phi=33 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",7,581,-20.02,-39.53,-11.54,-31.05,-20.02,"end cap (x=-105, phi=31 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",8,613.7,-34.22,-47.45,-28.88,-42.11,-34.22,"front shell (x=-101, phi=55 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",9,631.9,-88.77,-105.9,-18.18,-68.92,-88.77,"front shell (x=-35, phi=-34 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",10,652.9,-84.46,-104.3,-17.72,-62.51,-84.46,"front shell (x=101, phi=31 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",11,717.9,-34.23,-49.22,-21.78,-36.77,-34.23,"end cap (x=-105, phi=94 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",12,725.4,-47.04,-60.23,-27.23,-40.42,-47.04,"end cap (x=105, phi=164 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",13,728.4,-32.52,-43.53,-21.76,-32.78,-32.52,"end cap (x=-105, phi=-180 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",14,730.6,-48.67,-61.95,-29.29,-42.57,-48.67,"end cap (x=-105, phi=-110 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",15,744.9,-31.77,-46.06,-24,-38.29,-31.77,"end cap (x=105, phi=-47 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",16,821.8,-23.57,-40.19,-18.55,-35.18,-23.57,"front shell (x=0, phi=-86 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",17,909.8,-26.78,-52.01,-17.64,-42.87,-26.78,"front shell (x=-15, phi=100 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",18,932.3,-45.19,-68.59,-32.72,-56.13,-45.19,"front shell (x=0, phi=-70 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",19,935.8,-65.65,-88.53,-31.23,-67.84,-65.65,"front shell (x=0, phi=-70 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",20,954.6,-98.72,-125.9,-26.51,-87.76,-98.72,"front shell (x=0, phi=75 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",21,966.3,-99.6,-120.3,-31.98,-77.63,-99.6,"end cap (x=105, phi=129 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",22,968.1,-62.2,-64.8,-47.83,-53.19,-62.2,"end cap (x=-105, phi=-4 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",23,984.8,-81.86,-116,-22.45,-75.34,-81.86,"front shell (x=0, phi=-70 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",24,989.3,-69.64,-95.91,-31.84,-64.18,-69.64,"end cap (x=-105, phi=-133 deg)",True
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",25,1008,-105.5,-114.7,-31.72,-74.99,-105.5,"end cap (x=105, phi=-94 deg)",False
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",26,1034,-113.1,-143.6,-29.42,-91.11,-113.1,"front shell (x=1, phi=69 deg)",False
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",27,1057,-94.65,-114.7,-17.31,-78.15,-94.65,"front shell (x=0, phi=-70 deg)",False
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",28,1079,-119.9,-164.6,-36.92,-102.3,-119.9,"front shell (x=0, phi=-68 deg)",False
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",29,1115,-93.02,-105.7,-48.45,-75.29,-93.02,"front shell (x=-0, phi=71 deg)",False
+"asm_infill40_drivers_spine","What-if: main + centre spine plate",30,1126,-59.92,-73.67,-43.75,-57.5,-59.92,"front shell (x=-101, phi=117 deg)",False
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",1,448.8,-123.6,-155.8,-13.54,-91.41,-123.6,"front shell (x=36, phi=34 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",2,466,-115.5,-167.7,-16.6,-98.67,-115.5,"front shell (x=-36, phi=-34 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",3,476.1,-25.95,-50.59,-17.66,-42.29,-25.95,"front shell (x=-15, phi=100 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",4,505.6,-25.7,-59,-10.64,-43.95,-25.7,"front shell (x=1, phi=-92 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",5,535.9,-38.15,-58.63,-27.17,-47.65,-38.15,"front shell (x=47, phi=28 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",6,573.5,-90.84,-101.9,-10.81,-68.74,-90.84,"front shell (x=-50, phi=33 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",7,585.5,-18.85,-37.25,-11.11,-29.52,-18.85,"end cap (x=-105, phi=31 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",8,633.5,-30.62,-52.41,-20.12,-41.9,-30.62,"front shell (x=45, phi=-30 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",9,635,-47.65,-69.09,-15.99,-49.38,-47.65,"front shell (x=-38, phi=-33 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",10,652.4,-82.4,-101.9,-18.06,-61.36,-82.4,"front shell (x=101, phi=39 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",11,718.5,-37.51,-53.2,-23.16,-38.85,-37.51,"end cap (x=-105, phi=-63 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",12,725.7,-46.61,-59.72,-26.91,-40.01,-46.61,"end cap (x=105, phi=164 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",13,729.3,-34.82,-45.19,-23.87,-34.24,-34.82,"end cap (x=105, phi=-125 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",14,730.5,-39.8,-52.58,-24.27,-37.06,-39.8,"end cap (x=-105, phi=-117 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",15,743.3,-31.91,-48.48,-22.74,-39.32,-31.91,"end cap (x=105, phi=-47 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",16,860.6,-22.37,-40.25,-16.96,-34.84,-22.37,"front shell (x=0, phi=-85 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",17,925.9,-44.9,-60.63,-36.15,-51.87,-44.9,"end cap (x=105, phi=31 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",18,931.6,-79.63,-106.7,-34.53,-76.8,-79.63,"front shell (x=0, phi=-70 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",19,961,-31.44,-55.56,-23.59,-47.71,-31.44,"front shell (x=-0, phi=75 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",20,962.5,-35.16,-59.26,-27.08,-51.18,-35.16,"front shell (x=0, phi=75 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",21,969.8,-67.81,-87.2,-25.59,-60.3,-67.81,"end cap (x=105, phi=133 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",22,974.4,-60.12,-61.33,-48.02,-49.24,-60.12,"end cap (x=-105, phi=-8 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",23,985.7,-76.88,-108.5,-22.88,-72.47,-76.88,"front shell (x=0, phi=-70 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",24,991.2,-72.64,-92.04,-31.24,-62.29,-72.64,"end cap (x=-105, phi=-133 deg)",True
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",25,1011,-86.77,-94.52,-33.64,-65.66,-86.77,"end cap (x=105, phi=-98 deg)",False
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",26,1041,-121.4,-139.2,-22.95,-88.85,-121.4,"front shell (x=0, phi=69 deg)",False
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",27,1060,-93.2,-110,-17.3,-75.12,-93.2,"front shell (x=-0, phi=-68 deg)",False
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",28,1094,-92.48,-118.6,-34.59,-80.16,-92.48,"front shell (x=-0, phi=-68 deg)",False
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",29,1126,-76.37,-90.13,-38.94,-67.8,-76.37,"front shell (x=-0, phi=71 deg)",False
+"asm_infill40_drivers_spine_top_tray","What-if: spine + top ribs + tray gussets",30,1127,-58.43,-74.14,-42.08,-57.79,-58.43,"front shell (x=-101, phi=121 deg)",False
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",1,339.4,-127.9,-154.7,-46.09,-107.3,-127.9,"battery tray (x=-29, phi=179 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",2,371.7,-23.7,-44.9,-23.67,-44.87,-23.7,"battery tray (x=32, phi=180 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",3,414.5,-36.44,-60.02,-23.68,-47.26,-36.44,"battery tray (x=-31, phi=-122 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",4,442.2,-119.8,-161.5,-14.99,-94.44,-119.8,"front shell (x=38, phi=33 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",5,460.6,-120.7,-131.6,-14.81,-80.5,-120.7,"front shell (x=36, phi=-34 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",6,474.5,-25.11,-53.17,-17.11,-45.18,-25.11,"battery tray (x=15, phi=169 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",7,488.1,-27.17,-47.4,-18.82,-39.05,-27.17,"front shell (x=17, phi=-101 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",8,554,-98.17,-124.9,-14.5,-81.93,-98.17,"battery tray (x=16, phi=179 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",9,576.1,-25.27,-40.1,-15.67,-30.5,-25.27,"end cap (x=-105, phi=31 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",10,585.3,-70.33,-85.71,-16.47,-59.42,-70.33,"battery tray (x=15, phi=-175 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",11,613.8,-28.12,-53.12,-20.39,-45.39,-28.12,"front shell (x=60, phi=0 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",12,628.1,-47.64,-59.78,-37.08,-49.22,-47.64,"front shell (x=45, phi=-94 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",13,635.4,-93.96,-98.56,-15.63,-66.8,-93.96,"front shell (x=-45, phi=-38 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",14,643.5,-97.48,-108.9,-27.33,-65.58,-97.48,"front shell (x=101, phi=39 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",15,666.6,-23.01,-43.14,-23.55,-43.68,-23.01,"battery tray (x=-19, phi=-158 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",16,687.4,-44.87,-83.94,-22.63,-61.7,-44.87,"battery tray (x=-23, phi=146 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",17,718.2,-31.77,-51.02,-18.09,-37.34,-31.77,"end cap (x=-105, phi=102 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",18,723,-44.91,-62.26,-24.92,-42.27,-44.91,"end cap (x=105, phi=157 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",19,727.6,-32.04,-44.83,-20.3,-33.1,-32.04,"end cap (x=105, phi=-133 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",20,729,-37.93,-53.84,-21.79,-37.7,-37.93,"end cap (x=-105, phi=-117 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",21,746.8,-24.82,-44.49,-18.98,-38.65,-24.82,"front shell (x=101, phi=-39 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",22,769.5,-91.67,-97.38,-31.69,-67.73,-91.67,"front shell (x=-0, phi=82 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",23,781,-109,-147.7,-31.56,-97.1,-109,"battery tray (x=33, phi=148 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",24,868.6,-112.5,-129.8,-48.53,-89.04,-112.5,"battery tray (x=62, phi=-122 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",25,906.1,-38.68,-64.46,-25.49,-51.27,-38.68,"rear shell (x=-1, phi=-174 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",26,914.3,-62.3,-51.47,-52.58,-44.43,-62.3,"front shell (x=0, phi=-91 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",27,921.3,-111.4,-139.2,-38.71,-94.16,-111.4,"front shell (x=0, phi=-70 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",28,949.8,-38.54,-55.77,-31.63,-48.86,-38.54,"front shell (x=59, phi=-6 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",29,976.2,-80.08,-84.78,-39.65,-58.22,-80.08,"front shell (x=0, phi=73 deg)",True
+"asm_infill40_drivers_batt_spine_top_tray","What-if: battery + spine + top + gussets",30,985.6,-85.46,-96.1,-23.42,-65.05,-85.46,"front shell (x=0, phi=-70 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",1,450.5,-93.45,-107.5,-13.46,-67.09,-93.45,"front shell (x=-38, phi=33 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",2,465.7,-102.1,-113.6,-16.33,-71.57,-102.1,"front shell (x=36, phi=-34 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",3,476,-26.58,-51.92,-17.45,-42.79,-26.58,"front shell (x=15, phi=100 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",4,506.8,-21.89,-52.24,-10.11,-40.47,-21.89,"front shell (x=4, phi=-92 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",5,536.7,-48.67,-69.88,-31.78,-53,-48.67,"front shell (x=47, phi=28 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",6,576.1,-105.5,-130.1,-10.61,-82.74,-105.5,"front shell (x=-53, phi=30 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",7,610,-22.29,-45.7,-10.95,-34.37,-22.29,"end cap (x=-105, phi=31 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",8,635.4,-66.17,-75.73,-16.35,-53.47,-66.17,"front shell (x=35, phi=-34 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",9,641.6,-33.73,-47.5,-24.84,-38.61,-33.73,"front shell (x=-101, phi=55 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",10,682.9,-95.77,-124.4,-20.41,-71.9,-95.77,"front shell (x=101, phi=39 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",11,733.1,-24.13,-38.78,-23.58,-38.24,-24.13,"front shell (x=-68, phi=1 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",12,771.8,-71.77,-83.52,-33.79,-55.13,-71.77,"end cap (x=105, phi=164 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",13,781.3,-46.32,-54.34,-29.44,-37.46,-46.32,"end cap (x=-105, phi=-86 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",14,787.9,-53.64,-59.78,-28.45,-40.35,-53.64,"end cap (x=105, phi=-94 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",15,792.6,-53.78,-58.26,-37.1,-41.58,-53.78,"end cap (x=-105, phi=-180 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",16,861.1,-22.61,-40.51,-17.09,-34.99,-22.61,"front shell (x=0, phi=-85 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",17,929.7,-42.71,-60.39,-34.23,-51.91,-42.71,"end cap (x=-105, phi=23 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",18,938.3,-96.7,-119,-42.79,-84.22,-96.7,"front shell (x=0, phi=-70 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",19,964.4,-26.44,-49.67,-19.71,-42.95,-26.44,"front shell (x=15, phi=100 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",20,970.1,-69.02,-93.43,-25.09,-66.85,-69.02,"front shell (x=0, phi=75 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",21,977.5,-55.18,-71.27,-27.97,-56.03,-55.18,"end cap (x=-105, phi=94 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",22,979.8,-63.74,-77.91,-23.9,-58.56,-63.74,"front shell (x=1, phi=-74 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",23,992.3,-90.81,-130.1,-22.67,-83.67,-90.81,"front shell (x=-0, phi=-72 deg)",True
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",24,1009,-65.79,-88.7,-39.53,-62.45,-65.79,"end cap (x=-105, phi=-141 deg)",False
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",25,1020,-64.84,-88.98,-33.4,-63.28,-64.84,"end cap (x=105, phi=-98 deg)",False
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",26,1057,-124.7,-133.3,-24.31,-87.56,-124.7,"front shell (x=0, phi=69 deg)",False
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",27,1073,-121.2,-114.8,-18.38,-77.71,-121.2,"front shell (x=-0, phi=-68 deg)",False
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",28,1113,-96.82,-124.5,-42.9,-82.38,-96.82,"front shell (x=-0, phi=-68 deg)",False
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",29,1142,-97.19,-109.8,-50.55,-75.52,-97.19,"front shell (x=0, phi=71 deg)",False
+"asm_infill40_drivers_all_braces","What-if: all braces (+ cap gussets)",30,1157,-57.64,-76.96,-39.01,-58.33,-57.64,"front shell (x=-101, phi=102 deg)",False

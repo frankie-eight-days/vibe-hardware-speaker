@@ -1,0 +1,25 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s2 pwm: wf_15v5_2k5hz  modulation=bd m=0.8973875393651971 f=2500.0 load=nd65-8 woofer model
+
+binary raw file "s2_pwm_wf_15V5_2k5Hz.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 6  
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+ Reference value :  1.45943e-04 Reference value :  2.99446e-04 Reference value :  4.62529e-04 Reference value :  6.31981e-04 Reference value :  7.90141e-04 Reference value :  9.36273e-04
+No. of Data Rows : 295955
+
+Total analysis time (seconds) = 1.61941
+
+Total elapsed time (seconds) = 1.626 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 5553.031 MB.
+Maximum ngspice program size =   10.047 MB.
+Current ngspice program size =   10.047 MB.
+

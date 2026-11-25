@@ -1,0 +1,2 @@
+Vendored from https://github.com/espressif/kicad-libraries (main, fetched 2026-11-24). CC-BY-SA 4.0 with KiCad design exception, see LICENSE.md.
+Symbol footprint field rewritten to Espressif:ESP32-WROVER-E. Add as project libraries: symbol lib nickname 'Espressif' -> ${KIPRJMOD}/../lib/Espressif/Espressif.kicad_sym, footprint lib nickname 'Espressif' -> ${KIPRJMOD}/../lib/Espressif/Espressif.pretty

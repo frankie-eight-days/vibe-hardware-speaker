@@ -1,0 +1,25 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * s2 pwm: tw_clip_3khz  modulation=bd m=1.4396661812761153 f=3000.0 load=ot19nc00-04 tweeter model
+
+binary raw file "s2_pwm_tw_clip_3kHz.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Columns : 6  
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+ Reference value :  1.80127e-04 Reference value :  3.67793e-04 Reference value :  5.58045e-04 Reference value :  7.43106e-04
+No. of Data Rows : 234040
+
+Total analysis time (seconds) = 1.18255
+
+Total elapsed time (seconds) = 1.186 
+
+Total DRAM available = 16384.000 MB.
+DRAM currently available = 5394.188 MB.
+Maximum ngspice program size =   10.031 MB.
+Current ngspice program size =   10.031 MB.
+

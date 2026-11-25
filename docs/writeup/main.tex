@@ -1,0 +1,114 @@
+% Vibe hardware: designing a portable stereo Bluetooth speaker with LLM agents
+% Build: ./build.sh  (or: make)   Engine: LuaLaTeX (the specs contain Unicode).
+\documentclass[11pt,a4paper]{article}
+
+% ---------------------------------------------------------------- fonts
+\usepackage{fontspec}
+\directlua{
+  luaotfload.add_fallback("fbmain", {"Arial Unicode MS:mode=harf;", "Hiragino Sans GB:mode=harf;", "Menlo:mode=harf;"})
+  luaotfload.add_fallback("fbmono", {"Menlo:mode=harf;", "Arial Unicode MS:mode=harf;", "Hiragino Sans GB:mode=harf;"})
+}
+\setmainfont{Libertinus Serif}[RawFeature={fallback=fbmain}]
+\setsansfont{Libertinus Sans}[RawFeature={fallback=fbmain}]
+\setmonofont{Menlo}[Scale=MatchLowercase,RawFeature={fallback=fbmono}]
+\usepackage{unicode-math}
+\setmathfont{Libertinus Math}
+
+% ---------------------------------------------------------------- layout
+\usepackage[margin=25mm,headheight=14pt]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{booktabs,longtable,array,calc,tabularx,multirow}
+\newcounter{none} % pandoc tables
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=4pt}
+\usepackage[font=small,labelfont=bf,format=hang]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc,shapes.geometric}
+\usepackage[per-mode=symbol,range-phrase=--,range-units=single,
+            product-units=single,separate-uncertainty=true]{siunitx}
+\DeclareSIUnit{\dBc}{dB}
+\usepackage{xurl}
+\usepackage[hidelinks,bookmarksnumbered]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+\crefname{appendix}{Appendix}{Appendices}
+
+\graphicspath{{../figures/acoustics/}{../figures/spice/}{../figures/pdn/}{../../mech/concept/}{../../sim/acoustics/}{../../hw/mainboard/out/}}
+
+\definecolor{srcgray}{gray}{0.45}
+\definecolor{todored}{rgb}{0.75,0.05,0.05}
+\definecolor{agentblue}{rgb}{0.86,0.91,0.98}
+\definecolor{filegreen}{rgb}{0.88,0.96,0.88}
+\definecolor{leadorange}{rgb}{1.0,0.92,0.80}
+\definecolor{pwrred}{rgb}{0.98,0.88,0.86}
+\definecolor{digblue}{rgb}{0.86,0.91,0.98}
+
+% ---------------------------------------------------------------- macros
+% Source pointer: every number in the text traces to one of these files.
+\DeclareRobustCommand{\src}[1]{{\color{srcgray}\footnotesize[\nolinkurl{#1}]}}
+% Missing or conflicting numbers. Collected in the "Open items" list.
+\makeatletter
+\newcommand{\l@todoline}{\@dottedtocline{1}{0em}{2.0em}}
+\DeclareRobustCommand{\todo}[1]{%
+  {\color{todored}\textbf{[TODO:}~#1\textbf{]}}%
+  \addcontentsline{tdo}{todoline}{#1}}
+\newcommand{\listoftodos}{\section*{Open items (\texttt{\textbackslash todo})}\@starttoc{tdo}}
+\makeatother
+% Placeholder figure box for results that do not exist yet.
+\newcommand{\pendingbox}[2][0.8\linewidth]{%
+  \fbox{\parbox[c][#2][c]{#1}{\centering\color{srcgray}\Large\sffamily pending}}}
+\newcommand{\figfile}[1]{{\footnotesize\nolinkurl{#1}}}
+
+\setlength{\parskip}{3pt plus 1pt}
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily Vibe hardware: a stereo speaker designed with LLM agents}
+\fancyhead[R]{\small\sffamily\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\title{\sffamily\bfseries Vibe hardware: designing a portable stereo\\Bluetooth speaker with LLM agents}
+\author{Design write-up, revision 0.1}
+\date{Status of 2026-11-24 (pre-layout)}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\input{sections/00_abstract}
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\clearpage
+
+\input{sections/01_idea}
+\input{sections/02_process}
+\input{sections/03_architecture}
+\input{sections/04_decisions}
+\input{sections/05_features}
+\input{sections/06_analysis}
+\input{sections/06b_firmware}
+\input{sections/07_mechanical}
+\input{sections/08_schematic}
+\input{sections/09_pending}
+\input{sections/10_v2}
+
+\clearpage
+\appendix
+\setcounter{secnumdepth}{1}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\input{sections/11_appendix}
+
+\clearpage
+\listoftodos
+
+\end{document}
