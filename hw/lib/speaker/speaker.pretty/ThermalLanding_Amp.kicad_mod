@@ -2,7 +2,7 @@
   (version 20240108)
   (generator "konnect")
   (layer "F.Cu")
-  (descr "Board-only: B.Mask opening over the B.Cu GND pour under a TAS5805M (gap-pad landing to the enclosure). 12.2 x 15 mm with notches for the PVDD vias at the pin-row ends. No pads, no copper of its own.")
+  (descr "Board-only: B.Mask opening over the B.Cu GND pour under a TAS5805M (gap-pad landing to the enclosure). 13.4 x 15 mm with notches for the PVDD vias at the pin-row ends. No pads, no copper of its own.")
   (attr board_only exclude_from_pos_files exclude_from_bom allow_missing_courtyard)
 
-  (fp_poly (pts (xy -6.1 -7.5) (xy -2.95 -7.5) (xy -2.95 -5.6) (xy -1.35 -5.6) (xy -1.35 -7.5) (xy 6.1 -7.5) (xy 6.1 7.5) (xy -1.35 7.5) (xy -1.35 6) (xy -2.95 6) (xy -2.95 7.5) (xy -6.1 7.5)) (stroke (width 0) (type solid)) (fill solid) (layer "B.Mask")))
+  (fp_poly (pts (xy -6.7 -7.5) (xy 1.45 -7.5) (xy 1.45 -5.6) (xy 3.05 -5.6) (xy 3.05 -7.5) (xy 6.7 -7.5) (xy 6.7 7.5) (xy 3.05 7.5) (xy 3.05 6) (xy 1.45 6) (xy 1.45 7.5) (xy -6.7 7.5)) (stroke (width 0) (type solid)) (fill solid) (layer "B.Mask")))
