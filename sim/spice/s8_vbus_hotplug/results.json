@@ -1,0 +1,506 @@
+[
+ {
+  "V": 5,
+  "cable": "0.3m",
+  "damping": "none",
+  "vbus_pk": 5.99,
+  "pmid_pk": 5.15
+ },
+ {
+  "V": 5,
+  "cable": "0.3m",
+  "damping": "TI 2R+2.2u (R601/C602)",
+  "vbus_pk": 5.92,
+  "pmid_pk": 5.08
+ },
+ {
+  "V": 5,
+  "cable": "0.3m",
+  "damping": "1R+10u 1206",
+  "vbus_pk": 5.74,
+  "pmid_pk": 4.9
+ },
+ {
+  "V": 5,
+  "cable": "0.3m",
+  "damping": "ideal 47u ESR 0.3R",
+  "vbus_pk": 5.07,
+  "pmid_pk": 4.25
+ },
+ {
+  "V": 5,
+  "cable": "0.3m",
+  "damping": "C605 47u ESR 0.44R (Zmax 20C)",
+  "vbus_pk": 5.25,
+  "pmid_pk": 4.42
+ },
+ {
+  "V": 5,
+  "cable": "0.3m",
+  "damping": "C605 37.6u (-20%) ESR 0.44R",
+  "vbus_pk": 5.29,
+  "pmid_pk": 4.46
+ },
+ {
+  "V": 5,
+  "cable": "0.3m",
+  "damping": "C605 37.6u ESR 0.88R (-25C)",
+  "vbus_pk": 5.56,
+  "pmid_pk": 4.72
+ },
+ {
+  "V": 5,
+  "cable": "0.3m",
+  "damping": "C605 47u 0.44R + R605 0.5R 0805",
+  "vbus_pk": 5.57,
+  "pmid_pk": 4.73
+ },
+ {
+  "V": 5,
+  "cable": "1m",
+  "damping": "none",
+  "vbus_pk": 5.79,
+  "pmid_pk": 4.98
+ },
+ {
+  "V": 5,
+  "cable": "1m",
+  "damping": "TI 2R+2.2u (R601/C602)",
+  "vbus_pk": 5.73,
+  "pmid_pk": 4.92
+ },
+ {
+  "V": 5,
+  "cable": "1m",
+  "damping": "1R+10u 1206",
+  "vbus_pk": 5.5,
+  "pmid_pk": 4.69
+ },
+ {
+  "V": 5,
+  "cable": "1m",
+  "damping": "ideal 47u ESR 0.3R",
+  "vbus_pk": 4.93,
+  "pmid_pk": 4.14
+ },
+ {
+  "V": 5,
+  "cable": "1m",
+  "damping": "C605 47u ESR 0.44R (Zmax 20C)",
+  "vbus_pk": 4.88,
+  "pmid_pk": 4.09
+ },
+ {
+  "V": 5,
+  "cable": "1m",
+  "damping": "C605 37.6u (-20%) ESR 0.44R",
+  "vbus_pk": 4.93,
+  "pmid_pk": 4.16
+ },
+ {
+  "V": 5,
+  "cable": "1m",
+  "damping": "C605 37.6u ESR 0.88R (-25C)",
+  "vbus_pk": 5.14,
+  "pmid_pk": 4.33
+ },
+ {
+  "V": 5,
+  "cable": "1m",
+  "damping": "C605 47u 0.44R + R605 0.5R 0805",
+  "vbus_pk": 5.14,
+  "pmid_pk": 4.33
+ },
+ {
+  "V": 5,
+  "cable": "2m",
+  "damping": "none",
+  "vbus_pk": 5.38,
+  "pmid_pk": 4.59
+ },
+ {
+  "V": 5,
+  "cable": "2m",
+  "damping": "TI 2R+2.2u (R601/C602)",
+  "vbus_pk": 5.33,
+  "pmid_pk": 4.54
+ },
+ {
+  "V": 5,
+  "cable": "2m",
+  "damping": "1R+10u 1206",
+  "vbus_pk": 5.13,
+  "pmid_pk": 4.35
+ },
+ {
+  "V": 5,
+  "cable": "2m",
+  "damping": "ideal 47u ESR 0.3R",
+  "vbus_pk": 4.72,
+  "pmid_pk": 3.91
+ },
+ {
+  "V": 5,
+  "cable": "2m",
+  "damping": "C605 47u ESR 0.44R (Zmax 20C)",
+  "vbus_pk": 4.66,
+  "pmid_pk": 3.85
+ },
+ {
+  "V": 5,
+  "cable": "2m",
+  "damping": "C605 37.6u (-20%) ESR 0.44R",
+  "vbus_pk": 4.77,
+  "pmid_pk": 3.97
+ },
+ {
+  "V": 5,
+  "cable": "2m",
+  "damping": "C605 37.6u ESR 0.88R (-25C)",
+  "vbus_pk": 4.69,
+  "pmid_pk": 3.91
+ },
+ {
+  "V": 5,
+  "cable": "2m",
+  "damping": "C605 47u 0.44R + R605 0.5R 0805",
+  "vbus_pk": 4.62,
+  "pmid_pk": 3.83
+ },
+ {
+  "V": 15,
+  "cable": "0.3m",
+  "damping": "none",
+  "vbus_pk": 20.14,
+  "pmid_pk": 19.27
+ },
+ {
+  "V": 15,
+  "cable": "0.3m",
+  "damping": "TI 2R+2.2u (R601/C602)",
+  "vbus_pk": 19.89,
+  "pmid_pk": 19.03
+ },
+ {
+  "V": 15,
+  "cable": "0.3m",
+  "damping": "1R+10u 1206",
+  "vbus_pk": 19.19,
+  "pmid_pk": 18.32
+ },
+ {
+  "V": 15,
+  "cable": "0.3m",
+  "damping": "ideal 47u ESR 0.3R",
+  "vbus_pk": 15.95,
+  "pmid_pk": 15.1
+ },
+ {
+  "V": 15,
+  "cable": "0.3m",
+  "damping": "C605 47u ESR 0.44R (Zmax 20C)",
+  "vbus_pk": 16.84,
+  "pmid_pk": 15.99
+ },
+ {
+  "V": 15,
+  "cable": "0.3m",
+  "damping": "C605 37.6u (-20%) ESR 0.44R",
+  "vbus_pk": 16.96,
+  "pmid_pk": 16.11
+ },
+ {
+  "V": 15,
+  "cable": "0.3m",
+  "damping": "C605 37.6u ESR 0.88R (-25C)",
+  "vbus_pk": 18.24,
+  "pmid_pk": 17.38
+ },
+ {
+  "V": 15,
+  "cable": "0.3m",
+  "damping": "C605 47u 0.44R + R605 0.5R 0805",
+  "vbus_pk": 18.3,
+  "pmid_pk": 17.44
+ },
+ {
+  "V": 15,
+  "cable": "1m",
+  "damping": "none",
+  "vbus_pk": 19.51,
+  "pmid_pk": 18.67
+ },
+ {
+  "V": 15,
+  "cable": "1m",
+  "damping": "TI 2R+2.2u (R601/C602)",
+  "vbus_pk": 19.28,
+  "pmid_pk": 18.45
+ },
+ {
+  "V": 15,
+  "cable": "1m",
+  "damping": "1R+10u 1206",
+  "vbus_pk": 18.45,
+  "pmid_pk": 17.62
+ },
+ {
+  "V": 15,
+  "cable": "1m",
+  "damping": "ideal 47u ESR 0.3R",
+  "vbus_pk": 14.83,
+  "pmid_pk": 14.05
+ },
+ {
+  "V": 15,
+  "cable": "1m",
+  "damping": "C605 47u ESR 0.44R (Zmax 20C)",
+  "vbus_pk": 14.9,
+  "pmid_pk": 14.08
+ },
+ {
+  "V": 15,
+  "cable": "1m",
+  "damping": "C605 37.6u (-20%) ESR 0.44R",
+  "vbus_pk": 15.17,
+  "pmid_pk": 14.36
+ },
+ {
+  "V": 15,
+  "cable": "1m",
+  "damping": "C605 37.6u ESR 0.88R (-25C)",
+  "vbus_pk": 16.6,
+  "pmid_pk": 15.77
+ },
+ {
+  "V": 15,
+  "cable": "1m",
+  "damping": "C605 47u 0.44R + R605 0.5R 0805",
+  "vbus_pk": 16.65,
+  "pmid_pk": 15.82
+ },
+ {
+  "V": 15,
+  "cable": "2m",
+  "damping": "none",
+  "vbus_pk": 18.06,
+  "pmid_pk": 17.24
+ },
+ {
+  "V": 15,
+  "cable": "2m",
+  "damping": "TI 2R+2.2u (R601/C602)",
+  "vbus_pk": 17.87,
+  "pmid_pk": 17.06
+ },
+ {
+  "V": 15,
+  "cable": "2m",
+  "damping": "1R+10u 1206",
+  "vbus_pk": 17.1,
+  "pmid_pk": 16.3
+ },
+ {
+  "V": 15,
+  "cable": "2m",
+  "damping": "ideal 47u ESR 0.3R",
+  "vbus_pk": 14.43,
+  "pmid_pk": 13.62
+ },
+ {
+  "V": 15,
+  "cable": "2m",
+  "damping": "C605 47u ESR 0.44R (Zmax 20C)",
+  "vbus_pk": 14.22,
+  "pmid_pk": 13.41
+ },
+ {
+  "V": 15,
+  "cable": "2m",
+  "damping": "C605 37.6u (-20%) ESR 0.44R",
+  "vbus_pk": 14.53,
+  "pmid_pk": 13.73
+ },
+ {
+  "V": 15,
+  "cable": "2m",
+  "damping": "C605 37.6u ESR 0.88R (-25C)",
+  "vbus_pk": 14.5,
+  "pmid_pk": 13.7
+ },
+ {
+  "V": 15,
+  "cable": "2m",
+  "damping": "C605 47u 0.44R + R605 0.5R 0805",
+  "vbus_pk": 14.48,
+  "pmid_pk": 13.68
+ },
+ {
+  "V": 20,
+  "cable": "0.3m",
+  "damping": "none",
+  "vbus_pk": 27.59,
+  "pmid_pk": 26.71
+ },
+ {
+  "V": 20,
+  "cable": "0.3m",
+  "damping": "TI 2R+2.2u (R601/C602)",
+  "vbus_pk": 27.25,
+  "pmid_pk": 26.38
+ },
+ {
+  "V": 20,
+  "cable": "0.3m",
+  "damping": "1R+10u 1206",
+  "vbus_pk": 26.25,
+  "pmid_pk": 25.38
+ },
+ {
+  "V": 20,
+  "cable": "0.3m",
+  "damping": "ideal 47u ESR 0.3R",
+  "vbus_pk": 21.42,
+  "pmid_pk": 20.57
+ },
+ {
+  "V": 20,
+  "cable": "0.3m",
+  "damping": "C605 47u ESR 0.44R (Zmax 20C)",
+  "vbus_pk": 22.75,
+  "pmid_pk": 21.89
+ },
+ {
+  "V": 20,
+  "cable": "0.3m",
+  "damping": "C605 37.6u (-20%) ESR 0.44R",
+  "vbus_pk": 22.9,
+  "pmid_pk": 22.04
+ },
+ {
+  "V": 20,
+  "cable": "0.3m",
+  "damping": "C605 37.6u ESR 0.88R (-25C)",
+  "vbus_pk": 24.79,
+  "pmid_pk": 23.92
+ },
+ {
+  "V": 20,
+  "cable": "0.3m",
+  "damping": "C605 47u 0.44R + R605 0.5R 0805",
+  "vbus_pk": 24.9,
+  "pmid_pk": 24.03
+ },
+ {
+  "V": 20,
+  "cable": "1m",
+  "damping": "none",
+  "vbus_pk": 26.75,
+  "pmid_pk": 25.91
+ },
+ {
+  "V": 20,
+  "cable": "1m",
+  "damping": "TI 2R+2.2u (R601/C602)",
+  "vbus_pk": 26.44,
+  "pmid_pk": 25.61
+ },
+ {
+  "V": 20,
+  "cable": "1m",
+  "damping": "1R+10u 1206",
+  "vbus_pk": 25.3,
+  "pmid_pk": 24.47
+ },
+ {
+  "V": 20,
+  "cable": "1m",
+  "damping": "ideal 47u ESR 0.3R",
+  "vbus_pk": 19.79,
+  "pmid_pk": 19.0
+ },
+ {
+  "V": 20,
+  "cable": "1m",
+  "damping": "C605 47u ESR 0.44R (Zmax 20C)",
+  "vbus_pk": 19.97,
+  "pmid_pk": 19.15
+ },
+ {
+  "V": 20,
+  "cable": "1m",
+  "damping": "C605 37.6u (-20%) ESR 0.44R",
+  "vbus_pk": 20.33,
+  "pmid_pk": 19.51
+ },
+ {
+  "V": 20,
+  "cable": "1m",
+  "damping": "C605 37.6u ESR 0.88R (-25C)",
+  "vbus_pk": 22.47,
+  "pmid_pk": 21.64
+ },
+ {
+  "V": 20,
+  "cable": "1m",
+  "damping": "C605 47u 0.44R + R605 0.5R 0805",
+  "vbus_pk": 22.56,
+  "pmid_pk": 21.73
+ },
+ {
+  "V": 20,
+  "cable": "2m",
+  "damping": "none",
+  "vbus_pk": 24.8,
+  "pmid_pk": 23.98
+ },
+ {
+  "V": 20,
+  "cable": "2m",
+  "damping": "TI 2R+2.2u (R601/C602)",
+  "vbus_pk": 24.54,
+  "pmid_pk": 23.72
+ },
+ {
+  "V": 20,
+  "cable": "2m",
+  "damping": "1R+10u 1206",
+  "vbus_pk": 23.49,
+  "pmid_pk": 22.68
+ },
+ {
+  "V": 20,
+  "cable": "2m",
+  "damping": "ideal 47u ESR 0.3R",
+  "vbus_pk": 19.29,
+  "pmid_pk": 18.48
+ },
+ {
+  "V": 20,
+  "cable": "2m",
+  "damping": "C605 47u ESR 0.44R (Zmax 20C)",
+  "vbus_pk": 19.01,
+  "pmid_pk": 18.2
+ },
+ {
+  "V": 20,
+  "cable": "2m",
+  "damping": "C605 37.6u (-20%) ESR 0.44R",
+  "vbus_pk": 19.42,
+  "pmid_pk": 18.61
+ },
+ {
+  "V": 20,
+  "cable": "2m",
+  "damping": "C605 37.6u ESR 0.88R (-25C)",
+  "vbus_pk": 19.56,
+  "pmid_pk": 18.76
+ },
+ {
+  "V": 20,
+  "cable": "2m",
+  "damping": "C605 47u 0.44R + R605 0.5R 0805",
+  "vbus_pk": 19.57,
+  "pmid_pk": 18.76
+ }
+]

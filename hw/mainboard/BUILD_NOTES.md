@@ -43,7 +43,7 @@ The vendored Espressif library (`hw/lib/Espressif/`) is registered as `Espressif
 
 - `speaker_main_schematic.pdf`: all 10 pages.
 - `speaker_main.net`: KiCad netlist.
-- `speaker_main_bom.csv`: grouped by Value, Footprint, LCSC and DNP. Columns: Designator, Value, Footprint, LCSC, DNP, Qty. It has 124 rows, 271 parts in total (after ECO-002).
+- `speaker_main_bom.csv`: grouped by Value, Footprint, LCSC and DNP. Columns: Designator, Value, Footprint, LCSC, DNP, Qty. It has 125 rows, 272 parts in total (after ECO-004).
 - `speaker_main_erc.rpt` and `speaker_main_erc.json`: the ERC reports.
 
 ## ERC results
@@ -156,4 +156,5 @@ v1 (pre-redraw) is archived at `hw/releases/mainboard_v1`.
 - **Root sheet:** the tools can't put sheet pins on the top or bottom edges of a box, or enlarge the Sheetname field. The power path therefore enters the boxes from the side, and the large box names are text items.
 - **Charger sheet note:** fixed. It now reads "POR/watchdog ICHG = 2 A (BQ25792, 2S); firmware sets ICHG at boot". C721's Value is `100nF 50V`.
 - **Release snapshot:** v0.2 is snapshotted at `hw/releases/mainboard_v0.2`. The title block (`speaker_titleblock.kicad_wks`) reads Rev 0.2, and `out/` (PDF, netlist, BOM) was re-exported at Rev 0.2.
+- **ECO-004 (v0.3, 2026-11-25):** adds C605, a 47 µF 35 V Al-elec (Lelon VZH470M1VTR-0606, C134832), from VBUS to GND on usb_power next to D601. It is the ESR-damped hot-plug bulk cap (S8; `docs/eco_004.md`). ERC: 0 violations. Against v0.2 by (ref, pin, net), the only change is C605 added. Snapshot: `hw/releases/mainboard_v0.3`, without the .kicad_pcb, which is live in layout.
 - **Tooling note:** Konnect tools enabled with `load_toolset` mid-session were not visible to the agent that loaded them; only agents started afterwards could call them. The build was therefore run through sub-agents, one setup agent and then one agent per group of sheets, each editing only its own files.

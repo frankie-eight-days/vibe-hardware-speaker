@@ -106,6 +106,7 @@ Local nets are defined per sheet.
 | C601 | 100 nF | C_0603 | 50 V X7R | C14663 | B | `Device:C` | VBUS HF at connector |
 | R601 | 2.0 Ω | R_0805 | 0.125 W | C2930265 | E | `Device:R` | **DNP**. Hot-plug snubber (BQ25798 Fig 8-1 note 1) |
 | C602 | 2.2 µF | C_0805 | 50 V X5R | C377773 | B | `Device:C` | **DNP**, in series with R601 |
+| C605 | 47 µF Lelon VZH470M1VTR-0606 (Al-elec, 6.3 × 5.7 mm) | `Capacitor_SMD:CP_Elec_6.3x5.7` | 35 V, ±20 %, Z ≤ 0.44 Ω @ 100 kHz, tan δ 0.13 | C134832 | E | `Device:C_Polarized` | ESR-damped VBUS bulk (ECO-004). Alt: JARSON FZ1V470M0606, C3646801 |
 | U601 | USBLC6-2SC6 | `Package_TO_SOT_SMD:SOT-23-6` | 5 V, 6 A 8/20 µs | C2687116 | E | `Power_Protection:USBLC6-2SC6` | D+/D− ESD |
 | C603 | 100 nF | C_0603 | 50 V | C14663 | B | `Device:C` | U601 pin 5 to GND |
 | U602 | USBLC6-2SC6 | SOT-23-6 | | C2687116 | E | `Power_Protection:USBLC6-2SC6` | CC1/CC2 ESD (pin 5 not connected) |
@@ -137,6 +138,9 @@ Local nets are defined per sheet.
 **D601 SMF24A**: pin 1 (K) `VBUS`, pin 2 (A) `GND`. Place within 3 mm of J601's VBUS pins.
 
 **R601/C602 snubber (DNP)**: R601 pin 1 `VBUS`, pin 2 `VBUS_SNUB`; C602 pin 1 `VBUS_SNUB`, pin 2 `GND`.
+
+**C605 (ECO-004)**: pin 1 (+) `VBUS`, pin 2 `GND`. Place it next to D601.
+Its ESR damps the ring between the cable L and the MLCC bank. A 20 V hot-plug on 0.3 m of cable peaks at 22.9 V worst case, against 27.6 V without C605 (S8, `sim/spice/s8_vbus_hotplug`). Any substitute needs a 100 kHz Z/ESR spec of ≤ 0.5 Ω: tan δ-only parts peak at 26–27 V.
 
 **U601 USBLC6-2SC6 (D+/D−)**:
 
@@ -190,7 +194,7 @@ R603: `VBUS` ↔ `PD_ISO_G`. R604: `PD_ISO_G` ↔ `GND`.
   - TAS5805M: DVDD = +3V3, the same rail as the pull-ups. No risk.
   - CH224Q: powered only from VBUS. **Risk, handled by Q601/Q602.** Its CFG2/CFG3 pins tolerate 6.5 V (CH224 §8.1.1), and V_IH(I2C) min is 1.5 V, so 3.3 V logic is fine when it is powered.
 - **ESD.** VBUS gets D601 (SMF24A). CC and D± get USBLC6. USB-C sources always attach at 5 V and only step to 15 V after the PD contract, so the BQ ">15 V hot-plug" snubber (R601/C602) stays DNP.
-- **VBUS capacitance.** Total sink capacitance (VBUS + PMID, which are DC-connected inside the BQ through its input current sense) is about 50 µF nominal, ≈ 20 µF effective at 15 V. That exceeds the USB Type-C cSnkBulk guideline of 10 µF. TI's recommended values and EVM do the same. Accepted: the source limits inrush at 5 V attach.
+- **VBUS capacitance.** Total sink capacitance (VBUS + PMID, which are DC-connected inside the BQ through its input current sense) is about 97 µF nominal since ECO-004: ~50 µF MLCC plus C605's 47 µF. That is ≈ 67 µF effective at 15 V, because the MLCCs derate and C605 doesn't. This exceeds the USB Type-C cSnkBulk guideline of 10 µF, and the 100 µF cSnkBulkPd ceiling is reached only at the + end of C605's tolerance. Accepted: the source limits inrush at 5 V attach. C605 damps the hot-plug ring (S8).
 
 ---
 

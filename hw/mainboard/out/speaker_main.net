@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/Users/frankwalsh/Documents/vibecoding/anthropic_hardware_test/hw/mainboard/speaker_main.kicad_sch")
-		(date "2026-11-24T17:56:11")
+		(date "2026-11-25T08:46:50")
 		(tool "Eeschema 10.0.4")
 		(sheet
 			(number "1")
@@ -718,6 +718,66 @@
 				(tstamps "/4b3dcb14-9b65-443e-80f4-202b0c3d1695/")
 			)
 			(tstamps "af475d34-3db2-4e93-ab9e-4932f9151e2e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C605")
+			(value "47uF 35V")
+			(footprint "Capacitor_SMD:CP_Elec_6.3x5.7")
+			(description "Polarized capacitor")
+			(fields
+				(field
+					(name "LCSC") "C134832")
+				(field
+					(name "Footprint") "Capacitor_SMD:CP_Elec_6.3x5.7")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Polarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C_Polarized")
+				(description "Polarized capacitor")
+			)
+			(property
+				(name "LCSC")
+				(value "C134832")
+			)
+			(property
+				(name "Sheetname")
+				(value "usb_power")
+			)
+			(property
+				(name "Sheetfile")
+				(value "usb_power.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "CP_*")
+			)
+			(sheetpath
+				(names "/usb_power/")
+				(tstamps "/4b3dcb14-9b65-443e-80f4-202b0c3d1695/")
+			)
+			(tstamps "f81ae168-78b9-4ed2-adbb-5b88ab72edf1")
 			(units
 				(unit
 					(name "A")
@@ -19591,7 +19651,7 @@
 		(net
 			(code "1")
 			(name "+3V3")
-			(class "Default")
+			(class "PWR_3V3,Default")
 			(node
 				(ref "C101")
 				(pin "1")
@@ -19984,7 +20044,7 @@
 		(net
 			(code "8")
 			(name "/I2S_BCLK")
-			(class "Default")
+			(class "CLOCK,Default")
 			(node
 				(ref "R505")
 				(pin "2")
@@ -20166,7 +20226,7 @@
 		(net
 			(code "16")
 			(name "/amp_left/AL_OUTA_N")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C313")
 				(pin "2")
@@ -20188,7 +20248,7 @@
 		(net
 			(code "17")
 			(name "/amp_left/AL_OUTA_P")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C312")
 				(pin "2")
@@ -20210,7 +20270,7 @@
 		(net
 			(code "18")
 			(name "/amp_left/AL_OUTB_N")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C315")
 				(pin "2")
@@ -20232,7 +20292,7 @@
 		(net
 			(code "19")
 			(name "/amp_left/AL_OUTB_P")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C314")
 				(pin "2")
@@ -20270,7 +20330,7 @@
 		(net
 			(code "21")
 			(name "/amp_left/PVDD")
-			(class "Default")
+			(class "PVDD,Default")
 			(node
 				(ref "C301")
 				(pin "1")
@@ -20472,7 +20532,7 @@
 		(net
 			(code "22")
 			(name "/amp_left/SPK_TL_N")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C319")
 				(pin "1")
@@ -20494,7 +20554,7 @@
 		(net
 			(code "23")
 			(name "/amp_left/SPK_TL_P")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C318")
 				(pin "1")
@@ -20516,7 +20576,7 @@
 		(net
 			(code "24")
 			(name "/amp_left/SPK_WL_N")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C317")
 				(pin "1")
@@ -20538,7 +20598,7 @@
 		(net
 			(code "25")
 			(name "/amp_left/SPK_WL_P")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C316")
 				(pin "1")
@@ -20640,7 +20700,7 @@
 		(net
 			(code "31")
 			(name "/amp_right/AR_OUTA_N")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C413")
 				(pin "2")
@@ -20662,7 +20722,7 @@
 		(net
 			(code "32")
 			(name "/amp_right/AR_OUTA_P")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C412")
 				(pin "2")
@@ -20684,7 +20744,7 @@
 		(net
 			(code "33")
 			(name "/amp_right/AR_OUTB_N")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C415")
 				(pin "2")
@@ -20706,7 +20766,7 @@
 		(net
 			(code "34")
 			(name "/amp_right/AR_OUTB_P")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C414")
 				(pin "2")
@@ -20744,7 +20804,7 @@
 		(net
 			(code "36")
 			(name "/amp_right/SPK_TR_N")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C419")
 				(pin "1")
@@ -20766,7 +20826,7 @@
 		(net
 			(code "37")
 			(name "/amp_right/SPK_TR_P")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C418")
 				(pin "1")
@@ -20788,7 +20848,7 @@
 		(net
 			(code "38")
 			(name "/amp_right/SPK_WR_N")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C417")
 				(pin "1")
@@ -20810,7 +20870,7 @@
 		(net
 			(code "39")
 			(name "/amp_right/SPK_WR_P")
-			(class "Default")
+			(class "SPEAKER,Default")
 			(node
 				(ref "C416")
 				(pin "1")
@@ -21048,7 +21108,7 @@
 		(net
 			(code "49")
 			(name "/battery/BATT_N")
-			(class "Default")
+			(class "PWR_BATT,Default")
 			(node
 				(ref "C801")
 				(pin "2")
@@ -21192,7 +21252,7 @@
 		(net
 			(code "53")
 			(name "/battery/PACK_P")
-			(class "Default")
+			(class "PWR_BATT,Default")
 			(node
 				(ref "F801")
 				(pin "1")
@@ -21231,7 +21291,7 @@
 		(net
 			(code "55")
 			(name "/battery/PROT_D")
-			(class "Default")
+			(class "PWR_BATT,Default")
 			(node
 				(ref "Q801")
 				(pin "5")
@@ -21328,7 +21388,7 @@
 		(net
 			(code "60")
 			(name "/battery/VBAT_PACK")
-			(class "Default")
+			(class "PWR_BATT,Default")
 			(node
 				(ref "C720")
 				(pin "2")
@@ -21385,7 +21445,7 @@
 		(net
 			(code "61")
 			(name "/charger/CHG_BAT")
-			(class "Default")
+			(class "PWR_BATT,Default")
 			(node
 				(ref "C717")
 				(pin "1")
@@ -21558,7 +21618,7 @@
 		(net
 			(code "68")
 			(name "/charger/CHG_PMID")
-			(class "Default")
+			(class "VBUS,Default")
 			(node
 				(ref "C704")
 				(pin "1")
@@ -21669,7 +21729,7 @@
 		(net
 			(code "73")
 			(name "/charger/CHG_SW1")
-			(class "Default")
+			(class "SWITCH,Default")
 			(node
 				(ref "C708")
 				(pin "2")
@@ -21691,7 +21751,7 @@
 		(net
 			(code "74")
 			(name "/charger/CHG_SW2")
-			(class "Default")
+			(class "SWITCH,Default")
 			(node
 				(ref "C709")
 				(pin "2")
@@ -21750,7 +21810,7 @@
 		(net
 			(code "76")
 			(name "/charger/VBUS")
-			(class "Default")
+			(class "VBUS,Default")
 			(node
 				(ref "C601")
 				(pin "1")
@@ -21758,6 +21818,11 @@
 			)
 			(node
 				(ref "C604")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C605")
 				(pin "1")
 				(pintype "passive")
 			)
@@ -21862,7 +21927,7 @@
 		(net
 			(code "77")
 			(name "/charger/VSYS")
-			(class "Default")
+			(class "PWR_BATT,Default")
 			(node
 				(ref "C711")
 				(pin "1")
@@ -22198,7 +22263,7 @@
 		(net
 			(code "88")
 			(name "/mcu/I2S_BCLK_MCU")
-			(class "Default")
+			(class "CLOCK,Default")
 			(node
 				(ref "R110")
 				(pin "2")
@@ -22325,7 +22390,7 @@
 		(net
 			(code "95")
 			(name "/mcu/IO18_R")
-			(class "Default")
+			(class "CLOCK,Default")
 			(node
 				(ref "R113")
 				(pin "1")
@@ -22357,7 +22422,7 @@
 		(net
 			(code "97")
 			(name "/mcu/IO26_R")
-			(class "Default")
+			(class "CLOCK,Default")
 			(node
 				(ref "R110")
 				(pin "1")
@@ -22389,7 +22454,7 @@
 		(net
 			(code "99")
 			(name "/mcu/IO32_R")
-			(class "Default")
+			(class "CLOCK,Default")
 			(node
 				(ref "R118")
 				(pin "1")
@@ -22469,7 +22534,7 @@
 		(net
 			(code "104")
 			(name "/mcu/LCD_SCLK")
-			(class "Default")
+			(class "CLOCK,Default")
 			(node
 				(ref "J501")
 				(pin "5")
@@ -22485,7 +22550,7 @@
 		(net
 			(code "105")
 			(name "/mcu/PDM_CLK")
-			(class "Default")
+			(class "CLOCK,Default")
 			(node
 				(ref "J501")
 				(pin "12")
@@ -22691,7 +22756,7 @@
 		(net
 			(code "116")
 			(name "/rails/BST_SW")
-			(class "Default")
+			(class "SWITCH,Default")
 			(node
 				(ref "C905")
 				(pin "2")
@@ -22823,7 +22888,7 @@
 		(net
 			(code "123")
 			(name "/rails/BUCK_SW")
-			(class "Default")
+			(class "SWITCH,Default")
 			(node
 				(ref "C955")
 				(pin "2")
@@ -23118,7 +23183,7 @@
 		(net
 			(code "138")
 			(name "/usb_power/USB_DN")
-			(class "Default")
+			(class "USB_DIFF,Default")
 			(node
 				(ref "J601")
 				(pin "A7")
@@ -23153,7 +23218,7 @@
 		(net
 			(code "139")
 			(name "/usb_power/USB_DP")
-			(class "Default")
+			(class "USB_DIFF,Default")
 			(node
 				(ref "J601")
 				(pin "A6")
@@ -23547,6 +23612,11 @@
 			)
 			(node
 				(ref "C604")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C605")
 				(pin "2")
 				(pintype "passive")
 			)
