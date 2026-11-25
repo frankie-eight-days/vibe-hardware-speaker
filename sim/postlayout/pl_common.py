@@ -32,6 +32,49 @@ Z = {"B.Cu": 0.0175,
 # dielectric between neighbouring copper layers: (upper, lower) -> (h, er)
 DIEL = {("F.Cu", "In1.Cu"): (H_PP, ER_PP), ("In1.Cu", "In2.Cu"): (H_CORE, ER_CORE),
         ("In2.Cu", "B.Cu"): (H_PP, ER_PP)}
+# The module constants above are the 4-layer (rev A) stack-up. Per-board values come from
+# stackup(n), keyed by the board's copper layer count: top to bottom, (layer, t_Cu, role) and
+# the dielectric (h, er) below each layer. Roles: sig = signal, gnd / pwr = plane.
+_H7 = 0.2104 * 2 + 0.70             # 6L: 7628 + 0.70 core + 7628 as one dielectric
+STACKS = {
+    4: ("JLC04161H-7628",
+        [("F.Cu", 0.035, "sig"), ("In1.Cu", 0.0152, "gnd"), ("In2.Cu", 0.0152, "pwr"), ("B.Cu", 0.035, "sig")],
+        [(H_PP, ER_PP), (H_CORE, ER_CORE), (H_PP, ER_PP)]),
+    6: ("JLC06161H-1080B",
+        [("F.Cu", 0.035, "sig"), ("In1.Cu", 0.0152, "gnd"), ("In2.Cu", 0.0152, "sig"),
+         ("In3.Cu", 0.0152, "pwr"), ("In4.Cu", 0.0152, "gnd"), ("B.Cu", 0.035, "sig")],
+        [(0.0764, 3.91), (0.10, 4.36), (_H7, _H7 / (2 * 0.2104 / 4.4 + 0.70 / 4.53)), (0.10, 4.36), (0.0764, 3.91)]),
+}
+
+
+def stackup(n):
+    """Stack-up of an n-layer board: layers (top first), t_cu, z (copper centre above the bottom
+    face), diel {(upper, lower): (h, er)}, refs {layer: [(neighbour, h), ...] nearest first},
+    t_fr4 (dielectric share per layer for in-plane heat flow), pairs (mirrored layers), names."""
+    name, lay, die = STACKS[n]
+    layers = [L for L, _, _ in lay]
+    t_cu = {L: t for L, t, _ in lay}
+    z, acc = {}, 0.0
+    for k in range(n - 1, -1, -1):          # bottom up, summed in the same order as Z above
+        L = layers[k]
+        z[L] = acc + t_cu[L] / 2
+        acc = acc + t_cu[L]
+        if k > 0:
+            acc = acc + die[k - 1][0]
+    diel = {(layers[k], layers[k + 1]): die[k] for k in range(n - 1)}
+    refs = {}
+    for k, L in enumerate(layers):
+        nb = [(layers[k - 1], die[k - 1][0])] if k > 0 else []
+        nb += [(layers[k + 1], die[k][0])] if k < n - 1 else []
+        refs[L] = sorted(nb, key=lambda q: q[1])
+    t_fr4 = {L: (die[k - 1][0] / 2 if k > 0 else 0) + (die[k][0] / 2 if k < n - 1 else 0)
+             for k, L in enumerate(layers)}
+    if n == 4:
+        t_fr4 = {"F.Cu": 0.105, "In1.Cu": 0.64, "In2.Cu": 0.64, "B.Cu": 0.105}   # rev A values (rounded)
+    return {"n": n, "name": name, "layers": layers, "t_cu": t_cu, "z": z, "diel": diel, "refs": refs,
+            "role": {L: r for L, _, r in lay}, "t_fr4": t_fr4,
+            "pairs": [(layers[k], layers[n - 1 - k]) for k in range(n // 2)],
+            "names": {L: f"L{k + 1}" for k, L in enumerate(layers)}}
 SIGMA_CU = 5.8e7          # S/m
 RHO_CU = 1 / SIGMA_CU     # ohm m
 VIA_PLATING = 0.020       # mm barrel plating (JLC typ 18-25 um)
@@ -91,6 +134,10 @@ class Board:
         self.fps = {f["ref"]: f for f in d["footprints"]}
         self.outline = d["outline"]
         self.nets = sorted({c["net"] for c in self.copper} | {t["net"] for t in self.tracks})
+        # copper layer count: written by extract_kicad.py; older extracts are 4-layer
+        n = d.get("n_cu") or (6 if any(c["layer"] in ("In3.Cu", "In4.Cu") for c in self.copper) else 4)
+        self.st = stackup(n)
+        self.layers, self.t_cu, self.z, self.diel = self.st["layers"], self.st["t_cu"], self.st["z"], self.st["diel"]
 
     def net(self, name):
         """Resolve a short net name ('PVDD', 'GND', '/charger/VSYS') to the board's full name."""

@@ -1,6 +1,6 @@
 """Analysis 5: steady-state 2.5-D finite-difference thermal model of the board.
 
-Grid 0.5 mm, 4 nodes per column (L1..L4). In-plane sheet conductance per layer =
+Grid 0.5 mm, one node per copper layer per column (L1..L4 or L1..L6, pl_common.stackup). In-plane sheet conductance per layer =
 k_Cu * t_Cu * (copper fraction of the cell, from a 0.05 mm raster) + k_FR4,xy * (share of the
 dielectric). Vertical: FR4 through-plane (0.3 W/mK) + every plated barrel in the cell
 (k_Cu * pi * d * 20 um / dz, all nets). Convection + radiation lumped as h on both faces to
@@ -17,7 +17,7 @@ import numpy as np
 from scipy import sparse
 from scipy.sparse.linalg import spsolve
 
-from pl_common import LAYERS, T_CU, VIA_PLATING, Z, Grid, load, save_json, savefig, style
+from pl_common import VIA_PLATING, Grid, load, save_json, savefig, style
 
 DX = 0.5
 K_CU, K_FR4_XY, K_FR4_Z = 385.0, 0.8, 0.3
@@ -87,6 +87,8 @@ def max_sustained(b, g, M, idx):
 
 
 def build(b, h):
+    LAYERS, T_CU, Z = b.layers, b.t_cu, b.z
+    nl = len(LAYERS)
     g = Grid.from_bbox(b.bbox, DX)
     fine = Grid(g.x0, g.y0, g.nx * 10, g.ny * 10, DX / 10)
     om_f = b.outline_mask(fine)
@@ -100,7 +102,7 @@ def build(b, h):
     nc = g.nx * g.ny
     idx = lambda li: li * nc + np.arange(nc).reshape(g.ny, g.nx)
     rows, cols, vals = [], [], []
-    t_d = {"F.Cu": 0.105, "In1.Cu": 0.64, "In2.Cu": 0.64, "B.Cu": 0.105}   # FR4 share per layer, mm
+    t_d = b.st["t_fr4"]   # FR4 share per layer, mm
     for li, L in enumerate(LAYERS):
         kt = (K_CU * T_CU[L] * frac[L] + K_FR4_XY * t_d[L]) * 1e-3     # W/K per square
         a = idx(li)
@@ -115,27 +117,28 @@ def build(b, h):
         i, j = g.ij(v["x"], v["y"])
         nvia[j, i] += np.pi * max(v["drill"], 0.2) * VIA_PLATING      # mm2 of barrel
     A = (DX * 1e-3) ** 2
-    for li in range(3):
+    for li in range(nl - 1):
         L1, L2 = LAYERS[li], LAYERS[li + 1]
         dz = abs(Z[L1] - Z[L2]) * 1e-3
         gz = K_FR4_Z * A / dz + K_CU * nvia * 1e-6 / dz
         rows.append(idx(li)[on]); cols.append(idx(li + 1)[on]); vals.append(gz[on])
     r, c, v = map(np.concatenate, (rows, cols, vals))
-    N = 4 * nc
+    N = nl * nc
     G = sparse.coo_matrix((v, (r, c)), shape=(N, N)).tocsr()
     G = G + G.T
     diag = np.asarray(G.sum(axis=1)).ravel()
     conv = np.zeros(N)
     conv[idx(0)[on]] = h * A * inside[on]
-    conv[idx(3)[on]] = h * A * inside[on]
+    conv[idx(nl - 1)[on]] = h * A * inside[on]
     off = np.ones(N, bool)
-    off[idx(0)[on]] = off[idx(1)[on]] = off[idx(2)[on]] = off[idx(3)[on]] = False
+    for li in range(nl):
+        off[idx(li)[on]] = False
     M = sparse.diags(diag + conv + off * 1.0) - G
     return g, M.tocsc(), conv, on, idx, frac, inside
 
 
 def heat_vector(b, g, idx, case):
-    q = np.zeros(4 * g.nx * g.ny)
+    q = np.zeros(len(b.layers) * g.nx * g.ny)
     cells = {}
     for ref, P in case.items():
         pads = [p for p in b.pads_of(ref) if "F.Cu" in p["layers"]] or b.pads_of(ref)

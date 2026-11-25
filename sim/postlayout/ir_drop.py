@@ -1,7 +1,8 @@
 """Analysis 4a: DC IR drop on the real copper (2-D finite differences per layer + via barrels).
 
-Each net is rasterised on its 4 layers. Neighbouring cells are joined by the sheet conductance
-sigma*t (1 oz outer 35 um, 0.5 oz inner 15.2 um, JLC04161H-7628), layers by via barrels
+Each net is rasterised on every copper layer of the board (4 or 6, pl_common.stackup), so a rail
+may live on any layer. Neighbouring cells are joined by the sheet conductance sigma*t (1 oz outer
+35 um, 0.5 oz inner 15.2 um, JLC04161H-7628 / JLC06161H-1080B), layers by via barrels
 (sigma*pi*d*t_plating/dz, 20 um plating) and plated pads. The source pad is held at 0 V; each
 load pad draws its current spread over its land. Copper at 25 C (+0.39 %/K).
 Outputs per case: drop at each load, I^2R, hot-spot current density (A/mm2) and max via current,
@@ -17,7 +18,7 @@ from scipy import sparse
 from scipy.sparse import csgraph
 from scipy.sparse.linalg import spsolve
 
-from pl_common import LAYERS, SIGMA_CU, T_CU, VIA_PLATING, Z, Grid, load, save_json, savefig, style
+from pl_common import SIGMA_CU, VIA_PLATING, Grid, load, save_json, savefig, style
 
 MU0 = 4e-7 * np.pi
 TAS_PVDD = ["15", "16", "27", "28"]          # TAS5805M PVDD pins (SLASEH5D Table 5-1)
@@ -42,6 +43,7 @@ CASES = [
 
 def solve_case(b, case):
     name, net_s, src, loads, p, note = case
+    LAYERS, T_CU, Z = b.layers, b.t_cu, b.z
     net = b.net(net_s)
     pads_all = [b.pad(r, n) for r, ns in src for n in ns] + [b.pad(r, n) for r, ns, _ in loads for n in ns]
     if net_s == "GND":
@@ -92,7 +94,7 @@ def solve_case(b, case):
             gvia = SIGMA_CU * np.pi * d * 1e-3 * VIA_PLATING * 1e-3 / (abs(Z[La] - Z[Lb]) * 1e-3)
             rows.append(a_[ok]); cols.append(b_[ok]); gv.append(np.full(ok.sum(), gvia / ok.sum()))
             kind.append(np.full(ok.sum(), "via", dtype=object))
-            via_id.append(np.full(ok.sum(), vi * 4 + LAYERS.index(La)))
+            via_id.append(np.full(ok.sum(), vi * len(LAYERS) + LAYERS.index(La)))
     r, c, w = np.concatenate(rows), np.concatenate(cols), np.concatenate(gv)
     kd = np.concatenate(kind)
     A = sparse.coo_matrix((w, (r, c)), shape=(N, N)).tocsr()

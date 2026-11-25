@@ -1,7 +1,7 @@
 """Analysis 1: switching hot-loop inductance with FastHenry on the real copper.
 
 Method (per loop, per board):
-  1. Rasterise the two loop nets (e.g. PVDD and GND) on all 4 layers at 0.1 mm, join layers
+  1. Rasterise the two loop nets (e.g. PVDD and GND) on all copper layers (4 or 6) at 0.1 mm, join layers
      at every via / plated pad of that net.
   2. Find the shortest copper path IC(+) -> HF cap -> IC(-). No path = loop open in copper.
   3. Keep the copper within R_HALO of that path (all layers) plus the IC/cap area. That keeps
@@ -26,8 +26,7 @@ import numpy as np
 from scipy import sparse
 from scipy.sparse import csgraph
 
-from pl_common import (DIEL, EPS0, FASTHENRY, LAYERS, T_CU, VIA_PLATING, WORK, Z, Grid, load,
-                       save_json, dilate)
+from pl_common import (EPS0, FASTHENRY, VIA_PLATING, WORK, Grid, load, save_json, dilate)
 
 PITCH = 0.1
 R_HALO = 2.0          # mm kept around the current path
@@ -58,6 +57,7 @@ class NetMesh:
 
     def __init__(self, b, nets, grid, others=False):
         self.b, self.g, self.nets = b, grid, list(nets)
+        LAYERS = self.layers = b.layers
         self.mask = {}            # (net, layer) -> bool
         for n in self.nets:
             for L in LAYERS:
@@ -125,7 +125,7 @@ class NetMesh:
             i, j = g.ij(x, y)
             if keep is not None and not keep[j, i]:
                 continue
-            ids = [self.id[(n, L)][j, i] for L in LAYERS if L in lays]
+            ids = [self.id[(n, L)][j, i] for L in self.layers if L in lays]
             ids = [k for k in ids if k >= 0]
             for a_, b_ in zip(ids[:-1], ids[1:]):
                 rows.append(np.array([a_])); cols.append(np.array([b_])); w.append(np.array([0.3]))
@@ -147,7 +147,7 @@ class NetMesh:
             ids = self.id[(n, L)][jj, ii]
             X[ids] = g.x0 + (ii + 0.5) * g.p
             Y[ids] = g.y0 + (jj + 0.5) * g.p
-            Zc[ids] = Z[L]
+            Zc[ids] = self.b.z[L]
             L_of[ids] = L
         return X, Y, Zc, L_of
 
@@ -188,7 +188,7 @@ def write_fasthenry(path, M, keepcells, vlinks, equivs, port, title):
             u, v = a[sl1].ravel(), a[sl2].ravel()
             ok = (u >= 0) & (v >= 0)
             for uu, vv in zip(u[ok], v[ok]):
-                lines.append(f"E{e} N{uu} N{vv} w={M.g.p:.4f} h={T_CU[L]:.4f}")
+                lines.append(f"E{e} N{uu} N{vv} w={M.g.p:.4f} h={M.b.t_cu[L]:.4f}")
                 segs.append((uu, vv, L))
                 e += 1
     for a_, b_, d in vlinks:
@@ -243,6 +243,7 @@ def run_fasthenry(inp, suffix, grids=False):
 def sw_node_stats(b, net, grid):
     """Area per layer and capacitance to the nearest plane (any net) and to GND."""
     gnd = b.net("GND")
+    LAYERS, DIEL = b.layers, b.diel
     out = {"area_mm2": {}, "C_gnd_pF": 0.0, "C_any_pF": 0.0}
     masks = {L: b.raster(grid, L, [net], tracks_min_px=0) for L in LAYERS}
     allcu = {L: b.raster(grid, L, None, tracks_min_px=0) for L in LAYERS}
@@ -277,13 +278,10 @@ def sw_node_stats(b, net, grid):
     m1 = masks["F.Cu"]
     per = (np.abs(np.diff(m1.astype(int), axis=0)).sum() + np.abs(np.diff(m1.astype(int), axis=1)).sum()) * grid.p
     out["perimeter_F_mm"] = float(per)
-    out["C_fringe_pF"] = float(EPS0 * 4.4 * (per * H_PP_HALF() * 1e-6) / (DIEL[("F.Cu", "In1.Cu")][0] * 1e-3) * 1e12)
+    h1, er1 = DIEL[("F.Cu", "In1.Cu")]
+    out["C_fringe_pF"] = float(EPS0 * er1 * (per * (h1 / 2) * 1e-6) / (h1 * 1e-3) * 1e12)
     out["area_total_mm2"] = float(sum(out["area_mm2"].values()))
     return out
-
-
-def H_PP_HALF():
-    return DIEL[("F.Cu", "In1.Cu")][0] / 2
 
 
 # ----------------------------------------------------------------------------------------
@@ -357,7 +355,7 @@ def analyse_loop(b, spec, outdir, grids=False):
     Lhf = z[max(z)]["L"]
     res["status"] = "ok"
     # layer use along the path
-    res["path_layers"] = {L: int(sum(1 for k in path if L_of[k] == L)) for L in LAYERS}
+    res["path_layers"] = {L: int(sum(1 for k in path if L_of[k] == L)) for L in b.layers}
     res["path_vias"] = int(sum(1 for a_, b_ in zip(path[:-1], path[1:]) if L_of[a_] != L_of[b_]))
     I = spec.get("I", 0.0)
     res["V_overshoot"] = {f"{t * 1e9:g}ns": {"pcb": Lhf * I / t, "pcb+ESL": (Lhf + ESL_0603) * I / t}

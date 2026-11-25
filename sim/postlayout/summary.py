@@ -39,9 +39,11 @@ def main(tags):
         row(lab, [f"{rp[t]['summary'][k]:.0f}" if rp[t] else "-" for t in tags])
     row("Fast-net vias without GND via ≤ 2 mm", [f"{rp[t]['summary']['transitions_unstitched']}/{rp[t]['summary']['transitions']}" if rp[t] else "-" for t in tags])
     cb = {t: j(f"copper_balance_{t}.json") for t in tags}
-    row("Copper L1/L2/L3/L4 %", ["/".join(f"{cb[t]['coverage_pct'][L]:.0f}" for L in ("L1", "L2", "L3", "L4")) if cb[t] else "-" for t in tags])
-    for pr in ("L1-L4", "L2-L3"):
-        row(f"{pr} diff, pts (cells > 10 pts)", [f"{cb[t]['pairs'][pr]['global_diff_pts']:+.1f} ({cb[t]['pairs'][pr]['cells_out_pct']:.0f} %)" if cb[t] else "-" for t in tags])
+    nmax = max((len(cb[t]["coverage_pct"]) for t in tags if cb[t]), default=4)   # 4 or 6 layers
+    row("Copper " + "/".join(f"L{k + 1}" for k in range(nmax)) + " %", ["/".join(f"{v:.0f}" for v in cb[t]["coverage_pct"].values()) if cb[t] else "-" for t in tags])
+    prs = list(dict.fromkeys(pr for t in tags if cb[t] for pr in cb[t]["pairs"]))   # mirrored pairs, all boards
+    for pr in prs:
+        row(f"{pr} diff, pts (cells > 10 pts)", [f"{cb[t]['pairs'][pr]['global_diff_pts']:+.1f} ({cb[t]['pairs'][pr]['cells_out_pct']:.0f} %)" if cb[t] and pr in cb[t]["pairs"] else "-" for t in tags])
     ir = {t: j(f"ir_drop_{t}.json") for t in tags}
     for case in ("PVDD", "VSYS", "+3V3", "VBAT_PACK", "CHG_BAT", "GND_batt"):
         v = []
@@ -56,7 +58,7 @@ def main(tags):
     th = {t: j(f"thermal_{t}.json") for t in tags}
     row("Max sustained out, W (Tj ≤ 125 °C, h 5/10)", [f"{th[t]['max_sustained_W']['h5']:.0f} / {th[t]['max_sustained_W']['h10']:.0f}" if th[t] else "-" for t in tags])
     for cn, ref in (("moderate 2.9 W", "U301"), ("charge 2 A + moderate", "U701"), ("Q801 recovery 1.5 W", "Q801")):
-        row(f"Tj {ref}, {cn}, °C (h 5/10)", [f"{th[t]['cases'][cn]['h5']['parts'][ref]['T_j_C']:.0f} / {th[t]['cases'][cn]['h10']['parts'][ref]['T_j_C']:.0f}" if th[t] else "-" for t in tags])
+        row(f"Tj {ref}, {cn}, °C (h 5/10)", [f"{th[t]['cases'][cn]['h5']['parts'][ref]['T_j_C']:.0f} / {th[t]['cases'][cn]['h10']['parts'][ref]['T_j_C']:.0f}" if th[t] and ref in th[t]['cases'][cn]['h5']['parts'] else "-" for t in tags])
 
 
 if __name__ == "__main__":

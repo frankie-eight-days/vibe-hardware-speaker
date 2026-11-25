@@ -11,6 +11,8 @@ a microstrip return current density ~ 1/(1+(x/h)^2) puts ~80 % inside +/-3h). Cl
 Void runs: extra loop area = (D_geo - D_straight)/2 * D_straight, with D_geo the shortest path
 through the reference layer's GND copper between the run's end points. Without a GND path on
 that layer: length * mean distance to the nearest GND copper on any layer.
+6-layer boards (pl_common.stackup): each sample takes the best class over the adjacent layers
+(F.Cu -> In1, In2 -> In1 or In3, B.Cu -> In4), GND first, then power plane; no "far" class.
 Layer changes: distance from each signal via to the nearest GND via; > 2 mm fails; the extra
 loop area is d * (spacing of the two reference layers).
 
@@ -23,7 +25,7 @@ import numpy as np
 from scipy import ndimage
 from scipy.sparse import csgraph
 
-from pl_common import DIEL, LAYERS, Z, Grid, load, save_json, savefig, style
+from pl_common import Grid, load, save_json, savefig, style
 
 P = 0.05
 STEP = 0.1
@@ -31,10 +33,7 @@ FAST = [r"I2S_BCLK", r"I2S_LRCK", r"I2S_SDIN", r"I2S_DOUT", r"I2S_EXT_", r"LCD_S
         r"PDM_CLK", r"PDM_DATA", r"USB_D[PN]", r"UD[PM]", r"A[LR]_OUT[AB]_[PN]"]
 SERIES_R = ["R110", "R113", "R114", "R118"]   # source series R of BCLK, SCLK, MOSI, PDM_CLK
 STITCH_MAX = 2.0
-H_REF = {"F.Cu": [("In1.Cu", DIEL[("F.Cu", "In1.Cu")][0])],
-         "B.Cu": [("In2.Cu", DIEL[("In2.Cu", "B.Cu")][0])],
-         "In1.Cu": [("F.Cu", DIEL[("F.Cu", "In1.Cu")][0]), ("In2.Cu", DIEL[("In1.Cu", "In2.Cu")][0])],
-         "In2.Cu": [("B.Cu", DIEL[("In2.Cu", "B.Cu")][0]), ("In1.Cu", DIEL[("In1.Cu", "In2.Cu")][0])]}
+RANK = {"gnd": 0, "plane": 1, "partial": 2, "void": 3}   # best first
 COLORS = {"gnd": "#548235", "plane": "#bf9000", "partial": "#c55a11", "far": "#7030a0", "void": "#c00000"}
 
 
@@ -64,6 +63,8 @@ def plane_nets(b, g, L, min_area=50.0):
 
 def analyse(tag):
     b = load(tag)
+    LAYERS, Z = b.layers, b.z
+    H_REF = b.st["refs"]   # 4L: F->In1, B->In2, inner: near then far; 6L: adjacent planes
     g = Grid.from_bbox(b.bbox, P)
     gnd = {L: b.raster(g, L, ["GND"], tracks_min_px=0) for L in LAYERS}
     pl = {}
@@ -97,15 +98,22 @@ def analyse(tag):
             xs, ys = x1 + s * (x2 - x1), y1 + s * (y2 - y1)
             ux, uy = (x2 - x1) / ln, (y2 - y1) / ln
             refL, h = H_REF[L][0]
-            wr = max(3 * h, t["w"] / 2 + h)
-            offs = np.linspace(-wr, wr, max(5, int(2 * wr / P) + 1))
-            X = xs[:, None] - uy * offs[None, :]
-            Y = ys[:, None] + ux * offs[None, :]
-            fg = val(gnd[refL], X, Y).mean(axis=1)
-            fp = val(pl[refL], X, Y).mean(axis=1)
-            fc = fg + fp
-            cls = np.where(fg >= 0.9, "gnd", np.where(fc >= 0.9, "plane", np.where(fc >= 0.5, "partial", "void")))
-            if len(H_REF[L]) > 1:   # inner layer: if the near plane is missing, is the far one there?
+
+            def classify(refL, h):
+                wr = max(3 * h, t["w"] / 2 + h)
+                offs = np.linspace(-wr, wr, max(5, int(2 * wr / P) + 1))
+                X = xs[:, None] - uy * offs[None, :]
+                Y = ys[:, None] + ux * offs[None, :]
+                fg = val(gnd[refL], X, Y).mean(axis=1)
+                fp = val(pl[refL], X, Y).mean(axis=1)
+                fc = fg + fp
+                return np.where(fg >= 0.9, "gnd", np.where(fc >= 0.9, "plane", np.where(fc >= 0.5, "partial", "void"))), X, Y
+            cls, X, Y = classify(refL, h)
+            if b.st["n"] > 4:       # best adjacent plane (GND > power plane > split edge > void)
+                for ref2, h2 in H_REF[L][1:]:
+                    c2 = classify(ref2, h2)[0]
+                    cls = np.where(np.vectorize(RANK.get)(c2) < np.vectorize(RANK.get)(cls), c2, cls)
+            elif len(H_REF[L]) > 1:   # inner layer: if the near plane is missing, is the far one there?
                 ref2, h2 = H_REF[L][1]
                 f2 = val(gnd[ref2], X, Y).mean(axis=1) + val(pl[ref2], X, Y).mean(axis=1)
                 far = (cls == "void") & (f2 >= 0.9)

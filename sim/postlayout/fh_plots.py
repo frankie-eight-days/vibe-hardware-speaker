@@ -8,7 +8,7 @@ from matplotlib.colors import LogNorm
 from matplotlib.patches import Rectangle
 
 from fh_loops import LOOPS
-from pl_common import RESULTS, WORK, Z, load, savefig, style
+from pl_common import RESULTS, WORK, load, savefig, style
 
 FH = os.path.join(WORK, "fasthenry")
 
@@ -42,7 +42,7 @@ def main(tags=("hybrid", "autoroute")):
         x0 = min(p["bbox"][0] for p in pads) - 1.5; x1 = max(p["bbox"][2] for p in pads) + 1.5
         y0 = min(p["bbox"][1] for p in pads) - 1.5; y1 = max(p["bbox"][3] for p in pads) + 1.5
         L = next(l for l in res[t]["loops"] if l["loop"] == ln)
-        for r, (lay, zz) in enumerate((("L1", Z["F.Cu"]), ("L2", Z["In1.Cu"]))):
+        for r, (lay, zz) in enumerate((("L1", b.z["F.Cu"]), ("L2", b.z["In1.Cu"]))):
             ax = axs[r, k]
             if a is not None:
                 sel = np.abs(a[:, 2] - zz) < 0.01

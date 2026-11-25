@@ -1,7 +1,7 @@
 """Analysis 3: copper balance per layer and per 5 mm cell (all nets, zones filled).
 
 Coverage = copper area / board area, rasterised at 0.05 mm inside the Edge.Cuts outline.
-Target (layout_principles check 6): L1 vs L4 and L2 vs L3 within 10 points, globally and per
+Target (layout_principles check 6): mirrored layers (4L: L1/L4, L2/L3; 6L: L1/L6, L2/L5, L3/L4) within 10 points, globally and per
 region. Cells less than half inside the outline are ignored.
 
 Run: python copper_balance.py TAG [TAG ...]
@@ -10,17 +10,16 @@ import sys
 
 import numpy as np
 
-from pl_common import LAYERS, Grid, load, save_json, savefig, style
+from pl_common import Grid, load, save_json, savefig, style
 
 P = 0.05
 CELL = 5.0
 TOL = 10.0
-PAIRS = [("F.Cu", "B.Cu"), ("In1.Cu", "In2.Cu")]
-NAMES = {"F.Cu": "L1", "In1.Cu": "L2", "In2.Cu": "L3", "B.Cu": "L4"}
 
 
 def analyse(tag):
     b = load(tag)
+    LAYERS, PAIRS, NAMES = b.layers, b.st["pairs"], b.st["names"]   # mirrored pairs of this stack-up
     g = Grid.from_bbox(b.bbox, P)
     om = b.outline_mask(g)
     cu = {L: b.raster(g, L, None, tracks_min_px=0) & om for L in LAYERS}
@@ -52,10 +51,14 @@ def analyse(tag):
 
 def figure(results):
     plt = style()
-    rows = ["F.Cu", "B.Cu", ("F.Cu", "B.Cu"), "In1.Cu", "In2.Cu", ("In1.Cu", "In2.Cu")]
-    fig, axs = plt.subplots(len(rows), len(results), figsize=(3.3 * len(results), 6.6), squeeze=False)
+    rows_of = {t: [x for a, c in r[3].st["pairs"] for x in (a, c, (a, c))] for t, r in results.items()}
+    nr = max(len(v) for v in rows_of.values())
+    fig, axs = plt.subplots(nr, len(results), figsize=(3.3 * len(results), 1.1 * nr), squeeze=False)
     for ci, (tag, (out, cells, ext, b)) in enumerate(results.items()):
-        for ri, r in enumerate(rows):
+        NAMES = b.st["names"]
+        for ax in axs[len(rows_of[tag]):, ci]:
+            ax.axis("off")
+        for ri, r in enumerate(rows_of[tag]):
             ax = axs[ri, ci]
             if isinstance(r, tuple):
                 d = cells[r[0]] - cells[r[1]]

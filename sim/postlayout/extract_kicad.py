@@ -12,7 +12,7 @@ import sys
 import pcbnew
 
 IU = 1e6  # nm per mm
-LAYERS = {"F.Cu": pcbnew.F_Cu, "In1.Cu": pcbnew.In1_Cu, "In2.Cu": pcbnew.In2_Cu, "B.Cu": pcbnew.B_Cu}
+LAYERS = {}  # name -> layer id, all copper layers of the board (set in main)
 MAXERR = int(0.005 * IU)
 
 
@@ -30,6 +30,9 @@ def polyset(ps):
 
 def main(path, out):
     b = pcbnew.LoadBoard(path)
+    n_cu = b.GetCopperLayerCount()
+    names = ["F.Cu"] + [f"In{k}.Cu" for k in range(1, n_cu - 1)] + ["B.Cu"]
+    LAYERS.update({ln: getattr(pcbnew, ln.replace(".", "_")) for ln in names})
     zones = list(b.Zones())
     if zones and not any(z.IsFilled() for z in zones):
         pcbnew.ZONE_FILLER(b).Fill(b.Zones())
@@ -67,7 +70,7 @@ def main(path, out):
                 t.TransformShapeToPolygon(ps, LAYERS[ln], 0, MAXERR, pcbnew.ERROR_INSIDE)
                 add(ln, net, ps)
             continue
-        lname = t.GetLayerName()
+        lname = next((ln for ln, lid in LAYERS.items() if lid == t.GetLayer()), None)  # canonical name
         if lname not in LAYERS:
             continue
         rec = {"layer": lname, "net": net, "w": t.GetWidth() / IU,
@@ -106,13 +109,13 @@ def main(path, out):
         ps.Simplify()
         copper.append({"layer": ln, "net": net, "polys": polyset(ps)})
 
-    data = {"board": path,
+    data = {"board": path, "n_cu": n_cu, "layers": names,
             "bbox": [bb.GetLeft() / IU, bb.GetTop() / IU, bb.GetRight() / IU, bb.GetBottom() / IU],
             "outline": polyset(edge), "copper": copper, "tracks": tracks, "vias": vias,
             "pads": pads, "footprints": fps}
     with open(out, "w") as f:
         json.dump(data, f)
-    print(f"{path}: {len(copper)} layer-net regions, {len(tracks)} tracks, {len(vias)} vias, "
+    print(f"{path}: {n_cu} copper layers, {len(copper)} layer-net regions, {len(tracks)} tracks, {len(vias)} vias, "
           f"{len(pads)} pads, {len(fps)} footprints")
 
 

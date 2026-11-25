@@ -290,3 +290,9 @@ Applying this to the live board needs via deletions, and Konnect has no tool for
 - **6-layer proposal** (owner's decision): JLC06161H-1080B, SIG / GND / SIG / PWR / GND / SIG.
   - USB 90 Ω on L1 becomes about 0.10/0.15 mm. 0.12/0.15 gives 86.8 Ω (`zsolve.py`, h 0.0764, Er 3.91).
   - JLC live quote, 2026-11-25, ENIG: +$24.30 for 5 boards, +$62.40 for 100.
+
+## 12. Rev B 6-layer progress log (pcb-layout-c, 2026-11-25)
+
+Scratch work dir: `/private/tmp/claude-501/-Users-frankwalsh-Documents-vibecoding/8f7148fa-1ea7-42b7-910f-60a1668ad40c/scratchpad/r6` (`env.sh`, `summ.py`, `plotl.py`). Plan: build the whole rev B offline on a scratch copy with replayable scripts, then apply to the live board as (1) one native closed-board step (stack-up, layer moves, deletes, via nets, locks), (2) Konnect adds (zones, part moves, net classes, texts), (3) one native SES import carrying every new track/via (fixes + A* + Freerouting).
+- Stack-up JLC06161H-1080B confirmed from JLC's calculator template (L1–L2 1080 prepreg 0.0764 mm Er 3.91; cores 0.10 mm Er 4.36; centre 7628/0.7 core/7628). JLC calc: 0.12/0.15 → 88.3 Ω (Er 3.91), 90 Ω at 0.115/0.15.
+- Live board at start = `pcb_critical_routed` (4 layers). Old In2 = power only (10 zones) + 3 CC2 tracks.

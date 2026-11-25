@@ -8,7 +8,7 @@ import sys
 
 import numpy as np
 
-from pl_common import LAYERS, Grid, load, save_json
+from pl_common import Grid, load, save_json
 
 STAGES = {
     "boost": (["U901", "C914", "C906", "C903", "L901"], ["PVDD", "GND", "BST_SW", "VSYS"]),
@@ -24,6 +24,7 @@ def window(b, refs, m=3.0):
 
 def main(ta, tb):
     A, B = load(ta), load(tb)
+    LAYERS = A.layers + [L for L in B.layers if L not in A.layers]   # 4L vs 6L: union
     out = {}
     for st, (refs, nets) in STAGES.items():
         win = window(A, refs)
