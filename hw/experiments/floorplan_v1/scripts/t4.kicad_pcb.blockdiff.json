@@ -1,0 +1,75 @@
+{
+ "AMP_L": {
+  "items": 192,
+  "max_dev_mm": 1e-06,
+  "rot_mismatch": 0,
+  "pruned": 2,
+  "pruned_nets": [
+   "PVDD",
+   "SPK_WL_P"
+  ]
+ },
+ "AMP_R": {
+  "items": 194,
+  "max_dev_mm": 1e-06,
+  "rot_mismatch": 0,
+  "pruned": 3,
+  "pruned_nets": [
+   "PVDD",
+   "SPK_WR_N"
+  ]
+ },
+ "BOOST": {
+  "items": 167,
+  "max_dev_mm": 0.0,
+  "rot_mismatch": 0,
+  "pruned": 4,
+  "pruned_nets": [
+   "BST_FB",
+   "PVDD",
+   "VSYS"
+  ]
+ },
+ "BUCK": {
+  "items": 103,
+  "max_dev_mm": 1e-06,
+  "rot_mismatch": 0,
+  "pruned": 16,
+  "pruned_nets": [
+   "+3V3",
+   "BUCK_EN",
+   "BUCK_FB",
+   "BUCK_SS",
+   "GND",
+   "VSYS"
+  ]
+ },
+ "CHG": {
+  "items": 193,
+  "max_dev_mm": 1e-06,
+  "rot_mismatch": 0,
+  "pruned": 15,
+  "pruned_nets": [
+   "BAT_TS",
+   "CHG_BATP",
+   "CHG_ILIM",
+   "CHG_PROG",
+   "CHG_REGN",
+   "CHG_SDRV",
+   "GND",
+   "SFET_G",
+   "VSYS"
+  ]
+ },
+ "BATT": {
+  "items": 88,
+  "max_dev_mm": 0.0,
+  "rot_mismatch": 0,
+  "pruned": 4,
+  "pruned_nets": [
+   "PROT_CO",
+   "PROT_DO",
+   "VBAT_PACK"
+  ]
+ }
+}
