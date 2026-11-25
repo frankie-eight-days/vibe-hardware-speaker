@@ -72,6 +72,27 @@ The cap body ESL (about 0.5 nH, assumed) is larger than the copper in three of t
 
 **Figures.** `hotloop_current_density` shows |J| per amp on L1 and L2. The image current under the hybrid loops is visible; the autoroute boost has none. `hotloop_L_bar` is the bar chart.
 
+**Hybrid as designed vs as built.** The SES import changed signal routing near the power stages. The as-designed board is `hw/releases/pcb_critical_routed` (tag `designed`). `diff_power.py hybrid designed` compares the stage windows, and `results/diff_power_hybrid_vs_designed.json` has the detail.
+- **L1 hot-loop copper:** identical. BST_SW, BUCK_SW, PMID and the C914/C953/C707/C716 lands show no difference above 0.05 mm². The differences are in the fills: L3 is solid VSYS/PVDD in the designed file, and the L1/L4 GND pours grow where the SES tracks are absent.
+
+| Loop, nH at 100 MHz | Hybrid as built (rev A) | Hybrid as designed |
+|---|---|---|
+| Boost | 0.202 | 0.202 |
+| Buck | 0.424 | 0.397 |
+| Charger PMID | 0.222 | 0.222 |
+| Charger SYS | 0.662 | 0.662 |
+| Charger SW1 / SW2 area, mm² | 36 / 40 | 45 / 45 |
+| Charger SW1 / SW2 run, partial nH | 7.3 / 7.4 | 6.5 / 6.5 |
+
+- **The hot loops are unchanged** apart from the buck (−6 %, from the larger GND fill).
+- **Charger SW links on L3.** In rev A the L3 copper of the SW links is narrower: 6.4 mm² against 14 mm² for SW1, because PDM_CLK, PDM_DATA and AMPR_FAULT_N were autorouted through the gap between the SW1 and SW2 L3 links. They pass 0.22–0.24 mm from SW copper for about 4–10 mm each. That puts a 15 V, 750 kHz switch-node edge next to the PDM clock.
+- **The as-designed file carries stale via nets.** These are pre-`native_finalize`, from Konnect finding 6. 14 vias in the stage windows change net between the two files:
+  - (127.5, 91.7/94.1/96.5): GND in the designed file, PVDD in rev A.
+  - (165.2, 104.4) and (169.6, 104.4): CHG_SW1/SW2 in the designed file, GND fence in rev A.
+  - VSYS↔GND swaps at (125.6/126.8, 118.0), (127.5/133.5, 119.3), (133.0, 108.0), (126.26, 114.19) and (98.2, 114.6).
+  - The SW1/SW2 area of 45 mm² in the designed file includes two of these vias.
+  - **Rev B starts from this file, so these nets must be re-checked before routing.**
+
 ## 2. Return paths
 
 **Method.** `return_paths.py` checks 27 fast nets: I2S, SPI, PDM, USB, the amp outputs, and the series-R nets.
@@ -172,7 +193,8 @@ The limit is the total heat into a sealed box, not local spreading. With h = 5�
    - Expected: 92 → about 25 mΩ, 46 → 13 mV.
 9. **Thermal path:** put a 0.5–1 mm gap pad (or a thermal pad on bare L4 GND, mask opened) under U301/U401/U901/U701 to the enclosure or an aluminium plate. Add 3×3 GND vias in the L4 pour under U701 (X 165–169, Y 110–114).
    - Otherwise, firmware limits: sustained output ≤ 11–18 W, and ICHG ≤ 1.5 A while playing.
-10. **Minor:**
+10. **Rev B starts from `pcb_critical_routed`.** First re-apply the via-net restore (`native_finalize`) for the 14 vias listed in section 1. Then keep L3 signals out of X 162–172, Y 100–111, which leaves the charger SW1/SW2 links full width with no PDM or fault lines beside them.
+11. **Minor:**
     - Widen the CHG_BAT neck at U701 pins 22/23 (237 A/mm², 169.9/111.2).
     - Widen the VBAT_PACK L4 band neck at (199.2, 118.6).
     - Keep the PDM/I2S runs at Y ≈ 120 at least 0.6 mm inside the GND pour edge.
@@ -183,7 +205,7 @@ The limit is the total heat into a sealed box, not local spreading. With h = 5�
 |---|---|
 | `extract_kicad.py` | pcbnew → JSON (KiCad Python; zones refilled in memory) |
 | `pl_common.py` | stack-up, rasteriser, plotting |
-| `fh_loops.py`, `fh_validate.py`, `fh_plots.py` | analysis 1 |
+| `fh_loops.py`, `fh_validate.py`, `fh_plots.py`, `diff_power.py` | analysis 1; `diff_power.py` diffs stage copper between two boards |
 | `return_paths.py`, `copper_balance.py` | analyses 2, 3 |
 | `ir_drop.py`, `pdn_fold.py` | analysis 4 |
 | `thermal.py` | analysis 5 |
