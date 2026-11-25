@@ -235,6 +235,8 @@ For the analysis agent:
 4. **S8:** XT30PW-M polarity is still **unconfirmed**. The silk marks "+BATT" at pad 2 (rear pin, PACK_P) and "−" at pad 1. Confirm against a physical part before release.
 5. **S10:** the DNP attribute is still unset in the schematic. The JLC BOM/CPL (`out/fab/*_JLC.csv`) exclude by the `DNP=DNP` field (12 parts) and by "no LCSC number" (29 test pads, 3 solder jumpers): 227 placements, 87 BOM lines. JLC rotation offsets still need the usual check in JLC's CPL preview.
 
+5. **J501 stays at the rear-right (rev B check).** The battery tray fills the rear section out to the shell for |X| < 61.5. The FFC can therefore rise only at |X| > 61.5, and on the −X side that is the antenna keep-out.
+
 ## 9. Open risks
 
 - **R1, antenna:** the module sits mid-width with its antenna overhanging the edge, not at a corner (the holes force this). Test range. Fallback: WROVER-IE (spec §1.6).
