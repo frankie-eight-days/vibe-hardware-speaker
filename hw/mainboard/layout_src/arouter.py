@@ -4,7 +4,7 @@ and to caller-supplied keep-away polygons (e.g. switch nodes). Output: track/via
 import pcbnew, numpy as np, heapq, math
 from matplotlib.path import Path
 mm=pcbnew.ToMM
-LAY={'F.Cu':pcbnew.F_Cu,'In1.Cu':pcbnew.In1_Cu,'In2.Cu':pcbnew.In2_Cu,'B.Cu':pcbnew.B_Cu}
+LAY={'F.Cu':pcbnew.F_Cu,'In1.Cu':pcbnew.In1_Cu,'In2.Cu':pcbnew.In2_Cu,'In3.Cu':pcbnew.In3_Cu,'In4.Cu':pcbnew.In4_Cu,'B.Cu':pcbnew.B_Cu}
 def poly_pts(sps):
     out=[]
     for i in range(sps.OutlineCount()):
@@ -20,7 +20,7 @@ class Router:
         self.nx=int((self.x1-self.x0)/res)+1; self.ny=int((self.y1-self.y0)/res)+1
         xs=self.x0+np.arange(self.nx)*res; ys=self.y0+np.arange(self.ny)*res
         self.X,self.Y=np.meshgrid(xs,ys)
-        self.all=('F.Cu','In1.Cu','In2.Cu','B.Cu')
+        self.all=tuple(l for l in ('F.Cu','In1.Cu','In2.Cu','In3.Cu','In4.Cu','B.Cu') if board.IsLayerEnabled(LAY[l]))   # 4- or 6-layer
         self.items={l:[] for l in self.all}
         for l in self.all: self._collect(l)
     def _collect(self,ln):

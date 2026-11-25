@@ -1,0 +1,8 @@
+(footprint "ThermalLanding_Chg"
+  (version 20240108)
+  (generator "konnect")
+  (layer "F.Cu")
+  (descr "Board-only: B.Mask opening over the B.Cu GND pour beside the BQ25792 (gap-pad landing). 8.9 x 2.8 mm. No pads, no copper of its own.")
+  (attr board_only exclude_from_pos_files exclude_from_bom allow_missing_courtyard)
+
+  (fp_rect (start -4.45 -1.4) (end 4.45 1.4) (stroke (width 0) (type solid)) (fill solid) (layer "B.Mask")))

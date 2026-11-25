@@ -1,42 +1,39 @@
-# Main board layout rules (speaker_main, layout rev A, 2026-11-24)
+# Main board layout rules (speaker_main, layout rev B, 6 layers, 2026-11-25)
 
 These rules come before placement and routing. Each number cites its source: the fab capability page, the stackup, a calculation in this file, or a datasheet layout section from `kb/datasheets/` (with page numbers). The KiCad project carries the net classes and board minimums from this file. Items that Konnect cannot write into KiCad are flagged **[not in DRC]**; those are checked by hand or by script.
 
-## 1. Fabrication contract: JLCPCB 4-layer, 1.6 mm
+## 1. Fabrication contract: JLCPCB 6-layer, 1.6 mm (rev B)
 
-Source: jlcpcb.com/impedance and jlcpcb.com/capabilities/pcb-capabilities, both read on 2026-11-24.
+Source: JLC impedance-calculator template "JLC06161H-1080B", read 2026-11-25. The rev A 4-layer table (JLC04161H-7628) is in §7 of LAYOUT_NOTES as history.
 
-| Layer | Material | Thickness | Er |
-|---|---|---|---|
-| L1 top (F.Cu) | Cu, 1 oz finished | 0.035 mm | |
-| Prepreg | 7628 ×1 | **0.2104 mm** | 4.4 |
-| L2 (In1.Cu) | Cu, 0.5 oz | 0.0152 mm | |
-| Core | "1.1 mm H/HOZ with copper" | 1.065 mm | 4.6 |
-| L3 (In2.Cu) | Cu, 0.5 oz | 0.0152 mm | |
-| Prepreg | 7628 ×1 | 0.2104 mm | 4.4 |
-| L4 bottom (B.Cu) | Cu, 1 oz finished | 0.035 mm | |
-| Solder mask | | 0.6–1.2 mil | 3.8 |
+| Layer | Use | Material | Thickness (mm) | Er |
+|---|---|---|---|---|
+| L1 F.Cu | signal, parts | Cu 1 oz finished | 0.035 | |
+| | | 1080 prepreg | **0.0764** | 3.91 |
+| L2 In1.Cu | GND plane | Cu 0.5 oz | 0.0152 | |
+| | | core | 0.10 | 4.36 |
+| L3 In2.Cu | signal | Cu 0.5 oz | 0.0152 | |
+| | | 7628 + 0.7 mm core + 7628 | 1.1208 | 4.4 / 4.53 / 4.4 |
+| L4 In3.Cu | power planes | Cu 0.5 oz | 0.0152 | |
+| | | core | 0.10 | 4.36 |
+| L5 In4.Cu | GND plane | Cu 0.5 oz | 0.0152 | |
+| | | 1080 prepreg | 0.0764 | 3.91 |
+| L6 B.Cu | signal, test pads, thermal landings | Cu 1 oz finished | 0.035 | |
 
-- **Order as JLC04161H-7628**, 1.6 mm, 1 oz outer, 0.5 oz inner, ENIG (ENIG suits the 0.4 mm QFNs and the fine pitch of the TSSOP thermal pads).
-- Konnect has no stackup tool, so the KiCad Board Setup → Physical Stackup still holds generic values. **[not in DRC]** The fab notes and this table are the authority.
+- **Order as JLC06161H-1080B**, 1.6 mm, 1 oz outer / 0.5 oz inner, ENIG. Mask: 0.6–1.2 mil, Er 3.8.
+- KiCad's Python API has no stack-up binding, so Board Setup → Physical Stackup may still show generic dielectrics **[not in DRC]**; this table and the fab notes are the authority.
+- JLC 6-layer capability: 0.09/0.09 mm trace/space. Board minimum here: **0.10 mm track** (USB pair only), 0.127 mm clearance, vias 0.6/0.3 standard, 0.5/0.25 and 0.45/0.2 fine (no surcharge at ≥ 0.45 mm pad).
 
-| JLC capability (multilayer, 1 oz) | Value | Used here |
-|---|---|---|
-| Min trace / space | 0.09 / 0.09 mm | **0.127 / 0.127 mm** board minimum, 0.15 mm default clearance |
-| Min via hole / diameter | 0.15 / 0.25 mm, with a surcharge below 0.3 mm unless the via diameter is ≥ 0.45 mm | Standard via **0.3 / 0.6 mm**. Fine via **0.25 / 0.5 mm**, used only where the BQ25792 SW/GND fan-out under the IC needs it; it is surcharge-free because the diameter is ≥ 0.45 mm |
-| Via hole-to-hole | 0.2 mm | 0.25 mm |
-| Copper to routed edge | ≥ 0.2 mm | 0.3 mm |
-| Silkscreen | Line ≥ 0.15 mm, text ≥ 1.0 mm | Board text 1.0–1.5 mm |
-| Via-in-pad (POFV) | Option on 4-layer: epoxy- or copper-filled and capped | **Not used**, except the TAS5805M PowerPAD thermal vias (§5) |
-
-## 2. Layer use
+## 2. Layer use (rev B)
 
 | Layer | Use |
 |---|---|
-| L1 F.Cu | Every component (single-sided JLC assembly) except the bottom test pads. Power-stage hot loops, switch nodes, short signals. GND pour in the leftover space, stitched to L2. |
-| L2 In1.Cu | **Solid GND, no traces**. The only voids are the via and hole antipads and the antenna keep-out. |
-| L3 In2.Cu | Power pours: PVDD (middle band), VSYS (front strip, charger → boost → buck), VBAT_PACK (front-right, fuse → ship FET), +3V3 (rear strip and the ESP32 end). GND fill between them. A few slow signals. The charger SW1/SW2 links run here, from vias under U701 to L701, per TI SLUSDV2C §8.4.1 item 2 (p.139). L4 is kept clear directly above them. |
-| L4 B.Cu | Signals (the long SPI/PDM/ENC bus to J501, I2C, slow control), bottom test pads, duplicate high-current pours (VBAT_PACK, BATT_N island). The GND pour fills the rest, stitched to L2. |
+| L1 F.Cu | All parts. Hot loops, switch nodes, short signals. GND pour stitched to L2/L5. |
+| L2 In1.Cu | **Solid GND**, no traces. Voids: antipads and the antenna keep-out. |
+| L3 In2.Cu | **Main signal layer** (long buses, I2S, I2C, UI/FFC bus), referenced to L2 GND. GND fill around the signals. No signals in the charger SW window (X 162–172, Y 100–111). |
+| L4 In3.Cu | **Power planes**: PVDD (middle band, boost → both amps), VSYS (front strip, charger → boost; +3 mm B.Cu band on to the buck), +3V3 (rear strip and the ESP32 end), VBAT_PACK/BATT_N/PACK_P/PROT_D islands, the charger SW1/SW2 links. GND fill elsewhere. No signals. |
+| L5 In4.Cu | **Solid GND**, no traces. |
+| L6 B.Cu | Signals referenced to L5, bottom test pads, duplicate high-current pours (VBAT_PACK, BATT_N, PROT_D, PACK_P, CHG_BAT, SW links, VBUS band), VSYS band to the buck, three exposed-GND thermal landings. GND pour elsewhere. |
 
 ## 3. Net classes (in `speaker_main.kicad_pro`)
 
@@ -51,32 +48,26 @@ Widths use the IPC-2221 external-conductor formula, I = 0.048·ΔT^0.44·A^0.725
 | SWITCH | BST_SW, CHG_SW1, CHG_SW2, BUCK_SW | 9 A pk (boost ILIM) | 1.0 (pour-shaped) | 0.25 | n/a (boost and buck SW have no vias) | Keep the copper minimal (TPS61178 §11.1 rule 2, p.30; BQ25792 §12.1 item 5, p.135) |
 | SPEAKER | AL/AR_OUT*, SPK_* | 2 A rms / 4 A pk | 1.0 | 0.20 | 0.6/0.3 | spec_signal §3.6: "≥ 1.0 mm (≥ 4 A peak)" |
 | PWR_3V3 | +3V3 | 0.8 A | 0.5 | 0.15 | 0.6/0.3 | 1 A needs 0.25 mm |
-| USB_DIFF | USB_DP, USB_DN | FS 12 Mb/s | **0.28, gap 0.20** | 0.20 | 0.6/0.3 (none planned) | 90 Ω differential on L1 over L2 (§4) |
+| USB_DIFF | USB_DP, USB_DN | FS 12 Mb/s | **0.11, gap 0.15** | 0.15 | 0.6/0.3 (none planned) | 90 Ω differential on L1 over L2 (rev B, §4) |
 | CLOCK | I2S_BCLK, I2S_BCLK_MCU, IO26_R, LCD_SCLK, IO18_R, PDM_CLK, IO32_R | edge-rate limited | 0.20 | 0.25 | 0.6/0.3 | spec_signal §4.4: ≥ 3× width from other signals; series R at the source (68 Ω SPI/PDM, 33 Ω I2S) |
 
 - The diff-pair gap (0.20 mm) and the 3W spacing for CLOCK are fixed by construction, because Konnect's `create_netclass` exposes only width, clearance and via. **[gap not in DRC]**
 - **Class clearances are capped by the fine-pitch footprints.** KiCad checks pad-to-pad gaps inside a footprint against the larger of the two net classes. The tightest gaps are BQ25792 (0.4 mm pitch, 0.2 mm pads: 0.20 mm), CH224Q (0.20 mm), TAS5805M (0.25 mm) and TPS61178 (0.25 mm; the bars are 0.30 mm apart). So power classes use 0.20 mm, and SWITCH/CLOCK use 0.25 mm. Wider spacing to sensitive nets is a placement and routing rule, checked by review, not by DRC.
 - BATT_N must never touch GND (spec_power §6). DRC's short check enforces this, because BATT_N and GND are different nets. Its 0.25 mm class clearance keeps pours apart.
+- **Inner copper (rev B, 0.5 oz = 15.2 µm):** inner layers carry planes and signals only. IPC-2221 internal (k = 0.024) gives 0.25 A for a 0.2 mm track at ΔT 20 °C, far above any In2 signal. Power classes never route as traces on inner layers; their inner copper is plane (In3). The postlayout IR solve checks the In3 planes (PVDD, VSYS, +3V3).
 
-## 4. Controlled impedance: USB D+/D− (90 Ω ±10 %)
+## 4. Controlled impedance: USB D+/D− (90 Ω ±10 %), rev B
 
-I wrote a 2-D finite-difference Laplace solver for edge-coupled microstrip on L1 over L2: `hw/mainboard/layout_src/zsolve.py`, red-black SOR in numpy.
-- Inputs: h = 0.2104 mm, Er 4.4, t = 0.035 mm, mask 15 µm at Er 3.8.
-- Validation:
-  - Single 0.36 mm trace: 50.8 Ω without mask, against 51.0 Ω from Hammerstad–Jensen (0.4 %).
-  - Air microstrip at w/h = 1: 119.8 Ω, against about 122 Ω from Wheeler with thickness correction (−2 %).
+Same 2-D solver (`layout_src/zsolve.py`, run `layout_src/zrun6.py`), now L1 over L2 with h = 0.0764 mm 1080 prepreg, Er 3.91, t = 0.035 mm, mask 15 µm Er 3.8, 5 µm grid.
 
-| w / s (mm) | Zdiff |
-|---|---|
-| 0.20 / 0.13 | **88.6 Ω** |
-| 0.18 / 0.13 | 94.0 Ω |
-| 0.20 / 0.15 | 98.2 Ω |
-| 0.24 / 0.15 | 92.5 Ω |
+| w / s (mm) | Zdiff (2-D solver) | JLC calculator (Er 3.91 / its default 4.3) |
+|---|---|---|
+| 0.10 / 0.15 | 92.2 Ω | |
+| **0.11 / 0.15** | **90.0 Ω** | ≈ 91 / 88 Ω (90 Ω at 0.115 / 0.106 mm) |
+| 0.12 / 0.15 | 86.8 Ω | 88.3 / 85.4 Ω |
 
-- Extra runs at a 0.20 mm gap: 0.28 / 0.20 gives **89.6 Ω**; 0.30 / 0.20 gives 87.3 Ω; 0.32 / 0.20 gives 85.2 Ω.
-- **Chosen: w = 0.28 mm, s = 0.20 mm, which gives 89.6 Ω (−0.4 %).** I took the 0.20 mm gap over the 0.13 mm option (88.6 Ω) so that the pair gap equals the net-class clearance. DRC then checks it, and the USB-C A6/A7 pads (0.20 mm apart) need no exception.
-- The pair runs on L1 over unbroken L2 GND, at least 0.5 mm from other copper, with no vias and no stubs.
-- Length: about 20 mm (J601 → U601 → U201), well under spec_signal §2.6's < 50 mm.
+- **Chosen: w = 0.11 mm, s = 0.15 mm (90.0 Ω).** The pair gap equals the class clearance, so DRC checks it. L6 over L5 is the same geometry (symmetric stack-up), used for the DN jumper under J601.
+- Route: J601 → U601 (flow-through: pin 1→6, pin 3→4 under the package) → CH340C as a coupled pair along Y 85.0–85.2, over solid L2. About 25 mm. FS USB (12 Mb/s, ≥ 4 ns edges) does not need length matching.
 
 ## 5. Vias and thermal pads
 

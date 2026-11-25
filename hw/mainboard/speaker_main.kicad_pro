@@ -153,7 +153,7 @@
         "min_text_height": 0.8,
         "min_text_thickness": 0.08,
         "min_through_hole_diameter": 0.2,
-        "min_track_width": 0.127,
+        "min_track_width": 0.1,
         "min_via_annular_width": 0.1,
         "min_via_diameter": 0.45,
         "solder_mask_to_copper_clearance": 0.0,
@@ -386,12 +386,12 @@
         "via_drill": 0.3
       },
       {
-        "clearance": 0.127,
+        "clearance": 0.15,
         "name": "USB_DIFF",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": -1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.28,
+        "track_width": 0.11,
         "tuning_profile": "",
         "via_diameter": 0.6,
         "via_drill": 0.3
