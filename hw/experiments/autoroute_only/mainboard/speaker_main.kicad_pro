@@ -320,66 +320,90 @@
         "wire_width": 6
       },
       {
-        "clearance": 0.127,
-        "name": "PWR_BATT",
+        "clearance": 0.2,
+        "name": "CLOCK",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": -1,
-        "track_width": 3.0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.2,
+        "tuning_profile": "",
         "via_diameter": 0.6,
         "via_drill": 0.3
       },
       {
         "clearance": 0.127,
         "name": "PVDD",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.5,
-        "via_diameter": 0.6,
-        "via_drill": 0.3
-      },
-      {
-        "clearance": 0.127,
-        "name": "VBUS",
-        "priority": -1,
-        "track_width": 1.5,
-        "via_diameter": 0.6,
-        "via_drill": 0.3
-      },
-      {
-        "clearance": 0.127,
-        "name": "SWITCH",
-        "priority": -1,
-        "track_width": 1.0,
-        "via_diameter": 0.6,
-        "via_drill": 0.3
-      },
-      {
-        "clearance": 0.127,
-        "name": "SPEAKER",
-        "priority": -1,
-        "track_width": 1.0,
+        "tuning_profile": "",
         "via_diameter": 0.6,
         "via_drill": 0.3
       },
       {
         "clearance": 0.127,
         "name": "PWR_3V3",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.5,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3
+      },
+      {
+        "clearance": 0.127,
+        "name": "PWR_BATT",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 3.0,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3
+      },
+      {
+        "clearance": 0.127,
+        "name": "SPEAKER",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 1.0,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3
+      },
+      {
+        "clearance": 0.127,
+        "name": "SWITCH",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 1.0,
+        "tuning_profile": "",
         "via_diameter": 0.6,
         "via_drill": 0.3
       },
       {
         "clearance": 0.2,
         "name": "USB_DIFF",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.28,
+        "tuning_profile": "",
         "via_diameter": 0.6,
         "via_drill": 0.3
       },
       {
-        "clearance": 0.2,
-        "name": "CLOCK",
+        "clearance": 0.127,
+        "name": "VBUS",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": -1,
-        "track_width": 0.2,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 1.5,
+        "tuning_profile": "",
         "via_diameter": 0.6,
         "via_drill": 0.3
       }

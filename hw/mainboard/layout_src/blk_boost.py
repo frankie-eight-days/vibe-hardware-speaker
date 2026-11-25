@@ -1,0 +1,37 @@
+N={'GND':'GND','PVDD':'/amp_left/PVDD','SW':'/rails/BST_SW','VSYS':'/charger/VSYS','VCC':'/rails/BST_VCC','BOOT':'/rails/BST_BOOT','EN':'/mcu/BOOST_EN',
+ 'FB':'/rails/BST_FB','COMP':'/rails/BST_COMP','CZ':'/rails/BST_CZ','FREQ':'/rails/BST_FREQ','ILIM':'/rails/BST_ILIM'}
+T=[];V=[];Z=[];J=[]
+def t(n,l,pts,w):
+    for (x1,y1),(x2,y2) in zip(pts,pts[1:]): T.append(dict(net=N[n],layer=l,x1=x1,y1=y1,x2=x2,y2=y2,w=w))
+def v(n,x,y,d=0.6,dr=0.3): V.append(dict(net=N[n],x=x,y=y,size=d,drill=dr))
+def z(n,l,pts,pri=3,clr=0.2,conn='solid',name=None,keep=False): Z.append(dict(net=N[n],layer=l,pts=pts,priority=pri,clearance=clr,pad_connection=conn,name=name,min_width=0.2,keep=keep))
+def j(n,src,dst,**k): J.append(dict(net=N[n],src=src,dst=dst,name=k.pop('name',n),**k))
+# zones (L1)
+z('SW','F.Cu',[(129.85,102.0),(130.15,102.0),(130.15,102.45),(131.9,104.0),(131.9,108.2),(128.1,108.2),(128.1,104.0),(129.85,102.45)],clr=0.25,name='BOOST_SW',keep=True)
+z('PVDD','F.Cu',[(125.35,85.3),(157.0,85.3),(157.0,90.2),(143.2,90.2),(143.2,86.9),(129.35,86.9),(129.35,96.6),(129.7,97.0),(129.7,99.2),(129.2,99.2),(128.6,98.4),(125.35,98.4)],name='BOOST_VOUT_PVDD',keep=True)
+z('GND','F.Cu',[(130.4,87.1),(134.0,87.1),(134.0,95.9),(132.3,95.9),(132.3,98.4),(131.15,98.4),(130.8,98.9),(130.4,98.9)],name='BOOST_PGND',keep=True)
+z('GND','F.Cu',[(121.9,87.1),(125.15,87.1),(125.15,96.9),(121.9,96.9)],name='BOOST_COUT2_GND')
+z('GND','F.Cu',[(132.45,96.15),(138.9,96.15),(138.9,103.9),(132.45,103.9)],name='BOOST_AGND_ISLAND')
+z('VSYS','F.Cu',[(118.9,116.0),(132.3,116.0),(132.3,118.6),(118.9,118.6)],name='BOOST_VIN')
+# vias
+for y in (87.6,89.3,91.7,94.1,96.5): v('PVDD',127.5,y)
+for x in (132.75,133.55):
+    for y in (87.8,89.3,90.8,92.3,93.8,95.3): v('GND',x,y)
+for y in (87.6,89.3,91.5,95.6): v('GND',122.4,y)
+for x in (124.4,125.6,126.8,128.0,129.2,130.4,131.6): v('VSYS',x,118.0)
+for x in (119.3,121.1,122.6): v('GND',x,112.4)
+v('VSYS',126.3,102.15,0.45,0.2); v('EN',124.4,100.5,0.45,0.2)
+v('GND',124.6,102.2,0.45,0.2); v('GND',124.6,98.8,0.45,0.2)
+t('GND','F.Cu',[(125.525,101.25),(124.6,102.2)],0.3); t('GND','F.Cu',[(125.525,99.7),(124.6,98.8)],0.3)
+t('GND','F.Cu',[(131.25,101.0),(130.6,101.0)],0.25)          # the single AGND-PGND tie at pin 6 (L6)
+# router jobs (deliberate small-signal routing, F.Cu, away from SW)
+j('FREQ',(131.6,101.5),(132.925,102.05)); j('ILIM',(131.6,100.5),(132.925,100.5))
+j('COMP',(131.6,100.0),(132.975,98.5),layers=['F.Cu','B.Cu'],res=0.025); j('COMP',(132.975,98.5),(136.175,98.5),name='COMP2')
+j('FB',(131.6,99.5),(134.725,96.9),layers=['F.Cu','B.Cu'],res=0.025); j('FB',(134.725,96.9),(136.175,100.0),name='FB2'); j('FB',(136.175,100.0),(136.175,101.5),name='FB3'); j('FB',(136.175,101.5),(137.825,103.0),name='FB4')
+j('CZ',(137.825,98.5),(136.225,97.0))
+j('GND',(131.6,101.0),(134.575,102.05),name='AGND_pin2_to_island')
+j('BOOT',(128.4,101.5),(127.075,103.05),w=0.3); j('VCC',(128.4,100.0),(127.075,99.7),w=0.3)
+j('VSYS',(128.4,101.0),(127.075,101.25),w=0.3,name='VIN'); j('VSYS',(127.075,101.25),(126.3,102.15),w=0.3,name='VIN_via')
+j('EN',(128.4,100.5),(124.4,100.5),name='EN_escape',res=0.025,clr=0.15,w=0.18)
+j('SW',(125.525,103.05),(130.0,106.25),w=0.5,name='BOOT_SW')
+j('PVDD',(128.525,95.3),(133.075,96.9),layers=['F.Cu','B.Cu'],w=0.25,name='FB_PVDD_sense',margin=4)

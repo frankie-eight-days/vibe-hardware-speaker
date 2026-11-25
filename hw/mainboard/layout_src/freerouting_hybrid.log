@@ -1,0 +1,135 @@
+2026-11-24 22:00:34.699 INFO   Freerouting v2.4.1 (build-date: 2026-09-03)
+2026-11-24 22:00:35.827 WARN   Polygon.winding_number_after_closing: winding number != 0 expected
+2026-11-24 22:00:35.828 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:00:35.842 WARN   Polygon.winding_number_after_closing: winding number != 0 expected
+2026-11-24 22:00:35.842 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:00:36.035 INFO   New version available: v2.5.0
+2026-11-24 22:00:36.096 INFO   [10309D\3628EF] Loading board file 'hybrid2_reduced.dsn'...
+2026-11-24 22:00:36.103 WARN   Polygon.winding_number_after_closing: winding number != 0 expected
+2026-11-24 22:00:36.103 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:00:36.165 WARN   Wiring: via net '/mcu/LCD_SCLK' not found at '/mcu/LCD_SCLK'
+2026-11-24 22:00:36.177 WARN   Wiring: via net '/rails/BST_FB' not found at '/rails/BST_FB'
+2026-11-24 22:00:36.184 WARN   Wiring: via net '/charger/CHG_PROG' not found at '/charger/CHG_PROG'
+2026-11-24 22:00:36.184 WARN   Wiring: via net '/rails/BUCK_FB' not found at '/rails/BUCK_FB'
+2026-11-24 22:00:36.184 WARN   Wiring: via net '/rails/BUCK_FB' not found at '/rails/BUCK_FB'
+2026-11-24 22:00:36.184 WARN   Wiring: via net '/charger/CHG_SDRV' not found at '/charger/CHG_SDRV'
+2026-11-24 22:00:36.184 WARN   Wiring: via net '/mcu/IO5_R' not found at '/mcu/IO5_R'
+2026-11-24 22:00:36.185 WARN   Wiring: via net '/rails/BUCK_SS' not found at '/rails/BUCK_SS'
+2026-11-24 22:00:36.185 WARN   Wiring: via net '/charger/CHG_CE_N' not found at '/charger/CHG_CE_N'
+2026-11-24 22:00:36.185 WARN   Wiring: via net '/usb_power/CC1' not found at '/usb_power/CC1'
+2026-11-24 22:00:36.185 WARN   Wiring: via net '/usb_power/CC2' not found at '/usb_power/CC2'
+2026-11-24 22:00:36.185 WARN   Wiring: via net '/usb_power/CC2' not found at '/usb_power/CC2'
+2026-11-24 22:00:36.185 WARN   Wiring: via net '/rails/BUCK_EN' not found at '/rails/BUCK_EN'
+2026-11-24 22:00:36.185 WARN   Wiring: via net '/rails/BUCK_EN' not found at '/rails/BUCK_EN'
+2026-11-24 22:00:36.194 WARN   DSN file 'hybrid2_reduced.dsn' was loaded with 14 warning(s).
+2026-11-24 22:00:36.201 WARN   Polygon.winding_number_after_closing: winding number != 0 expected
+2026-11-24 22:00:36.202 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:00:36.205 INFO   [10309D\3628EF] Job '10309D\3628EF' started at 2026-11-25T06:00:36.204841Z.
+2026-11-24 22:00:36.316 INFO   [10309D\3628EF] Fanout stage started on board 'dbff04212827925f1c5cbebf92b1e8e0' with 263 of 760 SMD pins needing fanout (0 already connected, 497 netless).
+2026-11-24 22:00:36.435 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:00:37.570 INFO   [10309D\3628EF] Fanout pass #1 on board '2f78f96930e844a2d409191451979fc4' completed in 1.20 seconds with 103 SMD pins fanouted, 146 not routed, 0 insert errors, +24 extra vias (0 SMD pins still to check in pass, ripup costs=100).
+2026-11-24 22:00:38.351 INFO   [10309D\3628EF] Fanout pass #2 on board '1ece8bc7515145a4b9ba524efaefade3' completed in 0.75 seconds with 30 SMD pins fanouted, 138 not routed, 0 insert errors, +12 extra vias (0 SMD pins still to check in pass, ripup costs=200).
+2026-11-24 22:00:38.962 INFO   [10309D\3628EF] Fanout pass #3 on board '09b5072c196b3919fc77a9139a8fa82a' completed in 0.59 seconds with 13 SMD pins fanouted, 138 not routed, 0 insert errors, +3 extra vias (0 SMD pins still to check in pass, ripup costs=300).
+2026-11-24 22:00:39.538 INFO   [10309D\3628EF] Fanout pass #4 on board 'a60f6d585eb0cd9296a561360657eed0' completed in 0.55 seconds with 8 SMD pins fanouted, 138 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=400).
+2026-11-24 22:00:40.125 INFO   [10309D\3628EF] Fanout pass #5 on board 'a60f6d585eb0cd9296a561360657eed0' completed in 0.56 seconds with 8 SMD pins fanouted, 138 not routed, 0 insert errors, +0 extra vias (0 SMD pins still to check in pass, ripup costs=500).
+2026-11-24 22:00:40.160 INFO   [10309D\3628EF] Fanout stage completed: started with 263 total SMD pins, completed in 3.82 seconds, escaped pins: 135/263 (51.3%), using 3.79 total CPU seconds, 25.52 GB total allocated, and 463.2 MB peak heap usage.
+2026-11-24 22:00:40.185 INFO   [10309D\3628EF] Auto-routing stage started on board 'a60f6d585eb0cd9296a561360657eed0' for 127 unrouted items.
+2026-11-24 22:01:40.277 INFO   [10309D\3628EF] Auto-routing pass #1 on board 'a60f6d585eb0cd9296a561360657eed0' was completed in 59.91 seconds with score 0.00 (73 unrouted and 886 violations), using 61.78 CPU seconds and the job allocated 488.50 GB of memory so far.
+2026-11-24 22:02:04.427 WARN   BasicBoard.normalizeTraces: reached 2000 iterations for net '/mcu/I2S_BCLK_MCU' — stopping to prevent hang. The board geometry for this net may be oscillating (split/combine cycle); traces are kept as-is and further normalization for this net is suppressed on this board candidate.
+2026-11-24 22:02:33.134 INFO   [10309D\3628EF] Auto-routing pass #2 on board '14b770ed9626f6718ae978eea9fcab80' was completed in 52.67 seconds with score 0.00 (56 unrouted and 886 violations), using 112.79 CPU seconds and the job allocated 924.50 GB of memory so far.
+2026-11-24 22:03:17.636 INFO   [10309D\3628EF] Auto-routing pass #3 on board '6dfcee0a0b2683858f631e79bb5a396e' was completed in 44.28 seconds with score 0.00 (54 unrouted and 886 violations), using 156.88 CPU seconds and the job allocated 1267.45 GB of memory so far.
+2026-11-24 22:03:59.771 INFO   [10309D\3628EF] Auto-routing pass #4 on board '8ca52362402480403ecbecfb3b5f3ea8' was completed in 41.93 seconds with score 20.74 (49 unrouted and 886 violations), using 197.01 CPU seconds and the job allocated 1579.59 GB of memory so far.
+2026-11-24 22:04:46.495 INFO   [10309D\3628EF] Auto-routing pass #5 on board '0ac6e283b9342356d948343d76ed8fa7' was completed in 46.52 seconds with score 32.86 (46 unrouted and 887 violations), using 242.99 CPU seconds and the job allocated 1932.89 GB of memory so far.
+2026-11-24 22:05:32.267 INFO   [10309D\3628EF] Auto-routing pass #6 on board 'e3b308c24a20f48481e8cafeaa452c06' was completed in 45.55 seconds with score 51.04 (42 unrouted and 886 violations), using 286.99 CPU seconds and the job allocated 2267.38 GB of memory so far.
+2026-11-24 22:06:14.220 INFO   [10309D\3628EF] Auto-routing pass #7 on board '0d5c872581a2b7e7d56c3f24c45b48ee' was completed in 41.74 seconds with score 72.69 (37 unrouted and 886 violations), using 328.14 CPU seconds and the job allocated 2582.58 GB of memory so far.
+2026-11-24 22:06:51.930 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:06:52.031 INFO   [10309D\3628EF] Auto-routing pass #8 on board '58d58dedf04289fa0eb1068a581b6ba4' was completed in 37.59 seconds with score 72.69 (37 unrouted and 886 violations), using 364.32 CPU seconds and the job allocated 2859.60 GB of memory so far.
+2026-11-24 22:06:52.267 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:07:31.705 INFO   [10309D\3628EF] Auto-routing pass #9 on board '58d58dedf04289fa0eb1068a581b6ba4' was completed in 39.56 seconds with score 59.70 (40 unrouted and 886 violations), using 403.45 CPU seconds and the job allocated 3170.21 GB of memory so far.
+2026-11-24 22:08:14.629 INFO   [10309D\3628EF] Auto-routing pass #10 on board '4b6b41da49f8f71281cf1b6b5000d727' was completed in 42.72 seconds with score 81.35 (35 unrouted and 886 violations), using 444.54 CPU seconds and the job allocated 3487.37 GB of memory so far.
+2026-11-24 22:08:53.806 INFO   [10309D\3628EF] Auto-routing pass #11 on board '1eb18227a28a44b20e76f1489790da64' was completed in 38.96 seconds with score 64.03 (39 unrouted and 886 violations), using 482.68 CPU seconds and the job allocated 3783.50 GB of memory so far.
+2026-11-24 22:09:30.869 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:09:30.969 INFO   [10309D\3628EF] Auto-routing pass #12 on board '1eb18227a28a44b20e76f1489790da64' was completed in 0.00 seconds with score 81.35 (35 unrouted and 886 violations), using 518.86 CPU seconds and the job allocated 4067.00 GB of memory so far.
+2026-11-24 22:09:31.207 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:10:10.828 INFO   [10309D\3628EF] Auto-routing pass #13 on board '1eb18227a28a44b20e76f1489790da64' was completed in 39.74 seconds with score 68.36 (38 unrouted and 886 violations), using 556.96 CPU seconds and the job allocated 4358.73 GB of memory so far.
+2026-11-24 22:10:52.346 INFO   [10309D\3628EF] Auto-routing pass #14 on board '19737d5bd5a19da97a63ed15fc858da0' was completed in 41.31 seconds with score 77.02 (36 unrouted and 886 violations), using 598.12 CPU seconds and the job allocated 4674.21 GB of memory so far.
+2026-11-24 22:11:34.113 INFO   [10309D\3628EF] Auto-routing pass #15 on board 'ee7597e87a74956ccfb71e69a7ac1e27' was completed in 41.45 seconds with score 98.66 (31 unrouted and 886 violations), using 638.23 CPU seconds and the job allocated 4976.23 GB of memory so far.
+2026-11-24 22:12:12.466 INFO   [10309D\3628EF] Auto-routing pass #16 on board 'e7054c9ae972c8ecdfed0d51d066ec03' was completed in 38.14 seconds with score 107.32 (29 unrouted and 886 violations), using 675.34 CPU seconds and the job allocated 5257.35 GB of memory so far.
+2026-11-24 22:12:53.115 INFO   [10309D\3628EF] Auto-routing pass #17 on board 'd772de8b123d85f0fddb5f8534ebb864' was completed in 40.43 seconds with score 102.99 (30 unrouted and 886 violations), using 714.45 CPU seconds and the job allocated 5551.24 GB of memory so far.
+2026-11-24 22:13:31.846 INFO   [10309D\3628EF] Auto-routing pass #18 on board 'e1a751b02f6f3c615cb2c37cb49398fc' was completed in 38.51 seconds with score 107.32 (29 unrouted and 886 violations), using 752.65 CPU seconds and the job allocated 5837.00 GB of memory so far.
+2026-11-24 22:14:13.143 INFO   [10309D\3628EF] Auto-routing pass #19 on board '6c26ac9f159d4299be88c69e09723aae' was completed in 41.07 seconds with score 111.65 (28 unrouted and 886 violations), using 792.72 CPU seconds and the job allocated 6135.27 GB of memory so far.
+2026-11-24 22:14:47.619 INFO   [10309D\3628EF] Auto-routing pass #20 on board '76a27df290948a72c76d056a89d4e99b' was completed in 34.24 seconds with score 115.98 (27 unrouted and 886 violations), using 825.90 CPU seconds and the job allocated 6383.40 GB of memory so far.
+2026-11-24 22:15:22.679 INFO   [10309D\3628EF] Auto-routing pass #21 on board '86cf82f1509b3fd77242aeac0064cd52' was completed in 34.83 seconds with score 124.63 (25 unrouted and 886 violations), using 860.11 CPU seconds and the job allocated 6638.25 GB of memory so far.
+2026-11-24 22:15:55.412 INFO   [10309D\3628EF] Auto-routing pass #22 on board '91466b4fd1b831340ee22c6c2c898e9b' was completed in 32.51 seconds with score 120.31 (26 unrouted and 886 violations), using 891.36 CPU seconds and the job allocated 6870.61 GB of memory so far.
+2026-11-24 22:16:31.973 INFO   [10309D\3628EF] Auto-routing pass #23 on board '37502edf8fa35f593ad69cfec6259874' was completed in 36.33 seconds with score 115.98 (27 unrouted and 886 violations), using 926.52 CPU seconds and the job allocated 7128.47 GB of memory so far.
+2026-11-24 22:17:07.689 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:17:07.798 INFO   [10309D\3628EF] Auto-routing pass #24 on board '91466b4fd1b831340ee22c6c2c898e9b' was completed in 0.00 seconds with score 124.63 (25 unrouted and 886 violations), using 961.66 CPU seconds and the job allocated 7392.59 GB of memory so far.
+2026-11-24 22:17:08.051 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:17:39.846 INFO   [10309D\3628EF] Auto-routing pass #25 on board '91466b4fd1b831340ee22c6c2c898e9b' was completed in 31.92 seconds with score 120.31 (26 unrouted and 886 violations), using 992.91 CPU seconds and the job allocated 7630.06 GB of memory so far.
+2026-11-24 22:18:16.046 INFO   [10309D\3628EF] Auto-routing pass #26 on board '29912b320bcaab62f56ceeff9864915b' was completed in 35.97 seconds with score 115.98 (27 unrouted and 886 violations), using 1028.02 CPU seconds and the job allocated 7894.31 GB of memory so far.
+2026-11-24 22:18:51.470 INFO   [10309D\3628EF] Auto-routing pass #27 on board '54a2fbbed84e54ab396cfb099e35fd29' was completed in 35.20 seconds with score 120.31 (26 unrouted and 886 violations), using 1062.11 CPU seconds and the job allocated 8150.06 GB of memory so far.
+2026-11-24 22:19:27.984 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:19:28.091 INFO   [10309D\3628EF] Auto-routing pass #28 on board '91466b4fd1b831340ee22c6c2c898e9b' was completed in 0.00 seconds with score 124.63 (25 unrouted and 886 violations), using 1097.19 CPU seconds and the job allocated 8412.57 GB of memory so far.
+2026-11-24 22:19:28.345 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:20:00.525 INFO   [10309D\3628EF] Auto-routing pass #29 on board '91466b4fd1b831340ee22c6c2c898e9b' was completed in 32.31 seconds with score 120.31 (26 unrouted and 886 violations), using 1128.39 CPU seconds and the job allocated 8649.37 GB of memory so far.
+2026-11-24 22:20:36.526 INFO   [10309D\3628EF] Auto-routing pass #30 on board 'a913c3ec13342200ed69da96e00f3baa' was completed in 35.77 seconds with score 115.98 (27 unrouted and 886 violations), using 1163.51 CPU seconds and the job allocated 8913.18 GB of memory so far.
+2026-11-24 22:21:11.749 INFO   [10309D\3628EF] Auto-routing pass #31 on board '3722ffd1ff7e07026d2fc61833dcedbc' was completed in 35.00 seconds with score 120.31 (26 unrouted and 886 violations), using 1197.67 CPU seconds and the job allocated 9174.77 GB of memory so far.
+2026-11-24 22:21:11.802 INFO   [10309D\3628EF] The router's best score (124.63) has not improved by more than 0.5 points since pass #21. Stopping the auto-router after 31 passes (25 items still unconnected).
+The following connections could not be routed -- please review your design (e.g. check pad clearances, trace width rules, and available routing space):
+  Net '/charger/VBUS' (5 unrouted connections):
+    - via  ->  conductionarea
+    - conductionarea  ->  conductionarea
+    - C604-1  ->  U603-8
+    - U603-8  ->  U603-1
+    - conductionarea  ->  R601-1
+  Net '/charger/VSYS' (1 unrouted connection):
+    - conductionarea  ->  conductionarea
+  Net '/charger/CHG_SW2' (2 unrouted connections):
+    - conductionarea  ->  conductionarea
+    - conductionarea  ->  conductionarea
+  Net '/CHG_QON' (1 unrouted connection):
+    - SW701-1  ->  U701-12
+  Net '/mcu/I2S_BCLK_MCU' (1 unrouted connection):
+    - via  ->  via
+  Net '/I2S_BCLK' (2 unrouted connections):
+    - U301-7  ->  TP301-1
+    - TP301-1  ->  U401-7
+  Net '/charger/CHG_REGN' (1 unrouted connection):
+    - via  ->  R702-1
+  Net '/AMPR_FAULT_N' (1 unrouted connection):
+    - U401-3  ->  R401-2
+  Net '/mcu/ESP_IO0' (1 unrouted connection):
+    - R102-2  ->  via
+  Net '/charger/CHG_INT' (1 unrouted connection):
+    - via  ->  U701-21
+  Net '/I2C_SDA' (1 unrouted connection):
+    - U701-15  ->  via
+  Net '/I2C_SCL' (1 unrouted connection):
+    - via  ->  U701-14
+  Net '/usb_power/PD_SCL' (1 unrouted connection):
+    - Q601-2  ->  U603-2
+  Net 'Net-(D951-A)' (1 unrouted connection):
+    - R956-2  ->  D951-2
+  Net '/charger/CHG_STAT' (1 unrouted connection):
+    - U701-1  ->  D701-1
+  Net 'I2S_EXT_BCLK' (1 unrouted connection):
+    - R508-1  ->  U501-3
+  Net '/I2S_LRCK' (1 unrouted connection):
+    - via  ->  U401-6
+  Net '/usb_power/PD_CFG1' (1 unrouted connection):
+    - R602-1  ->  U603-9
+  Net '/usb_power/PD_SDA' (1 unrouted connection):
+    - Q602-2  ->  U603-3
+  Net '/usb_power/PD_PG' (1 unrouted connection):
+    - U603-10  ->  TP602-1
+2026-11-24 22:21:11.909 WARN   PolygonShape.DivisionPoint: projection not found for concave corner #3 at (1673500.0, -1111000.0) in polygon with 6 corners: [(1674000,-1136000), (1681000,-1136000), (1681000,-1115000), (1673500,-1111000), (1675500,-1111000), (1674000,-1115000)]
+2026-11-24 22:21:12.210 INFO   [10309D\3628EF] Auto-routing stage completed: started with 197 unrouted nets, completed in 1235.87 seconds, final score: 124.63 (25 unrouted and 886 violations), using 1197.67 total CPU seconds, 9174.77 GB total allocated, and 1171.0 MB peak heap usage.
+2026-11-24 22:21:12.304 INFO   [10309D\3628EF] Optimization stage started on board '9be9f9a5cff1b73466dedfb47542f980' with score 59.70 (40 unrouted and 886 violations).
+2026-11-24 22:21:38.923 INFO   [10309D\3628EF] Stopping optimization pass #1 early after 50 consecutive items could not be improved.
+2026-11-24 22:21:39.032 INFO   [10309D\3628EF] Optimizer pass #1 on board '816abc28383d8094e7195a420ee2ddf9' was completed in 26.42 seconds with the score of 59.70 (40 unrouted and 886 violations).
+2026-11-24 22:21:39.116 INFO   [10309D\3628EF] Stopping optimizer because the improvement in this pass (0.0018%) is below the threshold (1.00%).
+2026-11-24 22:21:39.202 INFO   [10309D\3628EF] Optimization stage completed: started with score 59.70 (40 unrouted and 886 violations), completed in 26.82 seconds, final score: 59.70 (40 unrouted and 886 violations), using 26.54 total CPU seconds, 359.13 GB total allocated, and 497.5 MB peak heap usage.
+2026-11-24 22:21:39.227 INFO   [10309D\3628EF] Job '10309D\3628EF' finished with state: COMPLETED (elapsed: 21 minutes 3.02 seconds, finished at UTC: 2026-11-25T06:21:39.226970Z).
+2026-11-24 22:21:39.545 INFO   Saving output file '/private/tmp/claude-501/-Users-frankwalsh-Documents-vibecoding/8f7148fa-1ea7-42b7-910f-60a1668ad40c/scratchpad/pcb/fr/hybrid2.ses' (SES)...
+2026-11-24 22:21:39.551 INFO   Successfully saved output file '/private/tmp/claude-501/-Users-frankwalsh-Documents-vibecoding/8f7148fa-1ea7-42b7-910f-60a1668ad40c/scratchpad/pcb/fr/hybrid2.ses' (198505 bytes).
+EXIT 0
