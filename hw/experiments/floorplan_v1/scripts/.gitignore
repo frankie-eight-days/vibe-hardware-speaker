@@ -1,0 +1,9 @@
+# run.sh outputs (regenerate with ./run.sh plan3 <tag>)
+*.kicad_pcb
+*.kicad_pro
+*.log
+*.done
+geo_*.json
+sim/work/
+sim/results/
+sim/figs/

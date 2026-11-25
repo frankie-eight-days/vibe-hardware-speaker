@@ -1,7 +1,8 @@
 #!/bin/zsh
 # usage: run.sh plan tag   -> builds, DRC, blockdiff, heights, density, FH (with phase-2 pours), thermal (pads/no pads)
 
-source ../r6/env.sh
+source ./env.sh
+[ -f base.kicad_pcb ] || { cp $PRJ/hw/releases/pcb_04_revB_6L/02_konnect1/speaker_main.kicad_pcb base.kicad_pcb; cp $PRJ/hw/releases/pcb_04_revB_6L/02_konnect1/speaker_main.kicad_pro base.kicad_pro; }
 P=$1; T=$2; KC=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli
 $KPY build.py base.kicad_pcb $T.kicad_pcb $P 2>&1 | grep -v "memory leak\|^$\|assert" | grep -v " box " > $T.build.log
 cp base.kicad_pro $T.kicad_pro

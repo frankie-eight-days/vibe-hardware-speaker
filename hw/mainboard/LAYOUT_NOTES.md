@@ -303,3 +303,7 @@ Scratch work dir: `/private/tmp/claude-501/-Users-frankwalsh-Documents-vibecodin
 - LIVE so far (09:20): native step 1 applied → checkpoint `hw/releases/pcb_04_revB_6L/01_native1`; Konnect adds (In4 GND, In2 GND fill, B.Cu VSYS band, C716, U601) applied over IPC to my own pcbnew (konnect.toml in vibecoding/, DELETE at end) and saved → `02_konnect1`. Live == scratch `s2` (cmpb.py: 0 diffs). Konnect: USB_DIFF 0.11/0.15, board min track 0.10.
 - Open with lead: (1) stack-up dielectrics (no Python API); (2) `usb_power.kicad_sch` gained C605 47 µF at 08:45 (not v0.2) → parity 1 until ruled.
 - Scratch routing: `bus6.py` short jobs 122/123, bus 23/27 (SDA, INT, PDN, PDSDA left to Freerouting). Thermal landings (board-only fps `speaker:ThermalLanding_Amp/_Chg`, B.Mask opening only): U301 X 103–116.4, U401 X 183.6–197, Y 90.1–105.1; U701 X 171.5–180.4, Y 117.6–120.4. Next: `route2.sh` (FR + residual + islands + stitch), `assemble6.py` → SES → `n2.py` on live.
+
+## 13. Floor plan v1 (pcb-floorplan, 2026-11-25)
+
+Compact placement for the owner's Apple-MLB direction: 142.8 × 46 mm (−21 %), 66.9 % top density, six power blocks moved rigidly. Done offline in `hw/experiments/floorplan_v1/` (`FLOORPLAN.md`, figures in `docs/figures/pcb/floorplan/`). The live board is unchanged. **Next owner: start from `hw/experiments/floorplan_v1/HANDOFF.md`.** The rev B 6-layer scratch pipeline from §12 is archived in `layout_src/r6/`.
