@@ -26,7 +26,7 @@ A TDK T3902 bottom-port PDM microphone sits on the underside of the UI board. A 
   The fallback is a three-way classifier (free, near a wall, corner) mapped to presets of 0, \qty{-3}{\decibel} and \qty{-6}{\decibel} at \qty{150}{\hertz}.
   \item \textbf{Ambient-adaptive loudness.} A minimum-statistics noise tracker subtracts the speaker's own predicted contribution. It raises the gain by half the noise excess above \qty{45}{\decibel}A, capped at \qty{+10}{\decibel} and slewed at no more than \qty{1}{\decibel} per \qty{3}{\second}.
 \end{enumerate}
-The biggest risk is structure-borne vibration reaching the microphone. The panel-mode study (\cref{sec:a4}) shows that the top of the shell, where the mic sits, has the strongest local motion below \qty{1}{\kilo\hertz}.
+The acoustic simulations give the placement compensation a concrete job: on a desk the reflection cancels the woofers' baffle step, but free-standing the speaker needs about \qty{+5}{\decibel} below \qty{600}{\hertz}. The auto-EQ chooses between those two presets (\cref{sec:a3}). The biggest risk is structure-borne vibration reaching the microphone. The panel-mode study (\cref{sec:a4}) shows that the top of the shell, where the mic sits, has the strongest local motion below \qty{1}{\kilo\hertz}.
 
 \subsection{Live EQ over Wi-Fi}
 
@@ -43,7 +43,7 @@ The amplifier biquads can also be rewritten live:
 
 The display is a Waveshare 1.28-inch GC9A01 module ($240\times240$) behind a lens on the top. It runs on SPI at up to \qty{40}{\mega\hertz} over the flat cable, which takes about \qty{23}{\milli\second} per full frame. LVGL redraws only small areas (level meter, rotary arc), using two \qty{11.5}{\kilo\byte} partial buffers in internal DMA-capable RAM \src{research/firmware_and_tools.md}.
 
-The other controls are an EC11 encoder with push switch, read by the pulse counter, and three buttons on an ADC1 resistor ladder. A fourth button, SW4, is the power button. ECO-002 routes the charger's /QON input to it over J501 pin 20, with no pull-up (the charger has one inside) and a small TVS. A \qty{1}{\second} press wakes the speaker from ship mode, and a \qty{10}{\second} press resets the whole system, which is also the only battery-side reset of a hung ESP32 \src{docs/spec_ui_board.md} \src{docs/eco_002.md}.
+The other controls are an EC11 encoder with push switch, read by the pulse counter, and three buttons on an ADC1 resistor ladder. A fourth button, SW4, is the power button. ECO-002 routes the charger's /QON input to it over J501 pin 20, with no pull-up (the charger has one inside) and a small TVS. A \qty{1}{\second} press wakes the speaker from ship mode, and a \qty{10}{\second} press resets the whole system, which is also the only battery-side reset of a hung ESP32. Firmware cannot see this button, so ``off'' is a \qty{2}{\second} press of the encoder, which puts the charger into ship mode \src{docs/spec_power.md}.
 
 \subsection{USB-C PD charging and flashing}
 

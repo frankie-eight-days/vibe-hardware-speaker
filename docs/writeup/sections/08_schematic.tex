@@ -1,36 +1,22 @@
 \section{Schematic}\label{sec:schematic}
 
-The main board was drawn in KiCad 10.0.4. Every change to the design files went through the Konnect MCP server (v0.12.1); no agent edited a KiCad file as text. Outputs were exported with \texttt{kicad-cli}, which only reads the design \src{hw/mainboard/BUILD_NOTES.md}.
+The main board was drawn in KiCad 10.0.4 entirely through the Konnect MCP server. No agent edited a KiCad file as text. The current release, \textbf{v0.2}, includes the readability redraw, a root block diagram with sheet pins, ECO-001 and ECO-002 \src{hw/mainboard/BUILD_NOTES.md}. It has 271 parts on nine sheets (\cref{tab:sheets}); 12 of them are DNP. \Cref{fig:sch-root,fig:sch-rails,fig:sch-mcu,fig:sch-amp} reproduce four pages. The full PDF is \repo{hw/mainboard/out/speaker_main_schematic.pdf}.
 
-The current release is \textbf{v0.2}. It includes the readability redraw, ECO-001 items 1--4 and ECO-002 items 1--5. Its root sheet is a block diagram (\cref{fig:sch-root}). The cross-sheet nets are hierarchical labels and sheet pins wired on the root: 104 global labels were converted, and Konnect's \texttt{validate\_sheet\_pins} reports 0 issues. A labelled bus carries the multi-drop control nets (I\textsuperscript{2}C, AMP\_PDN, the fault lines, I\textsuperscript{2}S and CHG\_QON). There are nine A3 child sheets (\cref{tab:sheets}). \Cref{fig:sch-rails,fig:sch-mcu,fig:sch-amp} reproduce three of them. The full 10-page PDF is \texttt{hw/mainboard/out/speaker\_main\_schematic.pdf}; its title block still reads ``Rev 0.1''.
+\begin{checked}
+\begin{itemize}[leftmargin=1.2em,itemsep=1pt]
+  \item \textbf{Against the spec:} RefDes coverage was checked by script, and every IC, transistor and connector was checked pin by pin using the nets read back from KiCad.
+  \item \textbf{ERC:} 0 violations at all severities, no exclusions. One caveat: the CH340C symbol hides +3V3's real driver, so that net was confirmed in the netlist.
+  \item \textbf{After every edit} (redraw, root rework, ECO-001, ECO-002), the netlist was compared with the previous release. Only the intended changes appeared.
+  \item \textbf{Reviews:} an independent review and two skill-driven release reviews, v0.1 and the v0.2 delta. They covered pins against pads, footprints against drawings, boundary states and supply. Verdict: \textbf{no blockers}; the open items are in \cref{app:register}.
+\end{itemize}
+\end{checked}
 
-\subsection{How the schematic was verified}
-
-The gates are described in \cref{sec:gates}. Applied to the schematic, they were:
-\begin{enumerate}
-  \item \textbf{Spec coverage.} A script compared the schematic's RefDes set with the spec tables. Nothing in the specs is missing.
-  \item \textbf{Pin by pin.} Every IC, transistor and connector was checked against the spec pin tables, using the nets read back from KiCad after wiring (\texttt{get\_component\_nets}).
-  \item \textbf{ERC.} \texttt{kicad-cli sch erc --severity-all} reports \textbf{0 violations} of any severity at v0.2, with no exclusions. PWR\_FLAGs exist only where a net really is sourced through a passive pin. One caveat: the stock CH340C symbol types its V3 pin as a power output, so ERC treats +3V3 as driven by U201. That would hide a missing driver on +3V3, so +3V3 was confirmed by netlist review instead.
-  \item \textbf{Netlist comparison after every edit.} Each change was checked by comparing (reference, pin) groups with the previous release:
-  \begin{itemize}
-    \item the redraw: 0 differences against the archived v1;
-    \item ECO-001: only the eight changed fields differ;
-    \item the root rework: connectivity unchanged;
-    \item ECO-002: exactly the intended changes. J501.20 left GND and joined CHG\_QON, the JP803 outer pins swapped, and C721 and 13 test points landed on their intended nets.
-  \end{itemize}
-  \item \textbf{Independent review.} No blockers; two pinout concerns were refuted against the datasheets.
-  \item \textbf{Release review.} No blockers. Every symbol pin was checked against a footprint pad by script, the custom footprints against the dimensioned drawings, and 11 boundary states were traced on the netlist. Its register is \cref{tab:register}.
-\end{enumerate}
-
-\subsection{Deviations and open items}\label{sec:schematic-deviations}
-
+\textbf{Still to do before fabrication:}
 \begin{itemize}
-  \item \textbf{The DNP attribute is not set} (review S10). Konnect 0.12.1 cannot set it. The 12 DNP parts (R601, C602, C719, C720, C721, R710, C956, D951, R956, U501, C503, J502) carry a \texttt{DNP} property instead, which reaches the BOM (\cref{tab:bom}). ``Do not populate'' must be set in eeschema before BOM/CPL export; the BOM then has 259 fitted parts.
-  \item \textbf{The custom library nickname is \texttt{speaker:}, not \texttt{power:},} because \texttt{power} is KiCad's stock power-symbol library.
-  \item \textbf{Title blocks are filled only at export time} through a custom drawing sheet, because Konnect cannot set them.
-  \item \textbf{JP803 is a Bridged12 footprint with swapped outer pins.} The stock library has no Bridged23 jumper, so the copper bridge 1--2 now selects the pack NTC. The symbol was re-placed, so its UUID must be re-linked at the first PCB update.
-  \item \textbf{Root-sheet drawing compromises.} Three control wires cross the bus without junctions, and the sheet pins enter the boxes from the sides only.
-  \item \textbf{Placement conditions} from the review: tall-capacitor zones (S11), XT30 polarity and harness drawing (S8), AGND/PGND net-tie (L6).
+  \item Set KiCad's DNP attribute on the 12 parts; Konnect cannot set it.
+  \item Confirm the XT30 polarity on a real part.
+  \item Plan placement of the three tall electrolytics.
+  \item Fix the small documentation leftovers in \cref{sec:inconsistencies}.
 \end{itemize}
 
 \newcommand{\schpage}[3]{%
@@ -40,12 +26,12 @@ The gates are described in \cref{sec:gates}. Applied to the schematic, they were
 \caption{#2}\label{#3}
 \end{figure}}
 
-\schpage{1}{Schematic v0.2, root sheet. This is the KiCad version of \cref{fig:power-path,fig:data-path}. The power path runs along the top: usb\_power $\to$ charger $\leftrightarrow$ battery, then charger $\to$ VSYS $\to$ rails $\to$ PVDD $\to$ both amplifiers at the right. The data path runs below: usb\_uart $\leftrightarrow$ mcu $\to$ ui\_io $\to$ I\textsuperscript{2}S $\to$ amplifiers. The blue bus carries I\textsuperscript{2}C, AMP\_PDN, the two fault lines, I\textsuperscript{2}S and CHG\_QON to every sheet that uses them.}{fig:sch-root}
+\schpage{1}{Schematic v0.2, root sheet: the KiCad version of \cref{fig:power-path,fig:data-path}. The power path runs along the top (USB, charger, battery, rails, amplifiers); the data path runs below (USB-UART, MCU, UI link, amplifiers). The blue bus carries I\textsuperscript{2}C, AMP\_PDN, the fault lines, I\textsuperscript{2}S and CHG\_QON.}{fig:sch-root}
 
-\schpage{5}{Schematic page 5, \texttt{rails}. At the top is the TPS61178 boost: \qty{2.2}{\micro\henry} inductor, PVDD output bank and C920, the feedback divider (\qty{17.97}{\volt}), the compensation R903 \qty{100}{\kilo\ohm} / C915 \qty{15}{\nano\farad} (ECO-001 \#1), and the now-fitted trim network R907/D901 that firmware uses for the soft start (ECO-001 \#2). At the bottom is the TPS62933 buck to +3V3. The text blocks on the right are the design notes the build agent placed on each sheet.}{fig:sch-rails}
+\schpage{5}{Page 5, \texttt{rails}. Top: the TPS61178 boost with the ECO-001 compensation (\qty{100}{\kilo\ohm}/\qty{15}{\nano\farad}) and the trim network R907/D901, now fitted for the soft start. Bottom: the TPS62933 buck to +3V3. The text blocks are the design notes the build agent placed on each sheet.}{fig:sch-rails}
 
-\schpage{6}{Schematic page 6, \texttt{mcu}. It shows the ESP32-WROVER-E with every usable GPIO assigned, the I\textsuperscript{2}C pull-ups, the EN RC with C103 = \qty{2.2}{\micro\farad} (ECO-001 \#4), the \qty{68}{\ohm} SPI/PDM source resistors (ECO-001 \#3), the two-FET AMP\_FAULT merge (\cref{sec:adr-fault}) and the new test points TP105--TP110 (ECO-002 \#5).}{fig:sch-mcu}
+\schpage{6}{Page 6, \texttt{mcu}. The ESP32-WROVER-E with every usable GPIO assigned, the I\textsuperscript{2}C pull-ups, the \qty{2.2}{\micro\farad} EN capacitor, the \qty{68}{\ohm} SPI/PDM source resistors, the two-FET fault merge and test points TP105--TP110.}{fig:sch-mcu}
 
-\schpage{9}{Schematic page 9, \texttt{amp\_left}. It shows the TAS5805M in BTL with its ADR/FAULT strap (\qty{4.7}{\kilo\ohm}, address 0x2C), PVDD decoupling and bulk, bootstrap capacitors and the four \qty{10}{\micro\henry} + \qty{1}{\micro\farad} output legs to the woofer (channel A) and tweeter (channel B) connectors. The I\textsuperscript{2}S, PVDD and GND test points TP301--TP305 were added by ECO-002. The right amplifier (page 10) is identical apart from 4xx RefDes, a \qty{15}{\kilo\ohm} strap and a single PVDD test point.}{fig:sch-amp}
+\schpage{9}{Page 9, \texttt{amp\_left}. The TAS5805M in BTL with its address strap (0x2C), PVDD decoupling, bootstrap capacitors and the four \qty{10}{\micro\henry} + \qty{1}{\micro\farad} output legs to the woofer (channel A) and tweeter (channel B). The right amplifier (page 10) differs only in RefDes, strap and test points.}{fig:sch-amp}
 
 \clearpage

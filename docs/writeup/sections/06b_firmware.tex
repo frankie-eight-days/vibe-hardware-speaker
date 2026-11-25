@@ -1,6 +1,6 @@
 \section{Firmware requirements derived from analysis}\label{sec:firmware-req}
 
-Several hardware decisions only work if the firmware does its part. The removal of the boost disconnect FET, for example, relies on the charger's over-current trip, and that trip is a register setting. The SPICE runs, the release review and the ECOs together produced the contract in \cref{tab:firmware-req}. Items 1--6 protect hardware and must exist before the first battery power-up with amplifiers. The spec's firmware notes are the authoritative list \src{docs/spec_power.md} §7 \src{docs/spec_signal.md}.
+Several hardware decisions only work if the firmware does its part. The removal of the boost disconnect FET, for example, relies on the charger's over-current trip, and that trip is a register setting. The SPICE runs, the release reviews and the ECOs together produced the contract in \cref{tab:firmware-req}. Items 1--7 protect hardware and must exist before the first battery power-up with amplifiers. The spec's firmware notes are the authoritative list \src{docs/spec_power.md} §7 \src{docs/spec_signal.md}.
 
 {\small
 \setlength{\tabcolsep}{4pt}
@@ -22,23 +22,29 @@ Several hardware decisions only work if the firmware does its part. The removal 
 5 & Read TS in battery-only mode and stop playback above the pack limit & No hardware discharge over-temperature cut-off & Review S6 \\
 6 & Never request \qty{28}{\volt} EPR from the CH224Q & Isolator gate would see \qty{14}{\volt} ($>\pm\qty{12}{\volt}$); BQ VBUS max \qty{24}{\volt} & spec\_power §1.3 \\
 \addlinespace
+7 & If C720/C721 are ever fitted: C721 $\ge10\times$ C720, never fit R710, and wait until VSYS $\approx$ VBAT ($\Delta V<\qty{50}{\milli\volt}$ on the charger ADC) before BOOST\_EN & With the caps, the ship FET takes 5--\qty{11}{\second} to enhance; R710 would keep it off for good & Delta review N1; spec\_power v1.3 \\
+\addlinespace
+\multicolumn{4}{@{}l}{\textbf{Power on and off}} \\
+8 & \textbf{Off:} a long press ($\ge\qty{2}{\second}$) of the encoder push switch enters ship mode: mute, PDN low, BOOST\_EN low, then SDRV\_CTRL = 10b. With USB present (ship mode refused), enter a firmware low-power idle instead. Optional extra triggers: web UI, idle timer & Firmware cannot see the power button (no spare GPIO, no QON status bit) & Delta review N2 \\
+9 & \textbf{On/reset:} the power button only wakes from ship mode ($\ge\qty{1}{\second}$) and resets the system ($\ge\qty{10}{\second}$), in hardware & /QON goes straight to the charger & ECO-002 \#2 \\
+\addlinespace
 \multicolumn{4}{@{}l}{\textbf{Boost and amplifier sequencing}} \\
-7 & Soft start: PVDD\_TRIM = \qty{3.3}{\volt} for $\ge\qty{150}{\milli\second}$ $\to$ BOOST\_EN high $\to$ wait $\ge\qty{20}{\milli\second}$ $\to$ release amp PDN $\to$ ramp the trim to target over \qtyrange{30}{50}{\milli\second} & Error-amplifier windup overshoots to \qty{19.4}{\volt} (typ.) / \qty{21}{\volt} OVP; the ramp takes \qty{11}{\milli\second} & S1; ECO-001 \#2 \\
-8 & Power-down: amp PDN low before BOOST\_EN low; keep PDN low whenever the boost is off & PVDD rests at VSYS$-\qty{0.5}{\volt}$, not \qty{0}{\volt}; gain and limiters assume \qty{18}{\volt} & spec\_power §4.1.4 \\
-9 & After any trim change wait $\ge\qty{150}{\milli\second}$; calibrate duty $\to$ PVDD once & Settling \qtyrange{70}{110}{\milli\second}; curve \qty{0.3}{\volt} below the hand table & S4 \\
-10 & Keep the amplifier DRC so average battery current stays $\le\qty{6}{\ampere}$ & Charger battery FET rating & spec\_power §4.1.4 \\
+10 & Soft start: PVDD\_TRIM = \qty{3.3}{\volt} for $\ge\qty{150}{\milli\second}$ $\to$ BOOST\_EN high $\to$ wait $\ge\qty{20}{\milli\second}$ $\to$ release amp PDN $\to$ ramp the trim to target over \qtyrange{30}{50}{\milli\second} & Error-amplifier windup overshoots to \qty{19.4}{\volt} (typ.) / \qty{21}{\volt} OVP; the ramp takes \qty{11}{\milli\second} & S1; ECO-001 \#2 \\
+11 & Power-down: amp PDN low before BOOST\_EN low; keep PDN low whenever the boost is off & PVDD rests at VSYS$-\qty{0.5}{\volt}$, not \qty{0}{\volt}; gain and limiters assume \qty{18}{\volt} & spec\_power §4.1.4 \\
+12 & After any trim change wait $\ge\qty{150}{\milli\second}$; calibrate duty $\to$ PVDD once & Settling \qtyrange{70}{110}{\milli\second}; curve \qty{0.3}{\volt} below the hand table & S4 \\
+13 & Keep the amplifier DRC so average battery current stays $\le\qty{6}{\ampere}$ & Charger battery FET rating & spec\_power §4.1.4 \\
 \addlinespace
 \multicolumn{4}{@{}l}{\textbf{Amplifiers (TAS5805M, 0x2C/0x2D)}} \\
-11 & After PDN + \qty{5}{\milli\second}, both amps must ACK; configure FAULTZ (0x61 = 0x0B, 0x60 = 0x01); ignore AMP\_FAULT until then & ADR/FAULT pin is the address strap at power-up & spec\_signal §1.4 \\
-12 & Woofer limiter $\le\qty{15.5}{\volt}$ peak; \textbf{tweeter limiter $\le\qty{8}{\volt}$ peak (mandatory)} and channel-B volume cap & Clipped tweeter reaches \qty{5.41}{\ampere}, past the \qty{5}{\ampere} OCP & S2; spec\_signal §3.1 \\
-13 & Tweeter EQ: $\approx\qty{+2}{\decibel}$ high shelf, corner \qtyrange{10}{12}{\kilo\hertz} & LC filter droop \qty{-2.2}{\decibel} at \qty{20}{\kilo\hertz} into the real tweeter & S2; ECO-001 \#5 \\
-14 & Compute all amp biquads at \qty{96}{\kilo\hertz} (process flow 1), including the A1 bass EQ & A1's four biquads are designed at \qty{48}{\kilo\hertz} & Firmware research \\
-15 & AGAIN (reg 0x54) = 8, so full scale is \qty{18.6}{\volt} peak $\approx$ PVDD & 0 dBFS must not exceed the rail & spec\_signal §3.1 \\
+14 & After PDN + \qty{5}{\milli\second}, both amps must ACK; configure FAULTZ (0x61 = 0x0B, 0x60 = 0x01); ignore AMP\_FAULT until then & ADR/FAULT pin is the address strap at power-up & spec\_signal §1.4 \\
+15 & Woofer limiter $\le\qty{15.5}{\volt}$ peak; \textbf{tweeter limiter $\le\qty{8}{\volt}$ peak (mandatory)} and channel-B volume cap & Clipped tweeter reaches \qty{5.41}{\ampere}, past the \qty{5}{\ampere} OCP & S2; spec\_signal §3.1 \\
+16 & Tweeter EQ: $\approx\qty{+2}{\decibel}$ high shelf, corner \qtyrange{10}{12}{\kilo\hertz} & LC filter droop \qty{-2.2}{\decibel} at \qty{20}{\kilo\hertz} into the real tweeter & S2; ECO-001 \#5 \\
+17 & Load the \qty{96}{\kilo\hertz} biquads from \texttt{biquads\_tas5805m.json}: woofer channel = bass EQ + LR4 low-pass + system EQ (13); tweeter channel = LR4 high-pass + system EQ (9), trim \qty{-9.7}{\decibel}, delay \qty{110}{\micro\second} (11 samples), normal polarity & The amp DSP runs at \qty{96}{\kilo\hertz} (process flow 1); A5 alignment & A1, A5 \\
+18 & AGAIN (reg 0x54) = 8, so full scale is \qty{18.6}{\volt} peak $\approx$ PVDD & 0 dBFS must not exceed the rail & spec\_signal §3.1 \\
 \addlinespace
 \multicolumn{4}{@{}l}{\textbf{MCU and buses}} \\
-16 & I\textsuperscript{2}C at \qty{100}{\kilo\hertz} (at most \qty{200}{\kilo\hertz}) until $t_r$ is scoped with VBUS present and absent; \qty{400}{\kilo\hertz} only if $t_r\le\qty{300}{\nano\second}$ & Isolator FET $C_\text{oss}$ gives an estimated \qtyrange{240}{420}{\nano\second} & Review S5; ECO-002 \#8 \\
-17 & Drive GPIO0 open-drain only & BOOT button would short a driven-high pin & spec\_signal §1.2 \\
-18 & Burn \texttt{espefuse.py set\_flash\_voltage 3.3V} in production & GPIO12 (AMP\_PDN) is the flash-voltage strap & spec\_signal §1.3 \\
-19 & Ignore encoder and button inputs until the UI board responds & Inputs float with the FFC unplugged & Review L8 \\
+19 & I\textsuperscript{2}C at \qty{100}{\kilo\hertz} (at most \qty{200}{\kilo\hertz}) until $t_r$ is scoped with VBUS present and absent; \qty{400}{\kilo\hertz} only if $t_r\le\qty{300}{\nano\second}$ & Isolator FET $C_\text{oss}$ gives an estimated \qtyrange{240}{420}{\nano\second} & Review S5; ECO-002 \#8 \\
+20 & Drive GPIO0 open-drain only & BOOT button would short a driven-high pin & spec\_signal §1.2 \\
+21 & Burn \texttt{espefuse.py set\_flash\_voltage 3.3V} in production & GPIO12 (AMP\_PDN) is the flash-voltage strap & spec\_signal §1.3 \\
+22 & Ignore encoder and button inputs until the UI board responds & Inputs float with the FFC unplugged & Review L8 \\
 \end{longtable}
 }

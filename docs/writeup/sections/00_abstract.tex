@@ -1,8 +1,18 @@
 \begin{abstract}
 \noindent
-This report describes a portable stereo Bluetooth speaker that was taken from an idea to a checked schematic, a mechanical concept and a set of validated simulations in one working day (2026-11-24). One person made the product decisions. A Claude session acting as the \emph{lead} planned the work, briefed about ten other Claude agents and kept the requirements file current. Each agent had its own context and saw only the files and messages it was given.
+This report describes a portable stereo Bluetooth speaker that was taken from an idea to a release-reviewed schematic, a mechanical concept and a set of validated simulations in one working day (2026-11-24). One person made the product decisions. A Claude session acting as the \emph{lead} planned the work, briefed about ten other Claude agents and kept the requirements file current. Each agent had its own context and saw only the files and messages it was given.
 
-The speaker is a \qtyproduct{95 x 210}{\milli\metre} printed capsule with \qty{0.85}{\litre} of net volume. Each side is two-way and bi-amped: an ESP32-WROVER-E feeds two TAS5805M class-D amplifiers that run from an \qty{18}{\volt} boost rail. A 2S lithium pack charges over USB-C power delivery. The design also has a MEMS microphone for automatic bass EQ, a round display and a Wi-Fi web interface for live EQ. The 9-sheet main-board schematic (271 parts at v0.2) passes KiCad ERC with no violations, and a release review found no blockers before PCB placement. Every simulation was first checked against an analytic case. The lumped bass model predicts $F_3 = \qty{63.7}{\hertz}$ with DSP EQ and a pink-noise maximum of \qty{90.55}{\decibel} SPL at \qty{1}{\metre} on a table, against a \qty{90}{\decibel} requirement. The circuit simulations found that the amplifier rail is three to four times too soft in the bass band and overshoots at start-up. That finding became engineering change order ECO-001. The release review's findings became ECO-002. Both are now in the schematic.
+The speaker is a \qtyproduct{95 x 210}{\milli\metre} printed capsule with \qty{0.85}{\litre} of net volume. Each side is two-way and bi-amped: an ESP32-WROVER-E feeds two TAS5805M class-D amplifiers from an \qty{18}{\volt} boost rail, and a 2S lithium pack charges over USB-C PD. The design also has a microphone for automatic bass EQ, a round display and a Wi-Fi interface for live EQ.
 
-The report covers what was designed, why, and how. It also sets out what went wrong in the agent workflow and a short playbook for anyone who wants to try the same thing. Layout, thermal simulation, firmware, the prototype build and acoustic measurements are still to come.
+The simulations predict:
+\begin{itemize}
+  \item $F_3 = \qty{63.7}{\hertz}$ with DSP EQ, and a pink-noise maximum of \qty{90.6}{\decibel} at \qty{1}{\metre} on a table, against a \qty{90}{\decibel} target;
+  \item an LR4 crossover at \qty{2.5}{\kilo\hertz} that sums within \qty{0.05}{\decibel} of ideal;
+  \item that the \qty{3}{\milli\metre} tweeter bezel is good enough, so a waveguide is not worth a longer body.
+\end{itemize}
+The circuit simulations found the amplifier rail too soft in the bass band, and a release review found protection that depended on firmware. Both became change orders, now in schematic v0.2, which has 271 parts, a clean ERC and no review blockers.
+
+The report covers what was designed, why, and how, including what went wrong and a short playbook for designing hardware with agents. PCB layout, thermal simulation, firmware and the build are still to come.
+
+\smallskip\noindent Repository: \url{https://github.com/frankie-eight-days/vibe-hardware-speaker}
 \end{abstract}

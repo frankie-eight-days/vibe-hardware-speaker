@@ -20,7 +20,7 @@ These are recommendations drawn from the findings above, not decisions.
 \subsection{Process}
 \begin{itemize}
   \item \textbf{A decision log next to the requirements file.} One line per decision, with an owner, a version and a date. Agents cite the version they built against (playbook R3).
-  \item \textbf{A consistency check before each phase.} Ask one agent to diff all specs against the requirements and list the conflicts. The first edition of this report found thirteen; after ECO-002 ten remain (\cref{sec:inconsistencies}).
+  \item \textbf{A consistency check before each phase.} Ask one agent to diff all specs against the requirements and list the conflicts. The first edition of this report found thirteen conflicts; after two review rounds only four small documentation leftovers remain (\cref{sec:inconsistencies}).
   \item \textbf{Pilot-first by default} for any task that fans out to sub-agents (R4).
   \item \textbf{A compute scheduler.} One heavy simulation at a time, with a disk-space guard (R11).
   \item \textbf{Run the circuit simulations before the schematic is drawn.} ECO-001 changed values the schematic agent had just placed; running S1--S7 straight from the specs would have saved a round.

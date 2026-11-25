@@ -1,14 +1,12 @@
 \section{How it was designed}\label{sec:process}
 
-This section tells the story of the design process. It draws on the process log \src{docs/process_log.md}, the build notes and the agents' own documents, and it keeps their account of what went wrong.
+This chapter tells the story of the design process, including what went wrong \src{docs/process_log.md}.
 
-\subsection{The cast}
+\subsection{The cast and the contract}
 
-\begin{description}[style=nextline,leftmargin=1.2em]
-  \item[The user] One person. They made every product decision (driver set, battery type, form factor, ``these schematics look awful'') and supplied a skill for redrawing schematics.
-  \item[The lead] One orchestrating Claude session. It wrote the requirements file before any agent ran. It then split the work, wrote each agent's brief, relayed findings between agents and updated \texttt{docs/requirements.md} whenever a decision changed.
-  \item[The agents] Separate Claude instances, each with its own context: three research agents, two circuit-specification agents, one mechanical-concept agent, one schematic-build agent and one review agent, and two simulation agents. Some of them started sub-agents of their own. \emph{No agent ever saw another agent's transcript}, only the files on disk and the messages the lead (or, by arrangement, another agent) sent it.
-\end{description}
+\textbf{The user}, one person, made every product decision: the driver set, the battery type, the form factor, and ``these schematics look awful''. \textbf{The lead}, one orchestrating Claude session, wrote the requirements file before any agent ran. It then split the work, briefed the agents, relayed their findings and kept \texttt{docs/requirements.md} current. \textbf{The agents} were separate Claude instances: three for research, two for circuit specs, one mechanical, one schematic builder, reviewers and two for simulation. No agent ever saw another's transcript.
+
+\Cref{fig:workflow} shows the core idea: \textbf{files are the contract}. A message can arrive late or out of order, or be misread. A file has a path and a version, and every later agent can read it. The circuit specs, for example, were written ``so the schematic can be drawn without datasheets'', because the drawing agent had no web access.
 
 \begin{figure}[htbp]
 \centering
@@ -63,47 +61,45 @@ This section tells the story of the design process. It draws on the process log 
 \draw[wr] (lead.west) -- ++(-0.35,0) |- (req.west);
 \foreach \f in {fres, fspec, fmech, fsch, fsim} \draw[rd] (req.north -| \f) -- (\f.south);
 \end{tikzpicture}
-\caption{The agent workflow. Blue boxes are agents, green boxes are the files they wrote. Solid black arrows mean ``writes''. Grey arrows mean ``reads'': each stage worked only from the files of earlier stages. Dashed orange lines are messages through the lead. The two circuit-specification agents also negotiated net ownership and RefDes ranges directly. The review agent's claimed defects went back to the spec agent to be confirmed or refuted against datasheets (red). The requirements file at the bottom is the only document every agent read.}
+\caption{The agent workflow. Blue boxes are agents, green boxes the files they wrote. Black arrows mean ``writes'', grey arrows ``reads'', and dashed orange lines are messages through the lead. Each stage worked only from the files of earlier stages; the requirements file at the bottom is the one document every agent read.}
 \label{fig:workflow}
 \end{figure}
 
-\Cref{fig:workflow} is the core idea: \textbf{files are the contract}. A message can arrive late or out of order, or be misread. A file has a path and a version, and every later agent can read it. Each stage's output is written for a reader that knows nothing about the conversation that produced it. The specs say so explicitly: ``written so the schematic can be drawn without datasheets: every pin, value, net and footprint is below'' \src{docs/spec_power.md}.
-
 \subsection{Timeline}
 
-\Cref{tab:timeline} condenses the process log. Everything happened on 2026-11-24.
+Everything in \cref{tab:timeline} happened on 2026-11-24.
 
 \begin{table}[htbp]
 \centering\small
-\caption{Design phases. Agent counts exclude sub-agents unless noted. Sources: \protect\src{docs/process_log.md} (phases 0--12), \protect\src{hw/mainboard/BUILD_NOTES.md}, \protect\src{docs/review/release_review.md} and \protect\src{docs/eco_002.md} (phases 13--15).}
+\caption{Design phases, condensed from \protect\src{docs/process_log.md}, the build notes and the reviews.}
 \label{tab:timeline}
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X c@{}}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}X@{}}
 \toprule
-Phase & What happened & Agents \\
+Phase & What happened \\
 \midrule
-0. Idea & User and lead agree on the concept (\cref{sec:idea}). & --- \\
-1. Requirements & Lead writes \texttt{docs/requirements.md}: targets, block diagram, DSP split, simulation plan. & lead \\
-2. Parallel research & Electronics parts with live JLC stock; drivers with T/S data and a first-pass PR alignment in Python; firmware/DSP plus installing the simulation tools on macOS arm64 (bempp-cl within \qty{0.22}{\percent} of the analytic sphere). & 3 \\
-3. Cross-agent corrections & Firmware research shows BT + Wi-Fi audio needs PSRAM: WROOM-32E $\to$ WROVER-E, relayed to the running electronics agent. Electronics shows \qty{4}{\ohm} woofers can trip the TAS5805M current limit: relayed to the driver agent. & --- \\
-4. Battery and form & User rejects spot-welded 18650/21700 packs: a pre-built pack with XT30 + JST-XH, with protection and balancing on the PCB. & --- \\
-5. The \qty{4}{\ohm}/\qty{8}{\ohm} flip-flop & Lead relays ``use 6--\qty{8}{\ohm}'', then ``keep \qty{4}{\ohm} at \qty{16}{\volt}'', then picks the \qty{8}{\ohm} set B8. The messages arrive out of order, and the driver agent builds, reverts and rebuilds its files. & --- \\
-6. Circuit specs & The KiCad agent has no web access, so two spec agents write pin-exact, value-exact specs from datasheets and TI/Espressif reference designs. They agree PVDD \qty{18}{\volt}, a \qty{20}{\milli\second} PDN delay and the RefDes ranges directly. & 2 \\
-7. Catches & ADR/FAULT pin sharing, HY2213 external FETs, CH224Q back-driving the I\textsuperscript{2}C bus, the boost disconnect FET, the GPIO36/39 erratum, no JLC stock of JST-SH (\cref{sec:decisions}). & --- \\
-8. Mechanical first? & User asks whether mechanics should come first. Answer: the schematic does not depend on the shape, but the layout does. The FreeCAD concept gives \qtyproduct{95 x 210}{\milli\metre}, \qty{0.85}{\litre} net, 5 printed parts and the Gens ace pack; the tweeter waveguide shrinks to a \qty{3}{\milli\metre} bezel. & 1 (+1) \\
-9. Schematic v1 & 9 hierarchical sheets drawn through the Konnect MCP server (no text editing of KiCad files): 257 parts, ERC 0. Independent review finds no blockers; two ``pinout'' concerns are refuted against datasheets. & 2 \\
-10. Redraw & User: ``these schematics look awful''. Lead installs the user's redraw skill and asks for a one-sheet pilot, but the agent has already fanned out 4 sub-agents and redrawn every sheet. A (reference, pin) netlist comparison shows identical connectivity. & 1 (+4) \\
-11. Simulations & Acoustics (lumped bass, BEM directivity on the CAD hull, FEM panel modes, crossover) and SPICE/PDN (TI boost model, LC filter, NTC, trim, boot timing, FFC SI, rail impedance). SPICE finds the soft PVDD and the start-up overshoot $\to$ ECO-001. & 2 (+sub) \\
-12. Operations & Parallel simulations and user data fill the disk (free space down to \qty{150}{\mega\byte}); agents pause and caches are cleared (about \qty{17}{\giga\byte}). A 5-hour usage limit stops all agents mid-run, and work resumes from the files on disk. & --- \\
-13. ECO-001 applied & Items 1--4 entered through Konnect; 8 fields changed, (reference, pin) groups otherwise identical, ERC 0. Root sheet reworked into a block diagram with sheet pins. & 1 \\
-14. Release review & Skill-driven review on a hashed snapshot: no blockers, 11 should-fix and 9 low items (\cref{sec:gates}). & 1 \\
-15. ECO-002 and specs v1.2 & Review fixes in the schematic (C721, CHG\_QON on J501, pack NTC default, 13 test points, CH340C code); specs bumped to v1.2 with changelogs; schematic v0.2 exported (271 parts, ERC 0). & --- \\
+Idea, requirements & User and lead agree the concept; the lead writes \texttt{requirements.md} before any agent runs. \\
+Parallel research & Three agents: parts with live JLC stock; drivers with a first-pass PR alignment; firmware/DSP plus the simulation toolchain on macOS arm64. \\
+Cross-agent corrections & Firmware finds BT + Wi-Fi needs PSRAM (WROOM $\to$ WROVER); electronics finds \qty{4}{\ohm} woofers can trip the amp current limit. \\
+The \qty{4}{\ohm}/\qty{8}{\ohm} flip-flop & Three contradictory relays arrive out of order; the driver agent builds, reverts and rebuilds. Set B8 (\qty{8}{\ohm}) wins. \\
+Circuit specs & Two spec agents with web access write pin-exact specs and negotiate interfaces directly; they catch most of the engineering problems (\cref{sec:decisions}). \\
+Mechanical concept & A scripted FreeCAD model fixes Ø\qty{95}{\milli\metre}, \qty{0.85}{\litre} and the battery; the tweeter waveguide shrinks to a bezel. \\
+Schematic v0.1 & 9 sheets drawn through the Konnect MCP server: 257 parts, ERC 0, independent review without blockers. \\
+Redraw & ``These schematics look awful.'' A pilot was asked for, but the agent had already redrawn every sheet with four sub-agents; a netlist comparison proved nothing changed. \\
+Simulations & Acoustics (lumped, BEM, FEM, crossover) and SPICE/PDN. SPICE finds the soft amplifier rail $\to$ ECO-001. \\
+Operations & Parallel sims fill the disk and RAM; a 5-hour usage limit stops all agents; work resumes from files. \\
+Release review $\to$ v0.2 & Skill-driven review: no blockers, 11 should-fix items $\to$ ECO-002 and specs v1.2. A delta review of v0.2 adds two more (N1, N2) $\to$ spec v1.3. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \subsection{Verification gates}\label{sec:gates}
 
-The schematic passed through four gates before PCB placement (\cref{fig:gates}). Each gate checks something the previous one cannot see, and each produced evidence in a file.
+The schematic passed four gates before placement (\cref{fig:gates}). The release review is the one worth copying. It worked through a 44-item checklist on a hashed snapshot and traced eleven \emph{boundary states} on the netlist: blank firmware, pack insertion, ship mode, a PVDD short, and so on. Its three most important findings (S1--S3 in \cref{app:register}) were all \emph{consistent with the spec}, so ERC and the first review could not have caught them:
+\begin{itemize}
+  \item the short-circuit protection that depended on firmware;
+  \item an unbounded inrush at pack insertion;
+  \item a register default copied from a sibling chip.
+\end{itemize}
 
 \begin{figure}[htbp]
 \centering
@@ -119,103 +115,36 @@ The schematic passed through four gates before PCB placement (\cref{fig:gates}).
 \draw[arr] (g1) -- (g2);
 \draw[arr] (g2) -- (g3);
 \draw[arr] (g3) -- (g4);
-\draw[arr, orange!70!black] (g4.south) -- ++(0,-0.45) -| node[pos=0.25, below, font=\sffamily\tiny]{every ECO is re-verified at gate 1 (ECO-001: 8 fields changed; ECO-002: J501.20, JP803, C721, 13 TPs)} (g1.south);
+\draw[arr, orange!70!black] (g4.south) -- ++(0,-0.45) -| node[pos=0.25, below, font=\sffamily\tiny]{every ECO goes back through gate 1} (g1.south);
 \node[font=\sffamily\tiny, text width=3.6cm, align=center, above=1pt of g4] {SPICE/PDN findings enter here too (ECO-001)};
 \end{tikzpicture}
-\caption{Verification gates between ``schematic drawn'' and ``placement may start''. Gate 1 is mechanical and catches drawing errors. Gate 2 catches misreadings of the spec. Gate 3 catches problems that are correct by the spec but wrong in a corner the spec never considered: a blank-firmware short, an unbounded inrush, a register default. Gate 4 turns findings into versioned changes and sends them back through gate 1.}
+\caption{Verification gates between ``schematic drawn'' and ``placement may start''. Each gate catches what the previous one cannot see: drawing errors, misread specs, corners the spec never considered. The ECO loop sends every change back through gate 1.}
 \label{fig:gates}
 \end{figure}
 
-\paragraph{Gate 3, the release review.} One agent ran the user's \texttt{review-schematic-release} skill on a hashed snapshot of the design \src{docs/review/release_review.md}. It worked through all 44 checklist IDs, without editing the design. It:
-\begin{itemize}
-  \item traced eleven \emph{boundary states} on the exported netlist: dead or absent pack, pack insertion, blank firmware, ship mode, PVDD short, watchdog crash, weak USB source, cold start and others;
-  \item checked every symbol pin against a footprint pad by script for all 257 references;
-  \item compared custom footprints against the dimensioned drawings, and checked all 34 high-risk LCSC codes for lifecycle and stock;
-  \item dismissed six of its own hypotheses after checking datasheets, including the CH224Q footprint orientation that the build notes had left open.
-\end{itemize}
-Its verdict: \textbf{no blockers; placement may proceed with conditions.} \Cref{tab:register} is its issue register, with the stage each item blocks and where it went.
+\subsection{What worked and what went wrong}
 
-{\small
-\setlength{\tabcolsep}{4pt}
-\begin{longtable}{@{}l >{\raggedright\arraybackslash}p{0.50\linewidth} >{\raggedright\arraybackslash}p{0.17\linewidth} >{\raggedright\arraybackslash}p{0.17\linewidth}@{}}
-\caption{Release-review issue register. Blockers: none. ``Closure stage'' is the earliest stage the item blocks. Source: \protect\src{docs/review/release_review.md} §2, \protect\src{docs/eco_002.md}.}\label{tab:register}\\
-\toprule
-ID & Issue & Closure stage & Disposition \\
-\midrule
-\endfirsthead
-\toprule ID & Issue & Closure stage & Disposition \\ \midrule
-\endhead
-\bottomrule
-\endfoot
-\multicolumn{4}{@{}l}{\textbf{Blockers}: none} \\
-\addlinespace
-\multicolumn{4}{@{}l}{\textbf{Should-fix}} \\
-S1 & Fast battery over-current protection exists only while firmware keeps SFET\_PRESENT = 1 and EN\_BATOC = 1; a watchdog expiry resets EN\_BATOC. With blank firmware a PVDD short is limited only by the R5460 and F801 & First battery power-up & ECO-002 \#7: firmware contract + short test \\
-S2 & Battery-connect inrush through Q701 not bounded (\qtyrange{2.5}{9.7}{\ampere}); fitting C720 alone is unsafe & Placement (footprint) & ECO-002 \#1: C721 added (DNP) \\
-S3 & BQ25792 POR/watchdog ICHG is \qty{2}{\ampere}, not \qty{1}{\ampere}: 0.57C on the \qty{3500}{\milli\ampere\hour} fallback; \qty{1.5}{\watt} in Q801 during deep-discharge recovery & First charge & Specs v1.2; firmware writes ICHG at boot \\
-S4 & No external path to /QON: ship-mode exit and \qty{10}{\second} reset need the enclosure opened & Routing (FFC pinout) & ECO-002 \#2: J501.20 = CHG\_QON \\
-S5 & I\textsuperscript{2}C rise time may exceed \qty{300}{\nano\second} at \qty{400}{\kilo\hertz} (isolator FET $C_\text{oss}$): \qtyrange{240}{420}{\nano\second} & Bring-up & ECO-002 \#8: \qtyrange{100}{200}{\kilo\hertz} until scoped \\
-S6 & Default build senses board, not pack, temperature; no hardware discharge over-temperature cut-off & Placement & ECO-002 \#3: pack NTC default \\
-S7 & Balance lead unplugged: the mid-tap bias hides cell-level OV/UV & Assembly & ECO-002 \#9: assembly check \\
-S8 & XT30 polarity rests on library silkscreen; no pack harness drawing & Fab release & ECO-002 \#10 (layout) \\
-S9 & Stale values in the specs (ECO-001, ICHG, FFC length) & Routing & Specs v1.2 \\
-S10 & KiCad DNP attribute unset & Production outputs & ECO-002 \#11 (open) \\
-S11 & Three \qty{10.2}{\milli\metre} electrolytics vs the height zones & Placement & ECO-002 \#12 (layout) \\
-\addlinespace
-\multicolumn{4}{@{}l}{\textbf{Low}} \\
-L1 & Blank firmware lets the charger draw up to \qty{2.9}{\ampere} from any \qty{5}{\volt} source & Bring-up & Firmware IINDPM rule \\
-L2 & Bulk capacitor ripple rating \qty{286}{\milli\ampere}; ESR unknown & Bring-up & Bench: case temperature \\
-L3 & CH340C LCSC code discontinued at JLC & Production BOM & ECO-002 \#4 \\
-L4 & CH340C D+ pull-up back-drives an unpowered host & --- & Accepted \\
-L5 & Too few test points & Placement & ECO-002 \#5 \\
-L6 & AGND/PGND single-point tie exists only as a note & Routing & ECO-002 \#12 \\
-L7 & R5460 latch after a short may need USB to release & Bring-up & Bench + user notes \\
-L8 & UI inputs float when the FFC is out & --- & Accepted / firmware \\
-L9 & SMF24A clamp above BQ and CH224Q absolute maximum at surge & --- & Accepted, or SMF20A \\
-\end{longtable}
-}
-
-One pattern stands out: S1, S2 and S3 were all consistent with the spec, so gates 1 and 2 could not catch them. The spec had accepted the removal of the disconnect FET \emph{assuming firmware}, quoted a 40-pF capacitance that the datasheet gives as \qtyrange{15.5}{30}{\pico\farad}, and copied a register default from the sibling part BQ25798. Only a review that asked ``what if the firmware is blank?'' found them.
-
-\subsection{What worked}
-
-\begin{itemize}
-  \item \textbf{One requirements file and spec files as the contract between agents.} When the usage limit stopped every agent mid-run, nothing was lost, because nothing important lived only in a context window.
-  \item \textbf{Splitting ``knows the datasheet'' from ``draws the schematic''.} The spec agents had web access and wrote for a drawing agent that had none. Their ``Decisions and changes vs.\ the brief (read first)'' sections are where most of the real engineering catches surfaced (\cref{sec:decisions}).
-  \item \textbf{Independent review, then a challenge pass.} The review agent's two pinout concerns were checked by the spec agent against the datasheets and refuted. A reviewer's claim is a hypothesis, not a defect.
-  \item \textbf{Netlist comparison as the safety net for cosmetic edits.} The redraw touched every sheet. Comparing (reference, pin) groups between the archived v1 and the redraw showed 0 differences, by net name and independent of names \src{hw/mainboard/BUILD_NOTES.md}.
-  \item \textbf{Validation before use.} Every simulation was checked against an analytic or published case before its results were trusted: a sealed-box resonance to \qty{0.01}{\hertz}, electroacPy to \qty{0.013}{\decibel}, a piston on a sphere to \qty{0.34}{\decibel} at $ka = 7.3$, Leissa's clamped plate to \qty{1.5}{\percent}, TI's NTC reference table to within 0.5 percentage points of REGN, and a conformal-mapping line impedance to \qty{0.1}{\percent} (\cref{sec:analysis}).
-\end{itemize}
-
-\subsection{What went wrong}
-
-\begin{itemize}
-  \item \textbf{Out-of-order corrections.} During the \qty{4}{\ohm}/\qty{8}{\ohm} flip-flop the driver agent received the lead's corrections in a different order from the one they were sent in. It built, reverted and rebuilt its files. The decision had no single owner and no version number.
-  \item \textbf{Instructions that arrived after the work started.} ``Pilot one sheet first'' reached the schematic agent after it had already redrawn all nine sheets with four sub-agents. The netlist comparison made the redraw safe anyway, but the user lost the chance to steer the style on one sheet first.
-  \item \textbf{Resource exhaustion.} Heavy BEM, FEM and SPICE runs in parallel exhausted disk and RAM. The acoustics README now says ``one heavy job at a time'' (peak RAM $\approx \qty{3}{\giga\byte}$, about \qty{2.5}{\hour} for a full rerun) \src{sim/acoustics/README_head.md}.
-  \item \textbf{Tooling surprises.} Konnect tools enabled with \texttt{load\_toolset} mid-session were not visible to the agent that loaded them, only to agents started afterwards. The build therefore had to run as one setup agent and then one agent per group of sheets \src{hw/mainboard/BUILD_NOTES.md}. Konnect 0.12.1 also cannot set KiCad's DNP attribute or title-block fields (\cref{sec:schematic-deviations}).
-  \item \textbf{Duplicate notifications.} Agents sometimes repeated or duplicated their completion messages, and the lead had to deduplicate them.
-  \item \textbf{Drift between documents.} Decisions taken late did not always reach every file. \Cref{sec:inconsistencies} lists the remaining conflicts between source documents.
-\end{itemize}
+\begin{description}[style=nextline,leftmargin=1.2em,itemsep=3pt]
+  \item[Worked] One requirements file, with specs as the contract: when the usage limit stopped every agent, nothing was lost. Spec agents with web access writing for a drawing agent without it. Independent review, followed by a challenge of each claimed defect against the datasheet. A netlist comparison after every cosmetic edit. Every simulation checked against an analytic case before use.
+  \item[Went wrong] Corrections arriving out of order (\qty{4}{\ohm}/\qty{8}{\ohm}). A ``pilot first'' instruction arriving after the work had started (the redraw). Parallel heavy simulations exhausting disk and RAM. MCP tools loaded mid-session that were invisible to the agent that loaded them. Duplicate notifications, and late decisions that did not reach every file.
+\end{description}
 
 \subsection{A playbook for designing hardware with LLM agents}\label{sec:playbook}
 
-These rules come from what happened above. Each one names the incident behind it.
-
-\begin{enumerate}[label=\textbf{R\arabic*.},leftmargin=2.4em]
-  \item \textbf{Write the requirements file before the first agent runs, and keep it current.} Mark each line ``decided'' or ``open''. It is the only memory all agents share.
-  \item \textbf{Make files the interface and messages the pointers.} Give every agent a fixed output path and a format (tables, units, net names). A message should say ``read \texttt{docs/spec\_power.md} §4.1'', not paraphrase it.
-  \item \textbf{Give every decision one owner and a version.} Never send a correction until the agent has acknowledged the previous one. Use ``PVDD v2 = \qty{18}{\volt}'', not ``actually, change it back'' (\qty{4}{\ohm}/\qty{8}{\ohm} flip-flop).
-  \item \textbf{Put pilots and stop points in the first brief.} ``Do one sheet, then stop and report'' only works if it arrives before the work starts (redraw).
-  \item \textbf{Separate research from drawing.} Agents with web access write pin-exact specs; a tool-driving agent draws from them. Ask for a ``changes vs.\ the brief'' section at the top of every spec (ADR/FAULT, CH224Q, disconnect FET).
-  \item \textbf{Review independently, then challenge the review.} Send each claimed defect back to the author with a request for datasheet evidence (two refuted pinout concerns).
-  \item \textbf{Archive before any cosmetic change and verify by netlist.} Compare (reference, pin) sets, not pictures (redraw: 0 differences).
-  \item \textbf{Validate every simulation against an analytic case first,} and record the error next to the result (\cref{sec:analysis}).
-  \item \textbf{Review the boundary states, not just the drawing.} Ask the release reviewer to trace blank firmware, pack insertion, ship mode and shorts on the netlist (S1--S3 were consistent with the spec and invisible to gates 1--2).
-  \item \textbf{Make simulations end in design changes.} Ask for findings as an ECO table with severity, evidence figure and status (ECO-001).
-  \item \textbf{Schedule compute like a shared lab.} Run one heavy job at a time, cache results, and watch disk and RAM (\qty{150}{\mega\byte} free).
-  \item \textbf{Assume interruption.} Everything an agent needs to resume must be on disk (5-hour usage limit).
-  \item \textbf{Fix coordinates, units and conventions in one document.} The CAD, BEM and FEM all used the frame from \texttt{mech\_envelope.md}, so geometry flowed from FreeCAD into the BEM without hand edits.
-  \item \textbf{Ask agents to label measured versus estimated facts.} The firmware research tagged every claim \texttt{[measured]} or \texttt{[estimate]}, which made its numbers easy to trust or discount.
-  \item \textbf{Start fresh agents after changing their tools} (Konnect toolsets).
+\begin{enumerate}[label=\textbf{R\arabic*.},leftmargin=2.4em,itemsep=1pt]
+  \item \textbf{Write the requirements file first and keep it current;} mark each line decided or open.
+  \item \textbf{Files are the interface, messages are pointers} (``read spec\_power §4.1'', not a paraphrase).
+  \item \textbf{One owner and a version per decision;} never send a correction before the last one is acknowledged.
+  \item \textbf{Put pilots and stop points in the first brief,} not after the work has started.
+  \item \textbf{Separate research from drawing,} and ask every spec for a ``changes vs.\ the brief'' section.
+  \item \textbf{Review independently, then challenge the review} against datasheets.
+  \item \textbf{Archive before cosmetic edits and verify by netlist,} not by looking at pictures.
+  \item \textbf{Validate each simulation against an analytic case} and record the error.
+  \item \textbf{Review boundary states,} not just the drawing: blank firmware, insertion, shorts.
+  \item \textbf{End simulations and reviews in an ECO table} with severity, evidence and status.
+  \item \textbf{Schedule compute like a shared lab:} one heavy job at a time, and watch the disk.
+  \item \textbf{Assume interruption:} everything needed to resume must be on disk.
+  \item \textbf{Fix coordinates and units in one document,} so CAD, BEM and FEM agree.
+  \item \textbf{Ask agents to tag facts as measured or estimated.}
+  \item \textbf{Start fresh agents after changing their tools.}
 \end{enumerate}

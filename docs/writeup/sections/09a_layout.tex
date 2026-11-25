@@ -1,0 +1,24 @@
+\section{PCB layout (pending)}\label{sec:layout}
+
+This chapter will be filled in after layout. The inputs are ready:
+\begin{itemize}
+  \item the board envelopes and height zones (\cref{fig:mainboard-env,fig:uiboard-env});
+  \item the layout checklists in both specs;
+  \item the release reviews' placement conditions (tall capacitors, XT30 polarity, AGND/PGND tie);
+  \item the project's layout principles, \repo{docs/layout_principles.md}.
+\end{itemize}
+The principles say that layout is where LLMs are weakest, so the board will be judged by physics, not just by connectivity and DRC:
+\begin{itemize}
+  \item The model writes net classes and rules from the datasheets' layout sections, with page citations.
+  \item An autorouter handles non-critical nets.
+  \item Power stages, switch nodes, the USB pair and high-current paths are routed deliberately and reviewed.
+  \item The result is scored with loop-inductance, PDN and IR-drop checks. Post-layout parasitics go back into the S7 PDN model.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}\centering\pendingbox[0.95\linewidth]{4.5cm}\caption{Main board: placement and top copper.}\end{subfigure}\hfill
+\begin{subfigure}[t]{0.49\linewidth}\centering\pendingbox[0.95\linewidth]{4.5cm}\caption{Main board: 3D view in the enclosure envelope.}\end{subfigure}
+\caption{PCB layout: placeholders until the layout exists.}
+\label{fig:layout-pending}
+\end{figure}

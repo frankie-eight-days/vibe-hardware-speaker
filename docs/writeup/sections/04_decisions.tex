@@ -1,161 +1,75 @@
 \section{Design decisions and trade-offs}\label{sec:decisions}
 
-Each subsection below tells the story of one decision: what was planned, what an agent found, what the numbers said, and what changed. Most were found by one agent and acted on by another.
+Each decision below is a short story: one agent found a problem, and another acted on it.
 
 \subsection{PSRAM: from WROOM-32E to WROVER-E}\label{sec:psram}
 
-The original block diagram used an ESP32-WROOM-32E. The firmware research agent found that Espressif's audio framework documentation says Bluetooth and Wi-Fi ``can not coexist without PSRAM'' in an audio application. Its estimate: with Bluetooth Classic and Wi-Fi both running under Bluedroid, about \qtyrange{100}{150}{\kilo\byte} of internal heap remains. One full LVGL frame at $240\times240$ and 16 bits per pixel needs \qty{115}{\kilo\byte}, and the AAC decoder needs tens of kilobytes plus buffers \src{research/electronics.md} \src{research/firmware_and_tools.md}.
+The firmware research found that Espressif's audio framework says Bluetooth and Wi-Fi ``can not coexist without PSRAM''. With both stacks running, about \qtyrange{100}{150}{\kilo\byte} of internal heap remains, while one full LVGL frame alone needs \qty{115}{\kilo\byte} \src{research/firmware_and_tools.md}. The lead switched to the ESP32-WROVER-E-N8R8 while the electronics agent was still running. At quantity 10 it was even cheaper than the WROOM (\$3.73 against \$4.04). It cost \qty{6}{\milli\metre} of module length and GPIO16/17, which left \emph{no spare GPIO} on the board \src{research/electronics.md}.
 
-The lead switched to the ESP32-WROVER-E-N8R8 (LCSC C2973667) and messaged the electronics agent while it was still running. The change cost little:
+\subsection{\texorpdfstring{\qty{4}{\ohm}}{4 Ω} or \texorpdfstring{\qty{8}{\ohm}}{8 Ω} woofers, and the amplifier current limit}\label{sec:impedance}
+
+The TAS5805M trips at \qty{5}{\ampere}. A \qty{4}{\ohm} woofer on a \qtyrange{19}{20}{\volt} rail reaches \qtyrange{4.75}{5}{\ampere} at clipping. The driver agent re-ran its alignment with the amplifier modelled as $V_\text{peak}\le\min(\qty{18}{\volt}, \qty{4.5}{\ampere}\cdot|Z|)$. Going to \qty{8}{\ohm} cost 1--\qty{3}{\decibel}: the best \qty{4}{\ohm} set was estimated at \qty{94.4}{\decibel} pink, against \qty{91.4}{\decibel} for the \qty{8}{\ohm} set B8 \src{research/drivers.md}. After the flip-flop of \cref{sec:process}, the lead chose \textbf{B8 with PVDD = \qty{18}{\volt}}. A clipped woofer then draws only \qty{2.28}{\ampere}.
+
+\textbf{The problem then moved to the tweeter.} The \qty{4}{\ohm} OT19NC00-04 ($R_e=\qty{3.17}{\ohm}$) would draw \qty{5.2}{\ampere} at hard clipping, including ripple. The signal spec therefore made a tweeter limiter at $\le\qty{8}{\volt}$ peak mandatory \src{docs/spec_signal.md}. SPICE confirmed it independently: \qty{5.41}{\ampere} with a clipped tone, and $\le\qty{2.7}{\ampere}$ with the limiters (\cref{sec:spice}).
+
+\subsection{The battery hunt and the Ø\texorpdfstring{\qty{95}{\milli\metre}}{95 mm} capsule}\label{sec:battery}
+
+The user rejected spot-welded cells, so the plan became a pre-built 2S pack with protection on the board. The mechanical agent found that the geometry decided the rest \src{docs/mech_envelope.md}:
 \begin{itemize}
-  \item At quantity 10, the N8R8 was \textbf{cheaper} than the WROOM-32E-N8: \$3.73 against \$4.04 (JLC prices on 2026-11-24).
-  \item The module is \qty{6}{\milli\metre} longer.
-  \item GPIO16/17 go to the PSRAM. That turned a comfortable pin budget (20 of 22 in the research plan) into one with \emph{no spare GPIO} once the spec added the trim, fault and LED functions (\cref{tab:gpio}).
+  \item The \qty{48}{\milli\metre}-deep woofers, rear-mounted, leave only a \qtyrange{19}{23}{\milli\metre} slab behind their motors.
+  \item At Ø\qty{90}{\milli\metre} that slab shrinks to about \qty{16}{\milli\metre}, which would need a pack no thicker than \qty{13}{\milli\metre}. No stocked pack was that thin with enough capacity.
 \end{itemize}
-The 8 MB of flash fits two \qty{3}{\mega\byte} OTA slots and about \qty{1.9}{\mega\byte} of LittleFS for the web UI.
-
-\subsection{\texorpdfstring{\qty{4}{\ohm}}{4 Ω} or \texorpdfstring{\qty{8}{\ohm}}{8 Ω} woofers, and the TAS5805M current limit}\label{sec:impedance}
-
-The TAS5805M has a \qty{5}{\ampere} over-current threshold. The electronics agent showed that at a \qtyrange{19}{20}{\volt} rail, a \qty{4}{\ohm} woofer can reach \qtyrange{4.75}{5}{\ampere} peak at clipping and trip it. With \qty{8}{\ohm}, the same rail gives \qtyrange{20}{23}{\watt} per channel at \qty{1}{\percent} THD, which still meets the woofer target \src{research/electronics.md}.
-
-The driver agent re-ran its alignment with the amplifier modelled as a per-frequency limit, $V_\text{peak} \le \min(\qty{18}{\volt},\ \qty{4.5}{\ampere}\cdot|Z_\text{in}(f)|)$ \src{research/drivers.md}. The trade-off was clear (\cref{tab:impedance}): going to \qty{8}{\ohm} costs 1--\qty{3}{\decibel}. The best \qty{4}{\ohm} set (SLS-65) still led, at an estimated \qty{94.4}{\decibel} pink against \qty{91.4}{\decibel} for the \qty{8}{\ohm} set B8.
-
-\begin{table}[htbp]
-\centering\small
-\caption{Driver-set comparison at \qty{0.75}{\litre} net with the \qty{19}{\volt}/\qty{5}{\ampere} amplifier limits (first-pass model, half space, \qty{1}{\metre}). Source: \protect\src{research/drivers.md} §5.}
-\label{tab:impedance}
-\begin{tabular}{@{}l c c c c@{}}
-\toprule
-Set & PR mass & $f_b$ / $f_p$ (Hz) & Pink estimate (limit) & Min.\ net $V_b$ \\
-\midrule
-B8: ND65-8 + DMA58-PR (\qty{8}{\ohm}) & \qty{3.5}{\gram} & 54 / 32 & \qty{91.4}{\decibel} (amp voltage) & \qty{0.50}{\litre} \\
-A8: PLS-65F25AL02-08 + DMA58-PR & \qty{6.2}{\gram} & 48 / 29 & \qty{90.7}{\decibel} (woofer $X_\text{max}$) & \qty{0.60}{\litre} \\
-C8: ND91-8 + DMA70-PR & \qty{8.5}{\gram} & 56 / 26 & \qty{91.1}{\decibel} (amp voltage) & \qty{0.65}{\litre} \\
-Old \qty{4}{\ohm} SLS-65 + DMA58-PR & \qty{8.8}{\gram} & 44 / 26 & \qty{94.4}{\decibel} (amp voltage) & \qty{0.35}{\litre} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-This is where the flip-flop of \cref{sec:process} happened: the lead relayed ``6--\qty{8}{\ohm}'', then ``keep \qty{4}{\ohm} at \qty{16}{\volt}'', then chose B8. The final decision was \textbf{B8 with PVDD = \qty{18}{\volt}}. It keeps each woofer channel well under the current limit: hard clipping into the ND65-8 gives $\qty{18}{\volt}/(\qty{7.40}{\ohm}+\qty{0.50}{\ohm}) = \qty{2.28}{\ampere}$ peak \src{docs/spec_signal.md}.
-
-\textbf{The problem then moved to the tweeter.} The OT19NC00-04 is a \qty{4}{\ohm} driver with $R_e = \qty{3.17}{\ohm}$. Hard-clipped, it would draw $\qty{18}{\volt}/\qty{3.67}{\ohm} = \qty{4.91}{\ampere}$, plus \qty{0.29}{\ampere} of ripple, which is \qty{5.2}{\ampere} and above the \qty{5}{\ampere} trip point. The signal spec therefore makes a tweeter limiter at $\le\qty{8}{\volt}$ peak \emph{mandatory}. The SPICE model later confirmed this independently: \qty{5.41}{\ampere} of inductor current with a clipped \qty{3}{\kilo\hertz} tone, and $\le\qty{2.7}{\ampere}$ with both limiters active (\cref{sec:s2}).
-
-\subsection{The battery hunt and the \texorpdfstring{Ø\qty{95}{\milli\metre}}{Ø95 mm} capsule}\label{sec:battery}
-
-The first battery plan was 2S 18650 or 21700 cells. The user rejected spot-welded packs, so the requirement became a pre-built 2S pack with XT30 and JST-XH plugs, with protection and balancing on the main board. The requirements then asked for a ``device-grade 2S Li-ion pouch pack (\textasciitilde\qty{5000}{\milli\ampere\hour}, not RC LiPo)'' \src{docs/requirements.md}.
-
-The mechanical agent found the geometry decided it \src{docs/mech_envelope.md}:
-\begin{itemize}
-  \item The ND65-8 is \qty{48}{\milli\metre} deep. Rear-mounted, its flange plane must sit at least \qty{30}{\milli\metre} off the capsule axis. That leaves a slab of only \qtyrange{19}{23}{\milli\metre} behind the motors for the battery.
-  \item At Ø\qty{90}{\milli\metre} the slab is about \qty{16}{\milli\metre}, so a Ø90 capsule needs a pack no thicker than \qty{13}{\milli\metre}. Nothing in stock was that thin with enough capacity.
-  \item No stocked device-grade pouch with its own protection circuit fitted the envelope. The candidates were too wide (\qty{65}{\milli\metre}, \qty{93}{\milli\metre}), too long (\qty{147}{\milli\metre}), or rated for only \qty{5}{\ampere}.
-\end{itemize}
-The result was the Gens ace \qty{5000}{\milli\ampere\hour} 2S1P RC receiver pack: \qtyproduct{109 x 42 x 19.5}{\milli\metre}, \qty{189}{\gram}, \qty{37}{\watt\hour}, about \$31. It fits a Ø\qty{95}{\milli\metre} capsule with \qty{1.0}{\milli\metre} to the shell. The bay is \qtyproduct{119 x 46 x 21.45}{\milli\metre}, which includes vendor tolerance and \qty{10}{\percent} swell allowance. At the \qty{3.3}{\watt} ``moderate'' average the mechanical agent used, \qty{37}{\watt\hour} gives about \qty{11}{\hour}, comfortably over the \qty{8}{\hour} target. The \qty{3500}{\milli\ampere\hour} pack in the same family is the drop-in fallback (about \qty{7.8}{\hour}), using a \qty{3.5}{\milli\metre} foam spacer.
-
-The pack has three known risks: it is an RC LiPo, not a device-grade cell; it has no NTC (a \qty{10}{\kilo\ohm} NTC is bonded to it and wired to J803); and it has no published continuous-current rating, so it must be bench-tested at \qty{6}{\ampere}. The board-level protection (\cref{fig:power-path}) was designed for exactly this kind of pack, so the electrical architecture did not change. The requirements file has since been updated to record the Gens ace as the decided pack.
+The choice was a Gens ace \qty{5000}{\milli\ampere\hour} 2S RC pack: \qtyproduct{109 x 42 x 19.5}{\milli\metre}, \qty{37}{\watt\hour}, about \$31. It fits a Ø\qty{95}{\milli\metre} capsule with \qty{1}{\milli\metre} to spare and a \qty{10}{\percent} swell allowance. At a \qty{2.9}{\watt} ``moderate'' average it runs about \qty{12.8}{\hour}, against the \qty{8}{\hour} target. The pack has no protection circuit, no NTC (one is bonded on) and no published continuous rating, so it must be bench-tested at \qty{6}{\ampere}. The board's protection was designed for exactly this kind of pack.
 
 \subsection{Removing the boost load-disconnect FET}\label{sec:disconnect}
 
-The TPS61178 can drive an external load-disconnect FET, which would let PVDD fall to \qty{0}{\volt} when the boost is off. The power-spec agent found that TI's rules for that FET cannot be met here \src{docs/spec_power.md} §4.1.4:
+TI's rules for the TPS61178's optional disconnect FET require the capacitance after the FET to be at most $10\times$ the capacitance before it. Here it would be about $40\times$ (\qty{1.5}{\milli\farad} against \qty{36}{\micro\farad}), and start-up would risk tripping the hiccup protection. The power-spec agent removed the FET \src{docs/spec_power.md}. PVDD now rests at VSYS$-\qty{0.5}{\volt}$ when the boost is off, with the amplifiers in shutdown drawing about \qty{30}{\micro\ampere}.
+
+The release review later showed what the spec had assumed:
 \begin{itemize}
-  \item TI requires the capacitance after the FET, $C_\text{OUT2}$, to be at most $10\times$ the capacitance before it, $C_\text{OUT1}$, and requires the FET to turn on within \qty{3}{\milli\second}.
-  \item The PVDD bulk is about \qty{1.5}{\milli\farad} ($3\times\qty{470}{\micro\farad}$ plus ceramics), but $C_\text{OUT1}$ is only about \qty{36}{\micro\farad}. That is a ratio of about $40\times$, and start-up would risk tripping the hiccup protection.
+  \item \textbf{Short protection depends on firmware.} A PVDD short is cleared only by the charger's \qty{9.3}{\ampere} battery over-current trip, which works only while firmware keeps it armed; a watchdog expiry disarms it (S1).
+  \item \textbf{Inrush at pack insertion is not bounded:} \qtyrange{2.5}{9.7}{\ampere} through the ship FET (S2).
 \end{itemize}
-The FET was removed and DISDRV left open, as the TI pin table allows. The consequences were written into both specs and accepted:
-\begin{itemize}
-  \item With BOOST\_EN low, PVDD sits at VSYS minus a body-diode drop, about \qtyrange{5.5}{8}{\volt}. The amplifiers stay in PDN shutdown, so both together draw about \qty{30}{\micro\ampere} from PVDD and DVDD.
-  \item When the battery is connected, the bulk charges through the ship FET Q701, which its \qty{100}{\nano\ampere} charge pump turns on slowly. The spec estimated \qty{3.8}{\ampere} of inrush. The release review recomputed it with the FET's real $C_\text{rss}$ and got \qtyrange{2.5}{9.7}{\ampere}, \emph{not bounded by design}. It also found that the documented remedy, fitting the gate--drain capacitor C720 on its own, could turn Q701 fully on at pack insertion. ECO-002 \#1 therefore adds a DNP gate--source footprint C721, with the rule that C720 is fitted only with $C_{721}\ge5\times C_{720}$ (review S2).
-  \item A hard PVDD short bypasses the boost's hiccup protection. It is cleared instead by the charger's \qty{9.3}{\ampere} battery over-current trip or by the \qty{10}{\ampere} fuse F801. The release review pointed out that the trip exists only while firmware keeps SFET\_PRESENT = 1 and EN\_BATOC = 1, and that a watchdog expiry resets EN\_BATOC. With blank or hung firmware only the R5460 (about \qty{40}{\ampere} for \qty{12}{\milli\second}) and the fuse remain (review S1). This is now the first item of the firmware contract (\cref{sec:firmware-req}).
-  \item Firmware sequencing: BOOST\_EN high, wait $\ge\qty{20}{\milli\second}$, then release amplifier PDN. On the way down, PDN goes low before BOOST\_EN.
-\end{itemize}
+The first became the top item of the firmware contract (\cref{sec:firmware-req}). The second added a DNP gate--source footprint, C721, with a corrected fitting rule (N1, \cref{tab:firmware-req}).
 
 \subsection{The ADR/FAULT pin}\label{sec:adr-fault}
 
-The brief asked for one shared open-drain AMP\_FAULT line for both amplifiers. The signal-spec agent found two problems with that in the TAS5805M datasheet \src{docs/spec_signal.md} §1.4:
-\begin{itemize}
-  \item Pin 3 is \texttt{ADR/FAULT}. At power-up it reads a resistor to set the I\textsuperscript{2}C address, and afterwards it can become the FAULTZ output. Tying the two amplifiers' pins together would put both address resistors in parallel, so \emph{both amplifiers would decode the same address}.
-  \item FAULTZ is a driven output, not open-drain.
-\end{itemize}
-The fix keeps each address resistor (\qty{4.7}{\kilo\ohm} for 0x2C, \qty{15}{\kilo\ohm} for 0x2D) and merges the two FAULTZ signals with two 2N7002 FETs in series, which act as a NAND with high-impedance gates. AMP\_FAULT on GPIO36 is therefore \emph{active-high}, and either amplifier faulting opens the series path.
-
-The spec checked that the fix leaves the address detection intact:
-\begin{itemize}
-  \item Gate leakage of $\le\qty{100}{\nano\ampere}$ into \qty{4.7}{\kilo\ohm} gives \qty{0.5}{\milli\volt}.
-  \item The \qty{1}{\mega\ohm} gate resistor to ground moves the \qty{15}{\kilo\ohm} strap to \qty{14.8}{\kilo\ohm}, a \qty{1.5}{\percent} change, while the strap values are spaced $3\times$ apart.
-  \item The standby cost is \qty{33}{\micro\ampere}.
-\end{itemize}
-Bench check: both amplifiers must ACK at 0x2C and 0x2D. If they do not, remove R119/R120 and poll the fault registers over I\textsuperscript{2}C instead.
+The brief asked for one shared open-drain fault line from both amplifiers. The signal-spec agent found that the TAS5805M's pin 3 is \texttt{ADR/FAULT}: it reads the I\textsuperscript{2}C address resistor at power-up, then becomes a push-pull FAULTZ output. Tying the two pins together would have given \emph{both amplifiers the same address}. The fix keeps separate address resistors and merges the two FAULTZ signals with two 2N7002s in series. The merged AMP\_FAULT on GPIO36 is active-high, and the FETs load the address straps by only \qty{1.5}{\percent} \src{docs/spec_signal.md}.
 
 \subsection{CH224Q back-driving the I\texorpdfstring{\textsuperscript{2}}{2}C bus}\label{sec:ch224q}
 
-The CH224Q PD sink is configured over the same I\textsuperscript{2}C bus as the amplifiers and the charger, but it is powered only from VBUS. Its CFG2/SCL and CFG3/SDA pins have internal \qtyrange{7}{15}{\kilo\ohm} pull-ups to its internal rail. With USB unplugged, that rail sits near \qty{0}{\volt}, so those pull-ups become pull-downs. They would drag the \qty{3.3}{\volt} bus to about \qty{2.2}{\volt}, below the ESP32 and TAS5805M input-high threshold, and the speaker would lose control of its amplifiers whenever it ran on battery \src{docs/spec_power.md}.
-
-The fix is Q601/Q602, two AO3400A FETs wired as the standard bidirectional NMOS level shifter, with each gate fed from VBUS/2:
-\begin{itemize}
-  \item With VBUS absent, $V_{GS} = 0$ and the body diode is reverse-biased, so the bus is isolated.
-  \item With VBUS present, $V_{GS} \ge \qty{2.5}{\volt}$, above the \qty{1.45}{\volt} maximum threshold, so the bus connects.
-\end{itemize}
-This also sets a firmware rule. \textbf{Never request \qty{28}{\volt} EPR}: the gate would see \qty{14}{\volt}, beyond the AO3400A's $\pm\qty{12}{\volt}$ rating, and the BQ25792 input is rated only to \qty{24}{\volt}. The two FETs add about \qty{150}{\pico\farad} to the bus, which still fits the \qty{400}{\pico\farad} budget.
+The PD controller shares the I\textsuperscript{2}C bus but is powered only from USB. Unpowered, its internal pull-ups become pull-downs and would drag the \qty{3.3}{\volt} bus to about \qty{2.2}{\volt}, below the input-high threshold. On battery the speaker would have lost control of its amplifiers. Two FETs with their gates on VBUS/2 now isolate the PD controller when USB is absent. They also set a firmware rule: never request \qty{28}{\volt} EPR, because the gates would see \qty{14}{\volt} \src{docs/spec_power.md}. The release review later found that the FETs' output capacitance may slow the bus edges, so I\textsuperscript{2}C runs at \qtyrange{100}{200}{\kilo\hertz} until the rise time is measured (S5).
 
 \subsection{Smaller catches}\label{sec:smaller-catches}
 
-\begin{itemize}
-  \item \textbf{HY2213 balancers are gate drivers, not bleeders.} Each cell needs an external AO3400A and $2\times\qty{120}{\ohm}$ resistors, which bleed \qty{70}{\milli\ampere} at \qty{4.2}{\volt} \src{docs/spec_power.md}.
-  \item \textbf{ESP32 erratum 3.11:} GPIO36/39 glitch low for about \qty{80}{\nano\second} whenever SAR ADC1 powers up, and the button ladder uses ADC1. The encoder switch moved to GPIO4. GPIO36 now carries AMP\_FAULT, where a glitch is harmless \src{docs/spec_signal.md}.
-  \item \textbf{No JLC stock of JST-SH.} The UI link became a \qty{1.0}{\milli\metre}-pitch, 20-pin FFC (JUSHUO AFA07-S20FCA-00), which later needed its own signal-integrity analysis (\cref{sec:s6}).
-  \item \textbf{The charger's battery over-current protection works only with a ship FET.} Q701 was added for that reason, and it also provides a true ship mode and a power-on button \src{docs/spec_power.md}.
-  \item \textbf{Which thermistor?} The first build sensed board temperature (TH801 next to the connector), while the pack carries its own bonded NTC on J803. ECO-002 \#3 makes the pack NTC the default through JP803 (review S6).
-  \item \textbf{No external power button.} Ship-mode exit and the \qty{10}{\second} system reset needed the enclosure opened. ECO-002 \#2 turns J501 pin 20 into CHG\_QON for a UI-board power button (review S4).
-  \item \textbf{Battery negative is not ground.} The R5460 is a low-side protector, so \texttt{BATT\_N} must be a separate copper island that never touches the ground plane.
-  \item \textbf{The \qty{470}{\micro\farad} bulk capacitors went from \qty{25}{\volt} to \qty{35}{\volt}} once PVDD settled at \qty{18}{\volt}. It is the same \qtyproduct{10 x 10.2}{\milli\metre} can.
+\begin{itemize}[itemsep=1pt]
+  \item The HY2213 balancers are gate drivers, not bleeders: each cell needs its own FET and resistors.
+  \item ESP32 erratum: GPIO36/39 glitch when ADC1 starts, so the encoder switch moved to GPIO4.
+  \item No JLC stock of JST-SH, so the UI link became a 20-pin FFC, with its own signal-integrity study (\cref{sec:spice}).
+  \item Battery negative is not ground (low-side protector), so BATT\_N must be its own copper island.
+  \item The charger's power-on charge current is \qty{2}{\ampere}, not the \qty{1}{\ampere} copied from its sibling chip (S3).
+  \item Charging temperature is now sensed on the pack's own NTC, not on the board (ECO-002).
+  \item An external power button was added through FFC pin 20. Firmware cannot see it, so it only wakes and resets; ``off'' is a long press of the encoder (N2).
 \end{itemize}
 
-\subsection{ECO-001: changes from the circuit simulations}\label{sec:eco}
+\subsection{Change orders}\label{sec:eco}
 
-The SPICE/PDN agent ran its models against the specs that the schematic was built from. It wrote its findings as an engineering change order rather than a report \src{docs/eco_001.md}. Items 1--4 are now \textbf{applied} in the schematic; items 5--6 are firmware requirements (\cref{sec:firmware-req}). \Cref{sec:s1,sec:s7} have the evidence for the two medium items.
+The SPICE/PDN agent wrote its findings as an engineering change order rather than a report (\cref{tab:eco}) \src{docs/eco_001.md}. ECO-002 did the same for the release review; it is summarised in \cref{app:register}. Both are applied in schematic v0.2.
 
 \begin{table}[htbp]
 \centering\small
-\caption{ECO-001. Items 1--4 were applied to the schematic on 2026-11-24 and verified by (reference, pin) comparison: only the eight changed fields differ. Source: \protect\src{docs/eco_001.md}, \protect\src{hw/mainboard/BUILD_NOTES.md}.}
+\caption{ECO-001, from the circuit simulations. Items 1--4 are applied in the schematic; 5--6 are firmware requirements.}
 \label{tab:eco}
-\begin{tabularx}{\linewidth}{@{}c l >{\raggedright\arraybackslash}p{0.30\linewidth} >{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\linewidth}{@{}c >{\raggedright\arraybackslash}p{0.36\linewidth} >{\raggedright\arraybackslash}X@{}}
 \toprule
-\# & Severity & Change & Evidence \\
+\# & Change & Evidence \\
 \midrule
-1 & Medium & Boost compensation R903 \qty{33}{\kilo\ohm} $\to$ \qty{100}{\kilo\ohm}, C915 \qty{47}{\nano\farad} $\to$ \qty{15}{\nano\farad} & PVDD impedance peak \qtyrange{0.46}{0.57}{\ohm} at $\approx\qty{150}{\hertz}$ against a \qty{0.14}{\ohm} target; a \qtyrange{0.2}{2}{\ampere} step dips \qty{0.97}{\volt} at \qty{6}{\volt} input. With the fix: \qty{0.34}{\volt} dip, phase margin $\ge\ang{79}$ \\
-2 & Medium & Fit R907 + D901 (PVDD\_TRIM) so firmware can soft-start PVDD & Error-amplifier windup overshoots to \qty{19.4}{\volt} (typ.) and to the \qty{21}{\volt} OVP at \qty{6}{\volt} input and minimum ILIM. The ramp takes \qty{11}{\milli\second}, so the \qty{20}{\milli\second} PDN wait still holds \\
-3 & Low & SPI/PDM source resistors R113, R114, R118: \qty{33}{\ohm} $\to$ \qty{68}{\ohm} & \qtyrange{0.7}{1.1}{\volt} overshoot on the FFC at \qty{33}{\ohm}; maximum SPI clock $\approx\qty{53}{\mega\hertz}$ at \qty{68}{\ohm} \\
-4 & Low & ESP32 EN capacitor C103: \qty{1}{\micro\farad} $\to$ \qty{2.2}{\micro\farad} & esptool auto-reset fails if the host's DTR/RTS gap exceeds $\approx\qty{2.5}{\milli\second}$ \\
-5 & Low (FW) & Tweeter EQ: $\approx\qty{+2}{\decibel}$ high shelf & LC filter droop of \qty{-2.2}{\decibel} at \qty{20}{\kilo\hertz} \\
-6 & Low (FW) & Stop charging above \qty{45}{\degreeCelsius} (JEITA registers) & The hardware window is \qtyrange{2.0}{60.8}{\degreeCelsius} \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\subsection{ECO-002: changes from the release review}\label{sec:eco2}
-
-The release review (\cref{sec:gates}) found no blockers but raised eleven should-fix and nine low items. Those that change the schematic or the specs were collected in ECO-002 \src{docs/eco_002.md}. Items 1--5 were applied to the schematic and verified by (reference, pin) comparison against the post-ECO-001 netlist; item 6 is in the v1.2 specs \src{hw/mainboard/BUILD_NOTES.md}.
-
-\begin{table}[htbp]
-\centering\small
-\caption{ECO-002. ``Applied'' items are in schematic v0.2 and specs v1.2. Source: \protect\src{docs/eco_002.md}, \protect\src{hw/mainboard/BUILD_NOTES.md}.}
-\label{tab:eco2}
-\begin{tabularx}{\linewidth}{@{}c l >{\raggedright\arraybackslash}X l@{}}
-\toprule
-\# & Review & Change & Status \\
-\midrule
-1 & S2 & DNP gate--source capacitor C721 at the ship FET Q701; fit C720 only with $C_{721}\ge5\times C_{720}$ or with R710 & Applied \\
-2 & S4 & J501 pin 20: GND $\to$ CHG\_QON, for a power button (SW4) on the UI board; \qty{1}{\second} press exits ship mode, \qty{10}{\second} resets the system & Applied \\
-3 & S6 & JP803 default selects the pack NTC on J803; the on-board TH801 becomes the alternate & Applied \\
-4 & L3 & CH340C LCSC code C84681 (discontinued at JLC) $\to$ C7464026 & Applied \\
-5 & L5 & 13 test points: I\textsuperscript{2}C, AMP\_PDN, BOOST\_EN, AMP\_FAULT, SFET\_G, I\textsuperscript{2}S at the left amp, PVDD at both amps, GND pads & Applied \\
-6 & S3, S9 & Specs: BQ25792 POR ICHG is \qty{2}{\ampere}, not \qty{1}{\ampere}; ECO-001 values in the spec text; FFC \qty{100}{\milli\metre} & Specs v1.2 \\
-7 & S1 & Firmware protection contract (SFET\_PRESENT, EN\_BATOC, watchdog) with read-back; short-circuit bench test & Firmware + bench \\
-8 & S5 & Run I\textsuperscript{2}C at \qtyrange{100}{200}{\kilo\hertz} until the rise time is scoped & Firmware + bench \\
-9 & S7 & Assembly: check the balance lead is seated (TP803 against TP802) before the first charge & Assembly \\
-10 & S8 & Confirm XT30PW-M polarity on a real part; ``+''/``BATT'' silk; pack harness drawing & At layout \\
-11 & S10 & Set the KiCad DNP attribute on the DNP parts before BOM/CPL export & Before fab \\
-12 & S11, L6 & Placement of the three \qty{10.2}{\milli\metre} electrolytics; AGND/PGND net-tie & At layout \\
+1 & Boost compensation \qty{33}{\kilo\ohm}/\qty{47}{\nano\farad} $\to$ \qty{100}{\kilo\ohm}/\qty{15}{\nano\farad} & PVDD impedance \qtyrange{0.46}{0.57}{\ohm} at \qty{150}{\hertz} against a \qty{0.14}{\ohm} target; load-step dip \qty{0.97}{\volt} $\to$ \qty{0.34}{\volt} \\
+2 & Fit the trim network R907/D901 for a firmware soft start & Start-up windup overshoots to \qty{19.4}{\volt} (typ.) or the \qty{21}{\volt} OVP \\
+3 & SPI/PDM source resistors \qty{33}{\ohm} $\to$ \qty{68}{\ohm} & \qtyrange{0.7}{1.1}{\volt} overshoot on the FFC \\
+4 & ESP32 EN capacitor \qty{1}{\micro\farad} $\to$ \qty{2.2}{\micro\farad} & Auto-reset fails if the host's DTR/RTS gap exceeds \qty{2.5}{\milli\second} \\
+5 & Tweeter EQ: \qty{+2}{\decibel} high shelf (firmware) & LC filter droop \qty{-2.2}{\decibel} at \qty{20}{\kilo\hertz} \\
+6 & Stop charging above \qty{45}{\degreeCelsius} (firmware) & The hardware window runs to \qty{60.8}{\degreeCelsius} \\
 \bottomrule
 \end{tabularx}
 \end{table}

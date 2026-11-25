@@ -18,14 +18,14 @@ The lead proposed stereo two-way bi-amplified drivers with passive radiators, an
 \toprule
 Item & Target / decision & Current prediction \\
 \midrule
-Channels & Stereo, 2-way per side, bi-amped (active DSP crossover); 4 amplifier channels & LR4 crossover at \qty{2.5}{\kilo\hertz} \\
+Channels & Stereo, 2-way per side, bi-amped (active DSP crossover); 4 amplifier channels & LR4 at \qty{2.5}{\kilo\hertz}, sum within \qty{0.05}{\decibel} of ideal (A5) \\
 Drivers (set B8) & 2$\times$ Dayton ND65-8 woofer (\qty{8}{\ohm}), 2$\times$ Peerless OT19NC00-04 tweeter (\qty{4}{\ohm}), 2$\times$ Dayton DMA58-PR passive radiator; \$93.54 & --- \\
 Bass extension & $F_3 \le \qty{65}{\hertz}$, $F_6 \le \qty{55}{\hertz}$ with DSP & $F_3 = \qty{63.7}{\hertz}$, $F_6 = \qty{55.3}{\hertz}$ (A1) \\
-Maximum SPL & $\ge \qty{90}{\decibel}$ at \qty{1}{\metre}, pink noise, battery, on a table (half space) & \qty{90.55}{\decibel} (A1) \\
+Maximum SPL & $\ge \qty{90}{\decibel}$ at \qty{1}{\metre}, pink noise, battery, on a table (half space) & \qty{90.6}{\decibel} (A1) \\
 Amplifier rail & PVDD \qty{18}{\volt} from a TPS61178 boost & Compensation and soft start changed by ECO-001 (applied) \\
 Enclosure & \qtyproduct{95 x 210}{\milli\metre} body (\qty{216}{\milli\metre} over the PR flanges), 5 printed parts & \qty{0.85}{\litre} net by CAD, \qty{0.82}{\litre} planned \\
 Battery & Gens ace 2S \qty{5000}{\milli\ampere\hour} RC LiPo, \qtyproduct{109 x 42 x 19.5}{\milli\metre}, bonded \qty{10}{\kilo\ohm} NTC & --- \\
-Runtime & $\ge \qty{8}{\hour}$ at moderate volume & $\approx\qty{11}{\hour}$ estimated (\cref{sec:battery}) \\
+Runtime & $\ge \qty{8}{\hour}$ at moderate volume & $\approx\qty{12.8}{\hour}$ estimated (\cref{sec:battery}) \\
 Source & Bluetooth A2DP sink, SBC required, AAC nice to have & AAC is a stretch goal \\
 Control & Wi-Fi web UI for live EQ; rotary encoder; 2--3 buttons & 3 buttons on an ADC ladder \\
 Display & 1.28-inch round TFT (GC9A01 class) & Waveshare module \\

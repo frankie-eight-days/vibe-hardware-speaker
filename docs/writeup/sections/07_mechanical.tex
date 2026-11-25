@@ -97,15 +97,11 @@ Grille (not printed) & \qty{0.8}{\milli\metre} perforated Al & Rolled to $R\,\qt
 \end{tabularx}
 \end{table}
 
-The passive-radiator alignment assumes $Q_L\approx10$, so every leak matters. The concept therefore specifies:
-\begin{itemize}
-  \item foam gaskets on the seam, the cap spigots and every driver;
-  \item a silicone membrane under the buttons;
-  \item a sealed cup around the encoder, whose body is not airtight;
-  \item a sealed or potted USB-C receptacle;
-  \item a gasketed tube for the microphone, which must not hear the box.
-\end{itemize}
-All M3 joints use brass heat-set inserts. The tightest modelled clearances are \qty{0.5}{\milli\metre} (tweeter pod to woofer frame) and \qty{1.0}{\milli\metre} (pod to PR basket, battery to shell). They come straight from the driver drawings, so they must be re-checked against the real parts.
+The passive-radiator alignment assumes a well-sealed box, so the concept gaskets every seam and driver and seals the encoder, USB-C receptacle, buttons and microphone port. The power button SW4 sits in a recessed Ø\qty{10}{\milli\metre} pocket on the top, so a palm or bag cannot press it \src{docs/mech_envelope.md}.
+
+\begin{checked}
+The FreeCAD script checks every pair of solids for interference (none) and reports clearances. The tightest are \qty{0.5}{\milli\metre} (tweeter pod to woofer frame) and \qty{1.0}{\milli\metre} (pod to PR basket, battery to shell). Because they come from datasheet drawings, the real drivers and pack must be measured and the script re-run. The net volume is computed from the solids, with fill factors for open-frame parts. The same parameter block drives the BEM hull, whose sections match the CAD within a median of \qtyrange{0.7}{0.9}{\milli\metre}.
+\end{checked}
 
 \subsection{PCB envelopes}
 

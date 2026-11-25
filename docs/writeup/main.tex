@@ -36,6 +36,7 @@
             product-units=single,separate-uncertainty=true]{siunitx}
 \DeclareSIUnit{\dBc}{dB}
 \usepackage{xurl}
+\usepackage[most]{tcolorbox}
 \usepackage[hidelinks,bookmarksnumbered]{hyperref}
 \usepackage[capitalise,noabbrev]{cleveref}
 \crefname{appendix}{Appendix}{Appendices}
@@ -65,6 +66,13 @@
 \newcommand{\pendingbox}[2][0.8\linewidth]{%
   \fbox{\parbox[c][#2][c]{#1}{\centering\color{srcgray}\Large\sffamily pending}}}
 \newcommand{\figfile}[1]{{\footnotesize\nolinkurl{#1}}}
+% Link to a file in the public repository.
+\newcommand{\repourl}{https://github.com/frankie-eight-days/vibe-hardware-speaker}
+\newcommand{\repo}[1]{\href{\repourl/blob/main/#1}{\nolinkurl{#1}}}
+% One short verification box per chapter.
+\newtcolorbox{checked}[1][How we checked it]{enhanced, breakable, colback=black!3, colframe=black!35,
+  boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=4pt, bottom=4pt,
+  title={#1}, fonttitle=\sffamily\bfseries\small, coltitle=black, colbacktitle=black!10, fontupper=\small}
 
 \setlength{\parskip}{3pt plus 1pt}
 \setlength{\emergencystretch}{3em}
@@ -99,6 +107,7 @@
 \input{sections/06b_firmware}
 \input{sections/07_mechanical}
 \input{sections/08_schematic}
+\input{sections/09a_layout}
 \input{sections/09_pending}
 \input{sections/10_v2}
 
@@ -108,7 +117,6 @@
 \addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
 \input{sections/11_appendix}
 
-\clearpage
-\listoftodos
+% \listoftodos  % re-enable while \todo{} items exist
 
 \end{document}
