@@ -1,0 +1,26 @@
+{
+ "analytic_cc_nH": 2.8709630865172056,
+ "analytic_physical_nH": 2.547459957903861,
+ "note": "mesh vs analytic with centre-to-centre spacing = discretisation error; centre filaments put the current 25 um further apart than the 100 MHz surface currents, so mesh results are ~5-9 % high (conservative)",
+ "h_mm": 0.21040000000000003,
+ "w_mm": 0.5,
+ "len_mm": 10.0,
+ "mesh": [
+  {
+   "pitch": 0.25,
+   "nodes": 1232,
+   "segments": 2351,
+   "L_nH": 2.8764868639713708,
+   "s": 0.26064109802246094,
+   "err_pct": 0.19240154915632035
+  },
+  {
+   "pitch": 0.1,
+   "nodes": 7700,
+   "segments": 15116,
+   "L_nH": 2.7832857292967565,
+   "s": 8.418884992599487,
+   "err_pct": -3.053935372147585
+  }
+ ]
+}

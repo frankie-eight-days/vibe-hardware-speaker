@@ -1,0 +1,28 @@
+{
+ "board": "autoroute",
+ "coverage_pct": {
+  "L1": 20.456037110541743,
+  "L2": 15.313452571382507,
+  "L3": 13.77291510380039,
+  "L4": 10.595496418466958
+ },
+ "cell_mm": 5.0,
+ "pairs": {
+  "L1-L4": {
+   "global_diff_pts": 9.860540692074785,
+   "global_pass": true,
+   "cells": 324,
+   "cells_out_of_tol": 178,
+   "cells_out_pct": 54.93827160493827,
+   "max_abs_cell_diff_pts": 69.98
+  },
+  "L2-L3": {
+   "global_diff_pts": 1.5405374675821175,
+   "global_pass": true,
+   "cells": 324,
+   "cells_out_of_tol": 140,
+   "cells_out_pct": 43.20987654320987,
+   "max_abs_cell_diff_pts": 71.29
+  }
+ }
+}

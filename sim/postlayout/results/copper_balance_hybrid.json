@@ -1,0 +1,28 @@
+{
+ "board": "hybrid",
+ "coverage_pct": {
+  "L1": 77.97587285392267,
+  "L2": 89.58648287860566,
+  "L3": 70.66981014596243,
+  "L4": 83.19007602222734
+ },
+ "cell_mm": 5.0,
+ "pairs": {
+  "L1-L4": {
+   "global_diff_pts": -5.214203168304678,
+   "global_pass": true,
+   "cells": 324,
+   "cells_out_of_tol": 117,
+   "cells_out_pct": 36.11111111111111,
+   "max_abs_cell_diff_pts": 67.87
+  },
+  "L2-L3": {
+   "global_diff_pts": 18.916672732643235,
+   "global_pass": false,
+   "cells": 324,
+   "cells_out_of_tol": 229,
+   "cells_out_pct": 70.67901234567901,
+   "max_abs_cell_diff_pts": 84.07
+  }
+ }
+}

@@ -1,0 +1,157 @@
+{
+ "loops": [
+  {
+   "loop": "boost",
+   "board": "autoroute",
+   "nets": [
+    "/amp_left/PVDD",
+    "GND"
+   ],
+   "path_len_mm": 4.100000000000001,
+   "nodes": 2933,
+   "segments": 5048,
+   "fasthenry_s": 1.3599390983581543,
+   "L_nH": {
+    "1e+06": 0.41130093633352327,
+    "1e+08": 0.35387624131653656
+   },
+   "R_mohm": {
+    "1e+06": 2.21864,
+    "1e+08": 3.04235
+   },
+   "status": "ok",
+   "path_layers": {
+    "F.Cu": 43,
+    "In1.Cu": 0,
+    "In2.Cu": 0,
+    "B.Cu": 0
+   },
+   "path_vias": 0,
+   "V_overshoot": {
+    "2ns": {
+     "pcb": 1.4155049652661462,
+     "pcb+ESL": 3.415504965266146
+    },
+    "5ns": {
+     "pcb": 0.5662019861064584,
+     "pcb+ESL": 1.3662019861064585
+    }
+   }
+  },
+  {
+   "loop": "buck",
+   "board": "autoroute",
+   "nets": [
+    "/charger/VSYS",
+    "GND"
+   ],
+   "status": "OPEN: no copper path IC+ -> cap"
+  },
+  {
+   "loop": "chg_pmid",
+   "board": "autoroute",
+   "nets": [
+    "/charger/CHG_PMID",
+    "GND"
+   ],
+   "status": "OPEN: no copper path IC+ -> cap"
+  },
+  {
+   "loop": "chg_sys",
+   "board": "autoroute",
+   "nets": [
+    "/charger/VSYS",
+    "GND"
+   ],
+   "status": "OPEN: no copper path IC+ -> cap"
+  }
+ ],
+ "sw": [
+  {
+   "area_mm2": {
+    "F.Cu": 24.617500000000003,
+    "In1.Cu": 0.0,
+    "In2.Cu": 0.0,
+    "B.Cu": 0.0
+   },
+   "C_gnd_pF": 0.0,
+   "C_any_pF": 0.30936051696746447,
+   "perimeter_F_mm": 35.5,
+   "C_fringe_pF": 0.6914973999999998,
+   "area_total_mm2": 24.617500000000003,
+   "net": "/rails/BST_SW",
+   "loop": "boost",
+   "ind_pad_mm2": 16.810000000000013,
+   "area_excl_ind_pad_mm2": 7.80749999999999,
+   "run": "boost_swrun",
+   "status": "ok",
+   "path_len_mm": 3.700000000000002,
+   "nodes": 2535,
+   "segments": 4892,
+   "L_partial_nH": 0.6010868397728849,
+   "R_mohm_1MHz": 1.65853
+  },
+  {
+   "area_mm2": {
+    "F.Cu": 7.900000000000001,
+    "In1.Cu": 5.497500000000001,
+    "In2.Cu": 0.6425000000000001,
+    "B.Cu": 0.6425000000000001
+   },
+   "C_gnd_pF": 0.0,
+   "C_any_pF": 0.16187399721462167,
+   "perimeter_F_mm": 21.5,
+   "C_fringe_pF": 0.41879419999999995,
+   "area_total_mm2": 14.682500000000003,
+   "net": "/rails/BUCK_SW",
+   "loop": "buck",
+   "ind_pad_mm2": 3.75,
+   "area_excl_ind_pad_mm2": 10.932500000000003,
+   "run": "buck_swrun",
+   "status": "ok",
+   "path_len_mm": 1.4000000000000001,
+   "nodes": 1576,
+   "segments": 2912,
+   "L_partial_nH": 0.23272909018441673,
+   "R_mohm_1MHz": 1.1181100000000002
+  },
+  {
+   "area_mm2": {
+    "F.Cu": 9.625000000000002,
+    "In1.Cu": 0.0,
+    "In2.Cu": 0.0,
+    "B.Cu": 0.0
+   },
+   "C_gnd_pF": 0.0,
+   "C_any_pF": 0.11192651134870982,
+   "perimeter_F_mm": 18.5,
+   "C_fringe_pF": 0.3603577999999999,
+   "area_total_mm2": 9.625000000000002,
+   "net": "/charger/CHG_SW1",
+   "loop": "chg_pmid",
+   "ind_pad_mm2": 8.22499999999998,
+   "area_excl_ind_pad_mm2": 1.4000000000000217,
+   "run": "chg_pmid_swrun",
+   "status": "OPEN"
+  },
+  {
+   "area_mm2": {
+    "F.Cu": 11.492500000000001,
+    "In1.Cu": 0.6325000000000002,
+    "In2.Cu": 0.6325000000000002,
+    "B.Cu": 15.650000000000004
+   },
+   "C_gnd_pF": 0.06035300684924458,
+   "C_any_pF": 0.5963166604648754,
+   "perimeter_F_mm": 23.3,
+   "C_fringe_pF": 0.45385603999999996,
+   "area_total_mm2": 28.407500000000006,
+   "net": "/charger/CHG_SW2",
+   "loop": "chg_sys",
+   "ind_pad_mm2": 8.22499999999998,
+   "area_excl_ind_pad_mm2": 20.182500000000026,
+   "run": "chg_sys_swrun",
+   "status": "OPEN"
+  }
+ ]
+}

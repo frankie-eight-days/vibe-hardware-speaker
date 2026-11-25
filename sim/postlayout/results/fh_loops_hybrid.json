@@ -1,0 +1,254 @@
+{
+ "loops": [
+  {
+   "loop": "boost",
+   "board": "hybrid",
+   "nets": [
+    "/amp_left/PVDD",
+    "GND"
+   ],
+   "path_len_mm": 3.6000000000000005,
+   "nodes": 11867,
+   "segments": 22388,
+   "fasthenry_s": 33.18266701698303,
+   "L_nH": {
+    "1e+06": 0.23995790769965064,
+    "1e+08": 0.20213951012215448
+   },
+   "R_mohm": {
+    "1e+06": 1.1811,
+    "1e+08": 1.61535
+   },
+   "status": "ok",
+   "path_layers": {
+    "F.Cu": 38,
+    "In1.Cu": 0,
+    "In2.Cu": 0,
+    "B.Cu": 0
+   },
+   "path_vias": 0,
+   "V_overshoot": {
+    "2ns": {
+     "pcb": 0.8085580404886178,
+     "pcb+ESL": 2.808558040488618
+    },
+    "5ns": {
+     "pcb": 0.3234232161954471,
+     "pcb+ESL": 1.1234232161954472
+    }
+   }
+  },
+  {
+   "loop": "buck",
+   "board": "hybrid",
+   "nets": [
+    "/charger/VSYS",
+    "GND"
+   ],
+   "path_len_mm": 3.8000000000000007,
+   "nodes": 9422,
+   "segments": 17762,
+   "fasthenry_s": 19.082515001296997,
+   "L_nH": {
+    "1e+06": 0.5028866483357545,
+    "1e+08": 0.4241813458779504
+   },
+   "R_mohm": {
+    "1e+06": 2.6615800000000003,
+    "1e+08": 3.61232
+   },
+   "status": "ok",
+   "path_layers": {
+    "F.Cu": 40,
+    "In1.Cu": 0,
+    "In2.Cu": 0,
+    "B.Cu": 0
+   },
+   "path_vias": 0,
+   "V_overshoot": {
+    "2ns": {
+     "pcb": 0.2608715277149395,
+     "pcb+ESL": 0.5683715277149396
+    },
+    "5ns": {
+     "pcb": 0.1043486110859758,
+     "pcb+ESL": 0.22734861108597582
+    }
+   }
+  },
+  {
+   "loop": "chg_pmid",
+   "board": "hybrid",
+   "nets": [
+    "/charger/CHG_PMID",
+    "GND"
+   ],
+   "path_len_mm": 2.5,
+   "nodes": 7165,
+   "segments": 12967,
+   "fasthenry_s": 14.788293838500977,
+   "L_nH": {
+    "1e+06": 0.26644765642786566,
+    "1e+08": 0.22192406109790797
+   },
+   "R_mohm": {
+    "1e+06": 1.55827,
+    "1e+08": 2.11883
+   },
+   "status": "ok",
+   "path_layers": {
+    "F.Cu": 27,
+    "In1.Cu": 0,
+    "In2.Cu": 0,
+    "B.Cu": 0
+   },
+   "path_vias": 0,
+   "V_overshoot": {
+    "2ns": {
+     "pcb": 0.6768683863486192,
+     "pcb+ESL": 2.201868386348619
+    },
+    "5ns": {
+     "pcb": 0.2707473545394477,
+     "pcb+ESL": 0.8807473545394476
+    }
+   }
+  },
+  {
+   "loop": "chg_sys",
+   "board": "hybrid",
+   "nets": [
+    "/charger/VSYS",
+    "GND"
+   ],
+   "path_len_mm": 5.500000000000002,
+   "nodes": 9975,
+   "segments": 18362,
+   "fasthenry_s": 27.29831099510193,
+   "L_nH": {
+    "1e+06": 0.7865230386175449,
+    "1e+08": 0.6615004646211373
+   },
+   "R_mohm": {
+    "1e+06": 3.25928,
+    "1e+08": 4.4554
+   },
+   "status": "ok",
+   "path_layers": {
+    "F.Cu": 57,
+    "In1.Cu": 0,
+    "In2.Cu": 0,
+    "B.Cu": 0
+   },
+   "path_vias": 0,
+   "V_overshoot": {
+    "2ns": {
+     "pcb": 2.0175764170944688,
+     "pcb+ESL": 3.5425764170944687
+    },
+    "5ns": {
+     "pcb": 0.8070305668377875,
+     "pcb+ESL": 1.4170305668377874
+    }
+   }
+  }
+ ],
+ "sw": [
+  {
+   "area_mm2": {
+    "F.Cu": 24.832500000000003,
+    "In1.Cu": 0.0,
+    "In2.Cu": 0.0,
+    "B.Cu": 0.0
+   },
+   "C_gnd_pF": 4.591960456273764,
+   "C_any_pF": 4.592998305575944,
+   "perimeter_F_mm": 38.2,
+   "C_fringe_pF": 0.74409016,
+   "area_total_mm2": 24.832500000000003,
+   "net": "/rails/BST_SW",
+   "loop": "boost",
+   "ind_pad_mm2": 16.810000000000013,
+   "area_excl_ind_pad_mm2": 8.02249999999999,
+   "run": "boost_swrun",
+   "status": "ok",
+   "path_len_mm": 3.700000000000002,
+   "nodes": 2552,
+   "segments": 4913,
+   "L_partial_nH": 0.5350263975437319,
+   "R_mohm_1MHz": 1.5304
+  },
+  {
+   "area_mm2": {
+    "F.Cu": 12.197500000000002,
+    "In1.Cu": 0.0,
+    "In2.Cu": 0.0,
+    "B.Cu": 0.0
+   },
+   "C_gnd_pF": 2.2469927433069534,
+   "C_any_pF": 2.247728076589887,
+   "perimeter_F_mm": 45.7,
+   "C_fringe_pF": 0.8901811599999999,
+   "area_total_mm2": 12.197500000000002,
+   "net": "/rails/BUCK_SW",
+   "loop": "buck",
+   "ind_pad_mm2": 3.75,
+   "area_excl_ind_pad_mm2": 8.447500000000002,
+   "run": "buck_swrun",
+   "status": "ok",
+   "path_len_mm": 1.3,
+   "nodes": 1329,
+   "segments": 2428,
+   "L_partial_nH": 0.2110028489029421,
+   "R_mohm_1MHz": 0.9227909999999999
+  },
+  {
+   "area_mm2": {
+    "F.Cu": 14.907500000000002,
+    "In1.Cu": 1.7300000000000004,
+    "In2.Cu": 6.235000000000001,
+    "B.Cu": 13.050000000000002
+   },
+   "C_gnd_pF": 2.9006381977106783,
+   "C_any_pF": 3.0533473284597874,
+   "perimeter_F_mm": 28.8,
+   "C_fringe_pF": 0.56098944,
+   "area_total_mm2": 35.92250000000001,
+   "net": "/charger/CHG_SW1",
+   "loop": "chg_pmid",
+   "ind_pad_mm2": 8.22499999999998,
+   "area_excl_ind_pad_mm2": 27.697500000000026,
+   "run": "chg_pmid_swrun",
+   "status": "ok",
+   "path_len_mm": 14.999999999999968,
+   "nodes": 3710,
+   "segments": 7004,
+   "L_partial_nH": 7.296617520991035,
+   "R_mohm_1MHz": 9.61579
+  },
+  {
+   "area_mm2": {
+    "F.Cu": 14.617500000000003,
+    "In1.Cu": 1.7800000000000002,
+    "In2.Cu": 10.937500000000002,
+    "B.Cu": 12.437500000000002
+   },
+   "C_gnd_pF": 2.2812164139478717,
+   "C_any_pF": 2.3811389232583036,
+   "perimeter_F_mm": 28.6,
+   "C_fringe_pF": 0.5570936799999999,
+   "area_total_mm2": 39.77250000000001,
+   "net": "/charger/CHG_SW2",
+   "loop": "chg_sys",
+   "ind_pad_mm2": 8.22499999999998,
+   "area_excl_ind_pad_mm2": 31.547500000000028,
+   "run": "chg_sys_swrun",
+   "status": "ok",
+   "path_len_mm": 14.899999999999968,
+   "nodes": 4063,
+   "segments": 7640,
+   "L_partial_nH": 7.4466051393608375,
+   "R_mohm_1MHz": 10.171
+  }
+ ]
+}

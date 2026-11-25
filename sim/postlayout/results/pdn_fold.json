@@ -1,0 +1,87 @@
+{
+ "targets": {
+  "PVDD_ohm": 0.13699999999999973,
+  "3V3_ohm": 0.29999999999999993
+ },
+ "boards": {
+  "hybrid": {
+   "extracted": {
+    "boost->AMP_L": {
+     "R_ohm": 0.01576509843055406,
+     "L_H": 8.256512813766874e-09,
+     "fh_status": "ok",
+     "dc_status": "OPEN: U301 pins 27,28 not connected (current carried by the others)",
+     "fh_nodes": 21467
+    },
+    "boost->AMP_R": {
+     "R_ohm": 0.04523562452756368,
+     "L_H": 2.3985445698664088e-08,
+     "fh_status": "ok",
+     "dc_status": "OPEN: U401 pins 15,16 not connected (current carried by the others)",
+     "fh_nodes": 71595
+    },
+    "buck->ESP": {
+     "R_ohm": 0.09235754514479637,
+     "L_H": 2.5313434543822862e-08,
+     "fh_status": "ok",
+     "dc_status": "ok",
+     "fh_nodes": 60885
+    }
+   },
+   "Z": {
+    "PVDD_AMP_R_max_audio_ohm": 0.1950405176699087,
+    "PVDD_AMP_L_max_audio_ohm": 0.16655261366787324,
+    "PVDD_AMP_R_at_1MHz_ohm": 0.007394140008419749,
+    "PVDD_AMP_R_at_10MHz_ohm": 0.01957871063187849,
+    "3V3_ESP_max_below_20MHz_ohm": 0.22324253496305074,
+    "PVDD_pass": false,
+    "3V3_pass": true
+   }
+  },
+  "autoroute": {
+   "extracted": {
+    "boost->AMP_L": {
+     "R_ohm": 0.01994953074664061,
+     "L_H": 4.108823588331916e-08,
+     "fh_status": "ok",
+     "dc_status": "ok",
+     "fh_nodes": 12279
+    },
+    "boost->AMP_R": {
+     "R_ohm": 0.052447693317434124,
+     "L_H": 1.2943323493431317e-07,
+     "fh_status": "ok",
+     "dc_status": "ok",
+     "fh_nodes": 26154
+    },
+    "buck->ESP": {
+     "R_ohm": 0.12984981436426207,
+     "L_H": 1.5144118046506045e-07,
+     "fh_status": "ok",
+     "dc_status": "ok",
+     "fh_nodes": 19521
+    }
+   },
+   "Z": {
+    "PVDD_AMP_R_max_audio_ohm": 0.20188347493957065,
+    "PVDD_AMP_L_max_audio_ohm": 0.17048669679882017,
+    "PVDD_AMP_R_at_1MHz_ohm": 0.007155830261576208,
+    "PVDD_AMP_R_at_10MHz_ohm": 0.019785965555755212,
+    "3V3_ESP_max_below_20MHz_ohm": 0.26144136768832654,
+    "PVDD_pass": false,
+    "3V3_pass": true
+   }
+  },
+  "placeholder": {
+   "Z": {
+    "PVDD_AMP_R_max_audio_ohm": 0.15864408705733096,
+    "PVDD_AMP_L_max_audio_ohm": 0.15670009505327614,
+    "PVDD_AMP_R_at_1MHz_ohm": 0.008250594027567235,
+    "PVDD_AMP_R_at_10MHz_ohm": 0.01909691086264764,
+    "3V3_ESP_max_below_20MHz_ohm": 0.137943589746289,
+    "PVDD_pass": false,
+    "3V3_pass": true
+   }
+  }
+ }
+}
