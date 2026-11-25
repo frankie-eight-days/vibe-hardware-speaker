@@ -2,7 +2,7 @@
 
 ![Hero render](docs/renders/hero.png)
 
-A JBL Flip/Charge-class portable speaker, designed end to end with Claude Code agents and one human making the calls: requirements, part selection, circuit specs, KiCad schematic, simulations (acoustic BEM/FEM, SPICE, PDN), mechanical packaging and, next, PCB layout. The full story, including what went wrong, is in the write-up: [`docs/build/design_doc.pdf`](docs/build/design_doc.pdf).
+A JBL Flip/Charge-class portable speaker, designed end to end with Claude Code agents and one human making the calls: requirements, part selection, circuit specs, KiCad schematic, simulations (acoustic BEM/FEM, SPICE, PDN), mechanical packaging and, next, PCB layout. The full story, including what went wrong, is in the write-up: [`docs/build/design_doc.pdf`](docs/build/design_doc.pdf). An interactive page explaining every simulation is in [`docs/viz/`](docs/viz/) (open `index.html`).
 
 ## The speaker
 

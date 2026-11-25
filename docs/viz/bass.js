@@ -163,6 +163,7 @@
     var sys = system(f, w, p, o);
     var eq = idealEq(f, sys, 63, 18);
     if (o.eqMode === "biquad" && o.sos) eq = { g: sosMag(o.sos, f, 48000), href: eq.href };
+    if (o.eqMode === "off") eq = { g: f.map(function () { return 1; }), href: eq.href };
     var pink = pinkEstimate(f, sys, w, p, eq.g, eq.href, 3, 2500);
     var ndb = sys.p_hs.map(function (z) { return splPk(abs(z)); });
     var rdb = sys.p_hs.map(function (z, i) { return 20 * Math.log10(abs(z) * eq.g[i] / eq.href); });

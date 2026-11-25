@@ -115,7 +115,11 @@ keep = ["asm_infill40_free", "asm_infill40_drivers", "asm_infill40_drivers_batt"
 hh = open(AR / "a4_shell_vs_woofer_output.csv").readline().strip().split(",")
 _, fr = rcsv(AR / "a4_shell_vs_woofer_output.csv")
 frf = {c: r(fr[:, i], 2) for i, c in enumerate(hh) if c.endswith("_total_db")}
-dump("a4.json", dict(cases={k: dict(label=a4["cases"][k]["label"], freqs=r(a4["cases"][k]["freqs_hz"], 1),
+allm = {}
+with open(AR / "a4_modes.csv") as fh:
+    for row in csv.DictReader(fh):
+        allm.setdefault(row["case"], []).append([round(float(row["f_hz"]), 1), (round(float(row["excitation_index_db"]), 1) if row["excitation_index_db"] else None), row["max_motion_at"]])
+dump("a4.json", dict(cases={k: dict(label=a4["cases"][k]["label"], freqs=r(a4["cases"][k]["freqs_hz"], 1), modes=allm.get(k, []),
                                     below1k=a4["cases"][k]["modes_below_1khz"],
                                     frf_peak=a4["cases"][k].get("frf_peak_db_below_1khz"))
                             for k in keep if k in a4["cases"]},
