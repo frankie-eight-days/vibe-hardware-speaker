@@ -16,9 +16,9 @@
 
 Numbers: 142.8 × 46 mm (−21 %), top density 66.9 % (target 70 %, ceiling 78 % with rigid blocks). Hot loops: boost 0.173, buck 0.310, SYS 0.609 nH pass; **PMID 0.268 nH fails** (cause below). Thermal passes **only with gap pads**.
 
-## 2. Owner decisions still open (ask before phase 2 starts)
+## 2. Owner decisions (all four APPROVED 2026-11-27, as recommended)
 
-The owner liked the floor plan ("looks unreal") but has **not** answered these. Recommendations in bold.
+The owner approved all four recommendations and phase 2 on 2026-11-27, including the native Edge.Cuts outline step (§4.2). **Gate:** stop after the post-layout sims (§4.5) and report to the owner before producing any fab outputs (§4.6).
 
 1. **ECO-003 gap pads** under U301/U401/U701 (15 × 15 mm, 3 W/mK, to a printed boss or Al plate). The shrink is only thermally valid with them. **Recommend: adopt.** (Optional fourth pad under U901 lifts the 28 W sustained limit.)
 2. **C716 fix:** revert to its rev A orientation, or redraw `CHG_PGND_TOP` around it. **Recommend: revert** (measured 0.219 nH PMID with the old copper).
