@@ -1,0 +1,600 @@
+{
+ "params": {
+  "L_total": 210.0,
+  "D_out": 95.0,
+  "wall": 3.0,
+  "cap_t": 4.0,
+  "cap_spigot": 5.0,
+  "edge_fillet": 3.0,
+  "flat_bottom_z": -44.5,
+  "seam_y": 24.0,
+  "w_flange": 64.0,
+  "w_flange_r": 8.0,
+  "w_flange_t": 1.5,
+  "w_surround_h": 3.5,
+  "w_basket_d": 52.0,
+  "w_basket_d2": 44.0,
+  "w_basket_len": 23.0,
+  "w_motor_d": 38.0,
+  "w_below_flange": 43.0,
+  "w_x": 33.0,
+  "w_clear": 0.5,
+  "w_hole_d": 53.0,
+  "w_chamfer": 3.0,
+  "t_face_d": 33.4,
+  "t_face_t": 3.0,
+  "t_body_d": 31.0,
+  "t_depth": 17.0,
+  "t_x": 83.0,
+  "t_phi": 40.0,
+  "t_elev": 40.0,
+  "t_face_r": 47.5,
+  "t_pod_wall": 1.5,
+  "t_pod_gap": 0.0,
+  "t_chamber_r": 16.0,
+  "t_wg_boss_r": 18.0,
+  "t_wg_d": 36.0,
+  "t_wg_len": 3.0,
+  "pr_flange": 56.0,
+  "pr_flange_r": 3.2,
+  "pr_flange_t": 3.0,
+  "pr_basket_d": 50.0,
+  "pr_basket_d2": 42.0,
+  "pr_basket_len": 27.0,
+  "pr_below_flange": 35.0,
+  "pr_post_d": 8.0,
+  "pr_mass_d": 20.0,
+  "pr_mass_len": 2.0,
+  "pr_xmech": 7.0,
+  "pr_clear_factor": 1.5,
+  "pr_hole_d": 50.5,
+  "pr_proud": 3.0,
+  "bat_L": 109.0,
+  "bat_W": 42.0,
+  "bat_T": 19.5,
+  "bat_tol_L": 5.0,
+  "bat_tol_W": 2.0,
+  "bat_swell": 0.1,
+  "tray_wall": 2.0,
+  "tray_gap_front": 1.5,
+  "mb_z_bot": -35.0,
+  "mb_t": 1.6,
+  "mb_x": [
+   -54.6,
+   88.2
+  ],
+  "mb_y": [
+   -21.0,
+   25.0
+  ],
+  "mb_usb_tab": [
+   -7.0,
+   7.0,
+   26.5
+  ],
+  "mb_holes": [
+   [
+    -34.548,
+    18.642
+   ],
+   [
+    -10.048,
+    21.292
+   ],
+   [
+    84.452,
+    3.042
+   ],
+   [
+    23.952,
+    -17.258
+   ],
+   [
+    -24.798,
+    -17.258
+   ]
+  ],
+  "mb_antenna_keepout_x": -54.6,
+  "ui_z_top": 35.0,
+  "ui_t": 1.6,
+  "ui_rects": [
+   [
+    -91.0,
+    91.0,
+    -9.0,
+    22.0
+   ],
+   [
+    -22.0,
+    22.0,
+    -20.0,
+    22.0
+   ]
+  ],
+  "disp_x": 0.0,
+  "disp_mod_d": 37.5,
+  "disp_mod_tab": 40.4,
+  "disp_mod_t": 4.0,
+  "disp_view_d": 33.5,
+  "disp_pad_d": 46.0,
+  "lens_d": 40.0,
+  "lens_t": 1.5,
+  "knob_x": 70.0,
+  "knob_d": 26.0,
+  "knob_h": 13.0,
+  "knob_pad_d": 32.0,
+  "btn_x": [
+   -60.0,
+   -72.0,
+   -84.0
+  ],
+  "btn_pad": [
+   -91.0,
+   -53.0,
+   14.0
+  ],
+  "mic_x": -30.0
+ },
+ "derived": {
+  "R_out": 47.5,
+  "R_in": 44.5,
+  "overall_length_incl_PR_flanges": 216.0,
+  "body_length": 210.0,
+  "tube_inner_x": [
+   -101.0,
+   101.0
+  ],
+  "woofer_flange_plane_y": -30.4,
+  "woofer_back_y": 14.1,
+  "woofer_cc_mm": 66.0,
+  "tweeter_cc_mm": 166.0,
+  "tweeters": {
+   "L": {
+    "face_centre": [
+     -83.0,
+     -36.4,
+     30.5
+    ]
+   },
+   "R": {
+    "face_centre": [
+     83.0,
+     -36.4,
+     30.5
+    ]
+   }
+  },
+  "pr_keepout_x": {
+   "L": [
+    -68.0,
+    -57.5
+   ],
+   "R": [
+    57.5,
+    68.0
+   ]
+  },
+  "battery_bay": {
+   "L": 119.0,
+   "W": 46.0,
+   "T_swell": 21.45,
+   "y": [
+    17.6,
+    39.05
+   ],
+   "tray_front_y": 15.6
+  }
+ },
+ "interference": [],
+ "volume_cm3": {
+  "gross_tube_interior": 1243.6,
+  "shell_lands_ribs_bosses_tray_in_cavity": 75.9,
+  "tweeter_pods_sealed": 26.2,
+  "woofer_front_openings_(outside_air)": 39.3,
+  "woofers": 92.1,
+  "passive_radiators": 20.1,
+  "battery": 89.3,
+  "mainboard": 20.2,
+  "ui": 14.6,
+  "wiring_foam_gaskets_allowance": 15.0,
+  "NET_box": 851.0
+ },
+ "mainboard_height_zones_mm_above_top": {
+  "A_front_under_woofer_baskets": {
+   "x": [
+    -54.6,
+    88.2
+   ],
+   "y": [
+    -21.0,
+    -6.5
+   ],
+   "hmax": 7.5
+  },
+  "B_mid_under_woofer_motors": {
+   "x": [
+    -52.5,
+    52.5
+   ],
+   "y": [
+    -6.5,
+    15.1
+   ],
+   "hmax": 10.0
+  },
+  "C_rear_under_battery_tray": {
+   "x": [
+    -61.5,
+    61.5
+   ],
+   "y": [
+    15.1,
+    25.0
+   ],
+   "hmax": 7.0
+  },
+  "D_centre_between_woofers": {
+   "x": [
+    -6.0,
+    6.0
+   ],
+   "y": [
+    -21.0,
+    15.1
+   ],
+   "hmax": 24.0
+  },
+  "E_end_R_under_PR_(x>77)": {
+   "x": [
+    77.0,
+    88.2
+   ],
+   "y": [
+    -21.0,
+    25.0
+   ],
+   "hmax": 7.0
+  },
+  "G_L_between_motor_and_PR": {
+   "x": [
+    -77.0,
+    -53.5
+   ],
+   "y": [
+    -6.5,
+    15.1
+   ],
+   "hmax": 21.0
+  },
+  "G_R_between_motor_and_PR": {
+   "x": [
+    53.5,
+    77.0
+   ],
+   "y": [
+    -6.5,
+    15.1
+   ],
+   "hmax": 21.0
+  },
+  "H_R_rear_end_(battery/UI connectors)": {
+   "x": [
+    62.0,
+    77.0
+   ],
+   "y": [
+    15.1,
+    25.0
+   ],
+   "hmax": 24.0
+  },
+  "B_under_motor_L": {
+   "x": [
+    -52.5,
+    -13.5
+   ],
+   "y": [
+    -6.5,
+    15.1
+   ],
+   "hmax": 10.0
+  },
+  "B_under_motor_R": {
+   "x": [
+    13.5,
+    52.5
+   ],
+   "y": [
+    -6.5,
+    15.1
+   ],
+   "hmax": 10.0
+  }
+ },
+ "mainboard": {
+  "outline_x": [
+   -54.6,
+   88.2
+  ],
+  "outline_y": [
+   -21.0,
+   25.0
+  ],
+  "usb_tab": [
+   -7.0,
+   7.0,
+   26.5
+  ],
+  "z_bottom": -35.0,
+  "thickness": 1.6,
+  "holes": [
+   [
+    -34.548,
+    18.642
+   ],
+   [
+    -10.048,
+    21.292
+   ],
+   [
+    84.452,
+    3.042
+   ],
+   [
+    23.952,
+    -17.258
+   ],
+   [
+    -24.798,
+    -17.258
+   ]
+  ],
+  "components": {
+   "J601_usb_c": [
+    -4.5,
+    4.5,
+    20.0,
+    27.5,
+    3.3
+   ],
+   "J801_xt30": [
+    64.0,
+    74.5,
+    3.0,
+    11.5,
+    8.5
+   ],
+   "J802_xh3_bal": [
+    64.0,
+    74.0,
+    -6.0,
+    0.0,
+    10.0
+   ],
+   "J803_ph2_ntc": [
+    76.0,
+    82.0,
+    4.0,
+    10.0,
+    6.5
+   ],
+   "J501_ffc20_ui": [
+    63.0,
+    89.0,
+    19.5,
+    24.5,
+    2.5
+   ],
+   "J301_vh_woofer_L": [
+    -62.0,
+    -54.0,
+    -6.0,
+    1.0,
+    11.5
+   ],
+   "J302_vh_tweeter_L": [
+    -62.0,
+    -54.0,
+    3.0,
+    10.0,
+    11.5
+   ],
+   "J401_vh_woofer_R": [
+    54.0,
+    62.0,
+    -6.0,
+    1.0,
+    11.5
+   ],
+   "J402_vh_tweeter_R": [
+    54.0,
+    62.0,
+    3.0,
+    10.0,
+    11.5
+   ],
+   "bulk_cap_470u": [
+    -5.0,
+    5.0,
+    -5.0,
+    5.0,
+    10.5
+   ],
+   "boost_inductor": [
+    -24.0,
+    -12.0,
+    -2.0,
+    9.0,
+    4.2
+   ],
+   "amp_L_LC_filter": [
+    -42.0,
+    -16.0,
+    -19.0,
+    -9.0,
+    3.0
+   ],
+   "amp_R_LC_filter": [
+    16.0,
+    42.0,
+    -19.0,
+    -9.0,
+    3.0
+   ],
+   "U101_esp32_wrover": [
+    -94.0,
+    -62.6,
+    -3.0,
+    15.0,
+    3.2
+   ]
+  }
+ },
+ "uiboard": {
+  "rects": [
+   [
+    -91.0,
+    91.0,
+    -9.0,
+    22.0
+   ],
+   [
+    -22.0,
+    22.0,
+    -20.0,
+    22.0
+   ]
+  ],
+  "z_top": 35.0,
+  "thickness": 1.6,
+  "standoffs": [
+   [
+    -80.0,
+    18.5
+   ],
+   [
+    87.0,
+    6.0
+   ],
+   [
+    -16.0,
+    -15.0
+   ],
+   [
+    16.0,
+    -15.0
+   ],
+   [
+    60.0,
+    -12.0
+   ],
+   [
+    -60.0,
+    -12.0
+   ]
+  ],
+  "outline": [
+   [
+    -91.0,
+    22.0
+   ],
+   [
+    -91.0,
+    -9.0
+   ],
+   [
+    -22.0,
+    -9.0
+   ],
+   [
+    -22.0,
+    -20.0
+   ],
+   [
+    22.0,
+    -20.0
+   ],
+   [
+    22.0,
+    -9.0
+   ],
+   [
+    91.0,
+    -9.0
+   ],
+   [
+    91.0,
+    22.0
+   ]
+  ]
+ },
+ "ui_clear_to_pods_mm": 2.3,
+ "ui_clear_to_battery_tray_mm": 8.4,
+ "woofer_motor_to_pr_keepout_mm": 5.5,
+ "pod_to_pr_basket_mm": 1.0,
+ "pod_to_woofer_flange_mm": 0.5,
+ "woofer_basket_to_pr_keepout_mm": 1.59,
+ "woofer_frame_gap_mm": 2.0,
+ "swell_envelope_clipped_by_shell_mm3": 186.6,
+ "swell_envelope_nominal_LW_clipped_mm3": 0.0,
+ "battery_to_shell_mm": 1.02,
+ "bbox_mm": [
+  216.0,
+  95.0,
+  92.0
+ ],
+ "print_bboxes_mm": {
+  "shell_front": [
+   202.0,
+   74.3,
+   92.0
+  ],
+  "shell_rear": [
+   202.0,
+   23.5,
+   82.0
+  ],
+  "end_cap_L": [
+   4.0,
+   95.0,
+   92.0
+  ]
+ },
+ "part_volumes_cm3": {
+  "woofer_L_flange": 12.93,
+  "woofer_L_basket": 41.72,
+  "woofer_L_motor": 22.68,
+  "woofer_R_flange": 12.93,
+  "woofer_R_basket": 41.72,
+  "woofer_R_motor": 22.68,
+  "pr_L_flange": 9.38,
+  "pr_L_basket": 53.01,
+  "pr_L_post_mass": 1.03,
+  "pr_L_excursion_keepout": 3.99,
+  "pr_R_flange": 9.38,
+  "pr_R_basket": 53.01,
+  "pr_R_post_mass": 1.03,
+  "pr_R_excursion_keepout": 3.99,
+  "tweeter_L": 12.36,
+  "tweeter_pod_L_sealed": 16.95,
+  "tweeter_R": 12.36,
+  "tweeter_pod_R_sealed": 16.95,
+  "battery": 89.27,
+  "battery_tray": 26.64,
+  "battery_swell_envelope": 117.23,
+  "mainboard_pcb": 10.48,
+  "mainboard_components": 9.69,
+  "ui_board_pcb": 9.8,
+  "display_module": 4.83,
+  "display_lens": 1.88,
+  "encoder_EC11": 1.63,
+  "knob": 6.9,
+  "buttons": 0.88,
+  "shell_front": 141.67,
+  "shell_rear": 60.83,
+  "end_cap_L": 19.56,
+  "end_cap_R": 19.56,
+  "grille_alu": 11.48
+ },
+ "shell_mass_g_PETG": 307.0
+}

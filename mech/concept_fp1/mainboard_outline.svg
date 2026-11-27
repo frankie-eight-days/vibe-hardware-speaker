@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="635" height="284" viewBox="0 0 635 284">
+<rect width="100%" height="100%" fill="white"/>
+<text x="10" y="274" font-family="monospace" font-size="13">Main board outline (top view, +Y = rear/up in drawing). Blue = connector/tall-part placements; red = antenna keep-out</text>
+<polygon points="32.0,222.0 603.2,222.0 603.2,38.0 278.4,38.0 278.4,32.0 222.4,32.0 222.4,38.0 32.0,38.0" fill="#2e7d32" fill-opacity="0.15" stroke="#1b5e20" stroke-width="2"/>
+<rect x="232.4" y="28.0" width="36.0" height="30.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="234.4" y="40.0" font-family="monospace" font-size="10">J601_usb_c</text>
+<rect x="506.4" y="92.0" width="42.0" height="34.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="508.4" y="104.0" font-family="monospace" font-size="10">J801_xt30</text>
+<rect x="506.4" y="138.0" width="40.0" height="24.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="508.4" y="150.0" font-family="monospace" font-size="10">J802_xh3_bal</text>
+<rect x="554.4" y="98.0" width="24.0" height="24.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="556.4" y="110.0" font-family="monospace" font-size="10">J803_ph2_ntc</text>
+<rect x="502.4" y="40.0" width="104.0" height="20.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="504.4" y="52.0" font-family="monospace" font-size="10">J501_ffc20_ui</text>
+<rect x="2.4" y="134.0" width="32.0" height="28.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="4.4" y="146.0" font-family="monospace" font-size="10">J301_vh_woofer_L</text>
+<rect x="2.4" y="98.0" width="32.0" height="28.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="4.4" y="110.0" font-family="monospace" font-size="10">J302_vh_tweeter_L</text>
+<rect x="466.4" y="134.0" width="32.0" height="28.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="468.4" y="146.0" font-family="monospace" font-size="10">J401_vh_woofer_R</text>
+<rect x="466.4" y="98.0" width="32.0" height="28.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="468.4" y="110.0" font-family="monospace" font-size="10">J402_vh_tweeter_R</text>
+<rect x="230.4" y="118.0" width="40.0" height="40.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="232.4" y="130.0" font-family="monospace" font-size="10">bulk_cap_470u</text>
+<rect x="154.4" y="102.0" width="48.0" height="44.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="156.4" y="114.0" font-family="monospace" font-size="10">boost_inductor</text>
+<rect x="82.4" y="174.0" width="104.0" height="40.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="84.4" y="186.0" font-family="monospace" font-size="10">amp_L_LC_filter</text>
+<rect x="314.4" y="174.0" width="104.0" height="40.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="316.4" y="186.0" font-family="monospace" font-size="10">amp_R_LC_filter</text>
+<rect x="-125.6" y="78.0" width="125.6" height="72.0" fill="#1565c0" fill-opacity="0.35" stroke="#1565c0"/>
+<text x="-123.6" y="90.0" font-family="monospace" font-size="10">U101_esp32_wrover</text>
+<rect x="-109.6" y="38.0" width="141.6" height="184.0" fill="#c62828" fill-opacity="0.35" stroke="#c62828"/>
+<text x="-107.6" y="50.0" font-family="monospace" font-size="10">ANTENNA KEEP-OUT (all layers)</text>
+<circle cx="112.2" cy="63.4" r="6.4" fill="white" stroke="black"/>
+<circle cx="210.2" cy="52.8" r="6.4" fill="white" stroke="black"/>
+<circle cx="588.2" cy="125.8" r="6.4" fill="white" stroke="black"/>
+<circle cx="346.2" cy="207.0" r="6.4" fill="white" stroke="black"/>
+<circle cx="151.2" cy="207.0" r="6.4" fill="white" stroke="black"/>
+</svg>

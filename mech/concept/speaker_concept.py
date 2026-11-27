@@ -15,6 +15,8 @@ import Part
 
 V = App.Vector
 HERE = os.path.dirname(os.path.abspath(__file__)) if "__file__" in dir() else os.getcwd()
+# Variant runs: SPEAKER_OUT=<dir> writes outputs there; SPEAKER_PARAMS=<json> overrides P (key "params")
+HERE = os.environ.get("SPEAKER_OUT", HERE)
 BUILD = os.path.join(HERE, "build")
 os.makedirs(BUILD, exist_ok=True)
 
@@ -75,6 +77,9 @@ P = dict(
     btn_x=[-60.0, -72.0, -84.0], btn_pad=(-91.0, -53.0, 14.0),
     mic_x=-30.0,
 )
+if os.environ.get("SPEAKER_PARAMS"):
+    P.update({k: (tuple(v) if k in ("mb_x", "mb_y", "mb_usb_tab") else v)
+              for k, v in json.load(open(os.environ["SPEAKER_PARAMS"]))["params"].items() if k in P})
 p = P
 R = p["D_out"] / 2.0
 Ri = R - p["wall"]
@@ -259,6 +264,8 @@ zone_rects = [
 ]
 zone_heights = {}
 for name, x0, x1, y0, y1 in zone_rects:
+    if x1 - x0 < 0.5:      # zone lies off a shorter board (variant runs)
+        continue
     zone_heights[name] = dict(x=[round(x0, 1), round(x1, 1)], y=[round(y0, 1), round(y1, 1)],
                               hmax=round(clear_height(x0, x1, y0, y1), 1))
 # also the motor rectangles individually (more height than the whole 'B' strip)

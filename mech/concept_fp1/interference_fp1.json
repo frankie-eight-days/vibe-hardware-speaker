@@ -1,0 +1,24 @@
+{
+ "board_bbox": [
+  -1e+100,
+  1e+100,
+  -1e+100,
+  1e+100,
+  -1e+100,
+  1e+100
+ ],
+ "interference_mm3": {
+  "woofer_L_basket": 1157.47,
+  "woofer_L_motor": 1608.68,
+  "woofer_R_basket": 1785.57,
+  "woofer_R_motor": 1454.43,
+  "pr_R_basket": 702.55,
+  "pr_R_post_mass": 172.28,
+  "pr_R_excursion_keepout": 726.61,
+  "battery": 1431.58,
+  "battery_tray": 434.88,
+  "battery_swell_envelope": 1698.16
+ },
+ "imported_objects": 2250,
+ "placeholder_parts": 14
+}
