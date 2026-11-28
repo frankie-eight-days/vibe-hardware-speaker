@@ -7,7 +7,8 @@ mid-section (X 1..65), from mech/concept/speaker_concept.py parameters and docs/
   battery tray front wall, pack + vendor tolerance, swell + foam (Gens ace 2S 5000, 109x42x19.5),
   main board + top parts under the baskets + bottom parts, standoff / gap-pad / spreader zone,
   UI board + parts.
-Requirements on the OUTER skin (3 mm wall): display lens flush at Z 47.5 over |Y| <= 20, and the woofer
+Requirements on the OUTER skin (3 mm wall): display lens top at Z 47.5 at Y = 0 (the concept puts the dia 40
+lens on a local raised pad; the pad height needed at |Y| = 20 is reported), and the woofer
 cone at 1.5 x Xmax + 1 mm + 0.8 mm grille => front skin at Y <= -41.0 over |Z| <= 23 (cone Sd dia 45.8).
 Desk flat: outer Z = -44.5 (as concept; inner floor -41.5 keeps the 6.5 mm standoff + gap-pad stack).
 
@@ -46,7 +47,7 @@ RECTS = {  # (y0, y1, z0, z1)
     "UI board": (-20.0, 22.0, 31.4, 35.0),
     "UI top parts (<=4 mm)": (-9.0, 20.0, 35.0, 39.0),
 }
-OUTER_PTS = {"display lens flush": [(-20.0, 47.5), (20.0, 47.5)],
+OUTER_PTS = {"display lens top (centre; a local raised pad does the rest, as in the concept)": [(0.0, 47.5)],
              "woofer cone + grille clearance": [(-41.0, -23.0), (-41.0, 23.0)]}
 UI_END = (-9.0, 22.0, 31.4, 39.0)
 PR_R = 26.0
@@ -121,6 +122,12 @@ def superellipse(yc, a_f, a_r, b, n_f, n_r, zc=0.0):
     return np.stack([y, z], 1)
 
 
+def rounded_poly(V, rc):
+    V = np.array(V, float)
+    u = np.stack([np.cos(TH), np.sin(TH)], 1)
+    return V[np.argmax(u @ V.T, axis=1)] + rc * u
+
+
 def rounded_triangle(yf, yr, yt, zt, rc, zb):
     """conv(triangle (yf,zb),(yr,zb),(yt,zt)) (+) disc(rc): support-function boundary."""
     V = np.array([[yf, zb], [yr, zb], [yt, zt]])
@@ -138,7 +145,9 @@ FAMILIES = {
     "D / egg (flat-ish front, round rear)": (lambda x: superellipse(x[0], x[1], x[2], x[3], x[4], 2.0),
                                              [(-5, 10), (28, 50), (28, 55), (34, 55), (2.0, 6.0)]),
     "softened triangle (flat base, apex up-rear)": (lambda x: rounded_triangle(x[0], x[1], x[2], x[3], x[4], Z_FLAT_IN + x[4]),
-                                                    [(-40, 0), (0, 45), (-20, 30), (0, 40), (8, 30)]),
+                                                    [(-40, 0), (0, 45), (-20, 30), (0, 40), (8, 46)]),
+    "rounded rectangle (pill section)": (lambda x: rounded_poly([[x[0], Z_FLAT_IN + x[3]], [x[1], Z_FLAT_IN + x[3]], [x[1], x[2]], [x[0], x[2]]], x[3]),
+                                         [(-42, -10), (10, 42), (10, 47), (5, 30)]),
 }
 
 
@@ -165,11 +174,12 @@ def tweeter_fit(pout, pin):
     nrm = np.stack([t[:, 1], -t[:, 0]], 1)
     nrm /= np.linalg.norm(nrm, axis=1, keepdims=True)
     elev = np.degrees(np.arctan2(nrm[:, 1], -nrm[:, 0]))         # 0 = front, 90 = up
-    cand = np.where((np.abs(elev - 40) < 2.5) & (P[:, 0] < 0) & (P[:, 1] > 0))[0]
+    cand = np.where((np.abs(elev - 40) <= 5.0) & (P[:, 0] < 0) & (P[:, 1] > 0))[0]
     best = None
-    ax = np.array([-math.cos(math.radians(40)), math.sin(math.radians(40))])
-    perp = np.array([ax[1], -ax[0]])
     for i in cand:
+        ax = nrm[i] * np.array([1.0, 1.0])
+        ax = np.array([-math.cos(math.radians(elev[i])), math.sin(math.radians(elev[i]))])
+        perp = np.array([ax[1], -ax[0]])
         face = P[i]
         back = face - POD_DEPTH * ax
         pod = np.array([face + POD_D / 2 * perp, face - POD_D / 2 * perp, back - POD_D / 2 * perp, back + POD_D / 2 * perp])
@@ -183,7 +193,7 @@ def tweeter_fit(pout, pin):
         out_skin = float(np.max(outside_dist(pout, dense)))
         score = min(pr_clear, ui_clear) - 10 * out_skin
         if best is None or score > best["score"]:
-            best = dict(score=score, face_yz=[round(float(face[0]), 1), round(float(face[1]), 1)],
+            best = dict(score=score, elevation_deg=round(float(elev[i]), 1), face_yz=[round(float(face[0]), 1), round(float(face[1]), 1)],
                         face_height_above_desk_mm=round(float(face[1]) - (Z_FLAT_IN - WALL), 1),
                         pr_basket_clear_mm=round(pr_clear, 1), ui_board_clear_mm=round(ui_clear, 1),
                         pod_outside_skin_mm=round(out_skin, 1))
@@ -192,11 +202,13 @@ def tweeter_fit(pout, pin):
 
 def describe(name, poly_in, x=None):
     pin, pout = evaluate(poly_in)
-    flat = pout[np.abs(pout[:, 1] - (Z_FLAT_IN - WALL)) < 1e-6]
+    flat = pout[np.abs(pout[:, 1] - (Z_FLAT_IN - WALL)) < 0.05]
     e1, e2 = outside_dist(pin, PIN), outside_dist(pout, POUT)
     tight = [k for k, r in RECTS.items() if np.any(outside_dist(offset(pin, -0.75), np.array(corners(r))) > 0)]
     tight += [k for k, v in OUTER_PTS.items() if np.any(outside_dist(offset(pout, -0.75), np.array(v)) > 0)]
-    return dict(family=name, params=None if x is None else [round(float(v), 2) for v in x],
+    zt = lambda yq: float(np.max(pout[np.abs(pout[:, 0] - yq) < 1.0][:, 1]))
+    pad_h = round(47.5 - min(zt(-20.0), zt(20.0)), 1)
+    return dict(family=name, display_pad_height_at_Y20_mm=pad_h, params=None if x is None else [round(float(v), 2) for v in x],
                 outer_area_cm2=round(area(pout) / 100, 2), inner_area_cm2=round(area(pin) / 100, 2),
                 outer_depth_y_mm=round(float(np.ptp(pout[:, 0])), 1), outer_height_z_mm=round(float(np.ptp(pout[:, 1])), 1),
                 desk_flat_width_mm=round(float(np.ptp(flat[:, 0])), 1) if len(flat) else 0.0,
@@ -238,7 +250,8 @@ for ax, d in zip(axs, results):
     ax.add_patch(plt.Circle((0, 0), PR_R, fill=False, ls=":", color="tab:green"))
     if d["tweeter"]:
         fy, fz = d["tweeter"]["face_yz"]
-        axv = np.array([-math.cos(math.radians(40)), math.sin(math.radians(40))])
+        el = math.radians(d["tweeter"]["elevation_deg"])
+        axv = np.array([-math.cos(el), math.sin(el)])
         ax.plot([fy, fy - POD_DEPTH * axv[0]], [fz, fz - POD_DEPTH * axv[1]], color="tab:orange", lw=4, alpha=0.7)
     ax.set_aspect("equal"); ax.set_xlim(-55, 55); ax.set_ylim(-50, 55)
     ax.set_title(f"{d['family'][:28]}\nA_out {d['outer_area_cm2']} cm2, dV {d['net_volume_change_cm3']:+.0f} cm3", fontsize=7)

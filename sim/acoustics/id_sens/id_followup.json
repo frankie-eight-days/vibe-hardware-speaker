@@ -1,0 +1,214 @@
+{
+ "grille": {
+  "perforated": {
+   "fine 23 % (dia 1.6 / 0.81 mm)": {
+    "IL_dB": {
+     "2.5k": 0.07,
+     "5k": 0.27,
+     "10k": 1.01,
+     "16k": 2.22
+    },
+    "f_cavity_kHz": {
+     "gap 2 mm": 16.4,
+     "gap 3 mm": 13.4,
+     "gap 4 mm": 11.6,
+     "gap 12 mm": 6.7
+    },
+    "plate_mode_over_woofer_bore_kHz": 2.56
+   },
+   "mid 40 % (dia 3.2 / 0.81 mm)": {
+    "IL_dB": {
+     "2.5k": 0.02,
+     "5k": 0.1,
+     "10k": 0.38,
+     "16k": 0.92
+    },
+    "f_cavity_kHz": {
+     "gap 2 mm": 21.2,
+     "gap 3 mm": 17.3,
+     "gap 4 mm": 15.0,
+     "gap 12 mm": 8.7
+    },
+    "plate_mode_over_woofer_bore_kHz": 2.26
+   },
+   "open 51 % (dia 4.8 / 0.81 mm)": {
+    "IL_dB": {
+     "2.5k": 0.01,
+     "5k": 0.06,
+     "10k": 0.23,
+     "16k": 0.57
+    },
+    "f_cavity_kHz": {
+     "gap 2 mm": 24.2,
+     "gap 3 mm": 19.7,
+     "gap 4 mm": 17.1,
+     "gap 12 mm": 9.9
+    },
+    "plate_mode_over_woofer_bore_kHz": 2.04
+   }
+  },
+  "cloth_IL_dB_flat": {
+   "20 Pa s/m": 0.21,
+   "40 Pa s/m": 0.41,
+   "80 Pa s/m": 0.81,
+   "150 Pa s/m": 1.45
+  },
+  "note": "cavity f0: below ~f0/2 the response rises <= ~2.5 dB (undamped lumped bound), above f0 it falls ~12 dB/oct; f0 must be >= ~1.5 x 16 kHz to keep the tweeter band clean"
+ },
+ "halo": {
+  "rows": [
+   {
+    "ring_id_mm": 52.0,
+    "depth_ahead_of_diaphragm_mm": 6.0,
+    "air_mass_g": 0.0071,
+    "mass_pct_of_PR": 0.07,
+    "if_closed_by_surface_cavity_cm3": 12.7,
+    "if_closed_stiffness_x_PR_suspension": 55.9
+   },
+   {
+    "ring_id_mm": 60.0,
+    "depth_ahead_of_diaphragm_mm": 10.0,
+    "air_mass_g": 0.0089,
+    "mass_pct_of_PR": 0.087,
+    "if_closed_by_surface_cavity_cm3": 28.3,
+    "if_closed_stiffness_x_PR_suspension": 25.2
+   },
+   {
+    "ring_id_mm": 78.0,
+    "depth_ahead_of_diaphragm_mm": 10.0,
+    "air_mass_g": 0.0053,
+    "mass_pct_of_PR": 0.052,
+    "if_closed_by_surface_cavity_cm3": 47.8,
+    "if_closed_stiffness_x_PR_suspension": 14.9
+   },
+   {
+    "ring_id_mm": 78.0,
+    "depth_ahead_of_diaphragm_mm": 16.0,
+    "air_mass_g": 0.0084,
+    "mass_pct_of_PR": 0.083,
+    "if_closed_by_surface_cavity_cm3": 76.5,
+    "if_closed_stiffness_x_PR_suspension": 9.3
+   }
+  ],
+  "vent_speed_at_PR_limit": [
+   {
+    "vent_area_cm2": 0.5,
+    "peak_air_speed_m_s": 43.7
+   },
+   {
+    "vent_area_cm2": 1,
+    "peak_air_speed_m_s": 21.9
+   },
+   {
+    "vent_area_cm2": 2,
+    "peak_air_speed_m_s": 10.9
+   },
+   {
+    "vent_area_cm2": 3,
+    "peak_air_speed_m_s": 7.3
+   },
+   {
+    "vent_area_cm2": 5,
+    "peak_air_speed_m_s": 4.4
+   }
+  ],
+  "pr_peak_volume_velocity_m3_s": 0.002186548486898496
+ },
+ "octagon": {
+  "inner_area_cm2": 65.6,
+  "baseline_inner_area_cm2": 61.56,
+  "outer_area_cm2": 74.7,
+  "baseline_outer_area_cm2": 70.21,
+  "net_volume_change_cm3": 82,
+  "net_volume_change_pct": 10.0,
+  "across_flats_mm": 95.0,
+  "across_corners_mm": 101.8,
+  "facet_flat_width_mm": 34.4,
+  "min_inradius_inner_mm": 44.48,
+  "woofer_tunnel_mean_depth_mm": {
+   "octagon": 13.5,
+   "circle": 12.2
+  },
+  "tweeter_45": {
+   "pr_basket_clear_mm": 1.0,
+   "ui_board_clear_mm": 0.0,
+   "face_height_above_desk_mm": 81.1
+  },
+  "tweeter_listener_level_re_axis_dB": {
+   "2.5k": {
+    "at_40deg": -0.33,
+    "at_45deg": -0.42,
+    "delta": -0.09
+   },
+   "5k": {
+    "at_40deg": 0.75,
+    "at_45deg": 0.81,
+    "delta": 0.06
+   },
+   "8k": {
+    "at_40deg": -0.31,
+    "at_45deg": -0.5,
+    "delta": -0.2
+   },
+   "10k": {
+    "at_40deg": -1.52,
+    "at_45deg": -2.4,
+    "delta": -0.88
+   },
+   "12.5k": {
+    "at_40deg": -2.24,
+    "at_45deg": -3.51,
+    "delta": -1.27
+   },
+   "16k": {
+    "at_40deg": -1.99,
+    "at_45deg": -2.99,
+    "delta": -1.0
+   }
+  }
+ },
+ "magnet_n52_quarter_inch": [
+  {
+   "distance_mm": 3,
+   "B_axis_mT": 188.58,
+   "pull_on_PR_washers_N": 4.6894,
+   "PR_offset_mm": 11.255
+  },
+  {
+   "distance_mm": 5,
+   "B_axis_mT": 86.16,
+   "pull_on_PR_washers_N": 0.8216,
+   "PR_offset_mm": 1.972
+  },
+  {
+   "distance_mm": 10,
+   "B_axis_mT": 20.7,
+   "pull_on_PR_washers_N": 0.0305,
+   "PR_offset_mm": 0.073
+  },
+  {
+   "distance_mm": 15,
+   "B_axis_mT": 7.83,
+   "pull_on_PR_washers_N": 0.0032,
+   "PR_offset_mm": 0.008
+  },
+  {
+   "distance_mm": 20,
+   "B_axis_mT": 3.76,
+   "pull_on_PR_washers_N": 0.0006,
+   "PR_offset_mm": 0.001
+  },
+  {
+   "distance_mm": 30,
+   "B_axis_mT": 1.28,
+   "pull_on_PR_washers_N": 0.0,
+   "PR_offset_mm": 0.0
+  },
+  {
+   "distance_mm": 50,
+   "B_axis_mT": 0.31,
+   "pull_on_PR_washers_N": 0.0,
+   "PR_offset_mm": 0.0
+  }
+ ]
+}

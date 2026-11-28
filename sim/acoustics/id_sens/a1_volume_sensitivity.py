@@ -85,3 +85,29 @@ for r in rows:
           f"{a['max_boost_db']:5.1f} {a['pink_db']:6.2f}({a['pink_limit']:11s}) {a['sine_max_50hz_db']:5.1f} "
           f"{a['sine_max_63hz_db']:5.1f} | {b['m_add_g']:4.2f} {b['pink_db']:6.2f} | "
           f"{c['f3_eq_hz']:5.1f}/{c['f6_eq_hz']:4.1f} {c['pink_db']:6.2f}")
+
+# ------------------------------------------------------------------ leaks: an unsealed hole through the 3 mm wall
+# Hole of diameter d through a wall l: viscous R = 8 mu l / (pi a^4), inertance M = rho (l + 0.85 d) / S.
+# Expressed as an equivalent leakage Q at fb (Q_hole = |Z_hole| w_b Cab), combined in parallel with the
+# baseline QL 10, then run through the same A1 evaluation (3.5 g, EQ re-designed).
+MU = 1.8e-5
+leak_rows = []
+s0 = bm.system(F, W, P, VB0, M35, ql=QL, qa=QA)
+wb = 2 * np.pi * s0["fb"]
+for dmm in (0.0, 0.5, 1.0, 1.5, 2.0, 3.0):
+    if dmm == 0:
+        ql_eff, qh = QL, float("inf")
+    else:
+        a = dmm / 2e3
+        S = np.pi * a * a
+        Z = 8 * MU * 3e-3 / (np.pi * a ** 4) + 1j * wb * bm.RHO * (3e-3 + 0.85 * 2 * a) / S
+        qh = abs(Z) * wb * s0["cab"]
+        ql_eff = 1 / (1 / QL + 1 / qh)
+    s = bm.system(F, W, P, VB0, M35, ql=ql_eff, qa=QA)
+    g, href = bm.ideal_eq(F, s, f3=F3T, max_boost_db=MAXB)
+    pink = bm.pink_estimate(F, s, W, P, g, href, crest=CREST, fx=FX)[0]
+    leak_rows.append(dict(hole_d_mm=dmm, Q_hole=qh, QL_eff=ql_eff, pink_db=pink))
+    print(f"open hole d {dmm:3.1f} mm: Q_hole {qh:8.2f}  QL_eff {ql_eff:5.2f}  pink {pink:6.2f} dB")
+out["leaks_single_open_hole_3mm_wall"] = leak_rows
+with open(os.path.join(HERE, "a1_volume_sensitivity.json"), "w") as fh:
+    json.dump(out, fh, indent=1, default=float)
