@@ -1,0 +1,209 @@
+{
+ "facets": [
+  {
+   "name": "front",
+   "phi_deg": 0.0,
+   "h_outer_mm": 47.5,
+   "outer_corner_radius_mm": 10.0
+  },
+  {
+   "name": "shoulder",
+   "phi_deg": 40.0,
+   "h_outer_mm": 47.5,
+   "outer_corner_radius_mm": 5.0
+  },
+  {
+   "name": "top",
+   "phi_deg": 90.0,
+   "h_outer_mm": 47.5,
+   "outer_corner_radius_mm": 5.0
+  },
+  {
+   "name": "rear_top",
+   "phi_deg": 135.0,
+   "h_outer_mm": 51.265,
+   "outer_corner_radius_mm": 8.0
+  },
+  {
+   "name": "rear",
+   "phi_deg": 180.0,
+   "h_outer_mm": 42.5,
+   "outer_corner_radius_mm": 8.0
+  },
+  {
+   "name": "rear_bottom",
+   "phi_deg": 225.0,
+   "h_outer_mm": 50.487,
+   "outer_corner_radius_mm": 5.0
+  },
+  {
+   "name": "bottom",
+   "phi_deg": 270.0,
+   "h_outer_mm": 44.5,
+   "outer_corner_radius_mm": 5.0
+  },
+  {
+   "name": "lower_front",
+   "phi_deg": 320.0,
+   "h_outer_mm": 47.5,
+   "outer_corner_radius_mm": 10.0
+  }
+ ],
+ "outer_area_cm2": 73.03,
+ "inner_area_cm2": 63.97,
+ "baseline_inner_area_cm2": 61.56,
+ "delta_volume_cm3_uniform_202mm": 48.7,
+ "outer_depth_y_mm": 90.0,
+ "outer_height_z_mm": 92.0,
+ "outer_y_range": [
+  -47.5,
+  42.5
+ ],
+ "outer_z_range": [
+  -44.5,
+  47.5
+ ],
+ "flats_outer": {
+  "front": {
+   "flat_mm": 27.3,
+   "corner_to_corner_mm": 34.58,
+   "from_": [
+    -47.5,
+    -13.65
+   ],
+   "to": [
+    -47.5,
+    13.65
+   ]
+  },
+  "shoulder": {
+   "flat_mm": 33.47,
+   "corner_to_corner_mm": 39.44,
+   "from_": [
+    -45.16,
+    20.08
+   ],
+   "to": [
+    -23.65,
+    45.71
+   ]
+  },
+  "top": {
+   "flat_mm": 42.75,
+   "corner_to_corner_mm": 47.15,
+   "from_": [
+    -19.82,
+    47.5
+   ],
+   "to": [
+    22.93,
+    47.5
+   ]
+  },
+  "rear_top": {
+   "flat_mm": 19.36,
+   "corner_to_corner_mm": 24.75,
+   "from_": [
+    26.46,
+    46.04
+   ],
+   "to": [
+    40.16,
+    32.34
+   ]
+  },
+  "rear": {
+   "flat_mm": 52.27,
+   "corner_to_corner_mm": 58.9,
+   "from_": [
+    42.5,
+    26.69
+   ],
+   "to": [
+    42.5,
+    -25.59
+   ]
+  },
+  "rear_bottom": {
+   "flat_mm": 16.68,
+   "corner_to_corner_mm": 22.06,
+   "from_": [
+    40.16,
+    -31.24
+   ],
+   "to": [
+    28.36,
+    -43.04
+   ]
+  },
+  "bottom": {
+   "flat_mm": 47.16,
+   "corner_to_corner_mm": 51.57,
+   "from_": [
+    24.83,
+    -44.5
+   ],
+   "to": [
+    -22.34,
+    -44.5
+   ]
+  },
+  "lower_front": {
+   "flat_mm": 29.55,
+   "corner_to_corner_mm": 35.52,
+   "from_": [
+    -26.17,
+    -42.71
+   ],
+   "to": [
+    -45.16,
+    -20.08
+   ]
+  }
+ },
+ "inner_clearance_to_package_mm": {
+  "woofer flange + 0.5 clr": 0.32,
+  "woofer basket d52": 5.65,
+  "woofer motor d38": 22.5,
+  "tray front wall (puncture shield)": 16.5,
+  "battery + tolerance": 2.4,
+  "battery swell 10% + foam": 0.45,
+  "main board + top parts": 5.06,
+  "board bottom parts": 4.5,
+  "standoff / gap pad / spreader zone": -0.0,
+  "UI board": 6.68,
+  "UI top parts (<=4 mm)": 5.5
+ },
+ "outer_margin_mm": {
+  "display lens top": 0.0,
+  "woofer cone + grille clearance (Y<=-41 over |Z|<=23)": 1.31
+ },
+ "tweeter": {
+  "face_centre_yz": [
+   -36.39,
+   30.53
+  ],
+  "axis_elevation_deg": 40.0,
+  "face_on_shoulder_facet_residual_mm": 0.0,
+  "face_height_above_desk_mm": 75.0,
+  "boss_r_mm": 18.5,
+  "shoulder_flat_len_mm": 33.46,
+  "boss_edge_to_lower_tangent_mm": -4.85,
+  "boss_edge_to_upper_tangent_mm": 1.31,
+  "boss_overhang_drop_lower_mm": 1.26,
+  "boss_overhang_drop_upper_mm": 0.0,
+  "pod_to_PR_basket_r25_mm": 1.0,
+  "pod_to_UI_envelope_mm": 0.77,
+  "pod_inside_inner_skin_mm": -0.72
+ },
+ "woofer_tunnel": {
+  "depth_centre_mm": 13.6,
+  "depth_mean_mm": 12.82,
+  "depth_edge_min_mm": 5.87,
+  "baseline_a3": {
+   "centre": 13.6,
+   "mean": 11.68,
+   "edge": 5.52
+  }
+ }
+}

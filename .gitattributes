@@ -1,0 +1,19 @@
+# Git LFS: 3D/CAD, meshes, renders sources and large simulation outputs
+*.step filter=lfs diff=lfs merge=lfs -text
+*.stp filter=lfs diff=lfs merge=lfs -text
+*.STEP filter=lfs diff=lfs merge=lfs -text
+*.stl filter=lfs diff=lfs merge=lfs -text
+*.FCStd filter=lfs diff=lfs merge=lfs -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.glb filter=lfs diff=lfs merge=lfs -text
+*.3mf filter=lfs diff=lfs merge=lfs -text
+*.wrl filter=lfs diff=lfs merge=lfs -text
+*.npz filter=lfs diff=lfs merge=lfs -text
+*.npy filter=lfs diff=lfs merge=lfs -text
+*.msh filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+sim/spice/results/*_wf_*.csv filter=lfs diff=lfs merge=lfs -text
+sim/spice/results/s6_*_eye_*.csv filter=lfs diff=lfs merge=lfs -text
+sim/acoustics/results/a4_work/** filter=lfs diff=lfs merge=lfs -text
+sim/acoustics/results/bem_ckpt_*/** filter=lfs diff=lfs merge=lfs -text
+sim/postlayout/work/** filter=lfs diff=lfs merge=lfs -text

@@ -12,13 +12,7 @@ fp-info-cache
 _autosave-*
 *.bak
 
-# Regenerable large simulation outputs (rebuild with sim/*/run_all.sh)
-*.npz
-sim/acoustics/results/a4_work/
-sim/acoustics/results/bem_ckpt_*/
-sim/spice/results/*_wf_*.csv
-sim/spice/results/s6_*_eye_*.csv
-sim/smoke/out/*.msh
+# Large files are NOT ignored: they go through Git LFS (see .gitattributes), per the owner.
 
 # Review snapshots duplicate hw/ (exports are kept)
 docs/review/snapshot*/
@@ -36,6 +30,5 @@ docs/writeup/**/*.fdb_latexmk
 docs/writeup/**/*.synctex.gz
 docs/build/aux/
 
-# post-layout analysis scratch (board copies, FastHenry meshes/outputs) and the FastHenry build
-sim/postlayout/work/
+# FastHenry build: a third-party clone (github.com/ediloren/FastHenry2) plus binaries; rebuild per the hand-off notes
 sim/postlayout/tools/
