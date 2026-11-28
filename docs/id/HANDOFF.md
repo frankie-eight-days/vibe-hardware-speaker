@@ -52,5 +52,5 @@ Thermal: a hidden 100 cm² Al plate under the gap pads doubles sustained output 
 ## Notes for whoever picks this up
 
 - The agents (`id-lathe`, `id-halo`, `id-facet`) live in the lead's Claude session on the Mac mini. On another machine, re-launch them from the briefs implied above: concept text in `benchmark.md` §5, rules in `constraints.md`.
-- The autosave loop (git add/commit/push every 15 min) runs only on the Mac mini.
+- The autosave loop (git add/commit/push every 15 min) runs only on the Mac mini. Large files are not ignored: 3D/CAD, meshes and large sim outputs go through **Git LFS** (`.gitattributes`), and the loop LFS-tracks any new file over 10 MB. Clone with git-lfs installed.
 - Never text-edit KiCad files. Never touch the owner's open KiCad/FreeCAD windows; agents work headless.

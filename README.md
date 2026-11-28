@@ -59,4 +59,4 @@ sim/acoustics/run_all.sh    # BEM runs take ~1 h on a laptop CPU
 sim/spice/run_all.sh        # needs ngspice (brew install ngspice)
 ```
 
-Large intermediate results (`*.npz`, raw waveforms) are not committed; the scripts regenerate them.
+3D/CAD files and large simulation outputs (`*.step`, `*.stl`, `*.FCStd`, `*.npz`, raw waveforms) are stored with Git LFS: install it (`brew install git-lfs && git lfs install`) before cloning, or run `git lfs pull` afterwards.
