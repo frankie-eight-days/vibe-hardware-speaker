@@ -30,7 +30,7 @@ FACETS = [
     ("lower_front", 320.0, 47.5),
 ]
 # outer corner radius between facet i and i+1 (cyclic)
-RADII = [10.0, 5.0, 5.0, 8.0, 8.0, 5.0, 5.0, 10.0]
+RADII = [10.0, 4.0, 5.0, 8.0, 8.0, 5.0, 5.0, 10.0]
 
 
 def normal(phi):
